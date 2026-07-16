@@ -67,18 +67,29 @@ docs/
 
 Do not place `SKILL.md` in those folders.
 
+## skills.sh Page Grouping
+
+The skills.sh repository page is controlled by root `skills.sh.json`.
+
+- Use the skill slug from `skills/<skill-folder>` in each grouping.
+- Keep group titles short.
+- Put every public skill in exactly one group so the page stays easy to scan.
+- `npm run validate` checks that every grouped skill exists and every skill is grouped.
+
 ## Checklist
 
 Before committing a new skill:
 
 1. Create `skills/<skill-folder>/SKILL.md`.
 2. Set frontmatter `name` to `<skill-folder>`.
-3. Keep root free of `SKILL.md`.
-4. Keep nested folders free of extra `SKILL.md` files.
-5. Run `npm run sync` when skills or plugin grouping changes.
-6. Run `npm run validate`.
-7. Run `npx skills add . --list` before pushing to preview discovery.
-8. Run `npx skills add soden46/syarif-laravel-ai-skills --list` after pushing to verify GitHub discovery.
+3. Add the skill to one `skills.sh.json` grouping.
+4. Add the skill to one `plugin-groups.json` plugin.
+5. Keep root free of `SKILL.md`.
+6. Keep nested folders free of extra `SKILL.md` files.
+7. Run `npm run sync` when skills or plugin grouping changes.
+8. Run `npm run validate`.
+9. Run `npx skills add . --list` before pushing to preview discovery.
+10. Run `npx skills add soden46/syarif-laravel-ai-skills --list` after pushing to verify GitHub discovery.
 
 </details>
 
@@ -147,17 +158,28 @@ docs/
 
 Jangan menaruh `SKILL.md` di folder tersebut.
 
+## Grouping Halaman skills.sh
+
+Halaman repository di skills.sh dikontrol oleh `skills.sh.json` di root.
+
+- Pakai slug skill dari `skills/<skill-folder>` di setiap grouping.
+- Buat judul group tetap pendek.
+- Masukkan setiap skill publik tepat ke satu group supaya halaman mudah discan.
+- `npm run validate` mengecek setiap skill yang digroup memang ada dan semua skill sudah digroup.
+
 ## Checklist
 
 Sebelum commit skill baru:
 
 1. Buat `skills/<skill-folder>/SKILL.md`.
 2. Set frontmatter `name` menjadi `<skill-folder>`.
-3. Pastikan root repo tidak punya `SKILL.md`.
-4. Pastikan nested folder tidak punya `SKILL.md` tambahan.
-5. Jalankan `npm run sync` kalau skill atau grouping plugin berubah.
-6. Jalankan `npm run validate`.
-7. Jalankan `npx skills add . --list` sebelum push untuk preview discovery.
-8. Jalankan `npx skills add soden46/syarif-laravel-ai-skills --list` setelah push untuk verifikasi discovery GitHub.
+3. Tambahkan skill ke satu grouping di `skills.sh.json`.
+4. Tambahkan skill ke satu plugin di `plugin-groups.json`.
+5. Pastikan root repo tidak punya `SKILL.md`.
+6. Pastikan nested folder tidak punya `SKILL.md` tambahan.
+7. Jalankan `npm run sync` kalau skill atau grouping plugin berubah.
+8. Jalankan `npm run validate`.
+9. Jalankan `npx skills add . --list` sebelum push untuk preview discovery.
+10. Jalankan `npx skills add soden46/syarif-laravel-ai-skills --list` setelah push untuk verifikasi discovery GitHub.
 
 </details>

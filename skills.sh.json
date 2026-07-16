@@ -1,0 +1,137 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Start Here",
+      "description": "Entry points and daily workflows for choosing the right Laravel skill before changing code.",
+      "skills": [
+        "using-laravel-standards",
+        "using-laravel-superpowers",
+        "bootstrap-check",
+        "runner-selection",
+        "daily-workflow",
+        "brainstorming",
+        "writing-plans",
+        "executing-plans",
+        "laravel-specialist",
+        "laravel-11-12-app-guidelines"
+      ]
+    },
+    {
+      "title": "Architecture",
+      "description": "Laravel-native boundaries for controllers, routes, services, helpers, and design patterns.",
+      "skills": [
+        "architecture",
+        "actions-and-services",
+        "controller-cleanup",
+        "routes-best-practices",
+        "ports-and-adapters",
+        "interfaces-and-di",
+        "strategy-pattern",
+        "template-method-and-plugins",
+        "complexity-guardrails",
+        "constants-and-configuration",
+        "custom-helpers"
+      ]
+    },
+    {
+      "title": "HTTP & Security",
+      "description": "Request validation, API evolution, authorization, rate limiting, CSRF, and security checks.",
+      "skills": [
+        "form-requests",
+        "api-resources-and-pagination",
+        "api-surface-evolution",
+        "policies-and-authorization",
+        "rate-limiting",
+        "request-forgery-protection",
+        "security"
+      ]
+    },
+    {
+      "title": "Data & Eloquent",
+      "description": "Migrations, relationships, query shape, transactions, consistency, and large dataset handling.",
+      "skills": [
+        "migrations-and-factories",
+        "eloquent-patterns",
+        "eloquent-relationships",
+        "database-transactions",
+        "transactions-and-consistency",
+        "data-chunking-large-datasets"
+      ]
+    },
+    {
+      "title": "Performance",
+      "description": "Database optimization, caching, eager loading, and selective column patterns.",
+      "skills": [
+        "laravel-database-optimization",
+        "performance-caching",
+        "performance-eager-loading",
+        "performance-select-columns"
+      ]
+    },
+    {
+      "title": "UI & Admin",
+      "description": "Blade, Livewire, Nova, and translation patterns for Laravel user interfaces.",
+      "skills": [
+        "blade-components-and-layouts",
+        "livewire-development",
+        "livewire-patterns",
+        "nova-resource-patterns",
+        "internationalization-and-translation"
+      ]
+    },
+    {
+      "title": "Ops & Integrations",
+      "description": "Queues, Horizon, schedules, filesystems, HTTP clients, logging, and storage configuration.",
+      "skills": [
+        "queues-and-jobs",
+        "queues-and-horizon",
+        "horizon-metrics-and-dashboards",
+        "task-scheduling",
+        "filesystem-uploads",
+        "http-client-resilience",
+        "exception-handling-and-logging",
+        "config-env-storage"
+      ]
+    },
+    {
+      "title": "Quality",
+      "description": "Testing, Pint, E2E checks, controller coverage, documentation, and dependency trimming.",
+      "skills": [
+        "testing",
+        "tdd-with-pest",
+        "controller-tests",
+        "e2e-playwright",
+        "quality-checks",
+        "documentation-best-practices",
+        "dependencies-trim-packages"
+      ]
+    },
+    {
+      "title": "Modern Laravel",
+      "description": "Laravel 13+ topics including the AI SDK, vector search, PHP attributes, and upgrade planning.",
+      "skills": [
+        "ai-sdk",
+        "vector-search",
+        "php-attributes",
+        "upgrade-13"
+      ]
+    },
+    {
+      "title": "Prompting",
+      "description": "Prompt structure, debugging context, code review requests, examples, iteration, and standards extraction.",
+      "skills": [
+        "effective-context",
+        "prompt-structure",
+        "debugging-prompts",
+        "code-review-requests",
+        "iterating-on-code",
+        "specifying-constraints",
+        "using-examples-in-prompts",
+        "laravel-prompting-patterns",
+        "extract-laravel-standards"
+      ]
+    }
+  ]
+}

@@ -70,6 +70,7 @@ for (const dir of skillDirs) {
 }
 
 await assertPluginGroups(skillDirs);
+await assertSkillsShConfig(skillDirs);
 await assertGeneratedMarketplaces(skillDirs);
 await assertPackageJsonPolicy();
 
@@ -81,11 +82,92 @@ console.log(`Validated ${skillDirs.length} skills.`);
 
 async function assertRequiredRootFiles() {
   const rootEntries = await readdir(root);
-  const required = ["README.md", "RELEASE-NOTES.md", "CHANGELOG.md", "LICENSE", "package.json"];
+  const required = ["README.md", "RELEASE-NOTES.md", "CHANGELOG.md", "LICENSE", "package.json", "skills.sh.json"];
 
   for (const file of required) {
     if (!rootEntries.includes(file)) {
       fail(`Missing required root file with exact name: ${file}`);
+    }
+  }
+}
+
+async function assertSkillsShConfig(skillDirs) {
+  const configPath = path.join(root, "skills.sh.json");
+  let config;
+
+  try {
+    config = parseJson(await readFile(configPath, "utf8"));
+  } catch (error) {
+    fail(`skills.sh.json is missing or invalid JSON: ${error.message}`);
+    return;
+  }
+
+  if (config.$schema && config.$schema !== "https://skills.sh/schemas/skills.sh.schema.json") {
+    fail("skills.sh.json $schema must be https://skills.sh/schemas/skills.sh.schema.json.");
+  }
+
+  if (config.notGrouped && !["top", "bottom"].includes(config.notGrouped)) {
+    fail('skills.sh.json notGrouped must be "top" or "bottom".');
+  }
+
+  if (!Array.isArray(config.groupings) || config.groupings.length === 0) {
+    fail("skills.sh.json must include at least one grouping.");
+    return;
+  }
+
+  if (config.groupings.length > 50) {
+    fail("skills.sh.json must use 50 groups or fewer.");
+  }
+
+  const knownSkills = new Set(skillDirs);
+  const assigned = new Set();
+
+  for (const [index, group] of config.groupings.entries()) {
+    const label = `skills.sh.json group ${index + 1}`;
+
+    if (!group || typeof group !== "object") {
+      fail(`${label} must be an object.`);
+      continue;
+    }
+
+    if (!group.title || typeof group.title !== "string") {
+      fail(`${label} must include a non-empty title.`);
+    }
+
+    if (group.description && typeof group.description !== "string") {
+      fail(`${label} description must be a string when present.`);
+    }
+
+    if (!Array.isArray(group.skills) || group.skills.length === 0) {
+      fail(`${label} must include at least one skill.`);
+      continue;
+    }
+
+    if (group.skills.length > 500) {
+      fail(`${label} must list 500 skills or fewer.`);
+    }
+
+    for (const skill of group.skills) {
+      if (typeof skill !== "string" || !skillNamePattern.test(skill)) {
+        fail(`${label} includes invalid skill slug "${skill}".`);
+        continue;
+      }
+
+      if (!knownSkills.has(skill)) {
+        fail(`${label} references unknown skill "${skill}".`);
+      }
+
+      if (assigned.has(skill)) {
+        fail(`skills.sh.json assigns "${skill}" to multiple groups.`);
+      }
+
+      assigned.add(skill);
+    }
+  }
+
+  for (const skill of skillDirs) {
+    if (!assigned.has(skill)) {
+      fail(`skills.sh.json does not group "${skill}".`);
     }
   }
 }

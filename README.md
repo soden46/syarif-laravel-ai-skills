@@ -1,6 +1,13 @@
 # Syarif Laravel AI Skills
 
+[![Downloads](https://img.shields.io/github/downloads/soden46/syarif-laravel-ai-skills/total?label=downloads)](https://github.com/soden46/syarif-laravel-ai-skills/releases)
+[![Installs](https://skills.sh/b/soden46/syarif-laravel-ai-skills)](https://skills.sh/soden46/syarif-laravel-ai-skills)
+[![Clone](https://img.shields.io/badge/clone-github-24292f?logo=github)](https://github.com/soden46/syarif-laravel-ai-skills.git)
+[![Pull Requests](https://img.shields.io/github/issues-pr/soden46/syarif-laravel-ai-skills?label=pull%20requests)](https://github.com/soden46/syarif-laravel-ai-skills/pulls)
+
 Laravel-focused AI skills for Codex and other coding assistants. Install them with `npx skills add`, then let your assistant apply consistent Laravel standards for architecture, validation, Eloquent, transactions, queues, security, testing, and daily workflow.
+
+Skills follow the [Agent Skills](https://agentskills.io/) format.
 
 Language: [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 
@@ -18,6 +25,12 @@ Language: [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 - **Assistant portable** - usable by Codex and any AI coding assistant that can read skill folders.
 
 ## Installation
+
+Browse the skills.sh page:
+
+```text
+https://skills.sh/soden46/syarif-laravel-ai-skills
+```
 
 List available skills:
 
@@ -96,9 +109,10 @@ Run the list command for the complete catalog, or read [docs/SUPERPOWERS_SKILL_M
 1. Each installable skill lives at `skills/<skill-folder>/SKILL.md`.
 2. The `name` frontmatter uses `<skill-folder>`.
 3. The `description` frontmatter appears in `npx skills add <repo> --list`.
-4. `plugin-groups.json` assigns every skill to an installable plugin bundle.
-5. `npm run sync` regenerates `.claude-plugin/marketplace.json`, `.agents/plugins/marketplace.json`, and `plugins/laravel-app-skills`.
-6. `package.json` is only for local helper scripts. Users install from GitHub with `npx skills add`, not `npm install`.
+4. `skills.sh.json` groups the skills shown on the skills.sh repository page.
+5. `plugin-groups.json` assigns every skill to an installable plugin bundle.
+6. `npm run sync` regenerates `.claude-plugin/marketplace.json`, `.agents/plugins/marketplace.json`, and `plugins/laravel-app-skills`.
+7. `package.json` is only for local helper scripts. Users install from GitHub with `npx skills add`, not `npm install`.
 
 ## Local Development
 
@@ -154,6 +168,12 @@ MIT License - see [LICENSE](LICENSE).
 - **Portable untuk assistant** - bisa dipakai Codex dan AI coding assistant lain yang bisa membaca folder skill.
 
 ## Instalasi
+
+Lihat halaman skills.sh:
+
+```text
+https://skills.sh/soden46/syarif-laravel-ai-skills
+```
 
 Lihat daftar skill:
 
@@ -232,9 +252,10 @@ Jalankan command list untuk katalog lengkap, atau baca [docs/SUPERPOWERS_SKILL_M
 1. Setiap skill installable berada di `skills/<skill-folder>/SKILL.md`.
 2. Frontmatter `name` memakai format `<skill-folder>`.
 3. Frontmatter `description` tampil di `npx skills add <repo> --list`.
-4. `plugin-groups.json` menempatkan setiap skill ke bundle plugin installable.
-5. `npm run sync` membuat ulang `.claude-plugin/marketplace.json`, `.agents/plugins/marketplace.json`, dan `plugins/laravel-app-skills`.
-6. `package.json` hanya untuk helper script lokal. User install dari GitHub dengan `npx skills add`, bukan `npm install`.
+4. `skills.sh.json` mengelompokkan skill yang tampil di halaman repository skills.sh.
+5. `plugin-groups.json` menempatkan setiap skill ke bundle plugin installable.
+6. `npm run sync` membuat ulang `.claude-plugin/marketplace.json`, `.agents/plugins/marketplace.json`, dan `plugins/laravel-app-skills`.
+7. `package.json` hanya untuk helper script lokal. User install dari GitHub dengan `npx skills add`, bukan `npm install`.
 
 ## Development Lokal
 
