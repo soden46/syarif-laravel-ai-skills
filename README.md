@@ -6,7 +6,7 @@
 [![Clone](https://img.shields.io/badge/clone-github-24292f?logo=github)](https://github.com/soden46/syarif-laravel-ai-skills.git)
 [![Pull Requests](https://img.shields.io/github/issues-pr/soden46/syarif-laravel-ai-skills?label=pull%20requests)](https://github.com/soden46/syarif-laravel-ai-skills/pulls)
 
-Laravel-focused AI skills for Codex and other coding assistants. Install them with `npx skills add`, then let your assistant apply consistent Laravel standards for architecture, validation, Eloquent, transactions, queues, security, testing, and daily workflow.
+Laravel-focused AI skills for Codex, Claude Code, and any AI coding assistant that can read Markdown files. Install them with `npx skills add`, use the generated plugin packages, or point a generic assistant at the universal manifest and canonical `skills/` folder.
 
 Skills follow the [Agent Skills](https://agentskills.io/) format.
 
@@ -23,7 +23,7 @@ Language: [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 - **Personal core standards** - 12 local standards extracted from reviewed Laravel projects, with client details removed.
 - **Public topic coverage** - 59 additional topics mapped from public Laravel skill catalogs without copying third-party skill body text.
 - **Simple discovery** - `npx skills add <repo> --list` reads each `skills/<folder>/SKILL.md`.
-- **Assistant portable** - usable by Codex and any AI coding assistant that can read skill folders.
+- **Universal assistant support** - usable by Codex, Claude Code, Copilot, Cursor, Windsurf, Cline, Aider, OpenCode, Gemini CLI, and generic agents that can read files.
 
 ## Installation
 
@@ -106,6 +106,16 @@ For personal-only usage without a plugin package, install skills directly:
 npx skills add soden46/syarif-laravel-ai-skills -g -a claude-code -s "*" -y
 ```
 
+## Universal AI Usage
+
+For assistants without native skill/plugin support, add this repo to the workspace and start with:
+
+```text
+Read AGENTS.md, then use skills/using-laravel-standards/SKILL.md as the entry skill for this Laravel repo. Load focused skills from skills/<skill-name>/SKILL.md only when relevant to the task.
+```
+
+Machine-readable metadata lives in `agent-skills.json`. Full assistant-specific notes are in [docs/UNIVERSAL_USAGE.md](docs/UNIVERSAL_USAGE.md).
+
 ## Quick Start
 
 After installation, ask your assistant to start with:
@@ -162,10 +172,11 @@ Run the list command for the complete catalog, or read [docs/SUPERPOWERS_SKILL_M
 4. The `tags` frontmatter includes `laravel` and `php` for Laravel Skills import.
 5. `skills.sh.json` groups the skills shown on the skills.sh repository page.
 6. `plugin-groups.json` assigns every skill to an installable plugin bundle.
-7. `.agents/plugins/marketplace.json` exposes the repo as a Codex/ChatGPT plugin marketplace.
-8. `plugins/laravel-app-skills/.claude-plugin/plugin.json` makes the generated bundle usable with `claude --plugin-dir`.
-9. `npm run sync` regenerates `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, and `plugins/laravel-app-skills`.
-10. `package.json` is only for local helper scripts. Users install from GitHub with `npx skills add`, not `npm install`.
+7. `agent-skills.json` exposes neutral metadata for generic AI assistants and integration tools.
+8. `.agents/plugins/marketplace.json` exposes the repo as a Codex/ChatGPT plugin marketplace.
+9. `plugins/laravel-app-skills/.claude-plugin/plugin.json` makes the generated bundle usable with `claude --plugin-dir`.
+10. `npm run sync` regenerates `agent-skills.json`, `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, and `plugins/laravel-app-skills`.
+11. `package.json` is only for local helper scripts. Users install from GitHub with `npx skills add`, not `npm install`.
 
 ## Marketplace Indexing
 
@@ -210,6 +221,7 @@ Related files:
 - [docs/ADDING_SKILLS.md](docs/ADDING_SKILLS.md)
 - [docs/BILINGUAL_MARKDOWN.md](docs/BILINGUAL_MARKDOWN.md)
 - [docs/LARAVEL_SKILLS_CLOUD_MAPPING.md](docs/LARAVEL_SKILLS_CLOUD_MAPPING.md)
+- [docs/UNIVERSAL_USAGE.md](docs/UNIVERSAL_USAGE.md)
 
 ## License
 
@@ -228,7 +240,7 @@ MIT License - see [LICENSE](LICENSE).
 - **Standar inti pribadi** - 12 standar lokal dari proyek Laravel yang sudah direview, tanpa detail client.
 - **Cakupan topik publik** - 59 topik tambahan yang dimapping dari katalog skill Laravel publik tanpa menyalin isi body skill pihak ketiga.
 - **Discovery sederhana** - `npx skills add <repo> --list` membaca setiap `skills/<folder>/SKILL.md`.
-- **Portable untuk assistant** - bisa dipakai Codex dan AI coding assistant lain yang bisa membaca folder skill.
+- **Support AI universal** - bisa dipakai Codex, Claude Code, Copilot, Cursor, Windsurf, Cline, Aider, OpenCode, Gemini CLI, dan agent generik yang bisa membaca file.
 
 ## Instalasi
 
@@ -311,6 +323,16 @@ Kalau cuma dipakai sendiri tanpa package plugin, install skill langsung:
 npx skills add soden46/syarif-laravel-ai-skills -g -a claude-code -s "*" -y
 ```
 
+## Penggunaan AI Universal
+
+Untuk assistant yang belum punya support skill/plugin native, masukkan repo ini ke workspace lalu mulai dengan:
+
+```text
+Read AGENTS.md, then use skills/using-laravel-standards/SKILL.md as the entry skill for this Laravel repo. Load focused skills from skills/<skill-name>/SKILL.md only when relevant to the task.
+```
+
+Metadata machine-readable ada di `agent-skills.json`. Catatan lengkap per assistant ada di [docs/UNIVERSAL_USAGE.md](docs/UNIVERSAL_USAGE.md).
+
 ## Quick Start
 
 Setelah install, minta assistant mulai dari:
@@ -367,10 +389,11 @@ Jalankan command list untuk katalog lengkap, atau baca [docs/SUPERPOWERS_SKILL_M
 4. Frontmatter `tags` berisi `laravel` dan `php` untuk import Laravel Skills.
 5. `skills.sh.json` mengelompokkan skill yang tampil di halaman repository skills.sh.
 6. `plugin-groups.json` menempatkan setiap skill ke bundle plugin installable.
-7. `.agents/plugins/marketplace.json` membuat repo ini bisa dipakai sebagai marketplace plugin Codex/ChatGPT.
-8. `plugins/laravel-app-skills/.claude-plugin/plugin.json` membuat bundle generated bisa dipakai dengan `claude --plugin-dir`.
-9. `npm run sync` membuat ulang `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, dan `plugins/laravel-app-skills`.
-10. `package.json` hanya untuk helper script lokal. User install dari GitHub dengan `npx skills add`, bukan `npm install`.
+7. `agent-skills.json` menyediakan metadata netral untuk AI assistant generik dan tool integrasi.
+8. `.agents/plugins/marketplace.json` membuat repo ini bisa dipakai sebagai marketplace plugin Codex/ChatGPT.
+9. `plugins/laravel-app-skills/.claude-plugin/plugin.json` membuat bundle generated bisa dipakai dengan `claude --plugin-dir`.
+10. `npm run sync` membuat ulang `agent-skills.json`, `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, dan `plugins/laravel-app-skills`.
+11. `package.json` hanya untuk helper script lokal. User install dari GitHub dengan `npx skills add`, bukan `npm install`.
 
 ## Indexing Marketplace
 
@@ -415,6 +438,7 @@ File terkait:
 - [docs/ADDING_SKILLS.md](docs/ADDING_SKILLS.md)
 - [docs/BILINGUAL_MARKDOWN.md](docs/BILINGUAL_MARKDOWN.md)
 - [docs/LARAVEL_SKILLS_CLOUD_MAPPING.md](docs/LARAVEL_SKILLS_CLOUD_MAPPING.md)
+- [docs/UNIVERSAL_USAGE.md](docs/UNIVERSAL_USAGE.md)
 
 ## Lisensi
 

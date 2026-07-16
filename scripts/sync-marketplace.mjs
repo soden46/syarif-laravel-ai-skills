@@ -9,6 +9,7 @@ const pluginsRoot = path.join(root, "plugins");
 const pluginGroupsPath = path.join(root, "plugin-groups.json");
 const claudeMarketplacePath = path.join(root, ".claude-plugin", "marketplace.json");
 const codexMarketplacePath = path.join(root, ".agents", "plugins", "marketplace.json");
+const universalManifestPath = path.join(root, "agent-skills.json");
 const repositoryUrl = "https://github.com/soden46/syarif-laravel-ai-skills";
 
 const packageJson = parseJson(await readFile(path.join(root, "package.json"), "utf8"));
@@ -17,6 +18,7 @@ const pluginGroups = await loadPluginGroups(skills);
 
 await writeClaudeMarketplace(pluginGroups);
 await writeCodexMarketplace(pluginGroups);
+await writeUniversalManifest(pluginGroups);
 await writePluginPackages(pluginGroups);
 
 console.log(`Synced ${pluginGroups.length} plugin group(s) with ${skills.length} skill(s).`);
@@ -143,6 +145,68 @@ async function writeCodexMarketplace(pluginGroups) {
 
   await mkdir(path.dirname(codexMarketplacePath), { recursive: true });
   await writeJson(codexMarketplacePath, marketplace);
+}
+
+async function writeUniversalManifest(pluginGroups) {
+  const manifest = {
+    name: packageJson.name,
+    version: packageJson.version,
+    description: packageJson.description,
+    license: packageJson.license || "MIT",
+    repository: repositoryUrl,
+    author: packageJson.author || "Syarif",
+    format: "agent-skills",
+    formatVersion: "1.0.0",
+    skillsPath: "./skills",
+    entrySkill: "using-laravel-standards",
+    docs: {
+      universalUsage: "./docs/UNIVERSAL_USAGE.md",
+      addingSkills: "./docs/ADDING_SKILLS.md",
+      agentInstructions: "./AGENTS.md",
+      claudeInstructions: "./CLAUDE.md",
+      copilotInstructions: "./.github/copilot-instructions.md"
+    },
+    install: {
+      skillsSh: "npx skills add soden46/syarif-laravel-ai-skills -s \"*\" -y",
+      codexGlobal: "npx skills add soden46/syarif-laravel-ai-skills -g -a codex -s \"*\" -y",
+      codexPlugin: [
+        "codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main",
+        "codex plugin add laravel-app-skills@syarif-laravel-ai-skills"
+      ],
+      claudeCodePlugin: "claude --plugin-dir ./plugins/laravel-app-skills",
+      genericPrompt: "Read AGENTS.md, then use skills/using-laravel-standards/SKILL.md as the entry skill. Load focused skills from skills/<skill-name>/SKILL.md only when relevant."
+    },
+    integrations: [
+      "skills.sh",
+      "laravel-skills-cloud",
+      "codex",
+      "chatgpt-codex-plugin",
+      "claude-code",
+      "github-copilot",
+      "cursor",
+      "windsurf",
+      "cline",
+      "aider",
+      "opencode",
+      "gemini-cli",
+      "generic-ai-agent"
+    ],
+    plugins: pluginGroups.map((plugin) => ({
+      name: plugin.name,
+      description: plugin.description,
+      codexManifest: `./plugins/${plugin.name}/.codex-plugin/plugin.json`,
+      claudeManifest: `./plugins/${plugin.name}/.claude-plugin/plugin.json`,
+      skillsPath: `./plugins/${plugin.name}/skills`,
+      skills: plugin.skills
+    })),
+    skills: skills.map((skill) => ({
+      name: skill.name,
+      path: `./skills/${skill.folder}/SKILL.md`,
+      description: skill.description
+    }))
+  };
+
+  await writeJson(universalManifestPath, manifest);
 }
 
 async function writePluginPackages(pluginGroups) {

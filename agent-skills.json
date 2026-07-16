@@ -1,0 +1,483 @@
+{
+  "name": "syarif-laravel-ai-skills",
+  "version": "0.1.0",
+  "description": "Reusable Laravel AI skills for Codex, Claude Code, and other AI coding assistants.",
+  "license": "MIT",
+  "repository": "https://github.com/soden46/syarif-laravel-ai-skills",
+  "author": "Syarif",
+  "format": "agent-skills",
+  "formatVersion": "1.0.0",
+  "skillsPath": "./skills",
+  "entrySkill": "using-laravel-standards",
+  "docs": {
+    "universalUsage": "./docs/UNIVERSAL_USAGE.md",
+    "addingSkills": "./docs/ADDING_SKILLS.md",
+    "agentInstructions": "./AGENTS.md",
+    "claudeInstructions": "./CLAUDE.md",
+    "copilotInstructions": "./.github/copilot-instructions.md"
+  },
+  "install": {
+    "skillsSh": "npx skills add soden46/syarif-laravel-ai-skills -s \"*\" -y",
+    "codexGlobal": "npx skills add soden46/syarif-laravel-ai-skills -g -a codex -s \"*\" -y",
+    "codexPlugin": [
+      "codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main",
+      "codex plugin add laravel-app-skills@syarif-laravel-ai-skills"
+    ],
+    "claudeCodePlugin": "claude --plugin-dir ./plugins/laravel-app-skills",
+    "genericPrompt": "Read AGENTS.md, then use skills/using-laravel-standards/SKILL.md as the entry skill. Load focused skills from skills/<skill-name>/SKILL.md only when relevant."
+  },
+  "integrations": [
+    "skills.sh",
+    "laravel-skills-cloud",
+    "codex",
+    "chatgpt-codex-plugin",
+    "claude-code",
+    "github-copilot",
+    "cursor",
+    "windsurf",
+    "cline",
+    "aider",
+    "opencode",
+    "gemini-cli",
+    "generic-ai-agent"
+  ],
+  "plugins": [
+    {
+      "name": "laravel-app-skills",
+      "description": "Laravel AI skill bundle for architecture, controllers, validation, Eloquent, performance, queues, security, Livewire, testing, and daily workflow.",
+      "codexManifest": "./plugins/laravel-app-skills/.codex-plugin/plugin.json",
+      "claudeManifest": "./plugins/laravel-app-skills/.claude-plugin/plugin.json",
+      "skillsPath": "./plugins/laravel-app-skills/skills",
+      "skills": [
+        "actions-and-services",
+        "ai-sdk",
+        "api-resources-and-pagination",
+        "api-surface-evolution",
+        "architecture",
+        "blade-components-and-layouts",
+        "bootstrap-check",
+        "brainstorming",
+        "code-review-requests",
+        "complexity-guardrails",
+        "config-env-storage",
+        "constants-and-configuration",
+        "controller-cleanup",
+        "controller-tests",
+        "custom-helpers",
+        "daily-workflow",
+        "database-transactions",
+        "data-chunking-large-datasets",
+        "debugging-prompts",
+        "dependencies-trim-packages",
+        "documentation-best-practices",
+        "e2e-playwright",
+        "effective-context",
+        "eloquent-patterns",
+        "eloquent-relationships",
+        "exception-handling-and-logging",
+        "executing-plans",
+        "extract-laravel-standards",
+        "filesystem-uploads",
+        "form-requests",
+        "horizon-metrics-and-dashboards",
+        "http-client-resilience",
+        "interfaces-and-di",
+        "internationalization-and-translation",
+        "iterating-on-code",
+        "laravel-11-12-app-guidelines",
+        "laravel-database-optimization",
+        "laravel-prompting-patterns",
+        "laravel-specialist",
+        "livewire-development",
+        "livewire-patterns",
+        "migrations-and-factories",
+        "nova-resource-patterns",
+        "performance-caching",
+        "performance-eager-loading",
+        "performance-select-columns",
+        "php-attributes",
+        "policies-and-authorization",
+        "ports-and-adapters",
+        "prompt-structure",
+        "quality-checks",
+        "queues-and-horizon",
+        "queues-and-jobs",
+        "rate-limiting",
+        "request-forgery-protection",
+        "routes-best-practices",
+        "runner-selection",
+        "security",
+        "specifying-constraints",
+        "strategy-pattern",
+        "task-scheduling",
+        "tdd-with-pest",
+        "template-method-and-plugins",
+        "testing",
+        "transactions-and-consistency",
+        "upgrade-13",
+        "using-examples-in-prompts",
+        "using-laravel-standards",
+        "using-laravel-superpowers",
+        "vector-search",
+        "writing-plans"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "actions-and-services",
+      "path": "./skills/actions-and-services/SKILL.md",
+      "description": "Use Actions and Services as deliberate Laravel application boundaries for use cases, integrations, and reusable workflows."
+    },
+    {
+      "name": "ai-sdk",
+      "path": "./skills/ai-sdk/SKILL.md",
+      "description": "Build AI features with the first-party Laravel AI SDK (Laravel 13+); agents, embeddings, images, audio, and tool calling with provider-agnostic APIs"
+    },
+    {
+      "name": "api-resources-and-pagination",
+      "path": "./skills/api-resources-and-pagination/SKILL.md",
+      "description": "Laravel guidance to use API Resources with pagination and conditional fields; keep response shapes stable and cache-friendly"
+    },
+    {
+      "name": "api-surface-evolution",
+      "path": "./skills/api-surface-evolution/SKILL.md",
+      "description": "Laravel guidance to evolve APIs safely using versioned DTOs/transformers, deprecations, and compatibility tests"
+    },
+    {
+      "name": "architecture",
+      "path": "./skills/architecture/SKILL.md",
+      "description": "Apply Laravel-native architecture decisions without forcing unnecessary repositories, interfaces, DTOs, or custom layers."
+    },
+    {
+      "name": "blade-components-and-layouts",
+      "path": "./skills/blade-components-and-layouts/SKILL.md",
+      "description": "Laravel guidance to compose UIs with Blade components, slots, and layouts; keep templates pure and testable"
+    },
+    {
+      "name": "bootstrap-check",
+      "path": "./skills/bootstrap-check/SKILL.md",
+      "description": "Laravel guidance to detect Sail/non‑Sail and print the right command pairs for your environment; verify dependencies and key services are reachable"
+    },
+    {
+      "name": "brainstorming",
+      "path": "./skills/brainstorming/SKILL.md",
+      "description": "Interactive design refinement tailored to Laravel projects; clarify domain, data, interfaces, testing, and quality gates while accounting for Sail/non‑Sail environments"
+    },
+    {
+      "name": "code-review-requests",
+      "path": "./skills/code-review-requests/SKILL.md",
+      "description": "Request effective code reviews-specify focus areas, provide context, ask for architectural feedback, reference Laravel conventions"
+    },
+    {
+      "name": "complexity-guardrails",
+      "path": "./skills/complexity-guardrails/SKILL.md",
+      "description": "Laravel guidance to keep cyclomatic complexity low; flatten control flow, extract helpers, and prefer table-driven/strategy patterns over large switches"
+    },
+    {
+      "name": "config-env-storage",
+      "path": "./skills/config-env-storage/SKILL.md",
+      "description": "Laravel guidance to portable storage configuration across S3/R2/MinIO with optional CDN-env toggles, path-style endpoints, and URL generation"
+    },
+    {
+      "name": "constants-and-configuration",
+      "path": "./skills/constants-and-configuration/SKILL.md",
+      "description": "Replace hardcoded values with constants, enums, and configuration for maintainability; use PHP 8.1+ enums and config files"
+    },
+    {
+      "name": "controller-cleanup",
+      "path": "./skills/controller-cleanup/SKILL.md",
+      "description": "Keep Laravel controllers focused on HTTP orchestration by moving validation, authorization, and business workflows outward."
+    },
+    {
+      "name": "controller-tests",
+      "path": "./skills/controller-tests/SKILL.md",
+      "description": "Laravel guidance to write focused controller tests using HTTP assertions; keep heavy logic in Actions/Services and unit test them"
+    },
+    {
+      "name": "custom-helpers",
+      "path": "./skills/custom-helpers/SKILL.md",
+      "description": "Laravel guidance to create and register small, pure helper functions when they improve clarity; keep them organized and tested"
+    },
+    {
+      "name": "daily-workflow",
+      "path": "./skills/daily-workflow/SKILL.md",
+      "description": "Practical daily checklist for Laravel projects; bring services up, run migrations, queues, quality gates, and tests"
+    },
+    {
+      "name": "data-chunking-large-datasets",
+      "path": "./skills/data-chunking-large-datasets/SKILL.md",
+      "description": "Laravel guidance to process large datasets efficiently using chunk(), chunkById(), lazy(), and cursor() to reduce memory consumption and improve performance"
+    },
+    {
+      "name": "database-transactions",
+      "path": "./skills/database-transactions/SKILL.md",
+      "description": "Wrap atomic Laravel write workflows in transactions and handle locks, retries, side effects, and after-commit work deliberately."
+    },
+    {
+      "name": "debugging-prompts",
+      "path": "./skills/debugging-prompts/SKILL.md",
+      "description": "Laravel guidance to create effective debugging prompts-include error messages, stack traces, expected vs actual behavior, logs, and attempted solutions"
+    },
+    {
+      "name": "dependencies-trim-packages",
+      "path": "./skills/dependencies-trim-packages/SKILL.md",
+      "description": "Laravel guidance to remove unneeded Composer packages and assets to improve boot time, memory, and security surface"
+    },
+    {
+      "name": "documentation-best-practices",
+      "path": "./skills/documentation-best-practices/SKILL.md",
+      "description": "Laravel guidance to write meaningful documentation that explains why not what; focus on complex business logic and self-documenting code"
+    },
+    {
+      "name": "e2e-playwright",
+      "path": "./skills/e2e-playwright/SKILL.md",
+      "description": "Laravel guidance to generic E2E patterns with Playwright-state setup, seeds, test IDs, auth, environment, and Sail integration"
+    },
+    {
+      "name": "effective-context",
+      "path": "./skills/effective-context/SKILL.md",
+      "description": "Provide comprehensive context in prompts-files, errors, Laravel version, dependencies, and monorepo details-for accurate AI responses"
+    },
+    {
+      "name": "eloquent-patterns",
+      "path": "./skills/eloquent-patterns/SKILL.md",
+      "description": "Laravel guidance to keep Eloquent models explicit, query shapes intentional, relationship loading visible, and production data access bounded."
+    },
+    {
+      "name": "eloquent-relationships",
+      "path": "./skills/eloquent-relationships/SKILL.md",
+      "description": "Laravel guidance to define clear relationships and load data efficiently; prevent N+1, use constraints, counts/sums, and pivot syncing safely"
+    },
+    {
+      "name": "exception-handling-and-logging",
+      "path": "./skills/exception-handling-and-logging/SKILL.md",
+      "description": "Laravel guidance to use reportable/renderable exceptions, structured logs, and channel strategy for observability and graceful failures"
+    },
+    {
+      "name": "executing-plans",
+      "path": "./skills/executing-plans/SKILL.md",
+      "description": "Execute Laravel plans in small batches with checkpoints-TDD first, migrations safe, queues verified, and quality gates enforced"
+    },
+    {
+      "name": "extract-laravel-standards",
+      "path": "./skills/extract-laravel-standards/SKILL.md",
+      "description": "Audit completed Laravel projects and propose reusable updates to personal Laravel standards without importing project-specific details."
+    },
+    {
+      "name": "filesystem-uploads",
+      "path": "./skills/filesystem-uploads/SKILL.md",
+      "description": "Laravel guidance to store and serve files via Storage; set visibility, generate URLs, and handle streaming safely"
+    },
+    {
+      "name": "form-requests",
+      "path": "./skills/form-requests/SKILL.md",
+      "description": "Use Laravel Form Requests for non-trivial validation and authorization while keeping controllers thin and testable."
+    },
+    {
+      "name": "horizon-metrics-and-dashboards",
+      "path": "./skills/horizon-metrics-and-dashboards/SKILL.md",
+      "description": "Laravel guidance to operate Horizon with confidence-naming, tags, concurrency, failure handling, actionable metrics, and dashboards"
+    },
+    {
+      "name": "http-client-resilience",
+      "path": "./skills/http-client-resilience/SKILL.md",
+      "description": "Laravel guidance to use the HTTP client with sensible timeouts, retries, and backoff; capture context and handle failures explicitly"
+    },
+    {
+      "name": "interfaces-and-di",
+      "path": "./skills/interfaces-and-di/SKILL.md",
+      "description": "Laravel guidance to use interfaces and dependency injection to decouple code; bind implementations in the container"
+    },
+    {
+      "name": "internationalization-and-translation",
+      "path": "./skills/internationalization-and-translation/SKILL.md",
+      "description": "Build with i18n in mind from day one using Laravel translation helpers, JSON files, Blade integration, and locale management"
+    },
+    {
+      "name": "iterating-on-code",
+      "path": "./skills/iterating-on-code/SKILL.md",
+      "description": "Laravel guidance to refine AI-generated code through specific feedback-point out errors, identify gaps, show desired changes, reference style guides"
+    },
+    {
+      "name": "laravel-11-12-app-guidelines",
+      "path": "./skills/laravel-11-12-app-guidelines/SKILL.md",
+      "description": "Work in Laravel 11 or 12 apps with stack detection, Boost-aware docs lookup, frontend conventions, tests, and Pint formatting."
+    },
+    {
+      "name": "laravel-database-optimization",
+      "path": "./skills/laravel-database-optimization/SKILL.md",
+      "description": "Optimize Laravel database work across N+1 queries, indexes, selective columns, caching, pagination, large data, locks, and migrations."
+    },
+    {
+      "name": "laravel-prompting-patterns",
+      "path": "./skills/laravel-prompting-patterns/SKILL.md",
+      "description": "Use Laravel-specific vocabulary-Eloquent patterns, Form Requests, API resources, jobs/queues-to get idiomatic framework code"
+    },
+    {
+      "name": "laravel-specialist",
+      "path": "./skills/laravel-specialist/SKILL.md",
+      "description": "Coordinate full Laravel feature work across models, APIs, auth, queues, Livewire, tests, and quality checks by routing to focused skills."
+    },
+    {
+      "name": "livewire-development",
+      "path": "./skills/livewire-development/SKILL.md",
+      "description": "Laravel guidance to build and refactor Livewire components with version-aware state, validation, actions, events, rendering, pagination, and tests."
+    },
+    {
+      "name": "livewire-patterns",
+      "path": "./skills/livewire-patterns/SKILL.md",
+      "description": "Laravel guidance to keep Livewire components focused on UI state while delegating reusable workflows, authorization, queries, and tests deliberately."
+    },
+    {
+      "name": "migrations-and-factories",
+      "path": "./skills/migrations-and-factories/SKILL.md",
+      "description": "Laravel guidance to safe database change patterns; when to modify vs add migrations; always pair models with migrations and factories; seeding guidance"
+    },
+    {
+      "name": "nova-resource-patterns",
+      "path": "./skills/nova-resource-patterns/SKILL.md",
+      "description": "Laravel guidance to consistent Nova resources-fields, actions, metrics, lenses, filters, authorization-and how to evolve resources alongside schema changes"
+    },
+    {
+      "name": "performance-caching",
+      "path": "./skills/performance-caching/SKILL.md",
+      "description": "Laravel guidance to use framework caches and value/query caching to reduce work; add tags, locks, and explicit invalidation strategies for correctness"
+    },
+    {
+      "name": "performance-eager-loading",
+      "path": "./skills/performance-eager-loading/SKILL.md",
+      "description": "Laravel guidance to prevent N+1 queries by eager loading; enable lazy-loading protection in non-production; choose selective fields"
+    },
+    {
+      "name": "performance-select-columns",
+      "path": "./skills/performance-select-columns/SKILL.md",
+      "description": "Laravel guidance to select only required columns to reduce memory and transfer costs; apply to base queries and relations"
+    },
+    {
+      "name": "php-attributes",
+      "path": "./skills/php-attributes/SKILL.md",
+      "description": "Use first-party PHP attributes (Laravel 13+) for controllers, authorization, queue jobs, and models; declarative configuration colocated with code"
+    },
+    {
+      "name": "policies-and-authorization",
+      "path": "./skills/policies-and-authorization/SKILL.md",
+      "description": "Laravel guidance to enforce access via Policies and Gates; use authorize() and authorizeResource() to standardize controller protections"
+    },
+    {
+      "name": "ports-and-adapters",
+      "path": "./skills/ports-and-adapters/SKILL.md",
+      "description": "Laravel guidance to use hexagonal architecture for external systems; define ports (interfaces) and per-provider adapters; select adapter at composition edge"
+    },
+    {
+      "name": "prompt-structure",
+      "path": "./skills/prompt-structure/SKILL.md",
+      "description": "Laravel guidance to structure prompts for clarity-separate concerns, prioritize requests, specify acceptance criteria, and break work into testable increments"
+    },
+    {
+      "name": "quality-checks",
+      "path": "./skills/quality-checks/SKILL.md",
+      "description": "Unified quality gates for Laravel projects; Pint, static analysis (PHPStan/Psalm), Insights (optional), and JS linters; Sail and non-Sail pairs provided"
+    },
+    {
+      "name": "queues-and-horizon",
+      "path": "./skills/queues-and-horizon/SKILL.md",
+      "description": "Laravel guidance to operate and verify queues with or without Horizon; safe worker flags, failure handling, and test strategies"
+    },
+    {
+      "name": "queues-and-jobs",
+      "path": "./skills/queues-and-jobs/SKILL.md",
+      "description": "Design Laravel queues, jobs, workers, schedules, and Horizon usage for retry safety, visibility, and operational reliability."
+    },
+    {
+      "name": "rate-limiting",
+      "path": "./skills/rate-limiting/SKILL.md",
+      "description": "Laravel guidance to apply per-user and per-route limits with RateLimiter and throttle middleware; use backoffs and headers for clients"
+    },
+    {
+      "name": "request-forgery-protection",
+      "path": "./skills/request-forgery-protection/SKILL.md",
+      "description": "Configure CSRF and origin-aware request forgery protection; PreventRequestForgery middleware (Laravel 13+) with token fallback and exclusions"
+    },
+    {
+      "name": "routes-best-practices",
+      "path": "./skills/routes-best-practices/SKILL.md",
+      "description": "Laravel guidance to keep routes clean and focused on mapping requests to controllers; avoid business logic, validation, or database operations in route files"
+    },
+    {
+      "name": "runner-selection",
+      "path": "./skills/runner-selection/SKILL.md",
+      "description": "Choose Sail automatically when available, fall back cleanly to host PHP/Composer/Node; paired command map for both environments"
+    },
+    {
+      "name": "security",
+      "path": "./skills/security/SKILL.md",
+      "description": "Run focused Laravel security checks for authorization, request forgery, rate limits, uploads, secrets, APIs, and configuration."
+    },
+    {
+      "name": "specifying-constraints",
+      "path": "./skills/specifying-constraints/SKILL.md",
+      "description": "Laravel guidance to define clear constraints-performance, security, testing, architecture, dependencies-so AI generates code that meets your project standards"
+    },
+    {
+      "name": "strategy-pattern",
+      "path": "./skills/strategy-pattern/SKILL.md",
+      "description": "Laravel guidance to use the Strategy pattern to select behavior at runtime; bind multiple implementations to a shared interface"
+    },
+    {
+      "name": "task-scheduling",
+      "path": "./skills/task-scheduling/SKILL.md",
+      "description": "Laravel guidance to schedule tasks with safety; use withoutOverlapping, onOneServer, and visibility settings for reliable cron execution"
+    },
+    {
+      "name": "tdd-with-pest",
+      "path": "./skills/tdd-with-pest/SKILL.md",
+      "description": "Laravel guidance to apply RED-GREEN-REFACTOR with Pest or PHPUnit; use factories, feature tests for HTTP, and parallel test runners; verify failures before implementation"
+    },
+    {
+      "name": "template-method-and-plugins",
+      "path": "./skills/template-method-and-plugins/SKILL.md",
+      "description": "Laravel guidance to stabilize workflows with Template Method or Strategy; extend by adding new classes instead of editing core logic"
+    },
+    {
+      "name": "testing",
+      "path": "./skills/testing/SKILL.md",
+      "description": "Choose focused Laravel tests and quality checks that prove behavior without mirroring implementation details."
+    },
+    {
+      "name": "transactions-and-consistency",
+      "path": "./skills/transactions-and-consistency/SKILL.md",
+      "description": "Laravel guidance to wrap multi-write operations in transactions; use dispatchAfterCommit and idempotency patterns to ensure consistency"
+    },
+    {
+      "name": "upgrade-13",
+      "path": "./skills/upgrade-13/SKILL.md",
+      "description": "Upgrade an app from Laravel 12.x to 13.x safely; PHP 8.3 baseline, dependency bumps, breaking-change checklist, and verification steps"
+    },
+    {
+      "name": "using-examples-in-prompts",
+      "path": "./skills/using-examples-in-prompts/SKILL.md",
+      "description": "Laravel guidance to provide concrete examples-existing code patterns, style samples, input/output pairs-to guide AI toward your project's conventions"
+    },
+    {
+      "name": "using-laravel-standards",
+      "path": "./skills/using-laravel-standards/SKILL.md",
+      "description": "Read first when working in a Laravel repository to select the smallest relevant personal Laravel standards skill set."
+    },
+    {
+      "name": "using-laravel-superpowers",
+      "path": "./skills/using-laravel-superpowers/SKILL.md",
+      "description": "Read first in Laravel repos; explains runner selection (Sail vs non-Sail), core workflows, and how to apply superpowers skills in Laravel projects without platform lock-in"
+    },
+    {
+      "name": "vector-search",
+      "path": "./skills/vector-search/SKILL.md",
+      "description": "Add semantic search with native vector queries (Laravel 13+); pgvector similarity clauses, embedding workflows, and hybrid search patterns"
+    },
+    {
+      "name": "writing-plans",
+      "path": "./skills/writing-plans/SKILL.md",
+      "description": "Create an actionable Laravel implementation plan-bite-sized tasks with TDD-first steps, migrations, services, jobs, and validation points"
+    }
+  ]
+}

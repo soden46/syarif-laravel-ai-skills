@@ -84,6 +84,7 @@ for (const dir of skillDirs) {
 await assertPluginGroups(skillDirs);
 await assertSkillsShConfig(skillDirs);
 await assertGeneratedMarketplaces(skillDirs);
+await assertUniversalManifest(skillDirs);
 await assertPackageJsonPolicy();
 
 if (failed) {
@@ -94,12 +95,74 @@ console.log(`Validated ${skillDirs.length} skills.`);
 
 async function assertRequiredRootFiles() {
   const rootEntries = await readdir(root);
-  const required = ["README.md", "RELEASE-NOTES.md", "CHANGELOG.md", "LICENSE", "package.json", "skills.sh.json"];
+  const required = ["README.md", "RELEASE-NOTES.md", "CHANGELOG.md", "LICENSE", "package.json", "skills.sh.json", "agent-skills.json"];
 
   for (const file of required) {
     if (!rootEntries.includes(file)) {
       fail(`Missing required root file with exact name: ${file}`);
     }
+  }
+}
+
+async function assertUniversalManifest(skillDirs) {
+  const manifestPath = path.join(root, "agent-skills.json");
+  let manifest;
+
+  try {
+    manifest = parseJson(await readFile(manifestPath, "utf8"));
+  } catch (error) {
+    fail(`agent-skills.json is missing or invalid JSON: ${error.message}`);
+    return;
+  }
+
+  if (manifest.name !== "syarif-laravel-ai-skills") {
+    fail("agent-skills.json name must be syarif-laravel-ai-skills.");
+  }
+
+  if (manifest.format !== "agent-skills" || manifest.formatVersion !== "1.0.0") {
+    fail("agent-skills.json must use format agent-skills version 1.0.0.");
+  }
+
+  if (manifest.skillsPath !== "./skills") {
+    fail("agent-skills.json skillsPath must be ./skills.");
+  }
+
+  if (manifest.entrySkill !== "using-laravel-standards") {
+    fail("agent-skills.json entrySkill must be using-laravel-standards.");
+  }
+
+  if (!manifest.docs?.universalUsage || !manifest.docs?.agentInstructions) {
+    fail("agent-skills.json must point to universal usage and agent instruction docs.");
+  }
+
+  if (!manifest.install?.genericPrompt || !manifest.install.genericPrompt.includes("using-laravel-standards")) {
+    fail("agent-skills.json must include a genericPrompt that starts with using-laravel-standards.");
+  }
+
+  const knownSkills = new Set(skillDirs);
+  const manifestSkills = Array.isArray(manifest.skills) ? manifest.skills : [];
+
+  if (manifestSkills.length !== skillDirs.length) {
+    fail("agent-skills.json skills array must match the canonical skills/ directory. Run npm run sync.");
+  }
+
+  for (const skill of manifestSkills) {
+    if (!knownSkills.has(skill.name)) {
+      fail(`agent-skills.json references unknown skill "${skill.name}".`);
+      continue;
+    }
+
+    if (skill.path !== `./skills/${skill.name}/SKILL.md`) {
+      fail(`agent-skills.json skill "${skill.name}" has an invalid path.`);
+    }
+  }
+
+  if (!Array.isArray(manifest.integrations) || !manifest.integrations.includes("generic-ai-agent")) {
+    fail("agent-skills.json integrations must include generic-ai-agent.");
+  }
+
+  if (!Array.isArray(manifest.plugins) || manifest.plugins.length === 0) {
+    fail("agent-skills.json must include plugin bundle metadata.");
   }
 }
 
