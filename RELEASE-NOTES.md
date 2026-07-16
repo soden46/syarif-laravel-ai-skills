@@ -11,6 +11,8 @@ Language: [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 
 Initial installable Laravel AI skill catalog for personal Laravel engineering standards.
 
+GitHub release body: [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md).
+
 ### Added
 
 - 71 installable Laravel skills discoverable by `npx skills add`.
@@ -50,6 +52,8 @@ Documentation structure, granular skill layout, and release-note style are inspi
 ## v0.1.0 (2026-07-16)
 
 Katalog awal skill AI Laravel yang bisa di-install untuk standar engineering Laravel pribadi.
+
+Body release GitHub: [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md).
 
 ### Ditambahkan
 
