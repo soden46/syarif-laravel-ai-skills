@@ -1,0 +1,431 @@
+{
+  "version": 1,
+  "skills": {
+    "actions-and-services": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/actions-and-services/SKILL.md",
+      "computedHash": "ef50aafe3d7b088aadb2d89e3d30b249e7b9e7f2ce27e0197bdddefd6ad195fa"
+    },
+    "ai-sdk": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/ai-sdk/SKILL.md",
+      "computedHash": "b562935109b8644bb817170130cbcad9e2ba0de7ad1b086d60a71da6fceb99aa"
+    },
+    "api-resources-and-pagination": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/api-resources-and-pagination/SKILL.md",
+      "computedHash": "58c06a20565270090516051b4b8a135a355050d28f9bbf8d62eeb373a187cfb7"
+    },
+    "api-surface-evolution": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/api-surface-evolution/SKILL.md",
+      "computedHash": "41a4532468aba4906795c0535c84371f0c7ca06356b564b89a5d7b76232ccfb9"
+    },
+    "architecture": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/architecture/SKILL.md",
+      "computedHash": "bd5c523ff26dae15daaa61a93464d09dd8ace62bcee3f26a4fb98bf97fcf83e8"
+    },
+    "blade-components-and-layouts": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/blade-components-and-layouts/SKILL.md",
+      "computedHash": "6e3b1ff5cd1fbeab76c950ecb1b6b76425f2132bd5c67e7275f43a52141e103d"
+    },
+    "bootstrap-check": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/bootstrap-check/SKILL.md",
+      "computedHash": "a9f0255d39b71dd3f7479da3bfc9ee28f84583b4a192b3a982f49d98a94f43e0"
+    },
+    "brainstorming": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/brainstorming/SKILL.md",
+      "computedHash": "d8f8f17b85c6b9b0b3d77f443d5564a6cfbe03b5012507ee352b577068e5c890"
+    },
+    "code-review-requests": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/code-review-requests/SKILL.md",
+      "computedHash": "ef3971124edfdf89e7cfdbdcd01f022c85d7f55040658b6f917237ae92b67b05"
+    },
+    "complexity-guardrails": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/complexity-guardrails/SKILL.md",
+      "computedHash": "0e87ed98426e728cd91cbd9492c1e4a3f67c833e42e16054de93bd51adeefee2"
+    },
+    "config-env-storage": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/config-env-storage/SKILL.md",
+      "computedHash": "226138fe5aa56c1759d788a68c306aaefcf1addd9ec82d558794a3c7b98fd3ff"
+    },
+    "constants-and-configuration": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/constants-and-configuration/SKILL.md",
+      "computedHash": "99eb67a94fa7d52f3c8d5ef85158b0d9194e989774141dcbccdf5ea03eec197a"
+    },
+    "controller-cleanup": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/controller-cleanup/SKILL.md",
+      "computedHash": "c8d02aeeda8d0d6a27f514cb77125aa93b993d315f75b67f6795d59424e5a5ab"
+    },
+    "controller-tests": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/controller-tests/SKILL.md",
+      "computedHash": "1e4e51edc5f3eab90f2c432fe8938a6e9581c81e620e2c66eb1d5bf279167afc"
+    },
+    "custom-helpers": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/custom-helpers/SKILL.md",
+      "computedHash": "5333d87cb0a3a44f6ce2ec93f2352e12202db78af2e99ec0ea01def8481fe00a"
+    },
+    "daily-workflow": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/daily-workflow/SKILL.md",
+      "computedHash": "9fc6aaf2b59ede82570c88f508821b8f7e8a167d4ae1e8071c1ff644ac6c0893"
+    },
+    "data-chunking-large-datasets": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/data-chunking-large-datasets/SKILL.md",
+      "computedHash": "c5d4924c00f19c47924f814bacbde9396059aeb2ca4d3ad9c9d6374d83dde369"
+    },
+    "database-transactions": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/database-transactions/SKILL.md",
+      "computedHash": "12ce1371cff8fc2dcbf3d01a24c2f740f7d2e2fea0bad3728d2dd4c00d363cda"
+    },
+    "debugging-prompts": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/debugging-prompts/SKILL.md",
+      "computedHash": "b25a408694fb45b2a5c5736d0e9b7268d6d6e95dad53ae4b2cd9b6ce8f799695"
+    },
+    "dependencies-trim-packages": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/dependencies-trim-packages/SKILL.md",
+      "computedHash": "7c4fe737a6c538d7996ec3d55c0edd6f72ea0b867602ff4426fc70b75ab8d6fd"
+    },
+    "documentation-best-practices": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/documentation-best-practices/SKILL.md",
+      "computedHash": "9b48bd283c6dc7446f5f5e0c5defbca8c0dcafb27a5c3e12a8f233868323658b"
+    },
+    "e2e-playwright": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/e2e-playwright/SKILL.md",
+      "computedHash": "6835bde536854857c18dd6f0be8c6447fb099179ac8df4cf6a1cdf8dcb62d516"
+    },
+    "effective-context": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/effective-context/SKILL.md",
+      "computedHash": "7aad223b77c9f9c2c52e598b7d9c732ccd8f574c686a035f31c55c03007a650e"
+    },
+    "eloquent-patterns": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/eloquent-patterns/SKILL.md",
+      "computedHash": "0e92bafd659e0d928f8280941759127adf7ffe50dd26951bc21a8e0ab3292c08"
+    },
+    "eloquent-relationships": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/eloquent-relationships/SKILL.md",
+      "computedHash": "eff1ece4cfe1947de1e425b28f28cd2c41b5a10e61c72e0b3657837c2f452043"
+    },
+    "exception-handling-and-logging": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/exception-handling-and-logging/SKILL.md",
+      "computedHash": "dc2ef8511e367508146a23fbb1634c9f98ca0f036cb6841c3b3e5c1be97d6ee6"
+    },
+    "executing-plans": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/executing-plans/SKILL.md",
+      "computedHash": "94be51badecb243ff0200ffca742111f5707e747d3bad3706530df546f0a11f9"
+    },
+    "extract-laravel-standards": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/extract-laravel-standards/SKILL.md",
+      "computedHash": "b603c75d476525ee79b7bb7f4f7d8103f0b47ba29edd9dc3015f259a54e26602"
+    },
+    "filesystem-uploads": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/filesystem-uploads/SKILL.md",
+      "computedHash": "b6adb2495bc0db66951507a4dda999454594cd01e29db61d505e11813f6223a4"
+    },
+    "form-requests": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/form-requests/SKILL.md",
+      "computedHash": "9ee8bb28a22d51ea6f13a854e91c88c3fd1000056d56ad53af707b98d328547d"
+    },
+    "horizon-metrics-and-dashboards": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/horizon-metrics-and-dashboards/SKILL.md",
+      "computedHash": "2f4affc5a5c7f3ca2a26e19a6db1f101400bd21d02f7df107dc9597b4921b8f4"
+    },
+    "http-client-resilience": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/http-client-resilience/SKILL.md",
+      "computedHash": "93f2d5ced4840eeccb57abf0389dd56bdc2e466c239b18a049223dcf7d3c6c63"
+    },
+    "interfaces-and-di": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/interfaces-and-di/SKILL.md",
+      "computedHash": "d143045fb31ba25cb289cf035c0b43529d3b80de8391addca705834f632ccdd2"
+    },
+    "internationalization-and-translation": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/internationalization-and-translation/SKILL.md",
+      "computedHash": "baba3c4cddf535015e2808c6fa4eecfa270fafe660582111f48da77924608121"
+    },
+    "iterating-on-code": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/iterating-on-code/SKILL.md",
+      "computedHash": "be4f6986377ac411050f97d9bc925215300a28d1d7cb2cabb26cb0e33ffbe120"
+    },
+    "laravel-11-12-app-guidelines": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/laravel-11-12-app-guidelines/SKILL.md",
+      "computedHash": "36218d5d07e0799dc3a831f672aaef94f66144526a021ecfccd263a3990250e4"
+    },
+    "laravel-database-optimization": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/laravel-database-optimization/SKILL.md",
+      "computedHash": "f5251b636ea5be78f8e0fe9b07dec31152c516dc4fc2bcfef173326e8a172018"
+    },
+    "laravel-prompting-patterns": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/laravel-prompting-patterns/SKILL.md",
+      "computedHash": "48b58c1b1017f434f7c0583a07fde91061634125b78db83d1718d231d22ab673"
+    },
+    "laravel-specialist": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/laravel-specialist/SKILL.md",
+      "computedHash": "5d4457ccb3671d4ecd85d1cb5b24fbfb0ac52c8ebfa935ccc6ae77cf28477c3c"
+    },
+    "livewire-development": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/livewire-development/SKILL.md",
+      "computedHash": "dd946cbdd411bde049f269e914e7eab62506f8d0bd6f4d0e6bd9e47a83069e49"
+    },
+    "livewire-patterns": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/livewire-patterns/SKILL.md",
+      "computedHash": "32a4152eff6de3139df9e0d135d65c52559a7a6f8fc626b794faecd59acec091"
+    },
+    "migrations-and-factories": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/migrations-and-factories/SKILL.md",
+      "computedHash": "ad8113def94c917f95b086c3665936246dfa1fac336f3597827b3958e2e09575"
+    },
+    "nova-resource-patterns": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/nova-resource-patterns/SKILL.md",
+      "computedHash": "57d5f5e94ff3f27efb5cdfecb9cf80d0f1f9c5d06ceaaec35b7f8507384c4727"
+    },
+    "performance-caching": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/performance-caching/SKILL.md",
+      "computedHash": "47e3727050f9e0e6a2e20260b8d30c11cf3a0aea36d838bb2cc51898649c1f2a"
+    },
+    "performance-eager-loading": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/performance-eager-loading/SKILL.md",
+      "computedHash": "419fb3b861c299ca491959853863bf709fa7149844402f50576696cd96600e88"
+    },
+    "performance-select-columns": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/performance-select-columns/SKILL.md",
+      "computedHash": "5562870eca611552f294ebb532948b7a11f6dcdc7edcc04bc16b1e6b805aea3e"
+    },
+    "php-attributes": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/php-attributes/SKILL.md",
+      "computedHash": "9a28a7325c709f20a73f97d61edeb721fd2c6b76dc98294f50281f9105f68ff4"
+    },
+    "policies-and-authorization": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/policies-and-authorization/SKILL.md",
+      "computedHash": "21316b965d357800151680eb1d5ccb2813131faa29a11bc93537ce05b9c50baf"
+    },
+    "ports-and-adapters": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/ports-and-adapters/SKILL.md",
+      "computedHash": "72fd1ba8435c6d5e90b23a3570d0949d51d00773040ac068182cee9f55d566a1"
+    },
+    "prompt-structure": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/prompt-structure/SKILL.md",
+      "computedHash": "1d44794a62d98909f4013aa5f65f30e7f970f2e9bfbec509c3089f77b67fffd6"
+    },
+    "quality-checks": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/quality-checks/SKILL.md",
+      "computedHash": "cc56e59c0223bb6e31c0fb158160405694189878cd66d7830366928150b2c2de"
+    },
+    "queues-and-horizon": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/queues-and-horizon/SKILL.md",
+      "computedHash": "3903457d787d6fe1fbfaaf67970aca112f87384262185a291243e1e4938c6b47"
+    },
+    "queues-and-jobs": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/queues-and-jobs/SKILL.md",
+      "computedHash": "94ada6de0d836280934f6990fd686e4a1e748675a30f3e3014dcc0772d17bf76"
+    },
+    "rate-limiting": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/rate-limiting/SKILL.md",
+      "computedHash": "c55312cf3dfe9d461f15bc5401cfb2f8729a11be02d119a90a292de401606215"
+    },
+    "request-forgery-protection": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/request-forgery-protection/SKILL.md",
+      "computedHash": "e33724e06799ddf527865657cb9248d750d43ef8d00cc8f42b96c324099abca1"
+    },
+    "routes-best-practices": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/routes-best-practices/SKILL.md",
+      "computedHash": "8020a982294492355afd676cfa403f49f03bc62f3ba2014645b89b032a559535"
+    },
+    "runner-selection": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/runner-selection/SKILL.md",
+      "computedHash": "412844ac519203ae45db66431511aa13ef1cd126452dae0b984c445bdfae854c"
+    },
+    "security": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/security/SKILL.md",
+      "computedHash": "10551e44f3c14e5d939fffda917076c89d3d2f3ced7d7b9d8f228370113a0234"
+    },
+    "specifying-constraints": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/specifying-constraints/SKILL.md",
+      "computedHash": "91f4e0a0a5e86ba821dfeb007d74e14cbc4a4cb3b4be84f1dbe5f8c6e20d2d3c"
+    },
+    "strategy-pattern": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/strategy-pattern/SKILL.md",
+      "computedHash": "f7bb470e51a36679eea32b300041ad7a3cd9d981d1b860455b748f5c5aaf97f7"
+    },
+    "task-scheduling": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/task-scheduling/SKILL.md",
+      "computedHash": "ffcb768825ef7a01ef9d5a62a374a8a0d5636a5bd9aa5640a4c0abad1f9bbd50"
+    },
+    "tdd-with-pest": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/tdd-with-pest/SKILL.md",
+      "computedHash": "abcb4e02d91738b6e151f7ef1a6ce92cd2613c9818a7e8ae9cca1c5d1710cbde"
+    },
+    "template-method-and-plugins": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/template-method-and-plugins/SKILL.md",
+      "computedHash": "4974819757776d9c84f52705451d15ab1b9fbb309e398041e1639c35728df391"
+    },
+    "testing": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/testing/SKILL.md",
+      "computedHash": "8b2439ecd6b228e25fb54dc645dfe20bd27c7bde8a19219bb09a596eafb364d5"
+    },
+    "transactions-and-consistency": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/transactions-and-consistency/SKILL.md",
+      "computedHash": "f80eb59d2584d8699f19bec908fb89013e26d211f232dc6696e805cec1597907"
+    },
+    "upgrade-13": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/upgrade-13/SKILL.md",
+      "computedHash": "8fb0e96e6d39f9376f50b372968aadabf31c0bdb98ed3aa8efb99d2bea9da159"
+    },
+    "using-examples-in-prompts": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/using-examples-in-prompts/SKILL.md",
+      "computedHash": "47f386c6b12eaae3e4cd0fd3764b1722bec812eb27b083109b5de29aa9b270df"
+    },
+    "using-laravel-standards": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/using-laravel-standards/SKILL.md",
+      "computedHash": "a59673e67fb36ba173687fb042156395a3091f7749738d1467b945f44f078176"
+    },
+    "using-laravel-superpowers": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/using-laravel-superpowers/SKILL.md",
+      "computedHash": "0bf6d5301e5fe8650a56fa933ea3d0c132815f66be41c11c75fed338df6ed20b"
+    },
+    "vector-search": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/vector-search/SKILL.md",
+      "computedHash": "4890b19abde5158a66fd6a7e2e8cb639504a4e957292e055ebd946461d8454c4"
+    },
+    "writing-plans": {
+      "source": "soden46/syarif-laravel-ai-skills",
+      "sourceType": "github",
+      "skillPath": "skills/writing-plans/SKILL.md",
+      "computedHash": "575e476a77cbe7191a68aeea82e4cc215eea416b6dcce68f9e8d1fc777df7bb2"
+    }
+  }
+}
