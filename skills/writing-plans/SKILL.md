@@ -1,6 +1,9 @@
 ---
 name: writing-plans
 description: Create an actionable Laravel implementation plan-bite-sized tasks with TDD-first steps, migrations, services, jobs, and validation points
+tags:
+  - laravel
+  - php
 ---
 
 # Writing Plans

@@ -1,6 +1,9 @@
 ---
 name: internationalization-and-translation
 description: Build with i18n in mind from day one using Laravel translation helpers, JSON files, Blade integration, and locale management
+tags:
+  - laravel
+  - php
 ---
 
 # Internationalization And Translation

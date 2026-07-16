@@ -1,6 +1,9 @@
 ---
 name: eloquent-relationships
 description: Laravel guidance to define clear relationships and load data efficiently; prevent N+1, use constraints, counts/sums, and pivot syncing safely
+tags:
+  - laravel
+  - php
 ---
 
 # Eloquent Relationships

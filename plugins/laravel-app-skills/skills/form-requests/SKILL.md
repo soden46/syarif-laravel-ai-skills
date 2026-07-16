@@ -1,6 +1,9 @@
 ---
 name: form-requests
 description: Use Laravel Form Requests for non-trivial validation and authorization while keeping controllers thin and testable.
+tags:
+  - laravel
+  - php
 ---
 
 # Form Requests

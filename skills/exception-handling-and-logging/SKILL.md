@@ -1,6 +1,9 @@
 ---
 name: exception-handling-and-logging
 description: Laravel guidance to use reportable/renderable exceptions, structured logs, and channel strategy for observability and graceful failures
+tags:
+  - laravel
+  - php
 ---
 
 # Exception Handling And Logging

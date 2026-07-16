@@ -1,6 +1,9 @@
 ---
 name: ports-and-adapters
 description: Laravel guidance to use hexagonal architecture for external systems; define ports (interfaces) and per-provider adapters; select adapter at composition edge
+tags:
+  - laravel
+  - php
 ---
 
 # Ports And Adapters

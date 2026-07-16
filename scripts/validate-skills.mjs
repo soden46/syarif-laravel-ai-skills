@@ -71,7 +71,11 @@ for (const dir of skillDirs) {
     fail(`${dir}: description must mention Laravel or PHP so Laravel Skills can classify it.`);
   }
 
-  const extraFields = Object.keys(fields).filter((field) => !["name", "description"].includes(field));
+  if (!hasRequiredLaravelTags(frontmatter[1])) {
+    fail(`${dir}: frontmatter tags must include laravel and php for Laravel Skills import.`);
+  }
+
+  const extraFields = Object.keys(fields).filter((field) => !["name", "description", "tags"].includes(field));
   if (extraFields.length > 0) {
     fail(`${dir}: unexpected frontmatter fields: ${extraFields.join(", ")}`);
   }
@@ -319,6 +323,23 @@ function parseFrontmatter(text) {
   }
 
   return fields;
+}
+
+function hasRequiredLaravelTags(text) {
+  const tagsBlock = text.match(/^tags:[^\S\r\n]*(?:\r?\n((?:[^\S\r\n]*-[^\S\r\n]+.+\r?\n?)+))?/m);
+
+  if (!tagsBlock) return false;
+
+  const inlineTags = text.match(/^tags:\s*\[(.*?)\]\s*$/m);
+  const values = inlineTags
+    ? inlineTags[1].split(",").map((tag) => tag.replace(/^["']|["']$/g, "").trim().toLowerCase())
+    : (tagsBlock[1] ?? "")
+      .split(/\r?\n/)
+      .map((line) => line.match(/^[^\S\r\n]*-[^\S\r\n]+(.+?)\s*$/)?.[1])
+      .filter(Boolean)
+      .map((tag) => tag.replace(/^["']|["']$/g, "").trim().toLowerCase());
+
+  return values.includes("laravel") && values.includes("php");
 }
 
 function fail(message) {

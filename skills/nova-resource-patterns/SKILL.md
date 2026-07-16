@@ -1,6 +1,9 @@
 ---
 name: nova-resource-patterns
 description: Laravel guidance to consistent Nova resources-fields, actions, metrics, lenses, filters, authorization-and how to evolve resources alongside schema changes
+tags:
+  - laravel
+  - php
 ---
 
 # Nova Resource Patterns

@@ -1,6 +1,9 @@
 ---
 name: prompt-structure
 description: Laravel guidance to structure prompts for clarity-separate concerns, prioritize requests, specify acceptance criteria, and break work into testable increments
+tags:
+  - laravel
+  - php
 ---
 
 # Prompt Structure

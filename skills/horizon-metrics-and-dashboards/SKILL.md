@@ -1,6 +1,9 @@
 ---
 name: horizon-metrics-and-dashboards
 description: Laravel guidance to operate Horizon with confidence-naming, tags, concurrency, failure handling, actionable metrics, and dashboards
+tags:
+  - laravel
+  - php
 ---
 
 # Horizon Metrics And Dashboards

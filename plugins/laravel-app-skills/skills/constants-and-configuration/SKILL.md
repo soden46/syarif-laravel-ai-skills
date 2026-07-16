@@ -1,6 +1,9 @@
 ---
 name: constants-and-configuration
 description: Replace hardcoded values with constants, enums, and configuration for maintainability; use PHP 8.1+ enums and config files
+tags:
+  - laravel
+  - php
 ---
 
 # Constants And Configuration

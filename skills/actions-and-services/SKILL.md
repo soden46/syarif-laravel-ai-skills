@@ -1,6 +1,9 @@
 ---
 name: actions-and-services
 description: Use Actions and Services as deliberate Laravel application boundaries for use cases, integrations, and reusable workflows.
+tags:
+  - laravel
+  - php
 ---
 
 # Actions And Services

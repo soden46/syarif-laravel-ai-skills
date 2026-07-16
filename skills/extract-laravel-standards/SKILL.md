@@ -1,6 +1,9 @@
 ---
 name: extract-laravel-standards
 description: Audit completed Laravel projects and propose reusable updates to personal Laravel standards without importing project-specific details.
+tags:
+  - laravel
+  - php
 ---
 
 # Extract Laravel Standards

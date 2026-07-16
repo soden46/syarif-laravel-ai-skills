@@ -1,6 +1,9 @@
 ---
 name: using-laravel-standards
 description: Read first when working in a Laravel repository to select the smallest relevant personal Laravel standards skill set.
+tags:
+  - laravel
+  - php
 ---
 
 # Using Syarif Laravel Standards

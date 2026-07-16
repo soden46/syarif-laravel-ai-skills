@@ -1,6 +1,9 @@
 ---
 name: executing-plans
 description: Execute Laravel plans in small batches with checkpoints-TDD first, migrations safe, queues verified, and quality gates enforced
+tags:
+  - laravel
+  - php
 ---
 
 # Executing Plans

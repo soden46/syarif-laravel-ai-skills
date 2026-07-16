@@ -1,6 +1,9 @@
 ---
 name: security
 description: Run focused Laravel security checks for authorization, request forgery, rate limits, uploads, secrets, APIs, and configuration.
+tags:
+  - laravel
+  - php
 ---
 
 # Security

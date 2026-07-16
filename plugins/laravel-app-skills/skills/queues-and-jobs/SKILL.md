@@ -1,6 +1,9 @@
 ---
 name: queues-and-jobs
 description: Design Laravel queues, jobs, workers, schedules, and Horizon usage for retry safety, visibility, and operational reliability.
+tags:
+  - laravel
+  - php
 ---
 
 # Queues And Jobs

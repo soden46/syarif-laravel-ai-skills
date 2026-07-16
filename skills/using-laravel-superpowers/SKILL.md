@@ -1,6 +1,9 @@
 ---
 name: using-laravel-superpowers
 description: Read first in Laravel repos; explains runner selection (Sail vs non-Sail), core workflows, and how to apply superpowers skills in Laravel projects without platform lock-in
+tags:
+  - laravel
+  - php
 ---
 
 # Using Laravel Superpowers

@@ -1,6 +1,9 @@
 ---
 name: vector-search
 description: Add semantic search with native vector queries (Laravel 13+); pgvector similarity clauses, embedding workflows, and hybrid search patterns
+tags:
+  - laravel
+  - php
 ---
 
 # Vector Search

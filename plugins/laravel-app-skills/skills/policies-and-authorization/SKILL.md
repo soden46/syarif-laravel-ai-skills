@@ -1,6 +1,9 @@
 ---
 name: policies-and-authorization
 description: Laravel guidance to enforce access via Policies and Gates; use authorize() and authorizeResource() to standardize controller protections
+tags:
+  - laravel
+  - php
 ---
 
 # Policies And Authorization

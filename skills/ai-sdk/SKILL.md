@@ -1,6 +1,9 @@
 ---
 name: ai-sdk
 description: Build AI features with the first-party Laravel AI SDK (Laravel 13+); agents, embeddings, images, audio, and tool calling with provider-agnostic APIs
+tags:
+  - laravel
+  - php
 ---
 
 # Ai Sdk

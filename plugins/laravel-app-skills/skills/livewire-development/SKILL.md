@@ -1,6 +1,9 @@
 ---
 name: livewire-development
 description: Laravel guidance to build and refactor Livewire components with version-aware state, validation, actions, events, rendering, pagination, and tests.
+tags:
+  - laravel
+  - php
 ---
 
 # Livewire Development

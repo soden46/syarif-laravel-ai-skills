@@ -1,6 +1,9 @@
 ---
 name: quality-checks
 description: Unified quality gates for Laravel projects; Pint, static analysis (PHPStan/Psalm), Insights (optional), and JS linters; Sail and non-Sail pairs provided
+tags:
+  - laravel
+  - php
 ---
 
 # Quality Checks

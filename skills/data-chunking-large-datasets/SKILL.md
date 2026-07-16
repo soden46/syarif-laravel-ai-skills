@@ -1,6 +1,9 @@
 ---
 name: data-chunking-large-datasets
 description: Laravel guidance to process large datasets efficiently using chunk(), chunkById(), lazy(), and cursor() to reduce memory consumption and improve performance
+tags:
+  - laravel
+  - php
 ---
 
 # Data Chunking Large Datasets

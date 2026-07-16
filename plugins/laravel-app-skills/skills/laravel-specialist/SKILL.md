@@ -1,6 +1,9 @@
 ---
 name: laravel-specialist
 description: Coordinate full Laravel feature work across models, APIs, auth, queues, Livewire, tests, and quality checks by routing to focused skills.
+tags:
+  - laravel
+  - php
 ---
 
 # Laravel Specialist

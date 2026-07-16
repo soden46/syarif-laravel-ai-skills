@@ -1,6 +1,9 @@
 ---
 name: controller-tests
 description: Laravel guidance to write focused controller tests using HTTP assertions; keep heavy logic in Actions/Services and unit test them
+tags:
+  - laravel
+  - php
 ---
 
 # Controller Tests

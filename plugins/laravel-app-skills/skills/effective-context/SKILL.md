@@ -1,6 +1,9 @@
 ---
 name: effective-context
 description: Provide comprehensive context in prompts-files, errors, Laravel version, dependencies, and monorepo details-for accurate AI responses
+tags:
+  - laravel
+  - php
 ---
 
 # Effective Context

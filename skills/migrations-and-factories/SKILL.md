@@ -1,6 +1,9 @@
 ---
 name: migrations-and-factories
 description: Laravel guidance to safe database change patterns; when to modify vs add migrations; always pair models with migrations and factories; seeding guidance
+tags:
+  - laravel
+  - php
 ---
 
 # Migrations And Factories

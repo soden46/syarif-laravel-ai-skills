@@ -1,6 +1,9 @@
 ---
 name: runner-selection
 description: Choose Sail automatically when available, fall back cleanly to host PHP/Composer/Node; paired command map for both environments
+tags:
+  - laravel
+  - php
 ---
 
 # Runner Selection

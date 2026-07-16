@@ -1,6 +1,9 @@
 ---
 name: api-resources-and-pagination
 description: Laravel guidance to use API Resources with pagination and conditional fields; keep response shapes stable and cache-friendly
+tags:
+  - laravel
+  - php
 ---
 
 # Api Resources And Pagination

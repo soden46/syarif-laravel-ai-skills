@@ -1,6 +1,9 @@
 ---
 name: template-method-and-plugins
 description: Laravel guidance to stabilize workflows with Template Method or Strategy; extend by adding new classes instead of editing core logic
+tags:
+  - laravel
+  - php
 ---
 
 # Template Method And Plugins

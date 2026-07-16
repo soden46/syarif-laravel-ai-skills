@@ -1,6 +1,9 @@
 ---
 name: dependencies-trim-packages
 description: Laravel guidance to remove unneeded Composer packages and assets to improve boot time, memory, and security surface
+tags:
+  - laravel
+  - php
 ---
 
 # Dependencies Trim Packages

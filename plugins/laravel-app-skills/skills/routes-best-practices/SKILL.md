@@ -1,6 +1,9 @@
 ---
 name: routes-best-practices
 description: Laravel guidance to keep routes clean and focused on mapping requests to controllers; avoid business logic, validation, or database operations in route files
+tags:
+  - laravel
+  - php
 ---
 
 # Routes Best Practices

@@ -1,6 +1,9 @@
 ---
 name: interfaces-and-di
 description: Laravel guidance to use interfaces and dependency injection to decouple code; bind implementations in the container
+tags:
+  - laravel
+  - php
 ---
 
 # Interfaces And Di

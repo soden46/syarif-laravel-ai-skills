@@ -1,6 +1,9 @@
 ---
 name: architecture
 description: Apply Laravel-native architecture decisions without forcing unnecessary repositories, interfaces, DTOs, or custom layers.
+tags:
+  - laravel
+  - php
 ---
 
 # Architecture

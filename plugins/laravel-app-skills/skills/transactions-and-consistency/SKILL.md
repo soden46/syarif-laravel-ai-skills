@@ -1,6 +1,9 @@
 ---
 name: transactions-and-consistency
 description: Laravel guidance to wrap multi-write operations in transactions; use dispatchAfterCommit and idempotency patterns to ensure consistency
+tags:
+  - laravel
+  - php
 ---
 
 # Transactions And Consistency

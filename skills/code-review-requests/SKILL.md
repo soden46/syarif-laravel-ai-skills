@@ -1,6 +1,9 @@
 ---
 name: code-review-requests
 description: Request effective code reviews-specify focus areas, provide context, ask for architectural feedback, reference Laravel conventions
+tags:
+  - laravel
+  - php
 ---
 
 # Code Review Requests

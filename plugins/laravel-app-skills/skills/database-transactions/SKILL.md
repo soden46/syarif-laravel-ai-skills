@@ -1,6 +1,9 @@
 ---
 name: database-transactions
 description: Wrap atomic Laravel write workflows in transactions and handle locks, retries, side effects, and after-commit work deliberately.
+tags:
+  - laravel
+  - php
 ---
 
 # Database Transactions

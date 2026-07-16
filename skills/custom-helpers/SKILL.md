@@ -1,6 +1,9 @@
 ---
 name: custom-helpers
 description: Laravel guidance to create and register small, pure helper functions when they improve clarity; keep them organized and tested
+tags:
+  - laravel
+  - php
 ---
 
 # Custom Helpers

@@ -1,6 +1,9 @@
 ---
 name: upgrade-13
 description: Upgrade an app from Laravel 12.x to 13.x safely; PHP 8.3 baseline, dependency bumps, breaking-change checklist, and verification steps
+tags:
+  - laravel
+  - php
 ---
 
 # Upgrade 13

@@ -1,6 +1,9 @@
 ---
 name: api-surface-evolution
 description: Laravel guidance to evolve APIs safely using versioned DTOs/transformers, deprecations, and compatibility tests
+tags:
+  - laravel
+  - php
 ---
 
 # Api Surface Evolution

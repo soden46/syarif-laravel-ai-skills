@@ -1,6 +1,9 @@
 ---
 name: strategy-pattern
 description: Laravel guidance to use the Strategy pattern to select behavior at runtime; bind multiple implementations to a shared interface
+tags:
+  - laravel
+  - php
 ---
 
 # Strategy Pattern

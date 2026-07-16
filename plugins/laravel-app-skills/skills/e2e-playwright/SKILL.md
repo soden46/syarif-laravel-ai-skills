@@ -1,6 +1,9 @@
 ---
 name: e2e-playwright
 description: Laravel guidance to generic E2E patterns with Playwright-state setup, seeds, test IDs, auth, environment, and Sail integration
+tags:
+  - laravel
+  - php
 ---
 
 # E2e Playwright

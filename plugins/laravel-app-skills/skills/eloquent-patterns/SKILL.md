@@ -1,6 +1,9 @@
 ---
 name: eloquent-patterns
 description: Laravel guidance to keep Eloquent models explicit, query shapes intentional, relationship loading visible, and production data access bounded.
+tags:
+  - laravel
+  - php
 ---
 
 # Eloquent Patterns

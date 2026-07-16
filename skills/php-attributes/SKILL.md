@@ -1,6 +1,9 @@
 ---
 name: php-attributes
 description: Use first-party PHP attributes (Laravel 13+) for controllers, authorization, queue jobs, and models; declarative configuration colocated with code
+tags:
+  - laravel
+  - php
 ---
 
 # Php Attributes

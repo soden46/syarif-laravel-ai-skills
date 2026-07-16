@@ -1,6 +1,9 @@
 ---
 name: laravel-database-optimization
 description: Optimize Laravel database work across N+1 queries, indexes, selective columns, caching, pagination, large data, locks, and migrations.
+tags:
+  - laravel
+  - php
 ---
 
 # Laravel Database Optimization

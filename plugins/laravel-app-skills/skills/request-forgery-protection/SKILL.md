@@ -1,6 +1,9 @@
 ---
 name: request-forgery-protection
 description: Configure CSRF and origin-aware request forgery protection; PreventRequestForgery middleware (Laravel 13+) with token fallback and exclusions
+tags:
+  - laravel
+  - php
 ---
 
 # Request Forgery Protection

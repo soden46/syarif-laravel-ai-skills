@@ -1,6 +1,9 @@
 ---
 name: laravel-11-12-app-guidelines
 description: Work in Laravel 11 or 12 apps with stack detection, Boost-aware docs lookup, frontend conventions, tests, and Pint formatting.
+tags:
+  - laravel
+  - php
 ---
 
 # Laravel 11/12 App Guidelines

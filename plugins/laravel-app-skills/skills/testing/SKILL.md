@@ -1,6 +1,9 @@
 ---
 name: testing
 description: Choose focused Laravel tests and quality checks that prove behavior without mirroring implementation details.
+tags:
+  - laravel
+  - php
 ---
 
 # Testing

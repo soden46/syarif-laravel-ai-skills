@@ -1,6 +1,9 @@
 ---
 name: complexity-guardrails
 description: Laravel guidance to keep cyclomatic complexity low; flatten control flow, extract helpers, and prefer table-driven/strategy patterns over large switches
+tags:
+  - laravel
+  - php
 ---
 
 # Complexity Guardrails

@@ -1,6 +1,9 @@
 ---
 name: performance-eager-loading
 description: Laravel guidance to prevent N+1 queries by eager loading; enable lazy-loading protection in non-production; choose selective fields
+tags:
+  - laravel
+  - php
 ---
 
 # Performance Eager Loading

@@ -1,6 +1,9 @@
 ---
 name: controller-cleanup
 description: Keep Laravel controllers focused on HTTP orchestration by moving validation, authorization, and business workflows outward.
+tags:
+  - laravel
+  - php
 ---
 
 # Controller Cleanup

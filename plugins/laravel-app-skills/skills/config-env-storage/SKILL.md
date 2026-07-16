@@ -1,6 +1,9 @@
 ---
 name: config-env-storage
 description: Laravel guidance to portable storage configuration across S3/R2/MinIO with optional CDN-env toggles, path-style endpoints, and URL generation
+tags:
+  - laravel
+  - php
 ---
 
 # Config Env Storage

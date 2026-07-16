@@ -1,6 +1,9 @@
 ---
 name: documentation-best-practices
 description: Laravel guidance to write meaningful documentation that explains why not what; focus on complex business logic and self-documenting code
+tags:
+  - laravel
+  - php
 ---
 
 # Documentation Best Practices

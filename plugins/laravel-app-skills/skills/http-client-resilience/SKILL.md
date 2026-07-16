@@ -1,6 +1,9 @@
 ---
 name: http-client-resilience
 description: Laravel guidance to use the HTTP client with sensible timeouts, retries, and backoff; capture context and handle failures explicitly
+tags:
+  - laravel
+  - php
 ---
 
 # Http Client Resilience

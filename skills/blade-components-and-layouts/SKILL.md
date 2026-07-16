@@ -1,6 +1,9 @@
 ---
 name: blade-components-and-layouts
 description: Laravel guidance to compose UIs with Blade components, slots, and layouts; keep templates pure and testable
+tags:
+  - laravel
+  - php
 ---
 
 # Blade Components And Layouts

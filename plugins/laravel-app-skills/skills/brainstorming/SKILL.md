@@ -1,6 +1,9 @@
 ---
 name: brainstorming
 description: Interactive design refinement tailored to Laravel projects; clarify domain, data, interfaces, testing, and quality gates while accounting for Sail/non‑Sail environments
+tags:
+  - laravel
+  - php
 ---
 
 # Brainstorming

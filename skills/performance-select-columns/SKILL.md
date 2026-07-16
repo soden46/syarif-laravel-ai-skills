@@ -1,6 +1,9 @@
 ---
 name: performance-select-columns
 description: Laravel guidance to select only required columns to reduce memory and transfer costs; apply to base queries and relations
+tags:
+  - laravel
+  - php
 ---
 
 # Performance Select Columns

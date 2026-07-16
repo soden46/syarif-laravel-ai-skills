@@ -1,6 +1,9 @@
 ---
 name: laravel-prompting-patterns
 description: Use Laravel-specific vocabulary-Eloquent patterns, Form Requests, API resources, jobs/queues-to get idiomatic framework code
+tags:
+  - laravel
+  - php
 ---
 
 # Laravel Prompting Patterns

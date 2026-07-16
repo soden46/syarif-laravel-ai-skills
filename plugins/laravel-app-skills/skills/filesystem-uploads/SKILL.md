@@ -1,6 +1,9 @@
 ---
 name: filesystem-uploads
 description: Laravel guidance to store and serve files via Storage; set visibility, generate URLs, and handle streaming safely
+tags:
+  - laravel
+  - php
 ---
 
 # Filesystem Uploads
