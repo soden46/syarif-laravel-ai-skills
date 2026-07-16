@@ -11,7 +11,7 @@
   "plugins": [
     {
       "name": "laravel-app-skills",
-      "description": "A complete Laravel AI skill bundle for architecture, controllers, validation, Eloquent, performance, queues, security, Livewire, testing, and daily workflow.",
+      "description": "Laravel AI skill bundle for architecture, controllers, validation, Eloquent, performance, queues, security, Livewire, testing, and daily workflow.",
       "source": "./",
       "strict": false,
       "skills": [
