@@ -1,10 +1,8 @@
 node_modules/
 *.tgz
 .tmp-*/
-.agents/skills/
 .vercel
 .env*.local
 .DS_Store
 Thumbs.db
-/.agents
-/agents
+/.agents/
