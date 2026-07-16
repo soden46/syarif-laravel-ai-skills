@@ -1,10 +1,29 @@
 # Syarif Laravel AI Skills
 
-[![Downloads](https://img.shields.io/github/downloads/soden46/syarif-laravel-ai-skills/total?label=downloads)](https://github.com/soden46/syarif-laravel-ai-skills/releases)
-[![Skills](https://img.shields.io/badge/skills-71-blue)](https://github.com/soden46/syarif-laravel-ai-skills/tree/main/skills)
-[![skills.sh installs](https://skills.sh/b/soden46/syarif-laravel-ai-skills)](https://skills.sh/soden46/syarif-laravel-ai-skills)
-[![Clone](https://img.shields.io/badge/clone-github-24292f?logo=github)](https://github.com/soden46/syarif-laravel-ai-skills.git)
-[![Pull Requests](https://img.shields.io/github/issues-pr/soden46/syarif-laravel-ai-skills?label=pull%20requests)](https://github.com/soden46/syarif-laravel-ai-skills/pulls)
+<p align="center">
+  <img src="docs/assets/readme-hero.svg" alt="Syarif Laravel AI Skills - 71 Skills, Codex Plugin, Claude Code, Universal AI" width="100%">
+</p>
+
+<p align="center">
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/releases"><img alt="Version" src="https://img.shields.io/badge/version-0.1.0-2563EB?style=for-the-badge&labelColor=0F172A"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0284C7?style=for-the-badge&labelColor=0F172A"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/tree/main/skills"><img alt="Skills" src="https://img.shields.io/badge/skills-71-0EA5E9?style=for-the-badge&labelColor=0F172A"></a>
+  <a href="https://skills.sh/soden46/syarif-laravel-ai-skills"><img alt="skills.sh" src="https://img.shields.io/badge/skills.sh-installable-06B6D4?style=for-the-badge&labelColor=0F172A"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/soden46/syarif-laravel-ai-skills/total?style=for-the-badge&label=downloads&labelColor=0F172A&color=1D4ED8"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills.git"><img alt="Clone" src="https://img.shields.io/badge/clone-github-2563EB?style=for-the-badge&logo=github&logoColor=white&labelColor=0F172A"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/pulls"><img alt="Pull Requests" src="https://img.shields.io/github/issues-pr/soden46/syarif-laravel-ai-skills?style=for-the-badge&label=pull%20requests&labelColor=0F172A&color=38BDF8"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/blob/main/agent-skills.json"><img alt="Universal AI" src="https://img.shields.io/badge/universal_ai-ready-0891B2?style=for-the-badge&labelColor=0F172A"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/tree/main/plugins/laravel-app-skills/.codex-plugin"><img alt="Codex Plugin" src="https://img.shields.io/badge/codex-plugin-1D4ED8?style=for-the-badge&labelColor=0F172A"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/tree/main/plugins/laravel-app-skills/.claude-plugin"><img alt="Claude Code" src="https://img.shields.io/badge/claude_code-plugin-2563EB?style=for-the-badge&labelColor=0F172A"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/blob/main/docs/UNIVERSAL_USAGE.md"><img alt="AI Assistants" src="https://img.shields.io/badge/ai_assistants-universal-0EA5E9?style=for-the-badge&labelColor=0F172A"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills"><img alt="Validation" src="https://img.shields.io/badge/validation-passing-67E8F9?style=for-the-badge&labelColor=0F172A"></a>
+</p>
 
 Laravel-focused AI skills for Codex, Claude Code, and any AI coding assistant that can read Markdown files. Install them with `npx skills add`, use the generated plugin packages, or point a generic assistant at the universal manifest and canonical `skills/` folder.
 
