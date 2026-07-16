@@ -1,0 +1,23 @@
+{
+  "name": "syarif-laravel-ai-skills",
+  "version": "0.1.0",
+  "description": "Reusable Laravel AI skills for Codex, Claude Code, and other AI coding assistants.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "import:superpowers": "node scripts/import-superpowers-missing-skills.mjs",
+    "install:local": "node scripts/install-skills.mjs --target .tmp-skills --skill \"*\" --dry-run",
+    "list": "node scripts/install-skills.mjs --list",
+    "sync": "node scripts/sync-marketplace.mjs",
+    "validate": "node scripts/validate-skills.mjs"
+  },
+  "keywords": [
+    "ai-skills",
+    "codex",
+    "claude-code",
+    "laravel",
+    "php"
+  ],
+  "author": "Syarif",
+  "license": "MIT"
+}

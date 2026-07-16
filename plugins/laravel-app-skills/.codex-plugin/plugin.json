@@ -1,0 +1,32 @@
+{
+  "name": "laravel-app-skills",
+  "version": "0.1.0",
+  "description": "A complete Laravel AI skill bundle for architecture, controllers, validation, Eloquent, performance, queues, security, Livewire, testing, and daily workflow.",
+  "homepage": "https://github.com/soden46/syarif-laravel-ai-skills",
+  "repository": "https://github.com/soden46/syarif-laravel-ai-skills",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "skills",
+    "laravel",
+    "php"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Laravel App Skills",
+    "shortDescription": "A complete Laravel AI skill bundle for architecture, controllers, validation, Eloquent, performance, queues, security, Livewire, testing, and daily workflow.",
+    "longDescription": "A complete Laravel AI skill bundle for architecture, controllers, validation, Eloquent, performance, queues, security, Livewire, testing, and daily workflow.",
+    "developerName": "Syarif",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/soden46/syarif-laravel-ai-skills",
+    "defaultPrompt": [
+      "Use actions-and-services to guide this Laravel project task.",
+      "Apply laravel-app-skills to review this Laravel repository."
+    ],
+    "brandColor": "#F9322C"
+  }
+}
