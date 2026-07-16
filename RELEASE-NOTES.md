@@ -25,6 +25,7 @@ GitHub release body: [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md).
 - Marketplace/plugin sync output matching the `awesome-ai-agent-skills` style: `plugin-groups.json`, `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, and `plugins/laravel-app-skills`.
 - README installation guide for `npx skills add soden46/syarif-laravel-ai-skills`.
 - Codex plugin installation guide for `codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main`.
+- Claude Code plugin package manifest for `claude --plugin-dir ./plugins/laravel-app-skills`.
 - Mapping document at [docs/SUPERPOWERS_SKILL_MAPPING.md](docs/SUPERPOWERS_SKILL_MAPPING.md).
 
 ### Changed
@@ -68,6 +69,7 @@ Body release GitHub: [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md).
 - Output sync marketplace/plugin mengikuti gaya `awesome-ai-agent-skills`: `plugin-groups.json`, `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, dan `plugins/laravel-app-skills`.
 - Panduan instalasi README untuk `npx skills add soden46/syarif-laravel-ai-skills`.
 - Panduan instalasi plugin Codex untuk `codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main`.
+- Manifest package plugin Claude Code untuk `claude --plugin-dir ./plugins/laravel-app-skills`.
 - Dokumen mapping di [docs/SUPERPOWERS_SKILL_MAPPING.md](docs/SUPERPOWERS_SKILL_MAPPING.md).
 
 ### Diubah

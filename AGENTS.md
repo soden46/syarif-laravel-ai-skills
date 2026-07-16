@@ -13,6 +13,7 @@ This repository packages reusable Laravel AI skills. Skills are packaged instruc
 - Every skill must be assigned to exactly one skills.sh group in `skills.sh.json`.
 - Every skill must be assigned to exactly one plugin in `plugin-groups.json`.
 - Generated marketplace/plugin output lives in `.agents/plugins/marketplace.json`, `.claude-plugin/`, and `plugins/`.
+- Claude Code plugin manifests live at `plugins/<plugin-name>/.claude-plugin/plugin.json`.
 - Do not edit generated plugin skill copies directly; edit `skills/` and run `npm run sync`.
 
 ## Creating Or Updating A Skill

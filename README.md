@@ -85,6 +85,27 @@ codex plugin marketplace add .
 codex plugin add laravel-app-skills@syarif-laravel-ai-skills
 ```
 
+## Claude Code Plugin
+
+The generated Claude plugin package lives at `plugins/laravel-app-skills`:
+
+```bash
+claude --plugin-dir ./plugins/laravel-app-skills
+```
+
+Inside Claude Code, reload and call a skill:
+
+```text
+/reload-plugins
+/laravel-app-skills:using-laravel-standards
+```
+
+For personal-only usage without a plugin package, install skills directly:
+
+```bash
+npx skills add soden46/syarif-laravel-ai-skills -g -a claude-code -s "*" -y
+```
+
 ## Quick Start
 
 After installation, ask your assistant to start with:
@@ -142,8 +163,9 @@ Run the list command for the complete catalog, or read [docs/SUPERPOWERS_SKILL_M
 5. `skills.sh.json` groups the skills shown on the skills.sh repository page.
 6. `plugin-groups.json` assigns every skill to an installable plugin bundle.
 7. `.agents/plugins/marketplace.json` exposes the repo as a Codex/ChatGPT plugin marketplace.
-8. `npm run sync` regenerates `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, and `plugins/laravel-app-skills`.
-9. `package.json` is only for local helper scripts. Users install from GitHub with `npx skills add`, not `npm install`.
+8. `plugins/laravel-app-skills/.claude-plugin/plugin.json` makes the generated bundle usable with `claude --plugin-dir`.
+9. `npm run sync` regenerates `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, and `plugins/laravel-app-skills`.
+10. `package.json` is only for local helper scripts. Users install from GitHub with `npx skills add`, not `npm install`.
 
 ## Marketplace Indexing
 
@@ -268,6 +290,27 @@ codex plugin marketplace add .
 codex plugin add laravel-app-skills@syarif-laravel-ai-skills
 ```
 
+## Plugin Claude Code
+
+Package plugin Claude yang digenerate ada di `plugins/laravel-app-skills`:
+
+```bash
+claude --plugin-dir ./plugins/laravel-app-skills
+```
+
+Di dalam Claude Code, reload lalu panggil skill:
+
+```text
+/reload-plugins
+/laravel-app-skills:using-laravel-standards
+```
+
+Kalau cuma dipakai sendiri tanpa package plugin, install skill langsung:
+
+```bash
+npx skills add soden46/syarif-laravel-ai-skills -g -a claude-code -s "*" -y
+```
+
 ## Quick Start
 
 Setelah install, minta assistant mulai dari:
@@ -325,8 +368,9 @@ Jalankan command list untuk katalog lengkap, atau baca [docs/SUPERPOWERS_SKILL_M
 5. `skills.sh.json` mengelompokkan skill yang tampil di halaman repository skills.sh.
 6. `plugin-groups.json` menempatkan setiap skill ke bundle plugin installable.
 7. `.agents/plugins/marketplace.json` membuat repo ini bisa dipakai sebagai marketplace plugin Codex/ChatGPT.
-8. `npm run sync` membuat ulang `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, dan `plugins/laravel-app-skills`.
-9. `package.json` hanya untuk helper script lokal. User install dari GitHub dengan `npx skills add`, bukan `npm install`.
+8. `plugins/laravel-app-skills/.claude-plugin/plugin.json` membuat bundle generated bisa dipakai dengan `claude --plugin-dir`.
+9. `npm run sync` membuat ulang `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, dan `plugins/laravel-app-skills`.
+10. `package.json` hanya untuk helper script lokal. User install dari GitHub dengan `npx skills add`, bukan `npm install`.
 
 ## Indexing Marketplace
 

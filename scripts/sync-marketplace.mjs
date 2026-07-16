@@ -17,7 +17,7 @@ const pluginGroups = await loadPluginGroups(skills);
 
 await writeClaudeMarketplace(pluginGroups);
 await writeCodexMarketplace(pluginGroups);
-await writeCodexPlugins(pluginGroups);
+await writePluginPackages(pluginGroups);
 
 console.log(`Synced ${pluginGroups.length} plugin group(s) with ${skills.length} skill(s).`);
 
@@ -110,9 +110,10 @@ async function writeClaudeMarketplace(pluginGroups) {
     plugins: pluginGroups.map((plugin) => ({
       name: plugin.name,
       description: plugin.description,
-      source: "./",
+      version: packageJson.version,
+      source: `./plugins/${plugin.name}`,
       strict: false,
-      skills: plugin.skills.map((skill) => `./skills/${skill}`)
+      skills: plugin.skills.map((skill) => `./plugins/${plugin.name}/skills/${skill}`)
     }))
   };
 
@@ -144,7 +145,7 @@ async function writeCodexMarketplace(pluginGroups) {
   await writeJson(codexMarketplacePath, marketplace);
 }
 
-async function writeCodexPlugins(pluginGroups) {
+async function writePluginPackages(pluginGroups) {
   await mkdir(pluginsRoot, { recursive: true });
 
   const expected = new Set(pluginGroups.map((plugin) => plugin.name));
@@ -159,13 +160,16 @@ async function writeCodexPlugins(pluginGroups) {
   for (const plugin of pluginGroups) {
     const pluginRoot = path.join(pluginsRoot, plugin.name);
     const pluginSkillsRoot = path.join(pluginRoot, "skills");
-    const manifestPath = path.join(pluginRoot, ".codex-plugin", "plugin.json");
+    const codexManifestPath = path.join(pluginRoot, ".codex-plugin", "plugin.json");
+    const claudeManifestPath = path.join(pluginRoot, ".claude-plugin", "plugin.json");
 
     await rm(pluginSkillsRoot, { recursive: true, force: true });
-    await mkdir(path.dirname(manifestPath), { recursive: true });
+    await mkdir(path.dirname(codexManifestPath), { recursive: true });
+    await mkdir(path.dirname(claudeManifestPath), { recursive: true });
     await mkdir(pluginSkillsRoot, { recursive: true });
 
-    await writeJson(manifestPath, buildCodexManifest(plugin));
+    await writeJson(codexManifestPath, buildCodexManifest(plugin));
+    await writeJson(claudeManifestPath, buildClaudeManifest(plugin));
 
     for (const skill of plugin.skills) {
       await cp(path.join(skillsRoot, skill), path.join(pluginSkillsRoot, skill), {
@@ -206,6 +210,14 @@ function buildCodexManifest(plugin) {
       ],
       brandColor: "#F9322C"
     }
+  };
+}
+
+function buildClaudeManifest(plugin) {
+  return {
+    name: plugin.name,
+    version: packageJson.version,
+    description: plugin.description
   };
 }
 

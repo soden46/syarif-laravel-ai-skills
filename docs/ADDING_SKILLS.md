@@ -86,7 +86,7 @@ Before committing a new skill:
 4. Add the skill to one `plugin-groups.json` plugin.
 5. Keep root free of `SKILL.md`.
 6. Keep nested folders free of extra `SKILL.md` files.
-7. Run `npm run sync` when skills or plugin grouping changes so `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, and `plugins/` stay current.
+7. Run `npm run sync` when skills or plugin grouping changes so `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, `plugins/<plugin>/.claude-plugin/plugin.json`, and `plugins/` stay current.
 8. Run `npm run validate`.
 9. Run `npx skills add . --list` before pushing to preview discovery.
 10. Run `npx skills add soden46/syarif-laravel-ai-skills --list` after pushing to verify GitHub discovery.
@@ -178,7 +178,7 @@ Sebelum commit skill baru:
 4. Tambahkan skill ke satu plugin di `plugin-groups.json`.
 5. Pastikan root repo tidak punya `SKILL.md`.
 6. Pastikan nested folder tidak punya `SKILL.md` tambahan.
-7. Jalankan `npm run sync` kalau skill atau grouping plugin berubah supaya `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, dan `plugins/` tetap sinkron.
+7. Jalankan `npm run sync` kalau skill atau grouping plugin berubah supaya `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, `plugins/<plugin>/.claude-plugin/plugin.json`, dan `plugins/` tetap sinkron.
 8. Jalankan `npm run validate`.
 9. Jalankan `npx skills add . --list` sebelum push untuk preview discovery.
 10. Jalankan `npx skills add soden46/syarif-laravel-ai-skills --list` setelah push untuk verifikasi discovery GitHub.

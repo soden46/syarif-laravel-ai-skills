@@ -1,0 +1,5 @@
+{
+  "name": "laravel-app-skills",
+  "version": "0.1.0",
+  "description": "Laravel AI skill bundle for architecture, controllers, validation, Eloquent, performance, queues, security, Livewire, testing, and daily workflow."
+}

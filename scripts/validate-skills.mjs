@@ -301,6 +301,7 @@ async function assertGeneratedMarketplaces(skillDirs) {
   }
 
   await assertCodexPluginManifests(skillDirs);
+  await assertClaudePluginManifests();
 }
 
 async function assertCodexMarketplace(codexMarketplacePath) {
@@ -375,6 +376,36 @@ async function assertCodexPluginManifests() {
 
     if (!manifest.interface?.displayName || !Array.isArray(manifest.interface?.defaultPrompt)) {
       fail(`${path.relative(root, manifestPath)} must include interface displayName and defaultPrompt.`);
+    }
+  }
+}
+
+async function assertClaudePluginManifests() {
+  const pluginDirs = await readdir(pluginsRoot, { withFileTypes: true }).catch(() => []);
+
+  for (const entry of pluginDirs) {
+    if (!entry.isDirectory()) continue;
+
+    const manifestPath = path.join(pluginsRoot, entry.name, ".claude-plugin", "plugin.json");
+    let manifest;
+
+    try {
+      manifest = parseJson(await readFile(manifestPath, "utf8"));
+    } catch (error) {
+      fail(`${path.relative(root, manifestPath)} is missing or invalid JSON: ${error.message}`);
+      continue;
+    }
+
+    if (manifest.name !== entry.name) {
+      fail(`${path.relative(root, manifestPath)} name must match plugin folder.`);
+    }
+
+    if (!manifest.version || !/^\d+\.\d+\.\d+/.test(manifest.version)) {
+      fail(`${path.relative(root, manifestPath)} must include a semver version.`);
+    }
+
+    if (!manifest.description || typeof manifest.description !== "string") {
+      fail(`${path.relative(root, manifestPath)} must include a description.`);
     }
   }
 }
