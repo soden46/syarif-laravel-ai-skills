@@ -104,6 +104,7 @@
         "queues-and-jobs",
         "rate-limiting",
         "request-forgery-protection",
+        "responsive-ui-testing",
         "routes-best-practices",
         "runner-selection",
         "security",
@@ -398,6 +399,11 @@
       "name": "request-forgery-protection",
       "path": "./skills/request-forgery-protection/SKILL.md",
       "description": "Configure CSRF and origin-aware request forgery protection; PreventRequestForgery middleware (Laravel 13+) with token fallback and exclusions"
+    },
+    {
+      "name": "responsive-ui-testing",
+      "path": "./skills/responsive-ui-testing/SKILL.md",
+      "description": "Audit Laravel responsive UI with Playwright across mobile, tablet, desktop, Livewire states, overflow, clipping, forms, tables, modals, and navigation."
     },
     {
       "name": "routes-best-practices",

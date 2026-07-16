@@ -103,6 +103,7 @@
         "tdd-with-pest",
         "controller-tests",
         "e2e-playwright",
+        "responsive-ui-testing",
         "quality-checks",
         "documentation-best-practices",
         "dependencies-trim-packages"

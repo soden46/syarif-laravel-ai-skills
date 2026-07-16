@@ -3,8 +3,9 @@
 ## Unreleased
 
 Changed:
+- expanded the installable catalog to 72 skills with `responsive-ui-testing` for Laravel responsive UI audits across mobile, tablet, desktop, Livewire states, overflow, clipping, tables, modals, and navigation;
 - converted the previous umbrella standards skill and references into focused installable skills;
-- expanded the installable catalog to 71 skills: 12 local core standards, 55 mapped Superpowers Laravel topics, and 4 supplemental Laravel Skills Cloud topics;
+- built the catalog from 12 local core standards, mapped Superpowers Laravel topics, supplemental Laravel Skills Cloud topics, and focused project-quality skills;
 - added `laravel-specialist`, `laravel-11-12-app-guidelines`, `livewire-development`, and `laravel-database-optimization`;
 - added `plugin-groups.json`, marketplace files, and generated `plugins/laravel-app-skills` bundle to match the `awesome-ai-agent-skills` style;
 - added `scripts/sync-marketplace.mjs` and `npm run sync` to regenerate marketplace/plugin output from canonical skills;

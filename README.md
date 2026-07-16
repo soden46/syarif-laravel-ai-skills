@@ -1,13 +1,13 @@
 # Syarif Laravel AI Skills
 
 <p align="center">
-  <img src="docs/assets/readme-hero.svg" alt="Syarif Laravel AI Skills - 71 Skills, Codex Plugin, Claude Code, Universal AI" width="100%">
+  <img src="docs/assets/readme-hero.svg" alt="Syarif Laravel AI Skills - 72 Skills, Codex Plugin, Claude Code, Universal AI" width="100%">
 </p>
 
 <p align="center">
   <a href="https://github.com/soden46/syarif-laravel-ai-skills/releases"><img alt="Version" src="https://img.shields.io/badge/version-0.1.0-2563EB?style=for-the-badge&labelColor=0F172A"></a>
   <a href="https://github.com/soden46/syarif-laravel-ai-skills/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0284C7?style=for-the-badge&labelColor=0F172A"></a>
-  <a href="https://github.com/soden46/syarif-laravel-ai-skills/tree/main/skills"><img alt="Skills" src="https://img.shields.io/badge/skills-71-0EA5E9?style=for-the-badge&labelColor=0F172A"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/tree/main/skills"><img alt="Skills" src="https://img.shields.io/badge/skills-72-0EA5E9?style=for-the-badge&labelColor=0F172A"></a>
   <a href="https://skills.sh/soden46/syarif-laravel-ai-skills"><img alt="skills.sh" src="https://img.shields.io/badge/skills.sh-installable-06B6D4?style=for-the-badge&labelColor=0F172A"></a>
 </p>
 
@@ -38,9 +38,10 @@ Language: [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 
 ## What You Get
 
-- **71 installable Laravel skills** - a broad Laravel skill catalog for day-to-day Laravel work.
+- **72 installable Laravel skills** - a broad Laravel skill catalog for day-to-day Laravel work.
 - **Personal core standards** - 12 local standards extracted from reviewed Laravel projects, with client details removed.
 - **Public topic coverage** - 59 additional topics mapped from public Laravel skill catalogs without copying third-party skill body text.
+- **Responsive UI testing** - a focused Playwright skill for mobile, tablet, desktop, overflow, clipping, tables, modals, navigation, and Livewire state checks.
 - **Simple discovery** - `npx skills add <repo> --list` reads each `skills/<folder>/SKILL.md`.
 - **Universal assistant support** - usable by Codex, Claude Code, Copilot, Cursor, Windsurf, Cline, Aider, OpenCode, Gemini CLI, and generic agents that can read files.
 
@@ -176,6 +177,7 @@ Use quality-checks before final handoff.
 - **HTTP and APIs** - `routes-best-practices`, `api-resources-and-pagination`, `api-surface-evolution`, `rate-limiting`.
 - **Data and Eloquent** - `migrations-and-factories`, `eloquent-relationships`, `data-chunking-large-datasets`, `transactions-and-consistency`.
 - **Quality and tests** - `tdd-with-pest`, `controller-tests`, `e2e-playwright`, `quality-checks`.
+- **Responsive UI** - `responsive-ui-testing`.
 - **Operations and security** - `queues-and-horizon`, `horizon-metrics-and-dashboards`, `http-client-resilience`, `filesystem-uploads`, `exception-handling-and-logging`.
 - **Performance** - `laravel-database-optimization`, `performance-caching`, `performance-eager-loading`, `performance-select-columns`.
 - **Laravel 13+** - `ai-sdk`, `vector-search`, `php-attributes`, `request-forgery-protection`, `upgrade-13`.
@@ -255,9 +257,10 @@ MIT License - see [LICENSE](LICENSE).
 
 ## Yang Didapat
 
-- **71 skill Laravel installable** - katalog skill Laravel yang luas untuk pekerjaan Laravel sehari-hari.
+- **72 skill Laravel installable** - katalog skill Laravel yang luas untuk pekerjaan Laravel sehari-hari.
 - **Standar inti pribadi** - 12 standar lokal dari proyek Laravel yang sudah direview, tanpa detail client.
 - **Cakupan topik publik** - 59 topik tambahan yang dimapping dari katalog skill Laravel publik tanpa menyalin isi body skill pihak ketiga.
+- **Responsive UI testing** - skill Playwright khusus untuk mobile, tablet, desktop, overflow, clipping, tabel, modal, navigasi, dan state Livewire.
 - **Discovery sederhana** - `npx skills add <repo> --list` membaca setiap `skills/<folder>/SKILL.md`.
 - **Support AI universal** - bisa dipakai Codex, Claude Code, Copilot, Cursor, Windsurf, Cline, Aider, OpenCode, Gemini CLI, dan agent generik yang bisa membaca file.
 
@@ -393,6 +396,7 @@ Use quality-checks before final handoff.
 - **HTTP dan API** - `routes-best-practices`, `api-resources-and-pagination`, `api-surface-evolution`, `rate-limiting`.
 - **Data dan Eloquent** - `migrations-and-factories`, `eloquent-relationships`, `data-chunking-large-datasets`, `transactions-and-consistency`.
 - **Quality dan test** - `tdd-with-pest`, `controller-tests`, `e2e-playwright`, `quality-checks`.
+- **Responsive UI** - `responsive-ui-testing`.
 - **Operasional dan security** - `queues-and-horizon`, `horizon-metrics-and-dashboards`, `http-client-resilience`, `filesystem-uploads`, `exception-handling-and-logging`.
 - **Performance** - `laravel-database-optimization`, `performance-caching`, `performance-eager-loading`, `performance-select-columns`.
 - **Laravel 13+** - `ai-sdk`, `vector-search`, `php-attributes`, `request-forgery-protection`, `upgrade-13`.

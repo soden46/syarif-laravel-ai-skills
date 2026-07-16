@@ -15,10 +15,11 @@ GitHub release body: [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md).
 
 ### Added
 
-- 71 installable Laravel skills discoverable by `npx skills add`.
+- 72 installable Laravel skills discoverable by `npx skills add`.
 - 12 local core standards covering architecture, controllers, Form Requests, Actions/Services, Eloquent, transactions, queues, Livewire, security, testing, standards usage, and standards extraction.
 - 55 additional Laravel topic skills mapped from the public [jpcaparas/superpowers-laravel](https://github.com/jpcaparas/superpowers-laravel) catalog without copying third-party skill body text.
 - 4 supplemental skills inspired by public Laravel Skills Cloud topics: Laravel specialist workflow, Laravel 11/12 app guidelines, Livewire development, and database optimization.
+- Responsive UI testing skill for Laravel interfaces using Playwright across mobile, tablet, laptop, desktop, Livewire states, overflow, clipped content, forms, tables, modals, navigation, and dark mode.
 - Bilingual Markdown switch pattern for user-facing docs.
 - Proposal workflow under `proposals/pending`, `proposals/accepted`, and `proposals/rejected`.
 - Local validation, listing, dry-run install, and Superpowers mapping scripts.
@@ -60,10 +61,11 @@ Body release GitHub: [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md).
 
 ### Ditambahkan
 
-- 71 skill Laravel installable yang bisa ditemukan oleh `npx skills add`.
+- 72 skill Laravel installable yang bisa ditemukan oleh `npx skills add`.
 - 12 standar inti lokal untuk arsitektur, controller, Form Request, Action/Service, Eloquent, transaction, queue, Livewire, security, testing, penggunaan standar, dan ekstraksi standar.
 - 55 skill topik Laravel tambahan yang dimapping dari katalog publik [jpcaparas/superpowers-laravel](https://github.com/jpcaparas/superpowers-laravel) tanpa menyalin isi body skill pihak ketiga.
 - 4 skill tambahan yang terinspirasi dari topik publik Laravel Skills Cloud: workflow Laravel specialist, guideline app Laravel 11/12, Livewire development, dan database optimization.
+- Skill responsive UI testing untuk interface Laravel memakai Playwright di mobile, tablet, laptop, desktop, state Livewire, overflow, konten terpotong, form, tabel, modal, navigasi, dan dark mode.
 - Pola switch Markdown bilingual untuk dokumentasi user-facing.
 - Workflow proposal di `proposals/pending`, `proposals/accepted`, dan `proposals/rejected`.
 - Script lokal untuk validasi, listing, dry-run install, dan mapping Superpowers.

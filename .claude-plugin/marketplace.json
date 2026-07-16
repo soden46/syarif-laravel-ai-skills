@@ -71,6 +71,7 @@
         "./plugins/laravel-app-skills/skills/queues-and-jobs",
         "./plugins/laravel-app-skills/skills/rate-limiting",
         "./plugins/laravel-app-skills/skills/request-forgery-protection",
+        "./plugins/laravel-app-skills/skills/responsive-ui-testing",
         "./plugins/laravel-app-skills/skills/routes-best-practices",
         "./plugins/laravel-app-skills/skills/runner-selection",
         "./plugins/laravel-app-skills/skills/security",

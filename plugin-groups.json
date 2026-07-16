@@ -59,6 +59,7 @@
         "queues-and-jobs",
         "rate-limiting",
         "request-forgery-protection",
+        "responsive-ui-testing",
         "routes-best-practices",
         "runner-selection",
         "security",

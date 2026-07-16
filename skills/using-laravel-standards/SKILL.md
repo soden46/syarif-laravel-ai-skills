@@ -30,6 +30,7 @@ Use this skill as the entrypoint for Laravel implementation, refactoring, review
 - Laravel 11/12 app workflow: `laravel-11-12-app-guidelines`
 - Database performance and query tuning: `laravel-database-optimization`
 - Livewire components and tests: `livewire-development`, `livewire-patterns`
+- Responsive UI, mobile layout, overflow, modals, tables, and visual regression: `responsive-ui-testing`
 - Queues, jobs, workers, schedules, and Horizon: `queues-and-jobs`
 - Security review: `security`
 - Feature, unit, render, document, browser, and handoff tests: `testing`
