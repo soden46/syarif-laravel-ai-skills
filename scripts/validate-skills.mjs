@@ -209,6 +209,7 @@ async function findSkillFiles(directory) {
 
   for (const entry of entries) {
     if (ignored.has(entry.name)) continue;
+    if (entry.name.startsWith(".tmp-")) continue;
 
     const fullPath = path.join(directory, entry.name);
 
@@ -277,12 +278,15 @@ async function assertPluginGroups(skillDirs) {
 
 async function assertGeneratedMarketplaces(skillDirs) {
   const claudeMarketplacePath = path.join(root, ".claude-plugin", "marketplace.json");
+  const codexMarketplacePath = path.join(root, ".agents", "plugins", "marketplace.json");
 
   try {
     parseJson(await readFile(claudeMarketplacePath, "utf8"));
   } catch (error) {
     fail(`${path.relative(root, claudeMarketplacePath)} is missing or invalid JSON: ${error.message}`);
   }
+
+  await assertCodexMarketplace(codexMarketplacePath);
 
   try {
     await stat(pluginsRoot);
@@ -294,6 +298,84 @@ async function assertGeneratedMarketplaces(skillDirs) {
   const packagedSkillFiles = await findSkillFiles(pluginsRoot);
   if (packagedSkillFiles.length < skillDirs.length) {
     fail("plugins/ packaged skill copies are missing or incomplete. Run npm run sync.");
+  }
+
+  await assertCodexPluginManifests(skillDirs);
+}
+
+async function assertCodexMarketplace(codexMarketplacePath) {
+  let marketplace;
+
+  try {
+    marketplace = parseJson(await readFile(codexMarketplacePath, "utf8"));
+  } catch (error) {
+    fail(`${path.relative(root, codexMarketplacePath)} is missing or invalid JSON: ${error.message}`);
+    return;
+  }
+
+  if (marketplace.name !== "syarif-laravel-ai-skills") {
+    fail("marketplace.json name must be syarif-laravel-ai-skills.");
+  }
+
+  if (!marketplace.interface || marketplace.interface.displayName !== "Syarif Laravel AI Skills") {
+    fail("marketplace.json interface.displayName must be Syarif Laravel AI Skills.");
+  }
+
+  if (!Array.isArray(marketplace.plugins) || marketplace.plugins.length === 0) {
+    fail("marketplace.json must include at least one plugin entry.");
+    return;
+  }
+
+  for (const plugin of marketplace.plugins) {
+    if (!plugin.name || typeof plugin.name !== "string") {
+      fail("marketplace.json plugin entries need a name.");
+    }
+
+    if (plugin.source?.source !== "local" || plugin.source?.path !== `./plugins/${plugin.name}`) {
+      fail(`marketplace.json plugin "${plugin.name ?? "(missing)"}" must point to ./plugins/<plugin-name>.`);
+    }
+
+    if (plugin.policy?.installation !== "AVAILABLE" || plugin.policy?.authentication !== "ON_INSTALL") {
+      fail(`marketplace.json plugin "${plugin.name ?? "(missing)"}" must include AVAILABLE/ON_INSTALL policy.`);
+    }
+
+    if (plugin.category !== "Productivity") {
+      fail(`marketplace.json plugin "${plugin.name ?? "(missing)"}" category must be Productivity.`);
+    }
+  }
+}
+
+async function assertCodexPluginManifests() {
+  const pluginDirs = await readdir(pluginsRoot, { withFileTypes: true }).catch(() => []);
+
+  for (const entry of pluginDirs) {
+    if (!entry.isDirectory()) continue;
+
+    const manifestPath = path.join(pluginsRoot, entry.name, ".codex-plugin", "plugin.json");
+    let manifest;
+
+    try {
+      manifest = parseJson(await readFile(manifestPath, "utf8"));
+    } catch (error) {
+      fail(`${path.relative(root, manifestPath)} is missing or invalid JSON: ${error.message}`);
+      continue;
+    }
+
+    if (manifest.name !== entry.name) {
+      fail(`${path.relative(root, manifestPath)} name must match plugin folder.`);
+    }
+
+    if (!manifest.author || typeof manifest.author !== "object" || !manifest.author.name) {
+      fail(`${path.relative(root, manifestPath)} must include author.name for Codex plugin validation.`);
+    }
+
+    if (manifest.skills !== "./skills/") {
+      fail(`${path.relative(root, manifestPath)} skills must be ./skills/.`);
+    }
+
+    if (!manifest.interface?.displayName || !Array.isArray(manifest.interface?.defaultPrompt)) {
+      fail(`${path.relative(root, manifestPath)} must include interface displayName and defaultPrompt.`);
+    }
   }
 }
 

@@ -8,6 +8,7 @@ const skillsRoot = path.join(root, "skills");
 const pluginsRoot = path.join(root, "plugins");
 const pluginGroupsPath = path.join(root, "plugin-groups.json");
 const claudeMarketplacePath = path.join(root, ".claude-plugin", "marketplace.json");
+const codexMarketplacePath = path.join(root, ".agents", "plugins", "marketplace.json");
 const repositoryUrl = "https://github.com/soden46/syarif-laravel-ai-skills";
 
 const packageJson = parseJson(await readFile(path.join(root, "package.json"), "utf8"));
@@ -15,6 +16,7 @@ const skills = await listSkills();
 const pluginGroups = await loadPluginGroups(skills);
 
 await writeClaudeMarketplace(pluginGroups);
+await writeCodexMarketplace(pluginGroups);
 await writeCodexPlugins(pluginGroups);
 
 console.log(`Synced ${pluginGroups.length} plugin group(s) with ${skills.length} skill(s).`);
@@ -118,6 +120,30 @@ async function writeClaudeMarketplace(pluginGroups) {
   await writeJson(claudeMarketplacePath, marketplace);
 }
 
+async function writeCodexMarketplace(pluginGroups) {
+  const marketplace = {
+    name: packageJson.name,
+    interface: {
+      displayName: "Syarif Laravel AI Skills"
+    },
+    plugins: pluginGroups.map((plugin) => ({
+      name: plugin.name,
+      source: {
+        source: "local",
+        path: `./plugins/${plugin.name}`
+      },
+      policy: {
+        installation: "AVAILABLE",
+        authentication: "ON_INSTALL"
+      },
+      category: "Productivity"
+    }))
+  };
+
+  await mkdir(path.dirname(codexMarketplacePath), { recursive: true });
+  await writeJson(codexMarketplacePath, marketplace);
+}
+
 async function writeCodexPlugins(pluginGroups) {
   await mkdir(pluginsRoot, { recursive: true });
 
@@ -157,6 +183,10 @@ function buildCodexManifest(plugin) {
     name: plugin.name,
     version: packageJson.version,
     description: plugin.description,
+    author: {
+      name: packageJson.author || "Syarif",
+      url: "https://github.com/soden46"
+    },
     homepage: repositoryUrl,
     repository: repositoryUrl,
     license: packageJson.license || "MIT",

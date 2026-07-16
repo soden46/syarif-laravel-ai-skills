@@ -6,3 +6,7 @@ node_modules/
 .DS_Store
 Thumbs.db
 /.agents/
+!/.agents/
+/.agents/*
+!/.agents/plugins/
+!/.agents/plugins/marketplace.json

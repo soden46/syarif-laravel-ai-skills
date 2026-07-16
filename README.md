@@ -69,6 +69,22 @@ Verify installation:
 npx skills list --global --agent codex
 ```
 
+## Codex Plugin
+
+This repo also ships a Codex plugin marketplace:
+
+```bash
+codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main
+codex plugin add laravel-app-skills@syarif-laravel-ai-skills
+```
+
+For local development from this checkout:
+
+```bash
+codex plugin marketplace add .
+codex plugin add laravel-app-skills@syarif-laravel-ai-skills
+```
+
 ## Quick Start
 
 After installation, ask your assistant to start with:
@@ -125,8 +141,9 @@ Run the list command for the complete catalog, or read [docs/SUPERPOWERS_SKILL_M
 4. The `tags` frontmatter includes `laravel` and `php` for Laravel Skills import.
 5. `skills.sh.json` groups the skills shown on the skills.sh repository page.
 6. `plugin-groups.json` assigns every skill to an installable plugin bundle.
-7. `npm run sync` regenerates `.claude-plugin/marketplace.json` and `plugins/laravel-app-skills`.
-8. `package.json` is only for local helper scripts. Users install from GitHub with `npx skills add`, not `npm install`.
+7. `.agents/plugins/marketplace.json` exposes the repo as a Codex/ChatGPT plugin marketplace.
+8. `npm run sync` regenerates `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, and `plugins/laravel-app-skills`.
+9. `package.json` is only for local helper scripts. Users install from GitHub with `npx skills add`, not `npm install`.
 
 ## Marketplace Indexing
 
@@ -235,6 +252,22 @@ Cek hasil install:
 npx skills list --global --agent codex
 ```
 
+## Plugin Codex
+
+Repo ini juga menyediakan marketplace plugin Codex:
+
+```bash
+codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main
+codex plugin add laravel-app-skills@syarif-laravel-ai-skills
+```
+
+Untuk development lokal dari checkout ini:
+
+```bash
+codex plugin marketplace add .
+codex plugin add laravel-app-skills@syarif-laravel-ai-skills
+```
+
 ## Quick Start
 
 Setelah install, minta assistant mulai dari:
@@ -291,8 +324,9 @@ Jalankan command list untuk katalog lengkap, atau baca [docs/SUPERPOWERS_SKILL_M
 4. Frontmatter `tags` berisi `laravel` dan `php` untuk import Laravel Skills.
 5. `skills.sh.json` mengelompokkan skill yang tampil di halaman repository skills.sh.
 6. `plugin-groups.json` menempatkan setiap skill ke bundle plugin installable.
-7. `npm run sync` membuat ulang `.claude-plugin/marketplace.json` dan `plugins/laravel-app-skills`.
-8. `package.json` hanya untuk helper script lokal. User install dari GitHub dengan `npx skills add`, bukan `npm install`.
+7. `.agents/plugins/marketplace.json` membuat repo ini bisa dipakai sebagai marketplace plugin Codex/ChatGPT.
+8. `npm run sync` membuat ulang `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, dan `plugins/laravel-app-skills`.
+9. `package.json` hanya untuk helper script lokal. User install dari GitHub dengan `npx skills add`, bukan `npm install`.
 
 ## Indexing Marketplace
 
