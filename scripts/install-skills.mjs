@@ -114,6 +114,10 @@ async function listSkills() {
 }
 
 function printSkillList(found) {
+  console.log("Install options:");
+  console.log("- all");
+  console.log("  Install every bundled Laravel skill. Alias: *");
+  console.log("");
   console.log("Available skills:");
   for (const skill of found) {
     console.log(`- ${skill.name}`);
@@ -186,13 +190,14 @@ function printHelp() {
 Usage:
   syarif-laravel-ai-skills --list
   syarif-laravel-ai-skills --agent codex --skill "*" --yes
+  syarif-laravel-ai-skills --agent codex --skill all --yes
   syarif-laravel-ai-skills --agent claude --skill form-requests --yes
   syarif-laravel-ai-skills --target ./skills --skill "*" --yes
 
 Options:
   --list              List bundled skills
   -a, --agent         codex or claude
-  -s, --skill         Skill name, comma-separated names, "*" or "all"
+  -s, --skill         Skill name, comma-separated names, "all", or "*"
   -t, --target        Custom install directory
   -y, --yes           Confirm installation
   --dry-run           Show copy operations without writing

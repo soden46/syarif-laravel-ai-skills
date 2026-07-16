@@ -39,10 +39,22 @@ List available skills:
 npx skills add soden46/syarif-laravel-ai-skills --list
 ```
 
+Install all skills:
+
+```bash
+npx skills add soden46/syarif-laravel-ai-skills -s "*" -y
+```
+
 Install all skills globally for Codex:
 
 ```bash
 npx skills add soden46/syarif-laravel-ai-skills -g -a codex -s "*" -y
+```
+
+Interactive install prompt:
+
+```text
+Select the Laravel App Skills group to select every skill, then press Enter.
 ```
 
 Install one skill:
@@ -193,10 +205,22 @@ Lihat daftar skill:
 npx skills add soden46/syarif-laravel-ai-skills --list
 ```
 
+Install semua skill:
+
+```bash
+npx skills add soden46/syarif-laravel-ai-skills -s "*" -y
+```
+
 Install semua skill global untuk Codex:
 
 ```bash
 npx skills add soden46/syarif-laravel-ai-skills -g -a codex -s "*" -y
+```
+
+Prompt install interaktif:
+
+```text
+Pilih group Laravel App Skills untuk memilih semua skill, lalu tekan Enter.
 ```
 
 Install satu skill:
