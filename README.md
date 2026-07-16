@@ -1,7 +1,8 @@
 # Syarif Laravel AI Skills
 
 [![Downloads](https://img.shields.io/github/downloads/soden46/syarif-laravel-ai-skills/total?label=downloads)](https://github.com/soden46/syarif-laravel-ai-skills/releases)
-[![Installs](https://skills.sh/b/soden46/syarif-laravel-ai-skills)](https://skills.sh/soden46/syarif-laravel-ai-skills)
+[![Skills](https://img.shields.io/badge/skills-71-blue)](https://github.com/soden46/syarif-laravel-ai-skills/tree/main/skills)
+[![skills.sh installs](https://skills.sh/b/soden46/syarif-laravel-ai-skills)](https://skills.sh/soden46/syarif-laravel-ai-skills)
 [![Clone](https://img.shields.io/badge/clone-github-24292f?logo=github)](https://github.com/soden46/syarif-laravel-ai-skills.git)
 [![Pull Requests](https://img.shields.io/github/issues-pr/soden46/syarif-laravel-ai-skills?label=pull%20requests)](https://github.com/soden46/syarif-laravel-ai-skills/pulls)
 

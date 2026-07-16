@@ -201,6 +201,8 @@ async function findSkillFiles(directory) {
     const fullPath = path.join(directory, entry.name);
 
     if (entry.isDirectory()) {
+      if (isLocalInstallDirectory(fullPath)) continue;
+
       found.push(...await findSkillFiles(fullPath));
     } else if (entry.isFile() && entry.name === "SKILL.md") {
       found.push(fullPath);
@@ -208,6 +210,12 @@ async function findSkillFiles(directory) {
   }
 
   return found;
+}
+
+function isLocalInstallDirectory(directory) {
+  const relative = path.relative(root, directory).split(path.sep).join("/");
+
+  return relative === ".agents/skills";
 }
 
 async function assertPluginGroups(skillDirs) {
