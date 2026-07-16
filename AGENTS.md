@@ -13,8 +13,10 @@ This repository packages reusable Laravel AI skills. Skills are packaged instruc
 - Every skill must be assigned to exactly one skills.sh group in `skills.sh.json`.
 - Every skill must be assigned to exactly one plugin in `plugin-groups.json`.
 - Universal assistant metadata is generated at `agent-skills.json`.
+- Codex marketplace artifact metadata lives at `.codex-plugin/plugin.json` and points directly to canonical `skills/`.
 - Generated marketplace/plugin output lives in `.agents/plugins/marketplace.json`, `.claude-plugin/`, and `plugins/`.
 - Claude Code plugin manifests live at `plugins/<plugin-name>/.claude-plugin/plugin.json`.
+- Generated plugin skill copies under `plugins/<plugin-name>/skills/` are local build output and are ignored to keep marketplace artifacts under the 128-file scan limit.
 - Do not edit generated plugin skill copies directly; edit `skills/` and run `npm run sync`.
 
 ## Creating Or Updating A Skill
@@ -90,6 +92,8 @@ npm run sync
 npm run validate
 npx skills add . --list
 ```
+
+`npm run validate` also checks that tracked files stay within the codex-marketplace.com 128-file scan limit.
 
 After pushing, verify GitHub discovery:
 

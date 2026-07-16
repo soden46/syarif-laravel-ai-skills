@@ -78,18 +78,20 @@ npx skills list --global --agent codex
 
 ## Codex Plugin
 
+This repository can be submitted directly to codex-marketplace.com because the root `.codex-plugin/plugin.json` points to canonical `skills/`.
+
 This repo also ships a Codex plugin marketplace:
 
 ```bash
 codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main
-codex plugin add laravel-app-skills@syarif-laravel-ai-skills
+codex plugin add syarif-laravel-ai-skills@syarif-laravel-ai-skills
 ```
 
 For local development from this checkout:
 
 ```bash
 codex plugin marketplace add .
-codex plugin add laravel-app-skills@syarif-laravel-ai-skills
+codex plugin add syarif-laravel-ai-skills@syarif-laravel-ai-skills
 ```
 
 ## Claude Code Plugin
@@ -181,10 +183,12 @@ Run the list command for the complete catalog, or read [docs/SUPERPOWERS_SKILL_M
 5. `skills.sh.json` groups the skills shown on the skills.sh repository page.
 6. `plugin-groups.json` assigns every skill to an installable plugin bundle.
 7. `agent-skills.json` exposes neutral metadata for generic AI assistants and integration tools.
-8. `.agents/plugins/marketplace.json` exposes the repo as a Codex/ChatGPT plugin marketplace.
-9. `plugins/laravel-app-skills/.claude-plugin/plugin.json` makes the generated bundle usable with `claude --plugin-dir`.
-10. `npm run sync` regenerates `agent-skills.json`, `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, and `plugins/laravel-app-skills`.
-11. `package.json` is only for local helper scripts. Users install from GitHub with `npx skills add`, not `npm install`.
+8. `.codex-plugin/plugin.json` exposes the repo root as a codex-marketplace.com artifact and points directly to `skills/`.
+9. `.agents/plugins/marketplace.json` exposes the repo as a Codex/ChatGPT plugin marketplace.
+10. `plugins/laravel-app-skills/.claude-plugin/plugin.json` makes the generated bundle usable with `claude --plugin-dir` after `npm run sync`.
+11. `npm run sync` regenerates `agent-skills.json`, `.codex-plugin/plugin.json`, `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, and local generated plugin output.
+12. Generated `plugins/<plugin>/skills/` copies are ignored in Git so marketplace submissions stay under the 128-file scan limit.
+13. `package.json` is only for local helper scripts. Users install from GitHub with `npx skills add`, not `npm install`.
 
 ## Marketplace Indexing
 
@@ -297,18 +301,20 @@ npx skills list --global --agent codex
 
 ## Plugin Codex
 
+Repository ini bisa langsung disubmit ke codex-marketplace.com karena root `.codex-plugin/plugin.json` menunjuk ke canonical `skills/`.
+
 Repo ini juga menyediakan marketplace plugin Codex:
 
 ```bash
 codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main
-codex plugin add laravel-app-skills@syarif-laravel-ai-skills
+codex plugin add syarif-laravel-ai-skills@syarif-laravel-ai-skills
 ```
 
 Untuk development lokal dari checkout ini:
 
 ```bash
 codex plugin marketplace add .
-codex plugin add laravel-app-skills@syarif-laravel-ai-skills
+codex plugin add syarif-laravel-ai-skills@syarif-laravel-ai-skills
 ```
 
 ## Plugin Claude Code
@@ -400,10 +406,12 @@ Jalankan command list untuk katalog lengkap, atau baca [docs/SUPERPOWERS_SKILL_M
 5. `skills.sh.json` mengelompokkan skill yang tampil di halaman repository skills.sh.
 6. `plugin-groups.json` menempatkan setiap skill ke bundle plugin installable.
 7. `agent-skills.json` menyediakan metadata netral untuk AI assistant generik dan tool integrasi.
-8. `.agents/plugins/marketplace.json` membuat repo ini bisa dipakai sebagai marketplace plugin Codex/ChatGPT.
-9. `plugins/laravel-app-skills/.claude-plugin/plugin.json` membuat bundle generated bisa dipakai dengan `claude --plugin-dir`.
-10. `npm run sync` membuat ulang `agent-skills.json`, `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, dan `plugins/laravel-app-skills`.
-11. `package.json` hanya untuk helper script lokal. User install dari GitHub dengan `npx skills add`, bukan `npm install`.
+8. `.codex-plugin/plugin.json` membuat root repo bisa discan sebagai artifact codex-marketplace.com dan langsung menunjuk ke `skills/`.
+9. `.agents/plugins/marketplace.json` membuat repo ini bisa dipakai sebagai marketplace plugin Codex/ChatGPT.
+10. `plugins/laravel-app-skills/.claude-plugin/plugin.json` membuat bundle generated bisa dipakai dengan `claude --plugin-dir` setelah `npm run sync`.
+11. `npm run sync` membuat ulang `agent-skills.json`, `.codex-plugin/plugin.json`, `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, dan output plugin generated lokal.
+12. Copy generated `plugins/<plugin>/skills/` di-ignore dari Git supaya submission marketplace tetap di bawah limit scan 128 file.
+13. `package.json` hanya untuk helper script lokal. User install dari GitHub dengan `npx skills add`, bukan `npm install`.
 
 ## Indexing Marketplace
 

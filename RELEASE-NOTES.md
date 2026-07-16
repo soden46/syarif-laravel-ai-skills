@@ -24,6 +24,7 @@ GitHub release body: [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md).
 - Proposal workflow under `proposals/pending`, `proposals/accepted`, and `proposals/rejected`.
 - Local validation, listing, dry-run install, and Superpowers mapping scripts.
 - Marketplace/plugin sync output matching the `awesome-ai-agent-skills` style: `plugin-groups.json`, `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, and `plugins/laravel-app-skills`.
+- Root Codex plugin artifact metadata at `.codex-plugin/plugin.json` for codex-marketplace.com submissions.
 - Universal assistant metadata and usage docs through `agent-skills.json`, `docs/UNIVERSAL_USAGE.md`, `CLAUDE.md`, and `.github/copilot-instructions.md`.
 - README installation guide for `npx skills add soden46/syarif-laravel-ai-skills`.
 - Codex plugin installation guide for `codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main`.
@@ -70,6 +71,7 @@ Body release GitHub: [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md).
 - Workflow proposal di `proposals/pending`, `proposals/accepted`, dan `proposals/rejected`.
 - Script lokal untuk validasi, listing, dry-run install, dan mapping Superpowers.
 - Output sync marketplace/plugin mengikuti gaya `awesome-ai-agent-skills`: `plugin-groups.json`, `.agents/plugins/marketplace.json`, `.claude-plugin/marketplace.json`, dan `plugins/laravel-app-skills`.
+- Metadata artifact plugin Codex root di `.codex-plugin/plugin.json` untuk submission codex-marketplace.com.
 - Metadata dan panduan penggunaan assistant universal lewat `agent-skills.json`, `docs/UNIVERSAL_USAGE.md`, `CLAUDE.md`, dan `.github/copilot-instructions.md`.
 - Panduan instalasi README untuk `npx skills add soden46/syarif-laravel-ai-skills`.
 - Panduan instalasi plugin Codex untuk `codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main`.

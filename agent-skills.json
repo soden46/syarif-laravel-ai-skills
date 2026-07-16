@@ -13,6 +13,7 @@
     "universalUsage": "./docs/UNIVERSAL_USAGE.md",
     "addingSkills": "./docs/ADDING_SKILLS.md",
     "agentInstructions": "./AGENTS.md",
+    "rootCodexPlugin": "./.codex-plugin/plugin.json",
     "claudeInstructions": "./CLAUDE.md",
     "copilotInstructions": "./.github/copilot-instructions.md"
   },
@@ -21,7 +22,7 @@
     "codexGlobal": "npx skills add soden46/syarif-laravel-ai-skills -g -a codex -s \"*\" -y",
     "codexPlugin": [
       "codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main",
-      "codex plugin add laravel-app-skills@syarif-laravel-ai-skills"
+      "codex plugin add syarif-laravel-ai-skills@syarif-laravel-ai-skills"
     ],
     "claudeCodePlugin": "claude --plugin-dir ./plugins/laravel-app-skills",
     "genericPrompt": "Read AGENTS.md, then use skills/using-laravel-standards/SKILL.md as the entry skill. Load focused skills from skills/<skill-name>/SKILL.md only when relevant."

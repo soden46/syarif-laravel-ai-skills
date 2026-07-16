@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import { readdir, readFile, stat } from "node:fs/promises";
+import { execFile } from "node:child_process";
 import path from "node:path";
+import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -8,6 +10,7 @@ const skillsRoot = path.join(root, "skills");
 const pluginsRoot = path.join(root, "plugins");
 const folderNamePattern = /^[a-z0-9-]+$/;
 const skillNamePattern = /^[a-z0-9-]+$/;
+const execFileAsync = promisify(execFile);
 let failed = false;
 
 await assertRequiredRootFiles();
@@ -86,6 +89,7 @@ await assertSkillsShConfig(skillDirs);
 await assertGeneratedMarketplaces(skillDirs);
 await assertUniversalManifest(skillDirs);
 await assertPackageJsonPolicy();
+await assertCodexMarketplaceFileCount();
 
 if (failed) {
   process.exit(1);
@@ -342,6 +346,7 @@ async function assertPluginGroups(skillDirs) {
 async function assertGeneratedMarketplaces(skillDirs) {
   const claudeMarketplacePath = path.join(root, ".claude-plugin", "marketplace.json");
   const codexMarketplacePath = path.join(root, ".agents", "plugins", "marketplace.json");
+  const rootCodexPluginPath = path.join(root, ".codex-plugin", "plugin.json");
 
   try {
     parseJson(await readFile(claudeMarketplacePath, "utf8"));
@@ -350,6 +355,7 @@ async function assertGeneratedMarketplaces(skillDirs) {
   }
 
   await assertCodexMarketplace(codexMarketplacePath);
+  await assertRootCodexPluginManifest(rootCodexPluginPath);
 
   try {
     await stat(pluginsRoot);
@@ -365,6 +371,29 @@ async function assertGeneratedMarketplaces(skillDirs) {
 
   await assertCodexPluginManifests(skillDirs);
   await assertClaudePluginManifests();
+}
+
+async function assertRootCodexPluginManifest(manifestPath) {
+  let manifest;
+
+  try {
+    manifest = parseJson(await readFile(manifestPath, "utf8"));
+  } catch (error) {
+    fail(`${path.relative(root, manifestPath)} is missing or invalid JSON: ${error.message}`);
+    return;
+  }
+
+  if (manifest.name !== "syarif-laravel-ai-skills") {
+    fail(`${path.relative(root, manifestPath)} name must be syarif-laravel-ai-skills.`);
+  }
+
+  if (manifest.skills !== "./skills/") {
+    fail(`${path.relative(root, manifestPath)} skills must point to ./skills/.`);
+  }
+
+  if (!manifest.author?.name || !manifest.interface?.displayName) {
+    fail(`${path.relative(root, manifestPath)} must include author.name and interface.displayName.`);
+  }
 }
 
 async function assertCodexMarketplace(codexMarketplacePath) {
@@ -390,13 +419,17 @@ async function assertCodexMarketplace(codexMarketplacePath) {
     return;
   }
 
+  if (marketplace.plugins.length !== 1) {
+    fail("marketplace.json must expose the root plugin only for marketplace scan compatibility.");
+  }
+
   for (const plugin of marketplace.plugins) {
-    if (!plugin.name || typeof plugin.name !== "string") {
-      fail("marketplace.json plugin entries need a name.");
+    if (plugin.name !== "syarif-laravel-ai-skills") {
+      fail("marketplace.json plugin entry name must be syarif-laravel-ai-skills.");
     }
 
-    if (plugin.source?.source !== "local" || plugin.source?.path !== `./plugins/${plugin.name}`) {
-      fail(`marketplace.json plugin "${plugin.name ?? "(missing)"}" must point to ./plugins/<plugin-name>.`);
+    if (plugin.source?.source !== "local" || plugin.source?.path !== ".") {
+      fail(`marketplace.json plugin "${plugin.name ?? "(missing)"}" must point to the repository root.`);
     }
 
     if (plugin.policy?.installation !== "AVAILABLE" || plugin.policy?.authentication !== "ON_INSTALL") {
@@ -484,6 +517,19 @@ async function assertPackageJsonPolicy() {
     }
   } catch (error) {
     fail(`package.json is not valid JSON: ${error.message}`);
+  }
+}
+
+async function assertCodexMarketplaceFileCount() {
+  try {
+    const { stdout } = await execFileAsync("git", ["ls-files"], { cwd: root });
+    const count = stdout.split(/\r?\n/).filter(Boolean).length;
+
+    if (count > 128) {
+      fail(`Tracked file count is ${count}, exceeding the codex-marketplace.com scan limit of 128.`);
+    }
+  } catch (error) {
+    fail(`Unable to count tracked files with git ls-files: ${error.message}`);
   }
 }
 

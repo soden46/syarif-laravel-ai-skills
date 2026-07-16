@@ -49,7 +49,7 @@ Install as a Codex plugin:
 
 ```bash
 codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main
-codex plugin add laravel-app-skills@syarif-laravel-ai-skills
+codex plugin add syarif-laravel-ai-skills@syarif-laravel-ai-skills
 ```
 
 Run as a local Claude Code plugin:
@@ -122,7 +122,7 @@ Install sebagai plugin Codex:
 
 ```bash
 codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main
-codex plugin add laravel-app-skills@syarif-laravel-ai-skills
+codex plugin add syarif-laravel-ai-skills@syarif-laravel-ai-skills
 ```
 
 Jalankan sebagai plugin lokal Claude Code:

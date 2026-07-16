@@ -10,3 +10,4 @@ Thumbs.db
 /.agents/*
 !/.agents/plugins/
 !/.agents/plugins/marketplace.json
+/plugins/*/skills/

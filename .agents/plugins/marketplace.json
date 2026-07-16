@@ -5,10 +5,10 @@
   },
   "plugins": [
     {
-      "name": "laravel-app-skills",
+      "name": "syarif-laravel-ai-skills",
       "source": {
         "source": "local",
-        "path": "./plugins/laravel-app-skills"
+        "path": "."
       },
       "policy": {
         "installation": "AVAILABLE",

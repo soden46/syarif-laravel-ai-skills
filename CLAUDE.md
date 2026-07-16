@@ -27,6 +27,6 @@ claude --plugin-dir ./plugins/laravel-app-skills
 ## Editing Rules
 
 - Canonical skills live only under `skills/<skill-name>/SKILL.md`.
-- Do not edit generated skill copies under `plugins/laravel-app-skills/skills/`.
+- Do not edit generated skill copies under `plugins/laravel-app-skills/skills/`; they are local build output and ignored in Git.
 - After changing canonical skills or grouping metadata, run `npm run sync` and `npm run validate`.
 - Use `docs/UNIVERSAL_USAGE.md` when adapting these skills for other assistants.

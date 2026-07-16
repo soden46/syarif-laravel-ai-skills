@@ -7,6 +7,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const skillsRoot = path.join(root, "skills");
 const pluginsRoot = path.join(root, "plugins");
 const pluginGroupsPath = path.join(root, "plugin-groups.json");
+const rootCodexPluginPath = path.join(root, ".codex-plugin", "plugin.json");
 const claudeMarketplacePath = path.join(root, ".claude-plugin", "marketplace.json");
 const codexMarketplacePath = path.join(root, ".agents", "plugins", "marketplace.json");
 const universalManifestPath = path.join(root, "agent-skills.json");
@@ -17,6 +18,7 @@ const skills = await listSkills();
 const pluginGroups = await loadPluginGroups(skills);
 
 await writeClaudeMarketplace(pluginGroups);
+await writeRootCodexPluginManifest(pluginGroups[0]);
 await writeCodexMarketplace(pluginGroups);
 await writeUniversalManifest(pluginGroups);
 await writePluginPackages(pluginGroups);
@@ -123,24 +125,39 @@ async function writeClaudeMarketplace(pluginGroups) {
   await writeJson(claudeMarketplacePath, marketplace);
 }
 
+async function writeRootCodexPluginManifest(plugin) {
+  const manifest = buildCodexManifest(plugin, {
+    name: packageJson.name,
+    displayName: "Syarif Laravel AI Skills",
+    skills: "./skills/",
+    defaultPrompt: [
+      "Use using-laravel-standards to guide this Laravel project task.",
+      "Apply Syarif Laravel AI Skills to review this Laravel repository."
+    ]
+  });
+
+  await mkdir(path.dirname(rootCodexPluginPath), { recursive: true });
+  await writeJson(rootCodexPluginPath, manifest);
+}
+
 async function writeCodexMarketplace(pluginGroups) {
   const marketplace = {
     name: packageJson.name,
     interface: {
       displayName: "Syarif Laravel AI Skills"
     },
-    plugins: pluginGroups.map((plugin) => ({
-      name: plugin.name,
+    plugins: [{
+      name: packageJson.name,
       source: {
         source: "local",
-        path: `./plugins/${plugin.name}`
+        path: "."
       },
       policy: {
         installation: "AVAILABLE",
         authentication: "ON_INSTALL"
       },
       category: "Productivity"
-    }))
+    }]
   };
 
   await mkdir(path.dirname(codexMarketplacePath), { recursive: true });
@@ -163,6 +180,7 @@ async function writeUniversalManifest(pluginGroups) {
       universalUsage: "./docs/UNIVERSAL_USAGE.md",
       addingSkills: "./docs/ADDING_SKILLS.md",
       agentInstructions: "./AGENTS.md",
+      rootCodexPlugin: "./.codex-plugin/plugin.json",
       claudeInstructions: "./CLAUDE.md",
       copilotInstructions: "./.github/copilot-instructions.md"
     },
@@ -171,7 +189,7 @@ async function writeUniversalManifest(pluginGroups) {
       codexGlobal: "npx skills add soden46/syarif-laravel-ai-skills -g -a codex -s \"*\" -y",
       codexPlugin: [
         "codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main",
-        "codex plugin add laravel-app-skills@syarif-laravel-ai-skills"
+        "codex plugin add syarif-laravel-ai-skills@syarif-laravel-ai-skills"
       ],
       claudeCodePlugin: "claude --plugin-dir ./plugins/laravel-app-skills",
       genericPrompt: "Read AGENTS.md, then use skills/using-laravel-standards/SKILL.md as the entry skill. Load focused skills from skills/<skill-name>/SKILL.md only when relevant."
@@ -244,11 +262,15 @@ async function writePluginPackages(pluginGroups) {
   }
 }
 
-function buildCodexManifest(plugin) {
-  const displayName = titleCase(plugin.name);
+function buildCodexManifest(plugin, overrides = {}) {
+  const displayName = overrides.displayName ?? titleCase(plugin.name);
+  const defaultPrompt = overrides.defaultPrompt ?? [
+    `Use ${plugin.skills[0]} to guide this Laravel project task.`,
+    `Apply ${plugin.name} to review this Laravel repository.`
+  ];
 
   return {
-    name: plugin.name,
+    name: overrides.name ?? plugin.name,
     version: packageJson.version,
     description: plugin.description,
     author: {
@@ -259,7 +281,7 @@ function buildCodexManifest(plugin) {
     repository: repositoryUrl,
     license: packageJson.license || "MIT",
     keywords: ["codex", "skills", "laravel", "php"],
-    skills: "./skills/",
+    skills: overrides.skills ?? "./skills/",
     interface: {
       displayName,
       shortDescription: plugin.description,
@@ -268,10 +290,7 @@ function buildCodexManifest(plugin) {
       category: "Productivity",
       capabilities: ["Read", "Write"],
       websiteURL: repositoryUrl,
-      defaultPrompt: [
-        `Use ${plugin.skills[0]} to guide this Laravel project task.`,
-        `Apply ${plugin.name} to review this Laravel repository.`
-      ],
+      defaultPrompt,
       brandColor: "#F9322C"
     }
   };
