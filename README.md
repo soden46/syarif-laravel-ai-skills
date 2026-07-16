@@ -112,8 +112,17 @@ Run the list command for the complete catalog, or read [docs/SUPERPOWERS_SKILL_M
 3. The `description` frontmatter appears in `npx skills add <repo> --list`.
 4. `skills.sh.json` groups the skills shown on the skills.sh repository page.
 5. `plugin-groups.json` assigns every skill to an installable plugin bundle.
-6. `npm run sync` regenerates `.claude-plugin/marketplace.json`, `.agents/plugins/marketplace.json`, and `plugins/laravel-app-skills`.
+6. `npm run sync` regenerates `.claude-plugin/marketplace.json` and `plugins/laravel-app-skills`.
 7. `package.json` is only for local helper scripts. Users install from GitHub with `npx skills add`, not `npm install`.
+
+## Marketplace Indexing
+
+This repository is designed for skills.sh and Laravel Skills discovery:
+
+1. `skills.sh` sees GitHub repositories after someone installs from the repo with the `skills` CLI.
+2. `skills.sh` repo pages are cached, so updates can take time after a valid install.
+3. `skills.laravel.cloud` imports from the skills.sh ecosystem and lists Laravel/PHP skills after its import and security-audit pass.
+4. Run `npx skills add soden46/syarif-laravel-ai-skills -s "*" -y` after pushing a release to refresh skills.sh telemetry.
 
 ## Local Development
 
@@ -255,8 +264,17 @@ Jalankan command list untuk katalog lengkap, atau baca [docs/SUPERPOWERS_SKILL_M
 3. Frontmatter `description` tampil di `npx skills add <repo> --list`.
 4. `skills.sh.json` mengelompokkan skill yang tampil di halaman repository skills.sh.
 5. `plugin-groups.json` menempatkan setiap skill ke bundle plugin installable.
-6. `npm run sync` membuat ulang `.claude-plugin/marketplace.json`, `.agents/plugins/marketplace.json`, dan `plugins/laravel-app-skills`.
+6. `npm run sync` membuat ulang `.claude-plugin/marketplace.json` dan `plugins/laravel-app-skills`.
 7. `package.json` hanya untuk helper script lokal. User install dari GitHub dengan `npx skills add`, bukan `npm install`.
+
+## Indexing Marketplace
+
+Repository ini disiapkan untuk discovery skills.sh dan Laravel Skills:
+
+1. `skills.sh` melihat repository GitHub setelah ada yang install dari repo memakai `skills` CLI.
+2. Halaman repo `skills.sh` memakai cache, jadi update bisa butuh waktu setelah install valid.
+3. `skills.laravel.cloud` import dari ekosistem skills.sh dan menampilkan skill Laravel/PHP setelah proses import dan security audit lolos.
+4. Jalankan `npx skills add soden46/syarif-laravel-ai-skills -s "*" -y` setelah push release untuk refresh telemetry skills.sh.
 
 ## Development Lokal
 

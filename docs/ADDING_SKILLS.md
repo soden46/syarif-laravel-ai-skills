@@ -90,6 +90,7 @@ Before committing a new skill:
 8. Run `npm run validate`.
 9. Run `npx skills add . --list` before pushing to preview discovery.
 10. Run `npx skills add soden46/syarif-laravel-ai-skills --list` after pushing to verify GitHub discovery.
+11. Run `npx skills add soden46/syarif-laravel-ai-skills -s "*" -y` after pushing a release so skills.sh telemetry sees the public repo.
 
 </details>
 
@@ -181,5 +182,6 @@ Sebelum commit skill baru:
 8. Jalankan `npm run validate`.
 9. Jalankan `npx skills add . --list` sebelum push untuk preview discovery.
 10. Jalankan `npx skills add soden46/syarif-laravel-ai-skills --list` setelah push untuk verifikasi discovery GitHub.
+11. Jalankan `npx skills add soden46/syarif-laravel-ai-skills -s "*" -y` setelah push release supaya telemetry skills.sh melihat repo publik.
 
 </details>

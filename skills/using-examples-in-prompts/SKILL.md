@@ -1,6 +1,6 @@
 ---
 name: using-examples-in-prompts
-description: Provide concrete examples-existing code patterns, style samples, input/output pairs-to guide AI toward your project's conventions
+description: Laravel guidance to provide concrete examples-existing code patterns, style samples, input/output pairs-to guide AI toward your project's conventions
 ---
 
 # Using Examples In Prompts

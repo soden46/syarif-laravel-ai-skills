@@ -1,6 +1,6 @@
 ---
 name: task-scheduling
-description: Schedule tasks with safety; use withoutOverlapping, onOneServer, and visibility settings for reliable cron execution
+description: Laravel guidance to schedule tasks with safety; use withoutOverlapping, onOneServer, and visibility settings for reliable cron execution
 ---
 
 # Task Scheduling

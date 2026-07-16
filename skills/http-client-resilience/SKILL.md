@@ -1,6 +1,6 @@
 ---
 name: http-client-resilience
-description: Use the HTTP client with sensible timeouts, retries, and backoff; capture context and handle failures explicitly
+description: Laravel guidance to use the HTTP client with sensible timeouts, retries, and backoff; capture context and handle failures explicitly
 ---
 
 # Http Client Resilience

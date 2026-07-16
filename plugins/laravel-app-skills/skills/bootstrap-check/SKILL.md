@@ -1,6 +1,6 @@
 ---
 name: bootstrap-check
-description: Detect Sail/non‑Sail and print the right command pairs for your environment; verify dependencies and key services are reachable
+description: Laravel guidance to detect Sail/non‑Sail and print the right command pairs for your environment; verify dependencies and key services are reachable
 ---
 
 # Bootstrap Check

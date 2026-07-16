@@ -1,6 +1,6 @@
 ---
 name: specifying-constraints
-description: Define clear constraints-performance, security, testing, architecture, dependencies-so AI generates code that meets your project standards
+description: Laravel guidance to define clear constraints-performance, security, testing, architecture, dependencies-so AI generates code that meets your project standards
 ---
 
 # Specifying Constraints

@@ -1,6 +1,6 @@
 ---
 name: queues-and-horizon
-description: Operate and verify queues with or without Horizon; safe worker flags, failure handling, and test strategies
+description: Laravel guidance to operate and verify queues with or without Horizon; safe worker flags, failure handling, and test strategies
 ---
 
 # Queues And Horizon

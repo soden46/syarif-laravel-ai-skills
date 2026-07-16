@@ -1,6 +1,6 @@
 ---
 name: tdd-with-pest
-description: Apply RED-GREEN-REFACTOR with Pest or PHPUnit; use factories, feature tests for HTTP, and parallel test runners; verify failures before implementation
+description: Laravel guidance to apply RED-GREEN-REFACTOR with Pest or PHPUnit; use factories, feature tests for HTTP, and parallel test runners; verify failures before implementation
 ---
 
 # Tdd With Pest

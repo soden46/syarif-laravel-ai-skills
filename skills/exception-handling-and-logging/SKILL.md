@@ -1,6 +1,6 @@
 ---
 name: exception-handling-and-logging
-description: Use reportable/renderable exceptions, structured logs, and channel strategy for observability and graceful failures
+description: Laravel guidance to use reportable/renderable exceptions, structured logs, and channel strategy for observability and graceful failures
 ---
 
 # Exception Handling And Logging

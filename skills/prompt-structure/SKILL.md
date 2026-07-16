@@ -1,6 +1,6 @@
 ---
 name: prompt-structure
-description: Structure prompts for clarity-separate concerns, prioritize requests, specify acceptance criteria, and break work into testable increments
+description: Laravel guidance to structure prompts for clarity-separate concerns, prioritize requests, specify acceptance criteria, and break work into testable increments
 ---
 
 # Prompt Structure

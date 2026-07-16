@@ -1,6 +1,6 @@
 ---
 name: livewire-patterns
-description: Keep Livewire components focused on UI state while delegating reusable workflows, authorization, queries, and tests deliberately.
+description: Laravel guidance to keep Livewire components focused on UI state while delegating reusable workflows, authorization, queries, and tests deliberately.
 ---
 
 # Livewire Patterns

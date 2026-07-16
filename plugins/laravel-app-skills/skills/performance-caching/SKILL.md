@@ -1,6 +1,6 @@
 ---
 name: performance-caching
-description: Use framework caches and value/query caching to reduce work; add tags, locks, and explicit invalidation strategies for correctness
+description: Laravel guidance to use framework caches and value/query caching to reduce work; add tags, locks, and explicit invalidation strategies for correctness
 ---
 
 # Performance Caching

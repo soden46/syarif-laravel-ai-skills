@@ -1,6 +1,6 @@
 ---
 name: documentation-best-practices
-description: Write meaningful documentation that explains why not what; focus on complex business logic and self-documenting code
+description: Laravel guidance to write meaningful documentation that explains why not what; focus on complex business logic and self-documenting code
 ---
 
 # Documentation Best Practices

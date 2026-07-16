@@ -1,6 +1,6 @@
 ---
 name: rate-limiting
-description: Apply per-user and per-route limits with RateLimiter and throttle middleware; use backoffs and headers for clients
+description: Laravel guidance to apply per-user and per-route limits with RateLimiter and throttle middleware; use backoffs and headers for clients
 ---
 
 # Rate Limiting

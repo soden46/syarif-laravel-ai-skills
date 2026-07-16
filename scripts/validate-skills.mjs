@@ -63,6 +63,14 @@ for (const dir of skillDirs) {
     fail(`${dir}: description must be plain single-line display text, not Markdown.`);
   }
 
+  if (fields.description && /:\s/.test(fields.description)) {
+    fail(`${dir}: description must not contain an unquoted colon-space sequence; it can break YAML discovery.`);
+  }
+
+  if (fields.description && !/\b(laravel|php)\b/i.test(fields.description)) {
+    fail(`${dir}: description must mention Laravel or PHP so Laravel Skills can classify it.`);
+  }
+
   const extraFields = Object.keys(fields).filter((field) => !["name", "description"].includes(field));
   if (extraFields.length > 0) {
     fail(`${dir}: unexpected frontmatter fields: ${extraFields.join(", ")}`);
@@ -191,7 +199,7 @@ async function assertSkillFilesAreInstallable() {
 }
 
 async function findSkillFiles(directory) {
-  const ignored = new Set([".git", "node_modules", ".tmp-skills"]);
+  const ignored = new Set([".agents", ".git", "node_modules", ".tmp-skills"]);
   const found = [];
   const entries = await readdir(directory, { withFileTypes: true });
 
@@ -201,8 +209,6 @@ async function findSkillFiles(directory) {
     const fullPath = path.join(directory, entry.name);
 
     if (entry.isDirectory()) {
-      if (isLocalInstallDirectory(fullPath)) continue;
-
       found.push(...await findSkillFiles(fullPath));
     } else if (entry.isFile() && entry.name === "SKILL.md") {
       found.push(fullPath);
@@ -210,12 +216,6 @@ async function findSkillFiles(directory) {
   }
 
   return found;
-}
-
-function isLocalInstallDirectory(directory) {
-  const relative = path.relative(root, directory).split(path.sep).join("/");
-
-  return relative === ".agents/skills";
 }
 
 async function assertPluginGroups(skillDirs) {
@@ -273,14 +273,11 @@ async function assertPluginGroups(skillDirs) {
 
 async function assertGeneratedMarketplaces(skillDirs) {
   const claudeMarketplacePath = path.join(root, ".claude-plugin", "marketplace.json");
-  const codexMarketplacePath = path.join(root, ".agents", "plugins", "marketplace.json");
 
-  for (const file of [claudeMarketplacePath, codexMarketplacePath]) {
-    try {
-      parseJson(await readFile(file, "utf8"));
-    } catch (error) {
-      fail(`${path.relative(root, file)} is missing or invalid JSON: ${error.message}`);
-    }
+  try {
+    parseJson(await readFile(claudeMarketplacePath, "utf8"));
+  } catch (error) {
+    fail(`${path.relative(root, claudeMarketplacePath)} is missing or invalid JSON: ${error.message}`);
   }
 
   try {

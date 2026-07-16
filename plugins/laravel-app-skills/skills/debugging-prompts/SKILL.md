@@ -1,6 +1,6 @@
 ---
 name: debugging-prompts
-description: Create effective debugging prompts-include error messages, stack traces, expected vs actual behavior, logs, and attempted solutions
+description: Laravel guidance to create effective debugging prompts-include error messages, stack traces, expected vs actual behavior, logs, and attempted solutions
 ---
 
 # Debugging Prompts
