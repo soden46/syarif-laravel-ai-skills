@@ -18,6 +18,8 @@ await assertSkillFilesAreInstallable();
 
 const entries = await readdir(skillsRoot, { withFileTypes: true });
 const skillDirs = entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name).sort();
+const seenNames = new Map();
+const seenDescriptions = new Map();
 
 if (skillDirs.length === 0) {
   fail("No skills found under skills/.");
@@ -54,8 +56,25 @@ for (const dir of skillDirs) {
     fail(`${dir}: frontmatter name must use lowercase kebab-case.`);
   }
 
+  if (fields.name) {
+    if (seenNames.has(fields.name)) {
+      fail(`${dir}: frontmatter name duplicates ${seenNames.get(fields.name)}.`);
+    } else {
+      seenNames.set(fields.name, dir);
+    }
+  }
+
   if (!fields.description || fields.description.length < 40) {
     fail(`${dir}: description is missing or too short.`);
+  }
+
+  if (fields.description) {
+    const normalizedDescription = fields.description.toLowerCase().replace(/\s+/g, " ").trim();
+    if (seenDescriptions.has(normalizedDescription)) {
+      fail(`${dir}: description duplicates ${seenDescriptions.get(normalizedDescription)}.`);
+    } else {
+      seenDescriptions.set(normalizedDescription, dir);
+    }
   }
 
   if (fields.description && fields.description.length > 180) {
@@ -345,6 +364,7 @@ async function assertPluginGroups(skillDirs) {
 
 async function assertGeneratedMarketplaces(skillDirs) {
   const claudeMarketplacePath = path.join(root, ".claude-plugin", "marketplace.json");
+  const rootClaudePluginPath = path.join(root, ".claude-plugin", "plugin.json");
   const codexMarketplacePath = path.join(root, ".agents", "plugins", "marketplace.json");
   const rootCodexPluginPath = path.join(root, ".codex-plugin", "plugin.json");
 
@@ -354,6 +374,8 @@ async function assertGeneratedMarketplaces(skillDirs) {
     fail(`${path.relative(root, claudeMarketplacePath)} is missing or invalid JSON: ${error.message}`);
   }
 
+  await assertClaudeMarketplace(claudeMarketplacePath);
+  await assertRootClaudePluginManifest(rootClaudePluginPath);
   await assertCodexMarketplace(codexMarketplacePath);
   await assertRootCodexPluginManifest(rootCodexPluginPath);
 
@@ -371,6 +393,51 @@ async function assertGeneratedMarketplaces(skillDirs) {
 
   await assertCodexPluginManifests(skillDirs);
   await assertClaudePluginManifests();
+}
+
+async function assertClaudeMarketplace(marketplacePath) {
+  let marketplace;
+
+  try {
+    marketplace = parseJson(await readFile(marketplacePath, "utf8"));
+  } catch (error) {
+    fail(`${path.relative(root, marketplacePath)} is missing or invalid JSON: ${error.message}`);
+    return;
+  }
+
+  if (!Array.isArray(marketplace.plugins) || marketplace.plugins.length !== 1) {
+    fail(".claude-plugin/marketplace.json must expose exactly one root plugin entry.");
+    return;
+  }
+
+  const [plugin] = marketplace.plugins;
+
+  if (plugin.name !== "syarif-laravel-ai-skills" || plugin.source !== ".") {
+    fail(".claude-plugin/marketplace.json must point the syarif-laravel-ai-skills plugin to the repository root.");
+  }
+
+  if (!Array.isArray(plugin.skills) || !plugin.skills.includes("./skills/using-laravel-standards")) {
+    fail(".claude-plugin/marketplace.json skills must point to canonical ./skills/<skill-name> paths.");
+  }
+}
+
+async function assertRootClaudePluginManifest(manifestPath) {
+  let manifest;
+
+  try {
+    manifest = parseJson(await readFile(manifestPath, "utf8"));
+  } catch (error) {
+    fail(`${path.relative(root, manifestPath)} is missing or invalid JSON: ${error.message}`);
+    return;
+  }
+
+  if (manifest.name !== "syarif-laravel-ai-skills") {
+    fail(`${path.relative(root, manifestPath)} name must be syarif-laravel-ai-skills.`);
+  }
+
+  if (!manifest.version || !manifest.description) {
+    fail(`${path.relative(root, manifestPath)} must include version and description.`);
+  }
 }
 
 async function assertRootCodexPluginManifest(manifestPath) {

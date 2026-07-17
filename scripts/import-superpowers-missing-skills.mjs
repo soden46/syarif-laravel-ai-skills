@@ -11,6 +11,12 @@ const docsRoot = path.join(root, "docs");
 const upstreamUrl = "https://github.com/jpcaparas/superpowers-laravel.git";
 const upstreamWebUrl = "https://github.com/jpcaparas/superpowers-laravel";
 const upstreamRoot = path.join(os.tmpdir(), "superpowers-laravel-skills-source");
+const mergedSkillTargets = new Map([
+  ["bootstrap-check", "runner-selection"],
+  ["queues-and-horizon", "queues-and-jobs"],
+  ["transactions-and-consistency", "database-transactions"],
+  ["using-laravel-superpowers", "using-laravel-standards"]
+]);
 
 ensureUpstream();
 
@@ -20,11 +26,15 @@ const added = [];
 const skipped = [];
 
 for (const upstream of upstreamSkills) {
-  const targetFolder = normalizeTargetFolder(upstream.name);
+  const normalizedFolder = normalizeTargetFolder(upstream.name);
+  const targetFolder = targetFolderFor(upstream.name);
   const targetName = `${targetFolder}`;
 
   if (localSkillNames.has(targetName)) {
-    skipped.push({ ...upstream, targetFolder, targetName, reason: "already exists" });
+    const reason = targetFolder === normalizedFolder
+      ? "already exists"
+      : `merged into ${targetName}`;
+    skipped.push({ ...upstream, targetFolder, targetName, reason });
     continue;
   }
 
@@ -102,6 +112,11 @@ function normalizeTargetFolder(name) {
     .replace(/^-|-$/g, "");
 }
 
+function targetFolderFor(name) {
+  const normalized = normalizeTargetFolder(name);
+  return mergedSkillTargets.get(normalized) ?? normalized;
+}
+
 function descriptionFromFolder(folder) {
   return `Apply Laravel ${titleFromFolder(folder)} standards with project conventions, focused tests, and safe boundaries.`;
 }
@@ -121,6 +136,9 @@ function renderSkill(upstream, targetFolder, targetName) {
   return `---
 name: ${targetName}
 description: ${description}
+tags:
+  - laravel
+  - php
 ---
 
 # ${title}
@@ -185,7 +203,7 @@ function plainTopic(folder) {
 
 function writeMapping(upstreamSkills, addedSkills, skippedSkills) {
   const mappedSkills = upstreamSkills.map((skill) => {
-    const targetFolder = normalizeTargetFolder(skill.name);
+    const targetFolder = targetFolderFor(skill.name);
     return {
       ...skill,
       targetFolder,

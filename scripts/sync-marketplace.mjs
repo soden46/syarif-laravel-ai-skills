@@ -8,6 +8,7 @@ const skillsRoot = path.join(root, "skills");
 const pluginsRoot = path.join(root, "plugins");
 const pluginGroupsPath = path.join(root, "plugin-groups.json");
 const rootCodexPluginPath = path.join(root, ".codex-plugin", "plugin.json");
+const rootClaudePluginPath = path.join(root, ".claude-plugin", "plugin.json");
 const claudeMarketplacePath = path.join(root, ".claude-plugin", "marketplace.json");
 const codexMarketplacePath = path.join(root, ".agents", "plugins", "marketplace.json");
 const universalManifestPath = path.join(root, "agent-skills.json");
@@ -18,6 +19,7 @@ const skills = await listSkills();
 const pluginGroups = await loadPluginGroups(skills);
 
 await writeClaudeMarketplace(pluginGroups);
+await writeRootClaudePluginManifest(pluginGroups[0]);
 await writeRootCodexPluginManifest(pluginGroups[0]);
 await writeCodexMarketplace(pluginGroups);
 await writeUniversalManifest(pluginGroups);
@@ -111,18 +113,28 @@ async function writeClaudeMarketplace(pluginGroups) {
       description: packageJson.description,
       version: packageJson.version
     },
-    plugins: pluginGroups.map((plugin) => ({
-      name: plugin.name,
-      description: plugin.description,
+    plugins: [{
+      name: packageJson.name,
+      description: pluginGroups[0].description,
       version: packageJson.version,
-      source: `./plugins/${plugin.name}`,
+      source: ".",
       strict: false,
-      skills: plugin.skills.map((skill) => `./plugins/${plugin.name}/skills/${skill}`)
-    }))
+      skills: skills.map((skill) => `./skills/${skill.folder}`)
+    }]
   };
 
   await mkdir(path.dirname(claudeMarketplacePath), { recursive: true });
   await writeJson(claudeMarketplacePath, marketplace);
+}
+
+async function writeRootClaudePluginManifest(plugin) {
+  const manifest = buildClaudeManifest({
+    ...plugin,
+    name: packageJson.name
+  });
+
+  await mkdir(path.dirname(rootClaudePluginPath), { recursive: true });
+  await writeJson(rootClaudePluginPath, manifest);
 }
 
 async function writeRootCodexPluginManifest(plugin) {
@@ -181,6 +193,7 @@ async function writeUniversalManifest(pluginGroups) {
       addingSkills: "./docs/ADDING_SKILLS.md",
       agentInstructions: "./AGENTS.md",
       rootCodexPlugin: "./.codex-plugin/plugin.json",
+      rootClaudePlugin: "./.claude-plugin/plugin.json",
       claudeInstructions: "./CLAUDE.md",
       copilotInstructions: "./.github/copilot-instructions.md"
     },
@@ -191,7 +204,7 @@ async function writeUniversalManifest(pluginGroups) {
         "codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main",
         "codex plugin add syarif-laravel-ai-skills@syarif-laravel-ai-skills"
       ],
-      claudeCodePlugin: "claude --plugin-dir ./plugins/laravel-app-skills",
+      claudeCodePlugin: "claude --plugin-dir .",
       genericPrompt: "Read AGENTS.md, then use skills/using-laravel-standards/SKILL.md as the entry skill. Load focused skills from skills/<skill-name>/SKILL.md only when relevant."
     },
     integrations: [

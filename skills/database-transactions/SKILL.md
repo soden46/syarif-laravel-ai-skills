@@ -1,6 +1,6 @@
 ---
 name: database-transactions
-description: Wrap atomic Laravel write workflows in transactions and handle locks, retries, side effects, and after-commit work deliberately.
+description: Keep Laravel writes atomic and consistent with transactions, locks, retries, idempotency, side-effect boundaries, and after-commit dispatch.
 tags:
   - laravel
   - php
@@ -9,6 +9,8 @@ tags:
 # Database Transactions
 
 Use database transactions for write operations that must be atomic.
+
+This is the canonical transaction skill. It consolidates the former `transactions-and-consistency` topic.
 
 Transaction boundaries usually belong inside an Action or Service, not spread across controllers.
 
@@ -86,9 +88,22 @@ Keep transactions short. Make retry behavior idempotent when deadlock retries ar
 
 Dispatch queued jobs/events after commit when they depend on committed records.
 
+Do not hold a database transaction open during slow HTTP calls, mail delivery, document generation, or other remote side effects. Persist the state needed to continue, commit it, and dispatch after commit. Use an outbox or equivalent durable handoff when losing the side effect would be unacceptable.
+
+## Idempotency And Consistency
+
+- Protect retried commands, webhooks, and queued jobs with a stable idempotency key or a domain state check.
+- Enforce uniqueness in the database when duplicate prevention is a data invariant.
+- Make retry behavior return or recover the original result instead of repeating side effects.
+- Keep lock ordering consistent across workflows to reduce deadlocks.
+- Use optimistic checks when conflicts should be reported rather than serialized.
+- Prefer explicit compensating behavior for filesystem or provider operations that cannot participate in the database transaction.
+
 Test:
 
 - success path;
 - rollback path;
+- duplicate or retried execution;
+- concurrent updates when locking matters;
 - filesystem cleanup when applicable;
 - after-commit behavior for important workflows.

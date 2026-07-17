@@ -14,6 +14,7 @@
     "addingSkills": "./docs/ADDING_SKILLS.md",
     "agentInstructions": "./AGENTS.md",
     "rootCodexPlugin": "./.codex-plugin/plugin.json",
+    "rootClaudePlugin": "./.claude-plugin/plugin.json",
     "claudeInstructions": "./CLAUDE.md",
     "copilotInstructions": "./.github/copilot-instructions.md"
   },
@@ -24,7 +25,7 @@
       "codex plugin marketplace add soden46/syarif-laravel-ai-skills --ref main",
       "codex plugin add syarif-laravel-ai-skills@syarif-laravel-ai-skills"
     ],
-    "claudeCodePlugin": "claude --plugin-dir ./plugins/laravel-app-skills",
+    "claudeCodePlugin": "claude --plugin-dir .",
     "genericPrompt": "Read AGENTS.md, then use skills/using-laravel-standards/SKILL.md as the entry skill. Load focused skills from skills/<skill-name>/SKILL.md only when relevant."
   },
   "integrations": [
@@ -56,7 +57,6 @@
         "api-surface-evolution",
         "architecture",
         "blade-components-and-layouts",
-        "bootstrap-check",
         "brainstorming",
         "code-review-requests",
         "complexity-guardrails",
@@ -90,7 +90,6 @@
         "laravel-prompting-patterns",
         "laravel-specialist",
         "livewire-development",
-        "livewire-patterns",
         "migrations-and-factories",
         "nova-resource-patterns",
         "performance-caching",
@@ -101,7 +100,6 @@
         "ports-and-adapters",
         "prompt-structure",
         "quality-checks",
-        "queues-and-horizon",
         "queues-and-jobs",
         "rate-limiting",
         "request-forgery-protection",
@@ -115,11 +113,9 @@
         "tdd-with-pest",
         "template-method-and-plugins",
         "testing",
-        "transactions-and-consistency",
         "upgrade-13",
         "using-examples-in-prompts",
         "using-laravel-standards",
-        "using-laravel-superpowers",
         "vector-search",
         "writing-plans"
       ]
@@ -155,11 +151,6 @@
       "name": "blade-components-and-layouts",
       "path": "./skills/blade-components-and-layouts/SKILL.md",
       "description": "Laravel guidance to compose UIs with Blade components, slots, and layouts; keep templates pure and testable"
-    },
-    {
-      "name": "bootstrap-check",
-      "path": "./skills/bootstrap-check/SKILL.md",
-      "description": "Laravel guidance to detect Sail/non‑Sail and print the right command pairs for your environment; verify dependencies and key services are reachable"
     },
     {
       "name": "brainstorming",
@@ -214,7 +205,7 @@
     {
       "name": "database-transactions",
       "path": "./skills/database-transactions/SKILL.md",
-      "description": "Wrap atomic Laravel write workflows in transactions and handle locks, retries, side effects, and after-commit work deliberately."
+      "description": "Keep Laravel writes atomic and consistent with transactions, locks, retries, idempotency, side-effect boundaries, and after-commit dispatch."
     },
     {
       "name": "debugging-prompts",
@@ -324,12 +315,7 @@
     {
       "name": "livewire-development",
       "path": "./skills/livewire-development/SKILL.md",
-      "description": "Laravel guidance to build and refactor Livewire components with version-aware state, validation, actions, events, rendering, pagination, and tests."
-    },
-    {
-      "name": "livewire-patterns",
-      "path": "./skills/livewire-patterns/SKILL.md",
-      "description": "Laravel guidance to keep Livewire components focused on UI state while delegating reusable workflows, authorization, queries, and tests deliberately."
+      "description": "Build, refactor, secure, optimize, and test Laravel Livewire v2-v4 components, including state, forms, events, uploads, pagination, Alpine, and v4 formats."
     },
     {
       "name": "migrations-and-factories",
@@ -382,14 +368,9 @@
       "description": "Unified quality gates for Laravel projects; Pint, static analysis (PHPStan/Psalm), Insights (optional), and JS linters; Sail and non-Sail pairs provided"
     },
     {
-      "name": "queues-and-horizon",
-      "path": "./skills/queues-and-horizon/SKILL.md",
-      "description": "Laravel guidance to operate and verify queues with or without Horizon; safe worker flags, failure handling, and test strategies"
-    },
-    {
       "name": "queues-and-jobs",
       "path": "./skills/queues-and-jobs/SKILL.md",
-      "description": "Design Laravel queues, jobs, workers, schedules, and Horizon usage for retry safety, visibility, and operational reliability."
+      "description": "Design and operate Laravel queues, jobs, workers, and Horizon with retry safety, idempotency, failure handling, tests, and production visibility."
     },
     {
       "name": "rate-limiting",
@@ -414,7 +395,7 @@
     {
       "name": "runner-selection",
       "path": "./skills/runner-selection/SKILL.md",
-      "description": "Choose Sail automatically when available, fall back cleanly to host PHP/Composer/Node; paired command map for both environments"
+      "description": "Bootstrap Laravel projects by detecting Sail or host tooling, verifying dependencies and services, and choosing consistent PHP, Composer, Node, and test commands."
     },
     {
       "name": "security",
@@ -452,11 +433,6 @@
       "description": "Choose focused Laravel tests and quality checks that prove behavior without mirroring implementation details."
     },
     {
-      "name": "transactions-and-consistency",
-      "path": "./skills/transactions-and-consistency/SKILL.md",
-      "description": "Laravel guidance to wrap multi-write operations in transactions; use dispatchAfterCommit and idempotency patterns to ensure consistency"
-    },
-    {
       "name": "upgrade-13",
       "path": "./skills/upgrade-13/SKILL.md",
       "description": "Upgrade an app from Laravel 12.x to 13.x safely; PHP 8.3 baseline, dependency bumps, breaking-change checklist, and verification steps"
@@ -469,12 +445,7 @@
     {
       "name": "using-laravel-standards",
       "path": "./skills/using-laravel-standards/SKILL.md",
-      "description": "Read first when working in a Laravel repository to select the smallest relevant personal Laravel standards skill set."
-    },
-    {
-      "name": "using-laravel-superpowers",
-      "path": "./skills/using-laravel-superpowers/SKILL.md",
-      "description": "Read first in Laravel repos; explains runner selection (Sail vs non-Sail), core workflows, and how to apply superpowers skills in Laravel projects without platform lock-in"
+      "description": "Read first in Laravel repositories to detect the stack and select the smallest relevant Syarif standards skills for implementation, review, testing, and audits."
     },
     {
       "name": "vector-search",

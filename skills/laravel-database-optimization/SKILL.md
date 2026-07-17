@@ -58,4 +58,4 @@ This skill coordinates existing performance skills and adds an optimization work
 - `performance-caching`
 - `data-chunking-large-datasets`
 - `migrations-and-factories`
-- `transactions-and-consistency`
+- `database-transactions`

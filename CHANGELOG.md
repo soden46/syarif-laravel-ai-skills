@@ -3,7 +3,9 @@
 ## Unreleased
 
 Changed:
-- expanded the installable catalog to 72 skills with `responsive-ui-testing` for Laravel responsive UI audits across mobile, tablet, desktop, Livewire states, overflow, clipping, tables, modals, and navigation;
+- consolidated five overlapping topic pairs into 67 stronger canonical skills: `runner-selection`, `database-transactions`, `queues-and-jobs`, `livewire-development`, and `using-laravel-standards`;
+- expanded `livewire-development` with version-aware Livewire v2-v4 component formats, state, forms, security, events, uploads, pagination, Alpine integration, performance, and testing guidance synthesized from the public `laravel-livewire` topic and official Livewire v4 documentation;
+- added `responsive-ui-testing` for Laravel responsive UI audits across mobile, tablet, desktop, Livewire states, overflow, clipping, tables, modals, and navigation;
 - added root `.codex-plugin/plugin.json` for codex-marketplace.com submissions and stopped committing generated plugin skill copies to keep artifacts under the 128-file scan limit;
 - converted the previous umbrella standards skill and references into focused installable skills;
 - built the catalog from 12 local core standards, mapped Superpowers Laravel topics, supplemental Laravel Skills Cloud topics, and focused project-quality skills;

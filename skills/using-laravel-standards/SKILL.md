@@ -1,6 +1,6 @@
 ---
 name: using-laravel-standards
-description: Read first when working in a Laravel repository to select the smallest relevant personal Laravel standards skill set.
+description: Read first in Laravel repositories to detect the stack and select the smallest relevant Syarif standards skills for implementation, review, testing, and audits.
 tags:
   - laravel
   - php
@@ -9,6 +9,8 @@ tags:
 # Using Syarif Laravel Standards
 
 Use this skill as the entrypoint for Laravel implementation, refactoring, review, testing, and audit work.
+
+This is the only catalog entrypoint. It consolidates the former `using-laravel-superpowers` wrapper while keeping compatibility with Superpowers-derived topic coverage.
 
 ## Workflow
 
@@ -29,7 +31,7 @@ Use this skill as the entrypoint for Laravel implementation, refactoring, review
 - Broad Laravel feature work: `laravel-specialist`
 - Laravel 11/12 app workflow: `laravel-11-12-app-guidelines`
 - Database performance and query tuning: `laravel-database-optimization`
-- Livewire components and tests: `livewire-development`, `livewire-patterns`
+- Livewire components, architecture, security, performance, and tests: `livewire-development`
 - Responsive UI, mobile layout, overflow, modals, tables, and visual regression: `responsive-ui-testing`
 - Queues, jobs, workers, schedules, and Horizon: `queues-and-jobs`
 - Security review: `security`

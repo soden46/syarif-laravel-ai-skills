@@ -1,6 +1,6 @@
 ---
 name: runner-selection
-description: Choose Sail automatically when available, fall back cleanly to host PHP/Composer/Node; paired command map for both environments
+description: Bootstrap Laravel projects by detecting Sail or host tooling, verifying dependencies and services, and choosing consistent PHP, Composer, Node, and test commands.
 tags:
   - laravel
   - php
@@ -8,38 +8,44 @@ tags:
 
 # Runner Selection
 
-Use this skill when a Laravel task involves runner selection.
+Use this skill before executing Laravel commands in an unfamiliar repository. It consolidates the former `bootstrap-check` skill into one environment-detection workflow.
 
-This skill is adapted to the personal Laravel standards in this repository. It maps the public `runner-selection` topic from `jpcaparas/superpowers-laravel` into the local `runner-selection` catalog without copying third-party skill body text.
+## Detection Order
 
-## Syarif Defaults
+1. Read project instructions for required containers, wrappers, or task runners.
+2. Check for `vendor/bin/sail`, Docker Compose files, and a Sail dependency in `composer.json`.
+3. Check whether the expected containers are already running and whether required services are healthy.
+4. If Sail is absent, verify host `php`, `composer`, `node`, and the selected package manager.
+5. Inspect `composer.json`, lock files, `package.json`, and test configuration before choosing commands.
 
-- Follow Laravel conventions before introducing custom abstractions.
-- Prefer project-local patterns when they are explicit and tested.
-- Keep controllers focused on HTTP orchestration.
-- Put validation, authorization, transactions, side effects, and integrations at clear boundaries.
-- Keep client names, credentials, internal URLs, provider secrets, and project-specific business rules out of reusable standards.
-- Verify important behavior with the smallest meaningful tests and quality checks.
+Prefer Sail when the project is configured around it and its services are available. Use host tooling when the repository is intentionally non-Sail or the user has chosen the host workflow.
 
-## Workflow
+Do not silently mix runners within one verification sequence. Container and host PHP versions, extensions, environment variables, databases, and filesystem permissions may differ.
 
-1. Detect the Laravel version, PHP version, runner, package manager, and existing project conventions.
-2. Identify the smallest local skill set that overlaps this topic.
-3. Implement or review the change using Laravel-native APIs first.
-4. Add abstractions only when they reduce real complexity or protect a meaningful boundary.
-5. Run targeted tests and available quality checks before handoff.
+## Command Map
 
-## Checkpoints
+| Task | Sail | Host |
+| --- | --- | --- |
+| Artisan | `./vendor/bin/sail artisan ...` | `php artisan ...` |
+| Composer | `./vendor/bin/sail composer ...` | `composer ...` |
+| PHP tests | `./vendor/bin/sail artisan test ...` | `php artisan test ...` |
+| Pint | `./vendor/bin/sail pint ...` | `vendor/bin/pint ...` |
+| Node script | `./vendor/bin/sail npm run ...` | `npm run ...` |
 
-- Authorization and validation boundaries are explicit.
-- Query shape, transactions, queues, cache, files, and external calls are intentional when touched.
-- User-facing behavior has feature, unit, browser, or integration tests at the right level.
-- Logs and errors are useful without exposing secrets or unnecessary personal data.
-- Documentation or proposals avoid importing source-project names or one-off business rules.
+Use the package manager selected by the lock file. Do not replace npm, pnpm, Yarn, or Bun merely because another tool is installed globally.
 
-## Related Skills
+## Bootstrap Checks
 
-- `using-laravel-standards`
-- `architecture`
-- `testing`
-- `security`
+- Required PHP and Node versions match project constraints.
+- Composer and frontend dependencies are installed.
+- `.env` exists when runtime commands need it, without printing secrets.
+- The application key and writable directories are ready when relevant.
+- Database, cache, queue, mail, search, and browser-test services required by the task are reachable.
+- Pending migrations are understood before applying them.
+- Test environment configuration points to safe, non-production services.
+
+Starting containers or applying migrations changes local state. Do it when the requested workflow requires it; otherwise report the exact readiness issue and the command that would resolve it.
+
+## Output
+
+State the selected runner once, then use it consistently. When handing off, report environment limitations that prevented a check from running.

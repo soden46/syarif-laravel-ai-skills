@@ -20,7 +20,7 @@ This repository contains 71 installable Laravel skills. Use `using-laravel-stand
 - `actions-and-services`: Use for Actions, Services, integrations, interfaces, and repositories.
 - `database-transactions`: Use for atomic writes, locks, side effects, and after-commit work.
 - `eloquent-patterns`: Use for models, relationships, query shape, and bounded values.
-- `livewire-patterns`: Use for Livewire component boundaries, validation, authorization, queries, and tests.
+- `livewire-development`: Use for Livewire components, version-aware architecture, validation, authorization, queries, performance, and tests.
 - `queues-and-jobs`: Use for queued jobs, workers, schedules, and Horizon decisions.
 - `security`: Use for access control, CSRF, rate limits, uploads, secrets, APIs, and configuration.
 - `testing`: Use for feature, unit, render, document, browser, and handoff verification.
@@ -50,7 +50,7 @@ Repository ini berisi 71 skill Laravel yang bisa di-install. Pakai `using-larave
 - `actions-and-services`: Pakai untuk Action, Service, integrasi, interface, dan repository.
 - `database-transactions`: Pakai untuk atomic write, lock, side effect, dan after-commit work.
 - `eloquent-patterns`: Pakai untuk model, relationship, query shape, dan bounded value.
-- `livewire-patterns`: Pakai untuk boundary komponen Livewire, validasi, authorization, query, dan test.
+- `livewire-development`: Pakai untuk komponen Livewire, arsitektur version-aware, validasi, authorization, query, performa, dan test.
 - `queues-and-jobs`: Pakai untuk queued job, worker, schedule, dan keputusan Horizon.
 - `security`: Pakai untuk access control, CSRF, rate limit, upload, secret, API, dan konfigurasi.
 - `testing`: Pakai untuk feature, unit, render, document, browser, dan handoff verification.

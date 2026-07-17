@@ -7,8 +7,6 @@
       "description": "Entry points and daily workflows for choosing the right Laravel skill before changing code.",
       "skills": [
         "using-laravel-standards",
-        "using-laravel-superpowers",
-        "bootstrap-check",
         "runner-selection",
         "daily-workflow",
         "brainstorming",
@@ -56,7 +54,6 @@
         "eloquent-patterns",
         "eloquent-relationships",
         "database-transactions",
-        "transactions-and-consistency",
         "data-chunking-large-datasets"
       ]
     },
@@ -76,7 +73,6 @@
       "skills": [
         "blade-components-and-layouts",
         "livewire-development",
-        "livewire-patterns",
         "nova-resource-patterns",
         "internationalization-and-translation"
       ]
@@ -86,7 +82,6 @@
       "description": "Queues, Horizon, schedules, filesystems, HTTP clients, logging, and storage configuration.",
       "skills": [
         "queues-and-jobs",
-        "queues-and-horizon",
         "horizon-metrics-and-dashboards",
         "task-scheduling",
         "filesystem-uploads",

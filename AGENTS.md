@@ -14,12 +14,15 @@ This repository packages reusable Laravel AI skills. Skills are packaged instruc
 - Every skill must be assigned to exactly one plugin in `plugin-groups.json`.
 - Universal assistant metadata is generated at `agent-skills.json`.
 - Codex marketplace artifact metadata lives at `.codex-plugin/plugin.json` and points directly to canonical `skills/`.
+- Claude Code root plugin metadata lives at `.claude-plugin/plugin.json` and points to canonical `skills/` through `.claude-plugin/marketplace.json`.
 - Generated marketplace/plugin output lives in `.agents/plugins/marketplace.json`, `.claude-plugin/`, and `plugins/`.
-- Claude Code plugin manifests live at `plugins/<plugin-name>/.claude-plugin/plugin.json`.
+- Local generated Claude Code plugin manifests also live at `plugins/<plugin-name>/.claude-plugin/plugin.json` after `npm run sync`.
 - Generated plugin skill copies under `plugins/<plugin-name>/skills/` are local build output and are ignored to keep marketplace artifacts under the 128-file scan limit.
 - Do not edit generated plugin skill copies directly; edit `skills/` and run `npm run sync`.
 
 ## Creating Or Updating A Skill
+
+Before creating a skill, search canonical names, descriptions, triggers, and workflows under `skills/`. Merge substantially overlapping guidance into the strongest canonical skill and update aliases/mappings instead of adding a competing trigger.
 
 ### Directory Structure
 

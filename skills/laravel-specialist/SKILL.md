@@ -27,10 +27,10 @@ This is an orchestration skill. Prefer loading the smallest focused skill once t
 - Validation and authorization: `form-requests`, `policies-and-authorization`
 - Models and queries: `eloquent-patterns`, `eloquent-relationships`
 - API responses: `api-resources-and-pagination`, `api-surface-evolution`
-- Database writes: `database-transactions`, `transactions-and-consistency`
+- Database writes and consistency: `database-transactions`
 - Database performance: `laravel-database-optimization`
-- Queues and workers: `queues-and-jobs`, `queues-and-horizon`
-- Livewire: `livewire-development`, `livewire-patterns`
+- Queues, workers, and Horizon: `queues-and-jobs`
+- Livewire implementation, architecture, and tests: `livewire-development`
 - Security: `security`, `rate-limiting`, `request-forgery-protection`
 - Tests and handoff: `testing`, `tdd-with-pest`, `quality-checks`
 

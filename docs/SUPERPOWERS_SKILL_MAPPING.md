@@ -26,7 +26,7 @@ If this script is rerun after the initial import, `New local skills added this r
 | `api-resources-and-pagination` | `api-resources-and-pagination` | `skills/api-resources-and-pagination/` |
 | `api-surface-evolution` | `api-surface-evolution` | `skills/api-surface-evolution/` |
 | `blade-components-and-layouts` | `blade-components-and-layouts` | `skills/blade-components-and-layouts/` |
-| `bootstrap-check` | `bootstrap-check` | `skills/bootstrap-check/` |
+| `bootstrap-check` | `runner-selection` | `skills/runner-selection/` |
 | `brainstorming` | `brainstorming` | `skills/brainstorming/` |
 | `code-review-requests` | `code-review-requests` | `skills/code-review-requests/` |
 | `complexity-guardrails` | `complexity-guardrails` | `skills/complexity-guardrails/` |
@@ -63,7 +63,7 @@ If this script is rerun after the initial import, `New local skills added this r
 | `ports-and-adapters` | `ports-and-adapters` | `skills/ports-and-adapters/` |
 | `prompt-structure` | `prompt-structure` | `skills/prompt-structure/` |
 | `quality-checks` | `quality-checks` | `skills/quality-checks/` |
-| `queues-and-horizon` | `queues-and-horizon` | `skills/queues-and-horizon/` |
+| `queues-and-horizon` | `queues-and-jobs` | `skills/queues-and-jobs/` |
 | `rate-limiting` | `rate-limiting` | `skills/rate-limiting/` |
 | `request-forgery-protection` | `request-forgery-protection` | `skills/request-forgery-protection/` |
 | `routes-best-practices` | `routes-best-practices` | `skills/routes-best-practices/` |
@@ -73,10 +73,10 @@ If this script is rerun after the initial import, `New local skills added this r
 | `task-scheduling` | `task-scheduling` | `skills/task-scheduling/` |
 | `tdd-with-pest` | `tdd-with-pest` | `skills/tdd-with-pest/` |
 | `template-method-and-plugins` | `template-method-and-plugins` | `skills/template-method-and-plugins/` |
-| `transactions-and-consistency` | `transactions-and-consistency` | `skills/transactions-and-consistency/` |
+| `transactions-and-consistency` | `database-transactions` | `skills/database-transactions/` |
 | `upgrade-13` | `upgrade-13` | `skills/upgrade-13/` |
 | `using-examples-in-prompts` | `using-examples-in-prompts` | `skills/using-examples-in-prompts/` |
-| `using-laravel-superpowers` | `using-laravel-superpowers` | `skills/using-laravel-superpowers/` |
+| `using-laravel-superpowers` | `using-laravel-standards` | `skills/using-laravel-standards/` |
 | `vector-search` | `vector-search` | `skills/vector-search/` |
 | `writing-plans` | `writing-plans` | `skills/writing-plans/` |
 
@@ -88,7 +88,7 @@ If this script is rerun after the initial import, `New local skills added this r
 | `api-resources-and-pagination` | `api-resources-and-pagination` | already exists |
 | `api-surface-evolution` | `api-surface-evolution` | already exists |
 | `blade-components-and-layouts` | `blade-components-and-layouts` | already exists |
-| `bootstrap-check` | `bootstrap-check` | already exists |
+| `bootstrap-check` | `runner-selection` | merged into runner-selection |
 | `brainstorming` | `brainstorming` | already exists |
 | `code-review-requests` | `code-review-requests` | already exists |
 | `complexity-guardrails` | `complexity-guardrails` | already exists |
@@ -125,7 +125,7 @@ If this script is rerun after the initial import, `New local skills added this r
 | `ports-and-adapters` | `ports-and-adapters` | already exists |
 | `prompt-structure` | `prompt-structure` | already exists |
 | `quality-checks` | `quality-checks` | already exists |
-| `queues-and-horizon` | `queues-and-horizon` | already exists |
+| `queues-and-horizon` | `queues-and-jobs` | merged into queues-and-jobs |
 | `rate-limiting` | `rate-limiting` | already exists |
 | `request-forgery-protection` | `request-forgery-protection` | already exists |
 | `routes-best-practices` | `routes-best-practices` | already exists |
@@ -135,10 +135,10 @@ If this script is rerun after the initial import, `New local skills added this r
 | `task-scheduling` | `task-scheduling` | already exists |
 | `tdd-with-pest` | `tdd-with-pest` | already exists |
 | `template-method-and-plugins` | `template-method-and-plugins` | already exists |
-| `transactions-and-consistency` | `transactions-and-consistency` | already exists |
+| `transactions-and-consistency` | `database-transactions` | merged into database-transactions |
 | `upgrade-13` | `upgrade-13` | already exists |
 | `using-examples-in-prompts` | `using-examples-in-prompts` | already exists |
-| `using-laravel-superpowers` | `using-laravel-superpowers` | already exists |
+| `using-laravel-superpowers` | `using-laravel-standards` | merged into using-laravel-standards |
 | `vector-search` | `vector-search` | already exists |
 | `writing-plans` | `writing-plans` | already exists |
 
@@ -168,7 +168,7 @@ Kalau script ini dijalankan ulang setelah import awal, `Skill lokal baru yang di
 | `api-resources-and-pagination` | `api-resources-and-pagination` | `skills/api-resources-and-pagination/` |
 | `api-surface-evolution` | `api-surface-evolution` | `skills/api-surface-evolution/` |
 | `blade-components-and-layouts` | `blade-components-and-layouts` | `skills/blade-components-and-layouts/` |
-| `bootstrap-check` | `bootstrap-check` | `skills/bootstrap-check/` |
+| `bootstrap-check` | `runner-selection` | `skills/runner-selection/` |
 | `brainstorming` | `brainstorming` | `skills/brainstorming/` |
 | `code-review-requests` | `code-review-requests` | `skills/code-review-requests/` |
 | `complexity-guardrails` | `complexity-guardrails` | `skills/complexity-guardrails/` |
@@ -205,7 +205,7 @@ Kalau script ini dijalankan ulang setelah import awal, `Skill lokal baru yang di
 | `ports-and-adapters` | `ports-and-adapters` | `skills/ports-and-adapters/` |
 | `prompt-structure` | `prompt-structure` | `skills/prompt-structure/` |
 | `quality-checks` | `quality-checks` | `skills/quality-checks/` |
-| `queues-and-horizon` | `queues-and-horizon` | `skills/queues-and-horizon/` |
+| `queues-and-horizon` | `queues-and-jobs` | `skills/queues-and-jobs/` |
 | `rate-limiting` | `rate-limiting` | `skills/rate-limiting/` |
 | `request-forgery-protection` | `request-forgery-protection` | `skills/request-forgery-protection/` |
 | `routes-best-practices` | `routes-best-practices` | `skills/routes-best-practices/` |
@@ -215,10 +215,10 @@ Kalau script ini dijalankan ulang setelah import awal, `Skill lokal baru yang di
 | `task-scheduling` | `task-scheduling` | `skills/task-scheduling/` |
 | `tdd-with-pest` | `tdd-with-pest` | `skills/tdd-with-pest/` |
 | `template-method-and-plugins` | `template-method-and-plugins` | `skills/template-method-and-plugins/` |
-| `transactions-and-consistency` | `transactions-and-consistency` | `skills/transactions-and-consistency/` |
+| `transactions-and-consistency` | `database-transactions` | `skills/database-transactions/` |
 | `upgrade-13` | `upgrade-13` | `skills/upgrade-13/` |
 | `using-examples-in-prompts` | `using-examples-in-prompts` | `skills/using-examples-in-prompts/` |
-| `using-laravel-superpowers` | `using-laravel-superpowers` | `skills/using-laravel-superpowers/` |
+| `using-laravel-superpowers` | `using-laravel-standards` | `skills/using-laravel-standards/` |
 | `vector-search` | `vector-search` | `skills/vector-search/` |
 | `writing-plans` | `writing-plans` | `skills/writing-plans/` |
 
@@ -230,7 +230,7 @@ Kalau script ini dijalankan ulang setelah import awal, `Skill lokal baru yang di
 | `api-resources-and-pagination` | `api-resources-and-pagination` | already exists |
 | `api-surface-evolution` | `api-surface-evolution` | already exists |
 | `blade-components-and-layouts` | `blade-components-and-layouts` | already exists |
-| `bootstrap-check` | `bootstrap-check` | already exists |
+| `bootstrap-check` | `runner-selection` | merged into runner-selection |
 | `brainstorming` | `brainstorming` | already exists |
 | `code-review-requests` | `code-review-requests` | already exists |
 | `complexity-guardrails` | `complexity-guardrails` | already exists |
@@ -267,7 +267,7 @@ Kalau script ini dijalankan ulang setelah import awal, `Skill lokal baru yang di
 | `ports-and-adapters` | `ports-and-adapters` | already exists |
 | `prompt-structure` | `prompt-structure` | already exists |
 | `quality-checks` | `quality-checks` | already exists |
-| `queues-and-horizon` | `queues-and-horizon` | already exists |
+| `queues-and-horizon` | `queues-and-jobs` | merged into queues-and-jobs |
 | `rate-limiting` | `rate-limiting` | already exists |
 | `request-forgery-protection` | `request-forgery-protection` | already exists |
 | `routes-best-practices` | `routes-best-practices` | already exists |
@@ -277,10 +277,10 @@ Kalau script ini dijalankan ulang setelah import awal, `Skill lokal baru yang di
 | `task-scheduling` | `task-scheduling` | already exists |
 | `tdd-with-pest` | `tdd-with-pest` | already exists |
 | `template-method-and-plugins` | `template-method-and-plugins` | already exists |
-| `transactions-and-consistency` | `transactions-and-consistency` | already exists |
+| `transactions-and-consistency` | `database-transactions` | merged into database-transactions |
 | `upgrade-13` | `upgrade-13` | already exists |
 | `using-examples-in-prompts` | `using-examples-in-prompts` | already exists |
-| `using-laravel-superpowers` | `using-laravel-superpowers` | already exists |
+| `using-laravel-superpowers` | `using-laravel-standards` | merged into using-laravel-standards |
 | `vector-search` | `vector-search` | already exists |
 | `writing-plans` | `writing-plans` | already exists |
 
