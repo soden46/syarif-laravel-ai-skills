@@ -11,7 +11,7 @@ Use the skills from this repository when working on Laravel applications.
 
 ## Skills
 
-This repository contains 71 installable Laravel skills. Use `using-laravel-standards` first for broad work, then load the smallest relevant topic skill.
+This repository contains 68 installable Laravel skills. Use `using-laravel-standards` first for broad work, then load the smallest relevant topic skill.
 
 - `using-laravel-standards`: Use first for broad Laravel implementation, refactoring, review, testing, and audit work.
 - `architecture`: Use for Laravel layer and abstraction decisions.
@@ -22,6 +22,7 @@ This repository contains 71 installable Laravel skills. Use `using-laravel-stand
 - `eloquent-patterns`: Use for models, relationships, query shape, and bounded values.
 - `livewire-development`: Use for Livewire components, version-aware architecture, validation, authorization, queries, performance, and tests.
 - `queues-and-jobs`: Use for queued jobs, workers, schedules, and Horizon decisions.
+- `integrate-whatsapp-baileys-laravel`: Use for secure Laravel-to-Baileys WhatsApp sidecar integrations with Windows and VPS setup docs.
 - `security`: Use for access control, CSRF, rate limits, uploads, secrets, APIs, and configuration.
 - `testing`: Use for feature, unit, render, document, browser, and handoff verification.
 - `extract-laravel-standards`: Use after completing a Laravel project or module to propose reusable updates to the standards.
@@ -41,7 +42,7 @@ Gunakan skill dari repository ini ketika mengerjakan aplikasi Laravel.
 
 ## Skill
 
-Repository ini berisi 71 skill Laravel yang bisa di-install. Pakai `using-laravel-standards` lebih dulu untuk pekerjaan yang luas, lalu load skill topik paling kecil yang relevan.
+Repository ini berisi 68 skill Laravel yang bisa di-install. Pakai `using-laravel-standards` lebih dulu untuk pekerjaan yang luas, lalu load skill topik paling kecil yang relevan.
 
 - `using-laravel-standards`: Pakai pertama untuk implementasi, refactor, review, testing, dan audit Laravel yang luas.
 - `architecture`: Pakai untuk keputusan layer dan abstraksi Laravel.
@@ -52,6 +53,7 @@ Repository ini berisi 71 skill Laravel yang bisa di-install. Pakai `using-larave
 - `eloquent-patterns`: Pakai untuk model, relationship, query shape, dan bounded value.
 - `livewire-development`: Pakai untuk komponen Livewire, arsitektur version-aware, validasi, authorization, query, performa, dan test.
 - `queues-and-jobs`: Pakai untuk queued job, worker, schedule, dan keputusan Horizon.
+- `integrate-whatsapp-baileys-laravel`: Pakai untuk integrasi WhatsApp Laravel ke sidecar Baileys yang aman, plus dokumentasi setup Windows dan VPS.
 - `security`: Pakai untuk access control, CSRF, rate limit, upload, secret, API, dan konfigurasi.
 - `testing`: Pakai untuk feature, unit, render, document, browser, dan handoff verification.
 - `extract-laravel-standards`: Pakai setelah proyek atau module Laravel selesai untuk mengusulkan update standar reusable.

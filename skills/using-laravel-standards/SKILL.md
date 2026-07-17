@@ -10,7 +10,7 @@ tags:
 
 Use this skill as the entrypoint for Laravel implementation, refactoring, review, testing, and audit work.
 
-This is the only catalog entrypoint. It consolidates the former `using-laravel-superpowers` wrapper while keeping compatibility with Superpowers-derived topic coverage.
+This is the only catalog entrypoint for the Syarif Laravel standards. It consolidates the former `using-laravel-superpowers` wrapper while keeping compatibility with Superpowers-derived topic coverage.
 
 ## Workflow
 
@@ -34,6 +34,7 @@ This is the only catalog entrypoint. It consolidates the former `using-laravel-s
 - Livewire components, architecture, security, performance, and tests: `livewire-development`
 - Responsive UI, mobile layout, overflow, modals, tables, and visual regression: `responsive-ui-testing`
 - Queues, jobs, workers, schedules, and Horizon: `queues-and-jobs`
+- WhatsApp integration through a Baileys sidecar with Windows/VPS setup docs: `integrate-whatsapp-baileys-laravel`
 - Security review: `security`
 - Feature, unit, render, document, browser, and handoff tests: `testing`
 - Extract reusable standards from a completed project: `extract-laravel-standards`

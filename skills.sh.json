@@ -86,6 +86,7 @@
         "task-scheduling",
         "filesystem-uploads",
         "http-client-resilience",
+        "integrate-whatsapp-baileys-laravel",
         "exception-handling-and-logging",
         "config-env-storage"
       ]

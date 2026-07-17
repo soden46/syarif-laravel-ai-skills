@@ -82,6 +82,7 @@
         "form-requests",
         "horizon-metrics-and-dashboards",
         "http-client-resilience",
+        "integrate-whatsapp-baileys-laravel",
         "interfaces-and-di",
         "internationalization-and-translation",
         "iterating-on-code",
@@ -276,6 +277,11 @@
       "name": "http-client-resilience",
       "path": "./skills/http-client-resilience/SKILL.md",
       "description": "Laravel guidance to use the HTTP client with sensible timeouts, retries, and backoff; capture context and handle failures explicitly"
+    },
+    {
+      "name": "integrate-whatsapp-baileys-laravel",
+      "path": "./skills/integrate-whatsapp-baileys-laravel/SKILL.md",
+      "description": "Integrate WhatsApp through a secure Baileys sidecar with Laravel, including tests and reusable local Windows and Linux VPS setup documentation."
     },
     {
       "name": "interfaces-and-di",

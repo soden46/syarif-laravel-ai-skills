@@ -35,6 +35,7 @@
         "form-requests",
         "horizon-metrics-and-dashboards",
         "http-client-resilience",
+        "integrate-whatsapp-baileys-laravel",
         "interfaces-and-di",
         "internationalization-and-translation",
         "iterating-on-code",

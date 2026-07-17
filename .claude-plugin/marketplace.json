@@ -47,6 +47,7 @@
         "./skills/form-requests",
         "./skills/horizon-metrics-and-dashboards",
         "./skills/http-client-resilience",
+        "./skills/integrate-whatsapp-baileys-laravel",
         "./skills/interfaces-and-di",
         "./skills/internationalization-and-translation",
         "./skills/iterating-on-code",

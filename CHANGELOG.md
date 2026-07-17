@@ -3,7 +3,13 @@
 ## Unreleased
 
 Changed:
-- consolidated five overlapping topic pairs into 67 stronger canonical skills: `runner-selection`, `database-transactions`, `queues-and-jobs`, `livewire-development`, and `using-laravel-standards`;
+- folded the proposed duplicate standards entrypoint into canonical focused Laravel skills and kept `using-laravel-standards` as the single catalog entrypoint;
+- merged anonymous project audit proposal H into the global standards: companion services behind authenticated Laravel proxies, webhook idempotency, integration runbooks, idempotent environment-gated seeders, scheduled command safety, structured integration logs, and repository/runtime hygiene;
+- merged anonymous project audit proposal I into the global standards: route-level permission maps, scoped validation for submitted IDs, numeric input normalization, reverse/apply balance or counter helpers inside transactions, feature parity tests, and authorization invariant tests;
+- merged anonymous project audit proposal J into the global standards: cross-layer parity contracts, scoped foreign-ID transaction rechecks, focused integration services, authorization matrices, fake-versus-real-connectivity guidance, and sync-versus-queued side-effect decisions;
+- kept provider names, message copy, status maps, URLs, credentials, local ports, QR flow, generated dependency folders, runtime auth sessions, and complex inline controller validation out of the global skill;
+- added `integrate-whatsapp-baileys-laravel` for reusable WhatsApp integration through a secure Laravel-to-Baileys sidecar, delivery testing, and Windows/VPS setup documentation;
+- consolidated overlapping topic pairs into 68 stronger canonical skills: `runner-selection`, `database-transactions`, `queues-and-jobs`, `livewire-development`, and `using-laravel-standards`;
 - expanded `livewire-development` with version-aware Livewire v2-v4 component formats, state, forms, security, events, uploads, pagination, Alpine integration, performance, and testing guidance synthesized from the public `laravel-livewire` topic and official Livewire v4 documentation;
 - added `responsive-ui-testing` for Laravel responsive UI audits across mobile, tablet, desktop, Livewire states, overflow, clipping, tables, modals, and navigation;
 - added root `.codex-plugin/plugin.json` for codex-marketplace.com submissions and stopped committing generated plugin skill copies to keep artifacts under the 128-file scan limit;

@@ -1,13 +1,13 @@
 # Syarif Laravel AI Skills
 
 <p align="center">
-  <img src="docs/assets/readme-hero.svg" alt="Syarif Laravel AI Skills - 67 Skills, Codex Plugin, Claude Code, Universal AI" width="100%">
+  <img src="docs/assets/readme-hero.svg" alt="Syarif Laravel AI Skills - 68 Skills, Codex Plugin, Claude Code, Universal AI" width="100%">
 </p>
 
 <p align="center">
   <a href="https://github.com/soden46/syarif-laravel-ai-skills/releases"><img alt="Version" src="https://img.shields.io/badge/version-0.1.0-2563EB?style=for-the-badge&labelColor=0F172A"></a>
   <a href="https://github.com/soden46/syarif-laravel-ai-skills/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0284C7?style=for-the-badge&labelColor=0F172A"></a>
-  <a href="https://github.com/soden46/syarif-laravel-ai-skills/tree/main/skills"><img alt="Skills" src="https://img.shields.io/badge/skills-67-0EA5E9?style=for-the-badge&labelColor=0F172A"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/tree/main/skills"><img alt="Skills" src="https://img.shields.io/badge/skills-68-0EA5E9?style=for-the-badge&labelColor=0F172A"></a>
   <a href="https://www.codex-marketplace.com/plugins/syarif-laravel-ai-skills"><img alt="Codex Marketplace" src="https://img.shields.io/badge/codex_marketplace-approved-06B6D4?style=for-the-badge&labelColor=0F172A"></a>
   <a href="https://github.com/soden46/syarif-laravel-ai-skills/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/soden46/syarif-laravel-ai-skills?style=for-the-badge&label=stars&labelColor=0F172A&color=38BDF8"></a>
 </p>
@@ -25,7 +25,7 @@ Language: [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 
 ## What You Get
 
-- **67 installable Laravel skills** - a focused Laravel skill catalog with overlapping topics consolidated into stronger canonical skills.
+- **68 installable Laravel skills** - a focused Laravel skill catalog with overlapping topics consolidated into stronger canonical skills.
 - **Personal core standards** - 12 local standards extracted from reviewed Laravel projects, with client details removed.
 - **Public topic coverage** - 54 additional topics mapped from public Laravel skill catalogs without copying third-party skill body text.
 - **Responsive UI testing** - a focused Playwright skill for mobile, tablet, desktop, overflow, clipping, tables, modals, navigation, and Livewire state checks.
@@ -160,17 +160,16 @@ Use quality-checks before final handoff.
 
 ### Topic Coverage
 
-- **Workflow** - `runner-selection`, `daily-workflow`, `brainstorming`, `writing-plans`, `executing-plans`.
-- **Modern app workflow** - `laravel-specialist`, `laravel-11-12-app-guidelines`.
-- **Architecture** - `ports-and-adapters`, `interfaces-and-di`, `strategy-pattern`, `template-method-and-plugins`, `complexity-guardrails`.
-- **HTTP and APIs** - `routes-best-practices`, `api-resources-and-pagination`, `api-surface-evolution`, `rate-limiting`.
-- **Data and Eloquent** - `migrations-and-factories`, `eloquent-relationships`, `data-chunking-large-datasets`, `database-transactions`.
-- **Quality and tests** - `tdd-with-pest`, `controller-tests`, `e2e-playwright`, `quality-checks`.
-- **Responsive UI** - `responsive-ui-testing`.
-- **Operations and security** - `queues-and-jobs`, `horizon-metrics-and-dashboards`, `http-client-resilience`, `filesystem-uploads`, `exception-handling-and-logging`.
+- **Start Here** - `using-laravel-standards`, `runner-selection`, `daily-workflow`, `brainstorming`, `writing-plans`, `executing-plans`, `laravel-specialist`, `laravel-11-12-app-guidelines`.
+- **Architecture** - `architecture`, `actions-and-services`, `controller-cleanup`, `routes-best-practices`, `ports-and-adapters`, `interfaces-and-di`, `strategy-pattern`, `template-method-and-plugins`, `complexity-guardrails`, `constants-and-configuration`, `custom-helpers`.
+- **HTTP and Security** - `form-requests`, `api-resources-and-pagination`, `api-surface-evolution`, `policies-and-authorization`, `rate-limiting`, `request-forgery-protection`, `security`.
+- **Data and Eloquent** - `migrations-and-factories`, `eloquent-patterns`, `eloquent-relationships`, `database-transactions`, `data-chunking-large-datasets`.
 - **Performance** - `laravel-database-optimization`, `performance-caching`, `performance-eager-loading`, `performance-select-columns`.
-- **Laravel 13+** - `ai-sdk`, `vector-search`, `php-attributes`, `request-forgery-protection`, `upgrade-13`.
-- **Prompting and collaboration** - `effective-context`, `prompt-structure`, `debugging-prompts`, `code-review-requests`.
+- **UI and Admin** - `blade-components-and-layouts`, `livewire-development`, `nova-resource-patterns`, `internationalization-and-translation`.
+- **Ops and Integrations** - `queues-and-jobs`, `horizon-metrics-and-dashboards`, `task-scheduling`, `filesystem-uploads`, `http-client-resilience`, `integrate-whatsapp-baileys-laravel`, `exception-handling-and-logging`, `config-env-storage`.
+- **Quality** - `testing`, `tdd-with-pest`, `controller-tests`, `e2e-playwright`, `responsive-ui-testing`, `quality-checks`, `documentation-best-practices`, `dependencies-trim-packages`.
+- **Modern Laravel** - `ai-sdk`, `vector-search`, `php-attributes`, `upgrade-13`.
+- **Prompting** - `effective-context`, `prompt-structure`, `debugging-prompts`, `code-review-requests`, `iterating-on-code`, `specifying-constraints`, `using-examples-in-prompts`, `laravel-prompting-patterns`, `extract-laravel-standards`.
 
 Run the list command for the complete catalog, or read [docs/SUPERPOWERS_SKILL_MAPPING.md](docs/SUPERPOWERS_SKILL_MAPPING.md) and [docs/LARAVEL_SKILLS_CLOUD_MAPPING.md](docs/LARAVEL_SKILLS_CLOUD_MAPPING.md) for public-topic mapping.
 
@@ -248,7 +247,7 @@ MIT License - see [LICENSE](LICENSE).
 
 ## Yang Didapat
 
-- **67 skill Laravel installable** - katalog skill Laravel yang fokus dengan topik tumpang tindih digabung menjadi skill canonical yang lebih kuat.
+- **68 skill Laravel installable** - katalog skill Laravel yang fokus dengan topik tumpang tindih digabung menjadi skill canonical yang lebih kuat.
 - **Standar inti pribadi** - 12 standar lokal dari proyek Laravel yang sudah direview, tanpa detail client.
 - **Cakupan topik publik** - 54 topik tambahan yang dimapping dari katalog skill Laravel publik tanpa menyalin isi body skill pihak ketiga.
 - **Responsive UI testing** - skill Playwright khusus untuk mobile, tablet, desktop, overflow, clipping, tabel, modal, navigasi, dan state Livewire.
@@ -383,17 +382,16 @@ Use quality-checks before final handoff.
 
 ### Cakupan Topik
 
-- **Workflow** - `runner-selection`, `daily-workflow`, `brainstorming`, `writing-plans`, `executing-plans`.
-- **Workflow aplikasi modern** - `laravel-specialist`, `laravel-11-12-app-guidelines`.
-- **Arsitektur** - `ports-and-adapters`, `interfaces-and-di`, `strategy-pattern`, `template-method-and-plugins`, `complexity-guardrails`.
-- **HTTP dan API** - `routes-best-practices`, `api-resources-and-pagination`, `api-surface-evolution`, `rate-limiting`.
-- **Data dan Eloquent** - `migrations-and-factories`, `eloquent-relationships`, `data-chunking-large-datasets`, `database-transactions`.
-- **Quality dan test** - `tdd-with-pest`, `controller-tests`, `e2e-playwright`, `quality-checks`.
-- **Responsive UI** - `responsive-ui-testing`.
-- **Operasional dan security** - `queues-and-jobs`, `horizon-metrics-and-dashboards`, `http-client-resilience`, `filesystem-uploads`, `exception-handling-and-logging`.
+- **Mulai Di Sini** - `using-laravel-standards`, `runner-selection`, `daily-workflow`, `brainstorming`, `writing-plans`, `executing-plans`, `laravel-specialist`, `laravel-11-12-app-guidelines`.
+- **Arsitektur** - `architecture`, `actions-and-services`, `controller-cleanup`, `routes-best-practices`, `ports-and-adapters`, `interfaces-and-di`, `strategy-pattern`, `template-method-and-plugins`, `complexity-guardrails`, `constants-and-configuration`, `custom-helpers`.
+- **HTTP dan Security** - `form-requests`, `api-resources-and-pagination`, `api-surface-evolution`, `policies-and-authorization`, `rate-limiting`, `request-forgery-protection`, `security`.
+- **Data dan Eloquent** - `migrations-and-factories`, `eloquent-patterns`, `eloquent-relationships`, `database-transactions`, `data-chunking-large-datasets`.
 - **Performance** - `laravel-database-optimization`, `performance-caching`, `performance-eager-loading`, `performance-select-columns`.
-- **Laravel 13+** - `ai-sdk`, `vector-search`, `php-attributes`, `request-forgery-protection`, `upgrade-13`.
-- **Prompting dan kolaborasi** - `effective-context`, `prompt-structure`, `debugging-prompts`, `code-review-requests`.
+- **UI dan Admin** - `blade-components-and-layouts`, `livewire-development`, `nova-resource-patterns`, `internationalization-and-translation`.
+- **Operasional dan Integrasi** - `queues-and-jobs`, `horizon-metrics-and-dashboards`, `task-scheduling`, `filesystem-uploads`, `http-client-resilience`, `integrate-whatsapp-baileys-laravel`, `exception-handling-and-logging`, `config-env-storage`.
+- **Quality** - `testing`, `tdd-with-pest`, `controller-tests`, `e2e-playwright`, `responsive-ui-testing`, `quality-checks`, `documentation-best-practices`, `dependencies-trim-packages`.
+- **Modern Laravel** - `ai-sdk`, `vector-search`, `php-attributes`, `upgrade-13`.
+- **Prompting** - `effective-context`, `prompt-structure`, `debugging-prompts`, `code-review-requests`, `iterating-on-code`, `specifying-constraints`, `using-examples-in-prompts`, `laravel-prompting-patterns`, `extract-laravel-standards`.
 
 Jalankan command list untuk katalog lengkap, atau baca [docs/SUPERPOWERS_SKILL_MAPPING.md](docs/SUPERPOWERS_SKILL_MAPPING.md) dan [docs/LARAVEL_SKILLS_CLOUD_MAPPING.md](docs/LARAVEL_SKILLS_CLOUD_MAPPING.md) untuk mapping topik publik.
 
