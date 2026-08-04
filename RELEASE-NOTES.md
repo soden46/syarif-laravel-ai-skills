@@ -23,7 +23,7 @@ GitHub release body: [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md).
 - UI Agent Browser workflow for stack-aware frontend/UI/UX implementation with agent-browser inspection, Playwright checks, and backend contract alignment.
 - Stronger Playwright E2E guidance based on the official Microsoft Playwright source, plus cross-links from existing UI/browser skills into the new frontend workflow.
 - Responsive UI testing skill for Laravel interfaces using Playwright across mobile, tablet, laptop, desktop, Livewire states, overflow, clipped content, forms, tables, modals, navigation, and dark mode.
-- Active secure memory management skill for continuity across conversation, project, user, workflow, and codebase context with automatic preflight, stdio MCP tools, lifecycle hooks, a safe installer/config generator for popular agent clients, local file-backed commands, relevance-aware retrieval, and secret-safe guardrails.
+- Active secure memory management skill for continuity across conversation, project, user, workflow, and codebase context with automatic preflight, stdio MCP tools, lifecycle hooks, global VS Code/GitHub Copilot instructions, a safe installer/config generator for popular agent clients, local file-backed commands, relevance-aware retrieval, and secret-safe guardrails.
 - Bilingual Markdown switch pattern for user-facing docs.
 - Proposal workflow under `proposals/pending`, `proposals/accepted`, and `proposals/rejected`.
 - Local validation, listing, dry-run install, and Superpowers mapping scripts.
@@ -74,7 +74,7 @@ Body release GitHub: [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md).
 - Workflow UI Agent Browser untuk implementasi frontend/UI/UX sesuai stack target, memakai inspeksi agent-browser, pengecekan Playwright, dan alignment kontrak backend.
 - Guidance Playwright E2E yang lebih kuat berdasarkan sumber resmi Microsoft Playwright, plus cross-link dari skill UI/browser lama ke workflow frontend baru.
 - Skill responsive UI testing untuk interface Laravel memakai Playwright di mobile, tablet, laptop, desktop, state Livewire, overflow, konten terpotong, form, tabel, modal, navigasi, dan dark mode.
-- Skill active secure memory management untuk kontinuitas conversation, project, user, workflow, dan codebase context dengan automatic preflight, tool MCP stdio, lifecycle hook, installer/config generator aman untuk agent populer, command lokal file-backed, retrieval relevan, dan guardrail anti-secret.
+- Skill active secure memory management untuk kontinuitas conversation, project, user, workflow, dan codebase context dengan automatic preflight, tool MCP stdio, lifecycle hook, instruksi global VS Code/GitHub Copilot, installer/config generator aman untuk agent populer, command lokal file-backed, retrieval relevan, dan guardrail anti-secret.
 - Pola switch Markdown bilingual untuk dokumentasi user-facing.
 - Workflow proposal di `proposals/pending`, `proposals/accepted`, dan `proposals/rejected`.
 - Script lokal untuk validasi, listing, dry-run install, dan mapping Superpowers.

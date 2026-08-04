@@ -41,8 +41,8 @@ function printHelp() {
 
 Usage:
   node install-memory-layer.mjs detect
-  node install-memory-layer.mjs print [--target codex|vscode|vscode-workspace|cursor|cursor-workspace|windsurf|cline|cline-cli|roo-workspace|continue-workspace|claude|json|hooks|all]
-  node install-memory-layer.mjs install --target codex|vscode|vscode-workspace|cursor|cursor-workspace|windsurf|cline|cline-cli|roo-workspace|continue-workspace|claude|json|hooks|all [--apply] [--config <path>]
+  node install-memory-layer.mjs print [--target codex|vscode|vscode-workspace|vscode-copilot-instructions|cursor|cursor-workspace|windsurf|cline|cline-cli|roo-workspace|continue-workspace|claude|json|hooks|all]
+  node install-memory-layer.mjs install --target codex|vscode|vscode-workspace|vscode-copilot-instructions|cursor|cursor-workspace|windsurf|cline|cline-cli|roo-workspace|continue-workspace|claude|json|hooks|all [--apply] [--config <path>] [--settings <path>]
 
 Defaults:
   install runs in dry-run mode unless --apply is present.
@@ -52,6 +52,7 @@ Examples:
   node install-memory-layer.mjs print --target all
   node install-memory-layer.mjs install --target codex --apply
   node install-memory-layer.mjs install --target vscode --apply
+  node install-memory-layer.mjs install --target vscode-copilot-instructions --apply
   node install-memory-layer.mjs install --target vscode-workspace --apply
   node install-memory-layer.mjs install --target cursor --apply
   node install-memory-layer.mjs install --target windsurf --apply
@@ -88,6 +89,10 @@ async function install() {
     } else if (item === "vscode-workspace") {
       const config = args.config ? path.resolve(String(args.config)) : path.resolve(".vscode", "mcp.json");
       results.push(await installVsCodeConfig(config, apply, "vscode-workspace"));
+    } else if (item === "vscode-copilot-instructions") {
+      const file = args.config ? path.resolve(String(args.config)) : vscodeCopilotInstructionsPath();
+      const settings = args.settings ? path.resolve(String(args.settings)) : vscodeUserSettingsPath();
+      results.push(await installVsCodeCopilotInstructions(file, settings, apply));
     } else if (item === "cursor") {
       const config = args.config ? path.resolve(String(args.config)) : cursorConfigPath();
       results.push(await installJsonConfig(config, apply, "cursor"));
@@ -180,6 +185,38 @@ async function installJsonConfig(file, apply, target) {
   return { target, mode: "apply", status: "written", file };
 }
 
+async function installVsCodeCopilotInstructions(file, settingsFile, apply) {
+  const instructions = vscodeCopilotInstructionsMarkdown();
+  const settings = await mergedVsCodeCopilotSettings(settingsFile);
+
+  if (!apply) {
+    return {
+      target: "vscode-copilot-instructions",
+      mode: "dry-run",
+      file,
+      settingsFile,
+      instructions,
+      settings,
+    };
+  }
+
+  await fs.mkdir(path.dirname(file), { recursive: true });
+  await backupIfExists(file);
+  await fs.writeFile(file, `${instructions.trimEnd()}\n`, "utf8");
+
+  await fs.mkdir(path.dirname(settingsFile), { recursive: true });
+  await backupIfExists(settingsFile);
+  await fs.writeFile(settingsFile, `${JSON.stringify(settings, null, 2)}\n`, "utf8");
+
+  return {
+    target: "vscode-copilot-instructions",
+    mode: "apply",
+    status: "written",
+    file,
+    settingsFile,
+  };
+}
+
 async function installHookManifest(file, apply) {
   const manifest = {
     name: "syarif-memory-management-hooks",
@@ -221,6 +258,21 @@ async function mergedMcpJson(file) {
   return next;
 }
 
+async function mergedVsCodeCopilotSettings(file) {
+  const current = await readJson(file);
+  const next = current && typeof current === "object" && !Array.isArray(current) ? current : {};
+  const locations = next["chat.instructionsFilesLocations"] && typeof next["chat.instructionsFilesLocations"] === "object" && !Array.isArray(next["chat.instructionsFilesLocations"])
+    ? next["chat.instructionsFilesLocations"]
+    : {};
+
+  locations[vscodeCopilotInstructionsLocationSetting()] = true;
+  next["chat.instructionsFilesLocations"] = locations;
+  next["chat.includeApplyingInstructions"] = true;
+  next["github.copilot.chat.codeGeneration.useInstructionFiles"] = true;
+
+  return next;
+}
+
 function vscodeMcpServerConfig() {
   return {
     command: "node",
@@ -239,6 +291,19 @@ function mcpServerConfig() {
       AI_MEMORY_ROOT: memoryRoot(),
     },
   };
+}
+
+function vscodeCopilotInstructionsMarkdown() {
+  return `---
+applyTo: "**"
+---
+# Syarif Memory Management
+
+- Before broad exploration or implementation, call the \`syarif-memory-management\` MCP tool \`memory_auto\` for the current workspace/project and use the compact result as orientation.
+- When finishing meaningful work, call \`memory_checkpoint\` with durable decisions, touched files, and pending work.
+- Treat retrieved memory as orientation and verify technical facts against the current workspace before editing.
+- Never write secrets, credentials, raw personal data, or .env values to memory.
+`;
 }
 
 async function snippetsFor(target) {
@@ -262,6 +327,15 @@ async function snippetsFor(target) {
         "# VS Code workspace MCP config",
         "# .vscode/mcp.json",
         JSON.stringify({ servers: { [serverName]: vscodeMcpServerConfig() } }, null, 2),
+      ].join("\n"));
+    } else if (item === "vscode-copilot-instructions") {
+      snippets.push([
+        "# VS Code / GitHub Copilot global instructions",
+        `# ${vscodeCopilotInstructionsPath()}`,
+        vscodeCopilotInstructionsMarkdown().trimEnd(),
+        "",
+        `# ${vscodeUserSettingsPath()}`,
+        JSON.stringify(await mergedVsCodeCopilotSettings(vscodeUserSettingsPath()), null, 2),
       ].join("\n"));
     } else if (item === "cursor") {
       snippets.push([
@@ -344,6 +418,11 @@ async function detectTargets() {
       commandAvailable: await commandExists("code"),
       userConfig: vscodeUserConfigPath(),
       userConfigExists: await exists(vscodeUserConfigPath()),
+      userSettings: vscodeUserSettingsPath(),
+      userSettingsExists: await exists(vscodeUserSettingsPath()),
+      globalInstructions: vscodeCopilotInstructionsPath(),
+      globalInstructionsExists: await exists(vscodeCopilotInstructionsPath()),
+      globalInstructionsLocation: vscodeCopilotInstructionsLocationSetting(),
       workspaceConfig: path.resolve(".vscode", "mcp.json"),
       workspaceConfigExists: await exists(path.resolve(".vscode", "mcp.json")),
     },
@@ -386,7 +465,7 @@ async function detectTargets() {
 
 function expandTargets(target) {
   if (target === "all") {
-    return ["codex", "vscode", "cursor", "windsurf", "cline", "claude", "json", "hooks"];
+    return ["codex", "vscode", "vscode-copilot-instructions", "cursor", "windsurf", "cline", "claude", "json", "hooks"];
   }
 
   const targets = target.split(",").map((item) => item.trim()).filter(Boolean);
@@ -394,6 +473,7 @@ function expandTargets(target) {
     "codex",
     "vscode",
     "vscode-workspace",
+    "vscode-copilot-instructions",
     "cursor",
     "cursor-workspace",
     "windsurf",
@@ -416,15 +496,41 @@ function expandTargets(target) {
 }
 
 function vscodeUserConfigPath() {
+  return path.join(vscodeUserDir(), "mcp.json");
+}
+
+function vscodeUserSettingsPath() {
+  return path.join(vscodeUserDir(), "settings.json");
+}
+
+function vscodeUserDir() {
   if (process.platform === "win32") {
-    return path.join(process.env.APPDATA || path.join(os.homedir(), "AppData", "Roaming"), "Code", "User", "mcp.json");
+    return path.join(process.env.APPDATA || path.join(os.homedir(), "AppData", "Roaming"), "Code", "User");
   }
 
   if (process.platform === "darwin") {
-    return path.join(os.homedir(), "Library", "Application Support", "Code", "User", "mcp.json");
+    return path.join(os.homedir(), "Library", "Application Support", "Code", "User");
   }
 
-  return path.join(os.homedir(), ".config", "Code", "User", "mcp.json");
+  return path.join(os.homedir(), ".config", "Code", "User");
+}
+
+function vscodeCopilotInstructionsPath() {
+  return path.join(vscodeCopilotInstructionsDir(), "syarif-memory-management.instructions.md");
+}
+
+function vscodeCopilotInstructionsDir() {
+  return path.join(memoryRoot(), "vscode-copilot-instructions");
+}
+
+function vscodeCopilotInstructionsLocationSetting() {
+  const root = memoryRoot();
+  const defaultRoot = path.resolve(path.join(os.homedir(), ".ai-memory"));
+  if (root === defaultRoot) {
+    return "~/.ai-memory/vscode-copilot-instructions";
+  }
+
+  return vscodeCopilotInstructionsDir();
 }
 
 function cursorConfigPath() {

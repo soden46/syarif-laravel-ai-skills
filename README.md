@@ -67,6 +67,7 @@ node skills/memory-management/scripts/install-memory-layer.mjs detect
 node skills/memory-management/scripts/install-memory-layer.mjs print --target all
 node skills/memory-management/scripts/install-memory-layer.mjs install --target codex --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-copilot-instructions --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-workspace --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target cursor --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target windsurf --apply
@@ -78,6 +79,8 @@ node skills/memory-management/scripts/install-memory-layer.mjs install --target 
 ```
 
 Catatan: `npx skills add ...` hanya memasang file skill. Untuk mengaktifkan memory MCP/hook di editor atau agent lokal, jalankan installer memory di atas secara eksplisit setelah skill terpasang.
+
+Untuk VS Code/GitHub Copilot yang lebih otomatis, jalankan `vscode` untuk mendaftarkan MCP server lalu `vscode-copilot-instructions` untuk memasang instruksi global user-level. Instruksi global itu meminta Copilot memanggil `memory_auto` sebelum eksplorasi/implementasi luas dan `memory_checkpoint` saat handoff kerja bermakna.
 
 ## Installation
 
@@ -339,6 +342,7 @@ node skills/memory-management/scripts/install-memory-layer.mjs detect
 node skills/memory-management/scripts/install-memory-layer.mjs print --target all
 node skills/memory-management/scripts/install-memory-layer.mjs install --target codex --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-copilot-instructions --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-workspace --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target cursor --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target windsurf --apply
@@ -350,6 +354,8 @@ node skills/memory-management/scripts/install-memory-layer.mjs install --target 
 ```
 
 Note: `npx skills add ...` installs the skill files only. To enable the memory MCP/hook layer in a local editor or agent, run the memory installer above explicitly after the skill is installed.
+
+For more automatic VS Code/GitHub Copilot behavior, run `vscode` to register the MCP server and `vscode-copilot-instructions` to install global user-level instructions. Those instructions ask Copilot to call `memory_auto` before broad exploration or implementation and `memory_checkpoint` at meaningful handoff.
 
 ## Instalasi
 

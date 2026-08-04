@@ -101,6 +101,7 @@ node <skill-dir>/scripts/install-memory-layer.mjs detect
 node <skill-dir>/scripts/install-memory-layer.mjs print --target all
 node <skill-dir>/scripts/install-memory-layer.mjs install --target codex --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target vscode --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target vscode-copilot-instructions --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target vscode-workspace --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target cursor --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target cursor-workspace --apply
@@ -116,7 +117,7 @@ node <skill-dir>/scripts/install-memory-layer.mjs install --target hooks --apply
 
 Native skill installers generally copy skill files only; they should not silently execute this installer or modify agent MCP configs. Run `install-memory-layer.mjs` explicitly after installing the skill when the user wants active memory enabled.
 
-Installer defaults to dry-run unless `--apply` is present. For VS Code, it writes the official `mcp.json` shape with a top-level `servers` object. Use `vscode` for the user profile config and `vscode-workspace` for `.vscode/mcp.json`. Cursor, Windsurf, Cline, Roo Code, Continue, Claude-compatible, and generic JSON targets use `mcpServers` where their docs expect it. Every JSON install merges only the `syarif-memory-management` server entry and writes a timestamped backup before changing an existing file. For Codex CLI, it uses the local `codex mcp add` command instead of editing Codex config directly.
+Installer defaults to dry-run unless `--apply` is present. For VS Code, it writes the official `mcp.json` shape with a top-level `servers` object. Use `vscode` for the user profile config and `vscode-workspace` for `.vscode/mcp.json`. Use `vscode-copilot-instructions` to install a user-level VS Code/GitHub Copilot `*.instructions.md` file that applies to all chat requests and tells the agent to call `memory_auto` before broad work and `memory_checkpoint` at handoff. Cursor, Windsurf, Cline, Roo Code, Continue, Claude-compatible, and generic JSON targets use `mcpServers` where their docs expect it. Every JSON install merges only the `syarif-memory-management` server entry and writes a timestamped backup before changing an existing file. For Codex CLI, it uses the local `codex mcp add` command instead of editing Codex config directly.
 
 ## Memory Architecture
 

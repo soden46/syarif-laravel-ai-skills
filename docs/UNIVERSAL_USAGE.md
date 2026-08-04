@@ -43,7 +43,14 @@ For automatic long-term memory, keep `using-laravel-standards` as the session en
 
 For assistants that support MCP, register `skills/memory-management/scripts/mcp-server.mjs` as a stdio MCP server. For assistants that support lifecycle hooks, run `skills/memory-management/scripts/memory-hook.mjs preflight` at session start and `memory-hook.mjs checkpoint` at handoff.
 
-Use `skills/memory-management/scripts/install-memory-layer.mjs` to detect supported local targets, print config snippets, or install with backups. It supports Codex CLI through `codex mcp add`, VS Code user or workspace `mcp.json`, Cursor, Windsurf, Cline, Roo Code project config, Continue workspace config, Claude-compatible JSON MCP config, generic JSON MCP config, and a generic hook manifest.
+Use `skills/memory-management/scripts/install-memory-layer.mjs` to detect supported local targets, print config snippets, or install with backups. It supports Codex CLI through `codex mcp add`, VS Code user or workspace `mcp.json`, global VS Code/GitHub Copilot user instructions through `vscode-copilot-instructions`, Cursor, Windsurf, Cline, Roo Code project config, Continue workspace config, Claude-compatible JSON MCP config, generic JSON MCP config, and a generic hook manifest.
+
+For VS Code/GitHub Copilot, install both pieces:
+
+```bash
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-copilot-instructions --apply
+```
 
 Native skill install only copies the skill files. Run the memory installer explicitly after install to enable the active MCP or hook layer for a local agent.
 
@@ -134,7 +141,14 @@ Untuk long-term memory otomatis, jadikan `using-laravel-standards` sebagai entry
 
 Untuk assistant yang support MCP, daftarkan `skills/memory-management/scripts/mcp-server.mjs` sebagai stdio MCP server. Untuk assistant yang support lifecycle hook, jalankan `skills/memory-management/scripts/memory-hook.mjs preflight` saat session start dan `memory-hook.mjs checkpoint` saat handoff.
 
-Gunakan `skills/memory-management/scripts/install-memory-layer.mjs` untuk detect target lokal, print snippet config, atau install dengan backup. Script ini support Codex CLI lewat `codex mcp add`, `mcp.json` user/workspace VS Code, Cursor, Windsurf, Cline, config project Roo Code, config workspace Continue, config MCP JSON kompatibel Claude, config MCP JSON generik, dan manifest hook generik.
+Gunakan `skills/memory-management/scripts/install-memory-layer.mjs` untuk detect target lokal, print snippet config, atau install dengan backup. Script ini support Codex CLI lewat `codex mcp add`, `mcp.json` user/workspace VS Code, instruksi global user-level VS Code/GitHub Copilot lewat `vscode-copilot-instructions`, Cursor, Windsurf, Cline, config project Roo Code, config workspace Continue, config MCP JSON kompatibel Claude, config MCP JSON generik, dan manifest hook generik.
+
+Untuk VS Code/GitHub Copilot, pasang dua bagian:
+
+```bash
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-copilot-instructions --apply
+```
 
 Install skill native hanya memasang file skill. Jalankan installer memory secara eksplisit setelah install untuk mengaktifkan layer MCP atau hook di agent lokal.
 

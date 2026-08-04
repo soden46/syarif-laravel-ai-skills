@@ -3,7 +3,7 @@
 ## Unreleased
 
 Changed:
-- added `memory-management` as a Start Here active memory skill with automatic preflight, stdio MCP tools, lifecycle hooks, a safe installer/config generator for Codex CLI, VS Code, Cursor, Windsurf, Cline, Roo Code, Continue, Claude-compatible JSON, generic MCP JSON, and local file-backed `auto`, `init`, `remember`, `recall`, `checkpoint`, `audit`, `forget`, and `status` commands for safe conversation, project, user, workflow, and codebase Laravel AI memory;
+- added `memory-management` as a Start Here active memory skill with automatic preflight, stdio MCP tools, lifecycle hooks, global VS Code/GitHub Copilot instruction installation, a safe installer/config generator for Codex CLI, VS Code, Cursor, Windsurf, Cline, Roo Code, Continue, Claude-compatible JSON, generic MCP JSON, and local file-backed `auto`, `init`, `remember`, `recall`, `checkpoint`, `audit`, `forget`, and `status` commands for safe conversation, project, user, workflow, and codebase Laravel AI memory;
 - folded the proposed duplicate standards entrypoint into canonical focused Laravel skills and kept `using-laravel-standards` as the single catalog entrypoint;
 - merged anonymous project audit proposal H into the global standards: companion services behind authenticated Laravel proxies, webhook idempotency, integration runbooks, idempotent environment-gated seeders, scheduled command safety, structured integration logs, and repository/runtime hygiene;
 - merged anonymous project audit proposal I into the global standards: route-level permission maps, scoped validation for submitted IDs, numeric input normalization, reverse/apply balance or counter helpers inside transactions, feature parity tests, and authorization invariant tests;
