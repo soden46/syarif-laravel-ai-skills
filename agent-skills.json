@@ -57,6 +57,7 @@
         "api-surface-evolution",
         "architecture",
         "blade-components-and-layouts",
+        "ui-agent-browser",
         "brainstorming",
         "code-review-requests",
         "complexity-guardrails",
@@ -92,6 +93,7 @@
         "laravel-specialist",
         "livewire-development",
         "migrations-and-factories",
+        "module-per-menu",
         "nova-resource-patterns",
         "performance-caching",
         "performance-eager-loading",
@@ -329,6 +331,11 @@
       "description": "Laravel guidance to safe database change patterns; when to modify vs add migrations; always pair models with migrations and factories; seeding guidance"
     },
     {
+      "name": "module-per-menu",
+      "path": "./skills/module-per-menu/SKILL.md",
+      "description": "Build Laravel projects with one menu or page per module, using small controllers, per-page views, shared layouts/components, and dynamic DB-backed data."
+    },
+    {
       "name": "nova-resource-patterns",
       "path": "./skills/nova-resource-patterns/SKILL.md",
       "description": "Laravel guidance to consistent Nova resources-fields, actions, metrics, lenses, filters, authorization-and how to evolve resources alongside schema changes"
@@ -437,6 +444,11 @@
       "name": "testing",
       "path": "./skills/testing/SKILL.md",
       "description": "Choose focused Laravel tests and quality checks that prove behavior without mirroring implementation details."
+    },
+    {
+      "name": "ui-agent-browser",
+      "path": "./skills/ui-agent-browser/SKILL.md",
+      "description": "Build and refine Laravel UI/UX/frontends with stack-aware implementation, backend contract alignment, Playwright tests, and agent-browser inspection."
     },
     {
       "name": "upgrade-13",

@@ -23,6 +23,7 @@ This is the only catalog entrypoint for the Syarif Laravel standards. It consoli
 ## Skill Selection
 
 - Architecture and layer decisions: `architecture`
+- Multi-menu/page app structure: `module-per-menu`
 - Thin controllers and route boundaries: `controller-cleanup`
 - HTTP validation and request authorization: `form-requests`
 - Actions, Services, integrations, interfaces, and repositories: `actions-and-services`
@@ -31,6 +32,7 @@ This is the only catalog entrypoint for the Syarif Laravel standards. It consoli
 - Broad Laravel feature work: `laravel-specialist`
 - Laravel 11/12 app workflow: `laravel-11-12-app-guidelines`
 - Database performance and query tuning: `laravel-database-optimization`
+- UI/UX design, frontend implementation, agent-browser inspection, Playwright checks, and backend contract alignment: `ui-agent-browser`
 - Livewire components, architecture, security, performance, and tests: `livewire-development`
 - Responsive UI, mobile layout, overflow, modals, tables, and visual regression: `responsive-ui-testing`
 - Queues, jobs, workers, schedules, and Horizon: `queues-and-jobs`

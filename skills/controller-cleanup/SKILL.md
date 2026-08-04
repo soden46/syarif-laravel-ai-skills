@@ -10,6 +10,8 @@ tags:
 
 Use this skill when controllers become difficult to understand, test, or maintain.
 
+When a Laravel app has several menus/pages, also use `module-per-menu`: avoid one broad controller for the whole app, and split by menu, page group, or resource boundary.
+
 Controllers should stay thin and focused on HTTP orchestration. They should not contain long business workflows, provider payload construction, repeated query logic, or file-processing loops.
 
 ## Responsibilities

@@ -21,6 +21,7 @@
       "description": "Laravel-native boundaries for controllers, routes, services, helpers, and design patterns.",
       "skills": [
         "architecture",
+        "module-per-menu",
         "actions-and-services",
         "controller-cleanup",
         "routes-best-practices",
@@ -72,6 +73,7 @@
       "description": "Blade, Livewire, Nova, and translation patterns for Laravel user interfaces.",
       "skills": [
         "blade-components-and-layouts",
+        "ui-agent-browser",
         "livewire-development",
         "nova-resource-patterns",
         "internationalization-and-translation"

@@ -10,6 +10,8 @@ tags:
 
 Use this skill when a Laravel task involves blade components and layouts.
 
+When the app has multiple menus/pages, also use `module-per-menu`: keep one Blade view per page or page state, share layout/components, and avoid a single Blade file full of menu-condition blocks.
+
 This skill is adapted to the personal Laravel standards in this repository. It maps the public `blade-components-and-layouts` topic from `jpcaparas/superpowers-laravel` into the local `blade-components-and-layouts` catalog without copying third-party skill body text.
 
 ## Syarif Defaults

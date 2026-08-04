@@ -16,6 +16,8 @@ Route -> Controller -> Form Request -> Action/Service -> Eloquent/Integration ->
 
 Do not force every layer into every feature. Add a boundary only when it makes behavior easier to test, reuse, reason about, or change.
 
+For multi-menu dashboards, admin systems, or copied prototype apps, also use `module-per-menu`: default to one menu or page per module, small controllers, per-page views, shared layouts/components, and DB-backed dynamic data.
+
 ## Layer Decisions
 
 Use a controller for HTTP orchestration:
