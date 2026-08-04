@@ -1,6 +1,6 @@
 ---
 name: memory-management
-description: Orchestrate secure Laravel AI memory across conversation, project, user, workflow, and codebase scopes with relevance-aware retrieval and secret-safe delegation.
+description: Provide automatic long-term Laravel AI memory preflight, recall, checkpointing, and secure cross-project context across conversation, project, user, workflow, and codebase scopes.
 tags:
   - laravel
   - php
@@ -10,7 +10,9 @@ tags:
 
 Use this skill when a Laravel task needs persistent AI memory that can remember, understand, continue, and adapt across chats, projects, and related feature patterns.
 
-This is an orchestration and policy skill, not a storage engine. Treat memory as orientation. The current repository remains the source of truth.
+This is an orchestration and active local-memory skill. Treat memory as orientation. The current repository remains the source of truth.
+
+Important capability boundary: a skill is not a daemon by itself. Automatic memory happens when an entrypoint skill, agent instruction, MCP server, MCP hook, or lifecycle hook runs this skill's preflight and checkpoint commands. For always-on background code graph indexing, pair this skill with `codebase-memory-mcp` or another local MCP/watch service.
 
 ## Core Principles
 
@@ -21,6 +23,89 @@ This is an orchestration and policy skill, not a storage engine. Treat memory as
 - Never persist secrets.
 - Preserve provenance for every durable entry.
 - Prefer continuity without context overload.
+
+## Active Local Backend
+
+This skill ships a file-backed backend at `scripts/memory.mjs`. Resolve it relative to this `SKILL.md` file and prefer it for active memory commands before falling back to manual Markdown edits.
+
+Default root: `AI_MEMORY_ROOT` when set, otherwise `~/.ai-memory`.
+
+Use the backend like this:
+
+```bash
+node <skill-dir>/scripts/memory.mjs auto --cwd <project-root> --query "<task intent>"
+node <skill-dir>/scripts/memory.mjs init --project <anonymous-project-id>
+node <skill-dir>/scripts/memory.mjs remember --scope project --project <anonymous-project-id> --type convention --title "Use Laravel Actions" --content "Business logic belongs in focused Action classes." --source "repository inspection" --confidence high --tags laravel,actions
+node <skill-dir>/scripts/memory.mjs recall --project <anonymous-project-id> --query "approval flow" --limit 5
+node <skill-dir>/scripts/memory.mjs checkpoint --project <anonymous-project-id> --summary "Implemented the approval draft flow." --pending "Add rejection-path tests."
+node <skill-dir>/scripts/memory.mjs audit
+node <skill-dir>/scripts/memory.mjs forget --id <memory-id>
+```
+
+Use `auto` at the start of a session. It detects the current project from `--cwd`, Git metadata, `composer.json`, `package.json`, and Laravel markers; creates a stable anonymous project ID; initializes the memory root; updates the index; and returns compact relevant memory.
+
+Use `--content-file`, `--summary-file`, or `--pending-file` for long text. The backend creates the standard `global/`, `conversations/`, `projects/`, `workflows/`, and `index.json` layout, rejects likely secrets or raw personal data, records provenance, and returns memory IDs for future deletion.
+
+Always classify and sanitize content before calling the backend. The script is a guardrail, not permission to store unsafe data.
+
+## MCP And Hook Layer
+
+Use `scripts/mcp-server.mjs` as a local stdio MCP server when the agent host supports MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "syarif-memory-management": {
+      "command": "node",
+      "args": ["<skill-dir>/scripts/mcp-server.mjs"],
+      "env": {
+        "AI_MEMORY_ROOT": "~/.ai-memory"
+      }
+    }
+  }
+}
+```
+
+The MCP server exposes these tools:
+
+- `memory_auto`: automatic project detection, init, index update, and compact recall.
+- `memory_recall`: focused retrieval after preflight.
+- `memory_remember`: durable safe memory writes.
+- `memory_checkpoint`: handoff state writes.
+- `memory_audit`: secret and personal-data audit.
+- `memory_forget`: targeted deletion by memory ID.
+- `memory_status`: compact backend status.
+
+Use `scripts/memory-hook.mjs` for clients with lifecycle hooks:
+
+```bash
+node <skill-dir>/scripts/memory-hook.mjs preflight --cwd <project-root> --query "<task intent>"
+node <skill-dir>/scripts/memory-hook.mjs checkpoint --cwd <project-root> --summary "<handoff summary>" --files "app/Actions/Foo.php,tests/Feature/FooTest.php"
+```
+
+Hook environment variables:
+
+- `AI_MEMORY_ROOT`: memory root override.
+- `AI_MEMORY_CWD`: project root override.
+- `AI_MEMORY_TASK`: session task intent for preflight.
+- `AI_MEMORY_SUMMARY`: checkpoint summary.
+- `AI_MEMORY_PENDING`: checkpoint pending work.
+- `AI_MEMORY_FILES`: comma-separated touched files.
+
+Install both layers when possible: MCP gives the agent callable tools during the session; hooks make preflight and checkpoint happen at lifecycle boundaries.
+
+Use `scripts/install-memory-layer.mjs` to generate or install MCP and hook configuration:
+
+```bash
+node <skill-dir>/scripts/install-memory-layer.mjs detect
+node <skill-dir>/scripts/install-memory-layer.mjs print --target all
+node <skill-dir>/scripts/install-memory-layer.mjs install --target codex --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target claude --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target json --config .mcp.json --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target hooks --apply
+```
+
+Installer defaults to dry-run unless `--apply` is present. For JSON config targets, it merges only the `syarif-memory-management` MCP server entry and writes a timestamped backup before changing an existing file. For Codex, it uses the local `codex mcp add` command instead of editing Codex config directly.
 
 ## Memory Architecture
 
@@ -99,28 +184,29 @@ Prefer this layout when initializing file-based memory:
 
 ## Workflow
 
-1. Detect the current project identity from explicit user context, repository folder name, Git remotes, `composer.json`, package metadata, and project docs.
-2. Resolve the memory root. Prefer an explicit path from project instructions; otherwise use `~/.ai-memory`.
+1. Run `memory.mjs auto --cwd <project-root> --query "<task intent>"` before broad exploration.
+2. Read the compact preflight output and use it as orientation, not as final truth.
 3. Classify the request intent, active project, referenced projects, task type, feature tags, and memory scope.
-4. Read the global index first when present, usually `index.json`.
-5. Build a retrieval plan before loading memory content.
-6. Load only memory entries relevant to the detected project, framework, tags, or user-requested feature.
-7. Query codebase memory MCP only when the task needs structural code context.
-8. Verify important memory against the current codebase before acting on it.
-9. Apply the smallest focused Laravel skills needed for the actual task.
-10. At handoff, consolidate durable discoveries and discard temporary task chatter.
+4. Build a retrieval plan before loading additional memory content.
+5. Load only memory entries relevant to the detected project, framework, tags, or user-requested feature.
+6. Query codebase memory MCP only when the task needs structural code context.
+7. Verify important memory against the current codebase before acting on it.
+8. Apply the smallest focused Laravel skills needed for the actual task.
+9. At handoff, consolidate durable discoveries and discard temporary task chatter.
+10. Run `memory.mjs checkpoint`, `remember`, `audit`, or `forget` when the task produces durable state changes.
 
 ## Memory Modes
 
-- `memory recall`: identify user, repository, project, conversation checkpoint, and relevant memory before work.
-- `memory checkpoint`: save current task state, pending work, files touched, decisions, and open questions.
-- `memory remember`: store a durable preference, convention, decision, issue, workflow pattern, or current state.
+- `memory auto`: run `memory.mjs auto` at session start or skill entrypoint to detect the project, initialize memory, and recall compact relevant context.
+- `memory recall`: run `memory.mjs recall` for focused follow-up retrieval after preflight.
+- `memory checkpoint`: run `memory.mjs checkpoint` to save current task state, pending work, files touched, decisions, and open questions.
+- `memory remember`: run `memory.mjs remember` to store a durable preference, convention, decision, issue, workflow pattern, or current state.
 - `memory consolidate`: compact raw or temporary context into durable structured memory.
 - `memory adapt`: supersede stale memory after verifying newer repository evidence.
-- `memory forget`: remove or redact a specific entry after identifying it clearly.
-- `memory audit`: inspect memory for staleness, overbroad entries, missing provenance, sensitive data, and unsafe cross-project sharing.
+- `memory forget`: run `memory.mjs forget` to remove or redact a specific entry after identifying it clearly.
+- `memory audit`: run `memory.mjs audit` to inspect memory for staleness, overbroad entries, missing provenance, sensitive data, and unsafe cross-project sharing.
 - `memory delegate`: choose which memory backends to query and how much context to return to the main agent.
-- `memory status`: report loaded memory files, confidence, and exclusions without dumping all content.
+- `memory status`: run `memory.mjs status` and report loaded memory files, confidence, and exclusions without dumping all content.
 
 When the user asks to forget something, show the specific entry or file section that will be removed, then remove only that targeted content once the instruction is clear.
 

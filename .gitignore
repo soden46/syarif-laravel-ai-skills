@@ -3,6 +3,7 @@ node_modules/
 .tmp-*/
 .vercel
 .env*.local
+.ai-memory/
 .DS_Store
 Thumbs.db
 skills-lock.json

@@ -37,6 +37,14 @@ Use skills/quality-checks/SKILL.md before final handoff.
 
 Use `skills/memory-management/SKILL.md` when an assistant needs continuity across chats, repositories, or related feature patterns. The skill tells the assistant to retrieve only relevant memory, verify it against the current Laravel codebase, anonymize cross-project knowledge, preserve provenance, and never persist secrets.
 
+The skill includes an active local backend at `skills/memory-management/scripts/memory.mjs`. Any assistant with file and Node.js access can run `auto`, `init`, `remember`, `recall`, `checkpoint`, `audit`, `forget`, and `status`; memory defaults to `~/.ai-memory` or `AI_MEMORY_ROOT`.
+
+For automatic long-term memory, keep `using-laravel-standards` as the session entrypoint. It instructs the assistant to run `memory.mjs auto --cwd <project-root> --query "<task intent>"` before broad exploration, then write a checkpoint at handoff when durable project knowledge changed.
+
+For assistants that support MCP, register `skills/memory-management/scripts/mcp-server.mjs` as a stdio MCP server. For assistants that support lifecycle hooks, run `skills/memory-management/scripts/memory-hook.mjs preflight` at session start and `memory-hook.mjs checkpoint` at handoff.
+
+Use `skills/memory-management/scripts/install-memory-layer.mjs` to detect supported local targets, print config snippets, or install with backups. It supports Codex through `codex mcp add`, Claude-compatible JSON MCP config, generic JSON MCP config, and a generic hook manifest.
+
 This is especially useful when a task refers to previous work, such as "build this approval flow like the one from another project" or "continue the feature we paused last session." It can also delegate structural code questions to a local codebase memory MCP when one is available.
 
 ## Native Install Paths
@@ -117,6 +125,14 @@ Use skills/quality-checks/SKILL.md before final handoff.
 ## Kontinuitas Memory
 
 Gunakan `skills/memory-management/SKILL.md` ketika assistant butuh kontinuitas lintas chat, repository, atau pola fitur yang saling terkait. Skill ini mengarahkan assistant untuk mengambil hanya memory yang relevan, memverifikasi terhadap codebase Laravel saat ini, menganonimkan knowledge lintas proyek, menjaga provenance, dan tidak pernah menyimpan secret.
+
+Skill ini membawa backend lokal aktif di `skills/memory-management/scripts/memory.mjs`. Assistant apa pun yang punya akses file dan Node.js bisa menjalankan `auto`, `init`, `remember`, `recall`, `checkpoint`, `audit`, `forget`, dan `status`; memory default ke `~/.ai-memory` atau `AI_MEMORY_ROOT`.
+
+Untuk long-term memory otomatis, jadikan `using-laravel-standards` sebagai entrypoint session. Skill itu menginstruksikan assistant menjalankan `memory.mjs auto --cwd <project-root> --query "<task intent>"` sebelum eksplorasi luas, lalu menulis checkpoint saat handoff kalau ada knowledge proyek yang berubah.
+
+Untuk assistant yang support MCP, daftarkan `skills/memory-management/scripts/mcp-server.mjs` sebagai stdio MCP server. Untuk assistant yang support lifecycle hook, jalankan `skills/memory-management/scripts/memory-hook.mjs preflight` saat session start dan `memory-hook.mjs checkpoint` saat handoff.
+
+Gunakan `skills/memory-management/scripts/install-memory-layer.mjs` untuk detect target lokal, print snippet config, atau install dengan backup. Script ini support Codex lewat `codex mcp add`, config MCP JSON kompatibel Claude, config MCP JSON generik, dan manifest hook generik.
 
 Ini berguna ketika task merujuk pekerjaan lama, misalnya "buat approval flow ini seperti proyek lain" atau "lanjutkan fitur yang kemarin kita pause." Skill ini juga bisa mendelegasikan pertanyaan struktur kode ke codebase memory MCP lokal jika tersedia.
 

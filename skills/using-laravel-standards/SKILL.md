@@ -14,11 +14,13 @@ This is the only catalog entrypoint for the Syarif Laravel standards. It consoli
 
 ## Workflow
 
-1. Detect the project stack before changing code: Laravel version, PHP version, Sail/container vs host runner, frontend stack, test framework, queue driver, and installed quality tools.
-2. Choose the smallest relevant skill set for the current task.
-3. Prefer Laravel-native APIs and project conventions before adding custom abstractions.
-4. Keep client names, credentials, provider quirks, local workarounds, and project-specific business rules out of reusable standards.
-5. Verify behavior before handoff with targeted tests and available quality checks.
+1. Run the `memory-management` automatic preflight when the skill is available: `node <memory-skill-dir>/scripts/memory.mjs auto --cwd <project-root> --query "<task intent>"`. Use its compact output as orientation only.
+2. Detect the project stack before changing code: Laravel version, PHP version, Sail/container vs host runner, frontend stack, test framework, queue driver, and installed quality tools.
+3. Choose the smallest relevant skill set for the current task.
+4. Prefer Laravel-native APIs and project conventions before adding custom abstractions.
+5. Keep client names, credentials, provider quirks, local workarounds, and project-specific business rules out of reusable standards.
+6. Verify behavior before handoff with targeted tests and available quality checks.
+7. At handoff, use `memory-management` to checkpoint durable decisions, touched files, and pending work when the task changed project knowledge.
 
 ## Skill Selection
 

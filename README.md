@@ -30,7 +30,7 @@ Language: [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 - **Public topic coverage** - 54 additional topics mapped from public Laravel skill catalogs without copying third-party skill body text.
 - **Responsive UI testing** - a focused Playwright skill for mobile, tablet, desktop, overflow, clipping, tables, modals, navigation, and Livewire state checks.
 - **UI Agent Browser workflow** - a frontend/UI/UX skill that combines agent-browser inspection, Playwright checks, target-stack implementation, and backend contract alignment.
-- **Secure Memory Orchestrator** - `memory-management` routes conversation, project, user, workflow, and codebase memory through relevance-aware retrieval, provenance, anonymization, and secret-safe guardrails.
+- **Active Secure Memory** - `memory-management` routes conversation, project, user, workflow, and codebase memory through relevance-aware retrieval, local file-backed commands, provenance, anonymization, and secret-safe guardrails.
 - **Simple discovery** - `npx skills add <repo> --list` reads each `skills/<folder>/SKILL.md`.
 - **Universal assistant support** - usable by Codex, Claude Code, Copilot, Cursor, Windsurf, Cline, Aider, OpenCode, Gemini CLI, and generic agents that can read files.
 
@@ -38,7 +38,37 @@ Language: [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 
 The `memory-management` skill is the continuity layer for long-running Laravel work. It helps an agent remember durable decisions, understand related project patterns, continue from a previous checkpoint, and adapt when the current repository proves old memory stale.
 
-It is designed to reduce token waste by retrieving only relevant memory: user preferences, project conventions, workflow patterns, conversation checkpoints, and targeted codebase intelligence from a local MCP backend when available. It also makes privacy a first-class rule: anonymize cross-project knowledge, preserve provenance, verify against source code, and never persist secrets.
+It is designed to reduce token waste by retrieving only relevant memory: user preferences, project conventions, workflow patterns, conversation checkpoints, and targeted codebase intelligence from a local MCP backend when available. It also ships an active local backend at `skills/memory-management/scripts/memory.mjs`, with `auto`, `init`, `remember`, `recall`, `checkpoint`, `audit`, `forget`, and `status` commands that default to `~/.ai-memory` or `AI_MEMORY_ROOT`.
+
+Automatic mode is wired into `using-laravel-standards`: the entrypoint tells agents to run `memory.mjs auto --cwd <project-root> --query "<task intent>"` before broad exploration, then checkpoint durable decisions at handoff. The skill also ships `scripts/mcp-server.mjs` for stdio MCP tool access and `scripts/memory-hook.mjs` for lifecycle preflight/checkpoint hooks. For always-on code graph indexing and background watchers, pair this skill with a local codebase memory MCP such as `codebase-memory-mcp`.
+
+Privacy stays first-class: anonymize cross-project knowledge, preserve provenance, verify against source code, and never persist secrets.
+
+Example MCP config:
+
+```json
+{
+  "mcpServers": {
+    "syarif-memory-management": {
+      "command": "node",
+      "args": ["skills/memory-management/scripts/mcp-server.mjs"],
+      "env": {
+        "AI_MEMORY_ROOT": "~/.ai-memory"
+      }
+    }
+  }
+}
+```
+
+Installer/generator:
+
+```bash
+node skills/memory-management/scripts/install-memory-layer.mjs detect
+node skills/memory-management/scripts/install-memory-layer.mjs print --target all
+node skills/memory-management/scripts/install-memory-layer.mjs install --target codex --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target claude --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target hooks --apply
+```
 
 ## Installation
 
@@ -156,7 +186,7 @@ Use quality-checks before final handoff.
 ### Core Local Standards
 
 - `using-laravel-standards` - entry point and skill selector.
-- `memory-management` - secure memory orchestrator for conversation, project, user, workflow, and codebase context.
+- `memory-management` - active secure memory for conversation, project, user, workflow, and codebase context.
 - `extract-laravel-standards` - audit finished projects and propose reusable standards.
 - `architecture` - Laravel-native architecture decisions.
 - `controller-cleanup` - thin controllers and route boundaries.
@@ -263,7 +293,7 @@ MIT License - see [LICENSE](LICENSE).
 - **Cakupan topik publik** - 54 topik tambahan yang dimapping dari katalog skill Laravel publik tanpa menyalin isi body skill pihak ketiga.
 - **Responsive UI testing** - skill Playwright khusus untuk mobile, tablet, desktop, overflow, clipping, tabel, modal, navigasi, dan state Livewire.
 - **Workflow UI Agent Browser** - skill frontend/UI/UX yang menggabungkan inspeksi agent-browser, pengecekan Playwright, implementasi sesuai stack target, dan alignment kontrak backend.
-- **Secure Memory Orchestrator** - `memory-management` mengatur conversation, project, user, workflow, dan codebase memory dengan retrieval relevan, provenance, anonymization, dan guardrail anti-secret.
+- **Active Secure Memory** - `memory-management` mengatur conversation, project, user, workflow, dan codebase memory dengan retrieval relevan, command lokal file-backed, provenance, anonymization, dan guardrail anti-secret.
 - **Discovery sederhana** - `npx skills add <repo> --list` membaca setiap `skills/<folder>/SKILL.md`.
 - **Support AI universal** - bisa dipakai Codex, Claude Code, Copilot, Cursor, Windsurf, Cline, Aider, OpenCode, Gemini CLI, dan agent generik yang bisa membaca file.
 
@@ -271,7 +301,37 @@ MIT License - see [LICENSE](LICENSE).
 
 Skill `memory-management` adalah lapisan kontinuitas untuk kerja Laravel yang panjang. Agent bisa mengingat keputusan tahan lama, memahami pola proyek terkait, melanjutkan dari checkpoint sebelumnya, dan beradaptasi ketika repository saat ini membuktikan memory lama sudah stale.
 
-Skill ini dirancang untuk menghemat token dengan hanya mengambil memory yang relevan: preferensi user, konvensi proyek, pola workflow, checkpoint percakapan, dan codebase intelligence terarah dari backend MCP lokal ketika tersedia. Privasi jadi aturan utama: anonymize knowledge lintas proyek, simpan provenance, verifikasi terhadap source code, dan jangan pernah persist secret.
+Skill ini dirancang untuk menghemat token dengan hanya mengambil memory yang relevan: preferensi user, konvensi proyek, pola workflow, checkpoint percakapan, dan codebase intelligence terarah dari backend MCP lokal ketika tersedia. Skill ini juga membawa backend lokal aktif di `skills/memory-management/scripts/memory.mjs`, dengan command `auto`, `init`, `remember`, `recall`, `checkpoint`, `audit`, `forget`, dan `status` yang default ke `~/.ai-memory` atau `AI_MEMORY_ROOT`.
+
+Mode otomatis sudah disambungkan ke `using-laravel-standards`: entrypoint meminta agent menjalankan `memory.mjs auto --cwd <project-root> --query "<task intent>"` sebelum eksplorasi luas, lalu checkpoint keputusan tahan lama saat handoff. Skill ini juga membawa `scripts/mcp-server.mjs` untuk tool MCP stdio dan `scripts/memory-hook.mjs` untuk lifecycle hook preflight/checkpoint. Untuk indexing graph kode yang selalu hidup dan background watcher, pasangkan skill ini dengan MCP lokal seperti `codebase-memory-mcp`.
+
+Privasi tetap jadi aturan utama: anonymize knowledge lintas proyek, simpan provenance, verifikasi terhadap source code, dan jangan pernah persist secret.
+
+Contoh config MCP:
+
+```json
+{
+  "mcpServers": {
+    "syarif-memory-management": {
+      "command": "node",
+      "args": ["skills/memory-management/scripts/mcp-server.mjs"],
+      "env": {
+        "AI_MEMORY_ROOT": "~/.ai-memory"
+      }
+    }
+  }
+}
+```
+
+Installer/generator:
+
+```bash
+node skills/memory-management/scripts/install-memory-layer.mjs detect
+node skills/memory-management/scripts/install-memory-layer.mjs print --target all
+node skills/memory-management/scripts/install-memory-layer.mjs install --target codex --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target claude --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target hooks --apply
+```
 
 ## Instalasi
 
@@ -389,7 +449,7 @@ Use quality-checks before final handoff.
 ### Standar Inti Lokal
 
 - `using-laravel-standards` - entry point dan pemilih skill.
-- `memory-management` - orchestrator memory aman untuk conversation, project, user, workflow, dan codebase context.
+- `memory-management` - memory aktif yang aman untuk conversation, project, user, workflow, dan codebase context.
 - `extract-laravel-standards` - audit proyek selesai dan usulkan standar reusable.
 - `architecture` - keputusan arsitektur Laravel-native.
 - `controller-cleanup` - controller tipis dan batas route.

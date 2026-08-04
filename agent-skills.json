@@ -329,7 +329,7 @@
     {
       "name": "memory-management",
       "path": "./skills/memory-management/SKILL.md",
-      "description": "Orchestrate secure Laravel AI memory across conversation, project, user, workflow, and codebase scopes with relevance-aware retrieval and secret-safe delegation."
+      "description": "Provide automatic long-term Laravel AI memory preflight, recall, checkpointing, and secure cross-project context across conversation, project, user, workflow, and codebase scopes."
     },
     {
       "name": "migrations-and-factories",
