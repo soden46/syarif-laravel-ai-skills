@@ -29,8 +29,15 @@ For a focused task:
 Use skills/form-requests/SKILL.md to move controller validation into a Form Request.
 Use skills/laravel-database-optimization/SKILL.md to review this query flow.
 Use skills/ui-agent-browser/SKILL.md to design and implement this frontend against the Laravel backend contract.
+Use skills/memory-management/SKILL.md to recall relevant project, workflow, and conversation memory before implementing this related feature.
 Use skills/quality-checks/SKILL.md before final handoff.
 ```
+
+## Memory Continuity
+
+Use `skills/memory-management/SKILL.md` when an assistant needs continuity across chats, repositories, or related feature patterns. The skill tells the assistant to retrieve only relevant memory, verify it against the current Laravel codebase, anonymize cross-project knowledge, preserve provenance, and never persist secrets.
+
+This is especially useful when a task refers to previous work, such as "build this approval flow like the one from another project" or "continue the feature we paused last session." It can also delegate structural code questions to a local codebase memory MCP when one is available.
 
 ## Native Install Paths
 
@@ -103,8 +110,15 @@ Untuk task spesifik:
 Use skills/form-requests/SKILL.md to move controller validation into a Form Request.
 Use skills/laravel-database-optimization/SKILL.md to review this query flow.
 Use skills/ui-agent-browser/SKILL.md to design and implement this frontend against the Laravel backend contract.
+Use skills/memory-management/SKILL.md to recall relevant project, workflow, and conversation memory before implementing this related feature.
 Use skills/quality-checks/SKILL.md before final handoff.
 ```
+
+## Kontinuitas Memory
+
+Gunakan `skills/memory-management/SKILL.md` ketika assistant butuh kontinuitas lintas chat, repository, atau pola fitur yang saling terkait. Skill ini mengarahkan assistant untuk mengambil hanya memory yang relevan, memverifikasi terhadap codebase Laravel saat ini, menganonimkan knowledge lintas proyek, menjaga provenance, dan tidak pernah menyimpan secret.
+
+Ini berguna ketika task merujuk pekerjaan lama, misalnya "buat approval flow ini seperti proyek lain" atau "lanjutkan fitur yang kemarin kita pause." Skill ini juga bisa mendelegasikan pertanyaan struktur kode ke codebase memory MCP lokal jika tersedia.
 
 ## Jalur Install Native
 

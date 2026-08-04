@@ -15,14 +15,15 @@ GitHub release body: [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md).
 
 ### Added
 
-- 70 installable Laravel skills discoverable by `npx skills add`.
-- 12 local core standards covering architecture, controllers, Form Requests, Actions/Services, Eloquent, transactions, queues, Livewire, security, testing, standards usage, and standards extraction.
+- 71 installable Laravel skills discoverable by `npx skills add`.
+- Local core standards covering architecture, controllers, Form Requests, Actions/Services, Eloquent, transactions, queues, Livewire, security, testing, standards usage, standards extraction, and memory orchestration.
 - 54 additional Laravel topic skills mapped from the public [jpcaparas/superpowers-laravel](https://github.com/jpcaparas/superpowers-laravel) catalog without copying third-party skill body text.
 - 4 supplemental skills inspired by public Laravel Skills Cloud topics: Laravel specialist workflow, Laravel 11/12 app guidelines, Livewire development, and database optimization.
 - Module-per-menu workflow for multi-page Laravel apps with one page per module, shared layouts/components, and dynamic database-backed data.
 - UI Agent Browser workflow for stack-aware frontend/UI/UX implementation with agent-browser inspection, Playwright checks, and backend contract alignment.
 - Stronger Playwright E2E guidance based on the official Microsoft Playwright source, plus cross-links from existing UI/browser skills into the new frontend workflow.
 - Responsive UI testing skill for Laravel interfaces using Playwright across mobile, tablet, laptop, desktop, Livewire states, overflow, clipped content, forms, tables, modals, navigation, and dark mode.
+- Secure memory management skill for continuity across conversation, project, user, workflow, and codebase context with relevance-aware retrieval and secret-safe guardrails.
 - Bilingual Markdown switch pattern for user-facing docs.
 - Proposal workflow under `proposals/pending`, `proposals/accepted`, and `proposals/rejected`.
 - Local validation, listing, dry-run install, and Superpowers mapping scripts.
@@ -65,14 +66,15 @@ Body release GitHub: [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md).
 
 ### Ditambahkan
 
-- 70 skill Laravel installable yang bisa ditemukan oleh `npx skills add`.
-- 12 standar inti lokal untuk arsitektur, controller, Form Request, Action/Service, Eloquent, transaction, queue, Livewire, security, testing, penggunaan standar, dan ekstraksi standar.
+- 71 skill Laravel installable yang bisa ditemukan oleh `npx skills add`.
+- Standar inti lokal untuk arsitektur, controller, Form Request, Action/Service, Eloquent, transaction, queue, Livewire, security, testing, penggunaan standar, ekstraksi standar, dan memory orchestration.
 - 54 skill topik Laravel tambahan yang dimapping dari katalog publik [jpcaparas/superpowers-laravel](https://github.com/jpcaparas/superpowers-laravel) tanpa menyalin isi body skill pihak ketiga.
 - 4 skill tambahan yang terinspirasi dari topik publik Laravel Skills Cloud: workflow Laravel specialist, guideline app Laravel 11/12, Livewire development, dan database optimization.
 - Workflow module-per-menu untuk app Laravel multi-page dengan satu page per module, shared layout/component, dan data dinamis dari database.
 - Workflow UI Agent Browser untuk implementasi frontend/UI/UX sesuai stack target, memakai inspeksi agent-browser, pengecekan Playwright, dan alignment kontrak backend.
 - Guidance Playwright E2E yang lebih kuat berdasarkan sumber resmi Microsoft Playwright, plus cross-link dari skill UI/browser lama ke workflow frontend baru.
 - Skill responsive UI testing untuk interface Laravel memakai Playwright di mobile, tablet, laptop, desktop, state Livewire, overflow, konten terpotong, form, tabel, modal, navigasi, dan dark mode.
+- Skill secure memory management untuk kontinuitas conversation, project, user, workflow, dan codebase context dengan retrieval relevan dan guardrail anti-secret.
 - Pola switch Markdown bilingual untuk dokumentasi user-facing.
 - Workflow proposal di `proposals/pending`, `proposals/accepted`, dan `proposals/rejected`.
 - Script lokal untuk validasi, listing, dry-run install, dan mapping Superpowers.

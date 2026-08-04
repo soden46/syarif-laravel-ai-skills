@@ -3,6 +3,7 @@
 ## Unreleased
 
 Changed:
+- added `memory-management` as a Start Here orchestration skill for safe conversation, project, user, workflow, and codebase Laravel AI memory;
 - folded the proposed duplicate standards entrypoint into canonical focused Laravel skills and kept `using-laravel-standards` as the single catalog entrypoint;
 - merged anonymous project audit proposal H into the global standards: companion services behind authenticated Laravel proxies, webhook idempotency, integration runbooks, idempotent environment-gated seeders, scheduled command safety, structured integration logs, and repository/runtime hygiene;
 - merged anonymous project audit proposal I into the global standards: route-level permission maps, scoped validation for submitted IDs, numeric input normalization, reverse/apply balance or counter helpers inside transactions, feature parity tests, and authorization invariant tests;
@@ -14,7 +15,7 @@ Changed:
 - added `responsive-ui-testing` for Laravel responsive UI audits across mobile, tablet, desktop, Livewire states, overflow, clipping, tables, modals, and navigation;
 - added `ui-agent-browser` for stack-aware Laravel frontend/UI/UX implementation with agent-browser inspection, Playwright checks, and backend contract alignment;
 - strengthened `e2e-playwright` with official Microsoft Playwright guidance and linked existing UI/browser skills to the new frontend workflow;
-- updated catalog documentation and generated metadata to reflect 70 installable skills;
+- updated catalog documentation and generated metadata to reflect 71 installable skills;
 - added root `.codex-plugin/plugin.json` for codex-marketplace.com submissions and stopped committing generated plugin skill copies to keep artifacts under the 128-file scan limit;
 - converted the previous umbrella standards skill and references into focused installable skills;
 - built the catalog from 12 local core standards, mapped Superpowers Laravel topics, supplemental Laravel Skills Cloud topics, and focused project-quality skills;

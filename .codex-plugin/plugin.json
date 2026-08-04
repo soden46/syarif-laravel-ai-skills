@@ -1,7 +1,7 @@
 {
   "name": "syarif-laravel-ai-skills",
   "version": "0.1.0",
-  "description": "Laravel AI skill bundle for architecture, controllers, validation, Eloquent, performance, queues, security, Livewire, testing, and daily workflow.",
+  "description": "Laravel AI skill bundle for architecture, validation, Eloquent, performance, security, Livewire, testing, daily workflow, and secure memory orchestration.",
   "author": {
     "name": "Syarif",
     "url": "https://github.com/soden46"
@@ -18,8 +18,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Syarif Laravel AI Skills",
-    "shortDescription": "Laravel AI skill bundle for architecture, controllers, validation, Eloquent, performance, queues, security, Livewire, testing, and daily workflow.",
-    "longDescription": "Laravel AI skill bundle for architecture, controllers, validation, Eloquent, performance, queues, security, Livewire, testing, and daily workflow.",
+    "shortDescription": "Laravel AI skill bundle for architecture, validation, Eloquent, performance, security, Livewire, testing, daily workflow, and secure memory orchestration.",
+    "longDescription": "Laravel AI skill bundle for architecture, validation, Eloquent, performance, security, Livewire, testing, daily workflow, and secure memory orchestration.",
     "developerName": "Syarif",
     "category": "Productivity",
     "capabilities": [

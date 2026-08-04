@@ -46,7 +46,7 @@
   "plugins": [
     {
       "name": "laravel-app-skills",
-      "description": "Laravel AI skill bundle for architecture, controllers, validation, Eloquent, performance, queues, security, Livewire, testing, and daily workflow.",
+      "description": "Laravel AI skill bundle for architecture, validation, Eloquent, performance, security, Livewire, testing, daily workflow, and secure memory orchestration.",
       "codexManifest": "./plugins/laravel-app-skills/.codex-plugin/plugin.json",
       "claudeManifest": "./plugins/laravel-app-skills/.claude-plugin/plugin.json",
       "skillsPath": "./plugins/laravel-app-skills/skills",
@@ -92,6 +92,7 @@
         "laravel-prompting-patterns",
         "laravel-specialist",
         "livewire-development",
+        "memory-management",
         "migrations-and-factories",
         "module-per-menu",
         "nova-resource-patterns",
@@ -324,6 +325,11 @@
       "name": "livewire-development",
       "path": "./skills/livewire-development/SKILL.md",
       "description": "Build, refactor, secure, optimize, and test Laravel Livewire v2-v4 components, including state, forms, events, uploads, pagination, Alpine, and v4 formats."
+    },
+    {
+      "name": "memory-management",
+      "path": "./skills/memory-management/SKILL.md",
+      "description": "Orchestrate secure Laravel AI memory across conversation, project, user, workflow, and codebase scopes with relevance-aware retrieval and secret-safe delegation."
     },
     {
       "name": "migrations-and-factories",

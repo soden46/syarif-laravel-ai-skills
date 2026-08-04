@@ -2,7 +2,7 @@
   "plugins": [
     {
       "name": "laravel-app-skills",
-      "description": "Laravel AI skill bundle for architecture, controllers, validation, Eloquent, performance, queues, security, Livewire, testing, and daily workflow.",
+      "description": "Laravel AI skill bundle for architecture, validation, Eloquent, performance, security, Livewire, testing, daily workflow, and secure memory orchestration.",
       "skills": [
         "actions-and-services",
         "ai-sdk",
@@ -45,6 +45,7 @@
         "laravel-prompting-patterns",
         "laravel-specialist",
         "livewire-development",
+        "memory-management",
         "migrations-and-factories",
         "module-per-menu",
         "nova-resource-patterns",

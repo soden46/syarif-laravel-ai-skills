@@ -1,18 +1,18 @@
 # Syarif Laravel AI Skills
 
 <p align="center">
-  <img src="docs/assets/readme-hero.svg" alt="Syarif Laravel AI Skills - 70 Skills, Codex Plugin, Claude Code, Universal AI" width="100%">
+  <img src="docs/assets/readme-hero.svg" alt="Syarif Laravel AI Skills - 71 Skills, Codex Plugin, Claude Code, Universal AI" width="100%">
 </p>
 
 <p align="center">
   <a href="https://github.com/soden46/syarif-laravel-ai-skills/releases"><img alt="Version" src="https://img.shields.io/badge/version-0.1.0-2563EB?style=for-the-badge&labelColor=0F172A"></a>
   <a href="https://github.com/soden46/syarif-laravel-ai-skills/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0284C7?style=for-the-badge&labelColor=0F172A"></a>
-  <a href="https://github.com/soden46/syarif-laravel-ai-skills/tree/main/skills"><img alt="Skills" src="https://img.shields.io/badge/skills-70-0EA5E9?style=for-the-badge&labelColor=0F172A"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/tree/main/skills"><img alt="Skills" src="https://img.shields.io/badge/skills-71-0EA5E9?style=for-the-badge&labelColor=0F172A"></a>
   <a href="https://www.codex-marketplace.com/plugins/syarif-laravel-ai-skills"><img alt="Codex Marketplace" src="https://img.shields.io/badge/codex_marketplace-approved-06B6D4?style=for-the-badge&labelColor=0F172A"></a>
   <a href="https://github.com/soden46/syarif-laravel-ai-skills/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/soden46/syarif-laravel-ai-skills?style=for-the-badge&label=stars&labelColor=0F172A&color=38BDF8"></a>
 </p>
 
-Laravel-focused AI skills for Codex, Claude Code, and any AI coding assistant that can read Markdown files. Install them with `npx skills add`, use the generated plugin packages, or point a generic assistant at the universal manifest and canonical `skills/` folder.
+Laravel-focused AI skills for Codex, Claude Code, and any AI coding assistant that can read Markdown files. Install them with `npx skills add`, use the generated plugin packages, or point a generic assistant at the universal manifest and canonical `skills/` folder. The catalog now includes secure memory orchestration so agents can recall useful project context without flooding the prompt or storing secrets.
 
 Skills follow the [Agent Skills](https://agentskills.io/) format.
 
@@ -25,13 +25,20 @@ Language: [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 
 ## What You Get
 
-- **70 installable Laravel skills** - a focused Laravel skill catalog with overlapping topics consolidated into stronger canonical skills.
-- **Personal core standards** - 12 local standards extracted from reviewed Laravel projects, with client details removed.
+- **71 installable Laravel skills** - a focused Laravel skill catalog with overlapping topics consolidated into stronger canonical skills.
+- **Personal core standards** - local standards extracted from reviewed Laravel projects and ongoing AI workflows, with client details removed.
 - **Public topic coverage** - 54 additional topics mapped from public Laravel skill catalogs without copying third-party skill body text.
 - **Responsive UI testing** - a focused Playwright skill for mobile, tablet, desktop, overflow, clipping, tables, modals, navigation, and Livewire state checks.
 - **UI Agent Browser workflow** - a frontend/UI/UX skill that combines agent-browser inspection, Playwright checks, target-stack implementation, and backend contract alignment.
+- **Secure Memory Orchestrator** - `memory-management` routes conversation, project, user, workflow, and codebase memory through relevance-aware retrieval, provenance, anonymization, and secret-safe guardrails.
 - **Simple discovery** - `npx skills add <repo> --list` reads each `skills/<folder>/SKILL.md`.
 - **Universal assistant support** - usable by Codex, Claude Code, Copilot, Cursor, Windsurf, Cline, Aider, OpenCode, Gemini CLI, and generic agents that can read files.
+
+## Memory Orchestrator
+
+The `memory-management` skill is the continuity layer for long-running Laravel work. It helps an agent remember durable decisions, understand related project patterns, continue from a previous checkpoint, and adapt when the current repository proves old memory stale.
+
+It is designed to reduce token waste by retrieving only relevant memory: user preferences, project conventions, workflow patterns, conversation checkpoints, and targeted codebase intelligence from a local MCP backend when available. It also makes privacy a first-class rule: anonymize cross-project knowledge, preserve provenance, verify against source code, and never persist secrets.
 
 ## Installation
 
@@ -140,6 +147,7 @@ For focused tasks, call a smaller skill directly:
 Use form-requests to move this validation out of the controller.
 Use database-transactions to review this checkout flow.
 Use ui-agent-browser to design and implement this frontend against the Laravel backend contract.
+Use memory-management to recall relevant project and workflow memory before implementing this related feature.
 Use quality-checks before final handoff.
 ```
 
@@ -148,6 +156,7 @@ Use quality-checks before final handoff.
 ### Core Local Standards
 
 - `using-laravel-standards` - entry point and skill selector.
+- `memory-management` - secure memory orchestrator for conversation, project, user, workflow, and codebase context.
 - `extract-laravel-standards` - audit finished projects and propose reusable standards.
 - `architecture` - Laravel-native architecture decisions.
 - `controller-cleanup` - thin controllers and route boundaries.
@@ -162,7 +171,7 @@ Use quality-checks before final handoff.
 
 ### Topic Coverage
 
-- **Start Here** - `using-laravel-standards`, `runner-selection`, `daily-workflow`, `brainstorming`, `writing-plans`, `executing-plans`, `laravel-specialist`, `laravel-11-12-app-guidelines`.
+- **Start Here** - `using-laravel-standards`, `runner-selection`, `daily-workflow`, `memory-management`, `brainstorming`, `writing-plans`, `executing-plans`, `laravel-specialist`, `laravel-11-12-app-guidelines`.
 - **Architecture** - `architecture`, `module-per-menu`, `actions-and-services`, `controller-cleanup`, `routes-best-practices`, `ports-and-adapters`, `interfaces-and-di`, `strategy-pattern`, `template-method-and-plugins`, `complexity-guardrails`, `constants-and-configuration`, `custom-helpers`.
 - **HTTP and Security** - `form-requests`, `api-resources-and-pagination`, `api-surface-evolution`, `policies-and-authorization`, `rate-limiting`, `request-forgery-protection`, `security`.
 - **Data and Eloquent** - `migrations-and-factories`, `eloquent-patterns`, `eloquent-relationships`, `database-transactions`, `data-chunking-large-datasets`.
@@ -249,13 +258,20 @@ MIT License - see [LICENSE](LICENSE).
 
 ## Yang Didapat
 
-- **70 skill Laravel installable** - katalog skill Laravel yang fokus dengan topik tumpang tindih digabung menjadi skill canonical yang lebih kuat.
-- **Standar inti pribadi** - 12 standar lokal dari proyek Laravel yang sudah direview, tanpa detail client.
+- **71 skill Laravel installable** - katalog skill Laravel yang fokus dengan topik tumpang tindih digabung menjadi skill canonical yang lebih kuat.
+- **Standar inti pribadi** - standar lokal dari proyek Laravel yang sudah direview dan workflow AI yang terus berkembang, tanpa detail client.
 - **Cakupan topik publik** - 54 topik tambahan yang dimapping dari katalog skill Laravel publik tanpa menyalin isi body skill pihak ketiga.
 - **Responsive UI testing** - skill Playwright khusus untuk mobile, tablet, desktop, overflow, clipping, tabel, modal, navigasi, dan state Livewire.
 - **Workflow UI Agent Browser** - skill frontend/UI/UX yang menggabungkan inspeksi agent-browser, pengecekan Playwright, implementasi sesuai stack target, dan alignment kontrak backend.
+- **Secure Memory Orchestrator** - `memory-management` mengatur conversation, project, user, workflow, dan codebase memory dengan retrieval relevan, provenance, anonymization, dan guardrail anti-secret.
 - **Discovery sederhana** - `npx skills add <repo> --list` membaca setiap `skills/<folder>/SKILL.md`.
 - **Support AI universal** - bisa dipakai Codex, Claude Code, Copilot, Cursor, Windsurf, Cline, Aider, OpenCode, Gemini CLI, dan agent generik yang bisa membaca file.
+
+## Memory Orchestrator
+
+Skill `memory-management` adalah lapisan kontinuitas untuk kerja Laravel yang panjang. Agent bisa mengingat keputusan tahan lama, memahami pola proyek terkait, melanjutkan dari checkpoint sebelumnya, dan beradaptasi ketika repository saat ini membuktikan memory lama sudah stale.
+
+Skill ini dirancang untuk menghemat token dengan hanya mengambil memory yang relevan: preferensi user, konvensi proyek, pola workflow, checkpoint percakapan, dan codebase intelligence terarah dari backend MCP lokal ketika tersedia. Privasi jadi aturan utama: anonymize knowledge lintas proyek, simpan provenance, verifikasi terhadap source code, dan jangan pernah persist secret.
 
 ## Instalasi
 
@@ -364,6 +380,7 @@ Untuk task yang lebih spesifik, panggil skill kecil langsung:
 Use form-requests to move this validation out of the controller.
 Use database-transactions to review this checkout flow.
 Use ui-agent-browser to design and implement this frontend against the Laravel backend contract.
+Use memory-management to recall relevant project and workflow memory before implementing this related feature.
 Use quality-checks before final handoff.
 ```
 
@@ -372,6 +389,7 @@ Use quality-checks before final handoff.
 ### Standar Inti Lokal
 
 - `using-laravel-standards` - entry point dan pemilih skill.
+- `memory-management` - orchestrator memory aman untuk conversation, project, user, workflow, dan codebase context.
 - `extract-laravel-standards` - audit proyek selesai dan usulkan standar reusable.
 - `architecture` - keputusan arsitektur Laravel-native.
 - `controller-cleanup` - controller tipis dan batas route.
@@ -386,7 +404,7 @@ Use quality-checks before final handoff.
 
 ### Cakupan Topik
 
-- **Mulai Di Sini** - `using-laravel-standards`, `runner-selection`, `daily-workflow`, `brainstorming`, `writing-plans`, `executing-plans`, `laravel-specialist`, `laravel-11-12-app-guidelines`.
+- **Mulai Di Sini** - `using-laravel-standards`, `runner-selection`, `daily-workflow`, `memory-management`, `brainstorming`, `writing-plans`, `executing-plans`, `laravel-specialist`, `laravel-11-12-app-guidelines`.
 - **Arsitektur** - `architecture`, `module-per-menu`, `actions-and-services`, `controller-cleanup`, `routes-best-practices`, `ports-and-adapters`, `interfaces-and-di`, `strategy-pattern`, `template-method-and-plugins`, `complexity-guardrails`, `constants-and-configuration`, `custom-helpers`.
 - **HTTP dan Security** - `form-requests`, `api-resources-and-pagination`, `api-surface-evolution`, `policies-and-authorization`, `rate-limiting`, `request-forgery-protection`, `security`.
 - **Data dan Eloquent** - `migrations-and-factories`, `eloquent-patterns`, `eloquent-relationships`, `database-transactions`, `data-chunking-large-datasets`.

@@ -30,6 +30,7 @@ This is the only catalog entrypoint for the Syarif Laravel standards. It consoli
 - Atomic writes and side effects: `database-transactions`
 - Eloquent models, relationships, and query shape: `eloquent-patterns`
 - Broad Laravel feature work: `laravel-specialist`
+- Persistent conversation, project, user, workflow, and codebase context: `memory-management`
 - Laravel 11/12 app workflow: `laravel-11-12-app-guidelines`
 - Database performance and query tuning: `laravel-database-optimization`
 - UI/UX design, frontend implementation, agent-browser inspection, Playwright checks, and backend contract alignment: `ui-agent-browser`
