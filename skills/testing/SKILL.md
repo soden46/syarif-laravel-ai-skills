@@ -36,6 +36,8 @@ Use browser E2E tests for:
 - modals, uploads, previews, drag/drop, and browser state;
 - critical accessibility-sensitive flows.
 
+Use `ui-agent-browser` while a frontend workflow is still being explored or implemented. Use `e2e-playwright` when that workflow should become repeatable Playwright coverage.
+
 ## Framework Fakes
 
 Use Laravel fakes for external or filesystem side effects.
@@ -117,6 +119,8 @@ For Playwright or similar tools:
 - avoid fixed sleeps;
 - use deterministic auth setup when appropriate;
 - keep E2E focused on high-value browser behavior.
+
+For Laravel Playwright details, load `e2e-playwright` instead of re-deriving setup, auth state, locator, trace, and screenshot rules.
 
 ## Handoff Verification
 

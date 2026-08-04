@@ -16,6 +16,10 @@ Use this skill when asked to test whether a Laravel application interface is res
 
 Do not conclude that a page is responsive merely because it loads on one mobile viewport or has no JavaScript errors.
 
+When the request is to design, redesign, or implement the frontend before auditing it, use `ui-agent-browser` first. This skill is the final responsive and visual-stability gate after the UI and backend contract are already wired.
+
+Use `e2e-playwright` when responsive findings should become durable Playwright regression tests.
+
 ## Primary Goals
 
 Verify that the application remains usable and visually correct across:

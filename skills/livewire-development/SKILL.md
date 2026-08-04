@@ -12,6 +12,8 @@ Use this skill for Laravel Livewire implementation, refactoring, debugging, secu
 
 This is the canonical Livewire skill in this repository. It consolidates the former `livewire-patterns` guidance and the public `laravel-livewire` topic into one version-aware workflow.
 
+When the Livewire work is primarily UI/UX design, visual browser iteration, frontend flow shaping, or backend contract alignment, also use `ui-agent-browser`. Use `e2e-playwright` when browser behavior needs durable Playwright coverage.
+
 ## Detect The Project First
 
 1. Read `composer.json` and `composer.lock` or run `composer show livewire/livewire` to confirm the installed major version.
@@ -112,5 +114,7 @@ Use factories and Laravel fakes for files, queues, notifications, mail, and HTTP
 - `database-transactions` for atomic multi-write actions.
 - `filesystem-uploads` for storage and file lifecycle rules.
 - `policies-and-authorization` for model access decisions.
+- `ui-agent-browser` for stack-aware UI/UX implementation and browser inspection.
+- `e2e-playwright` for durable browser workflow coverage.
 - `responsive-ui-testing` for viewport and browser-state coverage.
 - `testing` for test selection and handoff verification.

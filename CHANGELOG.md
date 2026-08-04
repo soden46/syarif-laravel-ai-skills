@@ -9,9 +9,12 @@ Changed:
 - merged anonymous project audit proposal J into the global standards: cross-layer parity contracts, scoped foreign-ID transaction rechecks, focused integration services, authorization matrices, fake-versus-real-connectivity guidance, and sync-versus-queued side-effect decisions;
 - kept provider names, message copy, status maps, URLs, credentials, local ports, QR flow, generated dependency folders, runtime auth sessions, and complex inline controller validation out of the global skill;
 - added `integrate-whatsapp-baileys-laravel` for reusable WhatsApp integration through a secure Laravel-to-Baileys sidecar, delivery testing, and Windows/VPS setup documentation;
-- consolidated overlapping topic pairs into 68 stronger canonical skills: `runner-selection`, `database-transactions`, `queues-and-jobs`, `livewire-development`, and `using-laravel-standards`;
+- consolidated overlapping topic pairs into stronger canonical skills: `runner-selection`, `database-transactions`, `queues-and-jobs`, `livewire-development`, and `using-laravel-standards`;
 - expanded `livewire-development` with version-aware Livewire v2-v4 component formats, state, forms, security, events, uploads, pagination, Alpine integration, performance, and testing guidance synthesized from the public `laravel-livewire` topic and official Livewire v4 documentation;
 - added `responsive-ui-testing` for Laravel responsive UI audits across mobile, tablet, desktop, Livewire states, overflow, clipping, tables, modals, and navigation;
+- added `ui-agent-browser` for stack-aware Laravel frontend/UI/UX implementation with agent-browser inspection, Playwright checks, and backend contract alignment;
+- strengthened `e2e-playwright` with official Microsoft Playwright guidance and linked existing UI/browser skills to the new frontend workflow;
+- updated catalog documentation and generated metadata to reflect 70 installable skills;
 - added root `.codex-plugin/plugin.json` for codex-marketplace.com submissions and stopped committing generated plugin skill copies to keep artifacts under the 128-file scan limit;
 - converted the previous umbrella standards skill and references into focused installable skills;
 - built the catalog from 12 local core standards, mapped Superpowers Laravel topics, supplemental Laravel Skills Cloud topics, and focused project-quality skills;

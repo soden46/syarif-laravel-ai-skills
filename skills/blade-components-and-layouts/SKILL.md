@@ -12,6 +12,8 @@ Use this skill when a Laravel task involves blade components and layouts.
 
 When the app has multiple menus/pages, also use `module-per-menu`: keep one Blade view per page or page state, share layout/components, and avoid a single Blade file full of menu-condition blocks.
 
+When the Blade work includes UI/UX design, frontend implementation, browser inspection, or backend contract alignment, also use `ui-agent-browser`. Keep this skill focused on template structure, component boundaries, slots, layouts, and rendering purity.
+
 This skill is adapted to the personal Laravel standards in this repository. It maps the public `blade-components-and-layouts` topic from `jpcaparas/superpowers-laravel` into the local `blade-components-and-layouts` catalog without copying third-party skill body text.
 
 ## Syarif Defaults
@@ -43,5 +45,7 @@ This skill is adapted to the personal Laravel standards in this repository. It m
 
 - `using-laravel-standards`
 - `architecture`
+- `ui-agent-browser`
+- `module-per-menu`
 - `testing`
 - `security`
