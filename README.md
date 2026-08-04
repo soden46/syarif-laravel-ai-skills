@@ -66,9 +66,18 @@ Installer/generator:
 node skills/memory-management/scripts/install-memory-layer.mjs detect
 node skills/memory-management/scripts/install-memory-layer.mjs print --target all
 node skills/memory-management/scripts/install-memory-layer.mjs install --target codex --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-workspace --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target cursor --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target windsurf --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target cline --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target roo-workspace --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target continue-workspace --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target claude --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target hooks --apply
 ```
+
+Catatan: `npx skills add ...` hanya memasang file skill. Untuk mengaktifkan memory MCP/hook di editor atau agent lokal, jalankan installer memory di atas secara eksplisit setelah skill terpasang.
 
 ## Installation
 
@@ -329,9 +338,18 @@ Installer/generator:
 node skills/memory-management/scripts/install-memory-layer.mjs detect
 node skills/memory-management/scripts/install-memory-layer.mjs print --target all
 node skills/memory-management/scripts/install-memory-layer.mjs install --target codex --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-workspace --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target cursor --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target windsurf --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target cline --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target roo-workspace --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target continue-workspace --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target claude --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target hooks --apply
 ```
+
+Note: `npx skills add ...` installs the skill files only. To enable the memory MCP/hook layer in a local editor or agent, run the memory installer above explicitly after the skill is installed.
 
 ## Instalasi
 

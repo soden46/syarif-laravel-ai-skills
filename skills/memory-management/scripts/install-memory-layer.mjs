@@ -41,8 +41,8 @@ function printHelp() {
 
 Usage:
   node install-memory-layer.mjs detect
-  node install-memory-layer.mjs print [--target codex|claude|json|hooks|all]
-  node install-memory-layer.mjs install --target codex|claude|json|hooks|all [--apply] [--config <path>]
+  node install-memory-layer.mjs print [--target codex|vscode|vscode-workspace|cursor|cursor-workspace|windsurf|cline|cline-cli|roo-workspace|continue-workspace|claude|json|hooks|all]
+  node install-memory-layer.mjs install --target codex|vscode|vscode-workspace|cursor|cursor-workspace|windsurf|cline|cline-cli|roo-workspace|continue-workspace|claude|json|hooks|all [--apply] [--config <path>]
 
 Defaults:
   install runs in dry-run mode unless --apply is present.
@@ -51,6 +51,13 @@ Defaults:
 Examples:
   node install-memory-layer.mjs print --target all
   node install-memory-layer.mjs install --target codex --apply
+  node install-memory-layer.mjs install --target vscode --apply
+  node install-memory-layer.mjs install --target vscode-workspace --apply
+  node install-memory-layer.mjs install --target cursor --apply
+  node install-memory-layer.mjs install --target windsurf --apply
+  node install-memory-layer.mjs install --target cline --apply
+  node install-memory-layer.mjs install --target roo-workspace --apply
+  node install-memory-layer.mjs install --target continue-workspace --apply
   node install-memory-layer.mjs install --target claude --apply
   node install-memory-layer.mjs install --target json --config .mcp.json --apply`);
 }
@@ -75,6 +82,33 @@ async function install() {
   for (const item of tasks) {
     if (item === "codex") {
       results.push(await installCodex(apply));
+    } else if (item === "vscode") {
+      const config = args.config ? path.resolve(String(args.config)) : vscodeUserConfigPath();
+      results.push(await installVsCodeConfig(config, apply, "vscode"));
+    } else if (item === "vscode-workspace") {
+      const config = args.config ? path.resolve(String(args.config)) : path.resolve(".vscode", "mcp.json");
+      results.push(await installVsCodeConfig(config, apply, "vscode-workspace"));
+    } else if (item === "cursor") {
+      const config = args.config ? path.resolve(String(args.config)) : cursorConfigPath();
+      results.push(await installJsonConfig(config, apply, "cursor"));
+    } else if (item === "cursor-workspace") {
+      const config = args.config ? path.resolve(String(args.config)) : path.resolve(".cursor", "mcp.json");
+      results.push(await installJsonConfig(config, apply, "cursor-workspace"));
+    } else if (item === "windsurf") {
+      const config = args.config ? path.resolve(String(args.config)) : windsurfConfigPath();
+      results.push(await installJsonConfig(config, apply, "windsurf"));
+    } else if (item === "cline") {
+      const config = args.config ? path.resolve(String(args.config)) : clineIdeConfigPath();
+      results.push(await installJsonConfig(config, apply, "cline"));
+    } else if (item === "cline-cli") {
+      const config = args.config ? path.resolve(String(args.config)) : path.join(os.homedir(), ".cline", "mcp.json");
+      results.push(await installJsonConfig(config, apply, "cline-cli"));
+    } else if (item === "roo-workspace") {
+      const config = args.config ? path.resolve(String(args.config)) : path.resolve(".roo", "mcp.json");
+      results.push(await installJsonConfig(config, apply, "roo-workspace"));
+    } else if (item === "continue-workspace") {
+      const config = args.config ? path.resolve(String(args.config)) : path.resolve(".continue", "mcpServers", "syarif-memory-management.json");
+      results.push(await installJsonConfig(config, apply, "continue-workspace"));
     } else if (item === "claude") {
       results.push(await installJsonConfig(claudeConfigPath(), apply, "claude"));
     } else if (item === "json") {
@@ -120,6 +154,19 @@ async function installCodex(apply) {
   return { target: "codex", mode: "apply", status: "installed", output: output.trim() };
 }
 
+async function installVsCodeConfig(file, apply, target) {
+  const next = await mergedVsCodeMcpJson(file);
+
+  if (!apply) {
+    return { target, mode: "dry-run", file, config: next };
+  }
+
+  await fs.mkdir(path.dirname(file), { recursive: true });
+  await backupIfExists(file);
+  await fs.writeFile(file, `${JSON.stringify(next, null, 2)}\n`, "utf8");
+  return { target, mode: "apply", status: "written", file };
+}
+
 async function installJsonConfig(file, apply, target) {
   const next = await mergedMcpJson(file);
 
@@ -158,12 +205,30 @@ async function installHookManifest(file, apply) {
   return { target: "hooks", mode: "apply", status: "written", file };
 }
 
+async function mergedVsCodeMcpJson(file) {
+  const current = await readJson(file);
+  const next = current && typeof current === "object" && !Array.isArray(current) ? current : {};
+  next.servers = next.servers && typeof next.servers === "object" ? next.servers : {};
+  next.servers[serverName] = vscodeMcpServerConfig();
+  return next;
+}
+
 async function mergedMcpJson(file) {
   const current = await readJson(file);
   const next = current && typeof current === "object" && !Array.isArray(current) ? current : {};
   next.mcpServers = next.mcpServers && typeof next.mcpServers === "object" ? next.mcpServers : {};
   next.mcpServers[serverName] = mcpServerConfig();
   return next;
+}
+
+function vscodeMcpServerConfig() {
+  return {
+    command: "node",
+    args: [mcpServerScript],
+    env: {
+      AI_MEMORY_ROOT: memoryRoot(),
+    },
+  };
 }
 
 function mcpServerConfig() {
@@ -185,6 +250,60 @@ async function snippetsFor(target) {
       snippets.push([
         "# Codex CLI",
         `codex mcp add ${serverName} --env AI_MEMORY_ROOT=${quoteShell(memoryRoot())} -- node ${quoteShell(mcpServerScript)}`,
+      ].join("\n"));
+    } else if (item === "vscode") {
+      snippets.push([
+        "# VS Code user MCP config",
+        `# ${vscodeUserConfigPath()}`,
+        JSON.stringify({ servers: { [serverName]: vscodeMcpServerConfig() } }, null, 2),
+      ].join("\n"));
+    } else if (item === "vscode-workspace") {
+      snippets.push([
+        "# VS Code workspace MCP config",
+        "# .vscode/mcp.json",
+        JSON.stringify({ servers: { [serverName]: vscodeMcpServerConfig() } }, null, 2),
+      ].join("\n"));
+    } else if (item === "cursor") {
+      snippets.push([
+        "# Cursor global MCP config",
+        `# ${cursorConfigPath()}`,
+        JSON.stringify({ mcpServers: { [serverName]: mcpServerConfig() } }, null, 2),
+      ].join("\n"));
+    } else if (item === "cursor-workspace") {
+      snippets.push([
+        "# Cursor workspace MCP config",
+        "# .cursor/mcp.json",
+        JSON.stringify({ mcpServers: { [serverName]: mcpServerConfig() } }, null, 2),
+      ].join("\n"));
+    } else if (item === "windsurf") {
+      snippets.push([
+        "# Windsurf MCP config",
+        `# ${windsurfConfigPath()}`,
+        JSON.stringify({ mcpServers: { [serverName]: mcpServerConfig() } }, null, 2),
+      ].join("\n"));
+    } else if (item === "cline") {
+      snippets.push([
+        "# Cline IDE MCP config",
+        `# ${clineIdeConfigPath()}`,
+        JSON.stringify({ mcpServers: { [serverName]: mcpServerConfig() } }, null, 2),
+      ].join("\n"));
+    } else if (item === "cline-cli") {
+      snippets.push([
+        "# Cline CLI MCP config",
+        `# ${path.join(os.homedir(), ".cline", "mcp.json")}`,
+        JSON.stringify({ mcpServers: { [serverName]: mcpServerConfig() } }, null, 2),
+      ].join("\n"));
+    } else if (item === "roo-workspace") {
+      snippets.push([
+        "# Roo Code workspace MCP config",
+        "# .roo/mcp.json",
+        JSON.stringify({ mcpServers: { [serverName]: mcpServerConfig() } }, null, 2),
+      ].join("\n"));
+    } else if (item === "continue-workspace") {
+      snippets.push([
+        "# Continue workspace MCP config",
+        "# .continue/mcpServers/syarif-memory-management.json",
+        JSON.stringify({ mcpServers: { [serverName]: mcpServerConfig() } }, null, 2),
       ].join("\n"));
     } else if (item === "claude") {
       snippets.push([
@@ -221,6 +340,37 @@ async function detectTargets() {
       available: await commandExists("codex"),
       install: `codex mcp add ${serverName} --env AI_MEMORY_ROOT=${memoryRoot()} -- node ${mcpServerScript}`,
     },
+    vscode: {
+      commandAvailable: await commandExists("code"),
+      userConfig: vscodeUserConfigPath(),
+      userConfigExists: await exists(vscodeUserConfigPath()),
+      workspaceConfig: path.resolve(".vscode", "mcp.json"),
+      workspaceConfigExists: await exists(path.resolve(".vscode", "mcp.json")),
+    },
+    cursor: {
+      globalConfig: cursorConfigPath(),
+      globalConfigExists: await exists(cursorConfigPath()),
+      workspaceConfig: path.resolve(".cursor", "mcp.json"),
+      workspaceConfigExists: await exists(path.resolve(".cursor", "mcp.json")),
+    },
+    windsurf: {
+      config: windsurfConfigPath(),
+      exists: await exists(windsurfConfigPath()),
+    },
+    cline: {
+      ideConfig: clineIdeConfigPath(),
+      ideConfigExists: await exists(clineIdeConfigPath()),
+      cliConfig: path.join(os.homedir(), ".cline", "mcp.json"),
+      cliConfigExists: await exists(path.join(os.homedir(), ".cline", "mcp.json")),
+    },
+    rooCode: {
+      workspaceConfig: path.resolve(".roo", "mcp.json"),
+      workspaceConfigExists: await exists(path.resolve(".roo", "mcp.json")),
+    },
+    continue: {
+      workspaceConfig: path.resolve(".continue", "mcpServers", "syarif-memory-management.json"),
+      workspaceConfigExists: await exists(path.resolve(".continue", "mcpServers", "syarif-memory-management.json")),
+    },
     claude: {
       config: claudeConfigPath(),
       exists: await exists(claudeConfigPath()),
@@ -236,11 +386,25 @@ async function detectTargets() {
 
 function expandTargets(target) {
   if (target === "all") {
-    return ["codex", "claude", "json", "hooks"];
+    return ["codex", "vscode", "cursor", "windsurf", "cline", "claude", "json", "hooks"];
   }
 
   const targets = target.split(",").map((item) => item.trim()).filter(Boolean);
-  const allowed = new Set(["codex", "claude", "json", "hooks"]);
+  const allowed = new Set([
+    "codex",
+    "vscode",
+    "vscode-workspace",
+    "cursor",
+    "cursor-workspace",
+    "windsurf",
+    "cline",
+    "cline-cli",
+    "roo-workspace",
+    "continue-workspace",
+    "claude",
+    "json",
+    "hooks",
+  ]);
 
   for (const item of targets) {
     if (!allowed.has(item)) {
@@ -249,6 +413,30 @@ function expandTargets(target) {
   }
 
   return targets;
+}
+
+function vscodeUserConfigPath() {
+  if (process.platform === "win32") {
+    return path.join(process.env.APPDATA || path.join(os.homedir(), "AppData", "Roaming"), "Code", "User", "mcp.json");
+  }
+
+  if (process.platform === "darwin") {
+    return path.join(os.homedir(), "Library", "Application Support", "Code", "User", "mcp.json");
+  }
+
+  return path.join(os.homedir(), ".config", "Code", "User", "mcp.json");
+}
+
+function cursorConfigPath() {
+  return path.join(os.homedir(), ".cursor", "mcp.json");
+}
+
+function windsurfConfigPath() {
+  return path.join(os.homedir(), ".codeium", "windsurf", "mcp_config.json");
+}
+
+function clineIdeConfigPath() {
+  return path.join(os.homedir(), ".cline", "data", "settings", "cline_mcp_settings.json");
 }
 
 function claudeConfigPath() {
@@ -269,7 +457,9 @@ function memoryRoot() {
 
 async function readJson(file) {
   try {
-    return JSON.parse(await fs.readFile(file, "utf8"));
+    const content = await fs.readFile(file, "utf8");
+    if (!content.trim()) return {};
+    return JSON.parse(content);
   } catch (error) {
     if (error.code === "ENOENT") return {};
     throw new Error(`cannot parse JSON config ${file}: ${error.message}`);

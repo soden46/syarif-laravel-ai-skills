@@ -100,12 +100,23 @@ Use `scripts/install-memory-layer.mjs` to generate or install MCP and hook confi
 node <skill-dir>/scripts/install-memory-layer.mjs detect
 node <skill-dir>/scripts/install-memory-layer.mjs print --target all
 node <skill-dir>/scripts/install-memory-layer.mjs install --target codex --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target vscode --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target vscode-workspace --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target cursor --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target cursor-workspace --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target windsurf --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target cline --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target cline-cli --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target roo-workspace --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target continue-workspace --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target claude --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target json --config .mcp.json --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target hooks --apply
 ```
 
-Installer defaults to dry-run unless `--apply` is present. For JSON config targets, it merges only the `syarif-memory-management` MCP server entry and writes a timestamped backup before changing an existing file. For Codex, it uses the local `codex mcp add` command instead of editing Codex config directly.
+Native skill installers generally copy skill files only; they should not silently execute this installer or modify agent MCP configs. Run `install-memory-layer.mjs` explicitly after installing the skill when the user wants active memory enabled.
+
+Installer defaults to dry-run unless `--apply` is present. For VS Code, it writes the official `mcp.json` shape with a top-level `servers` object. Use `vscode` for the user profile config and `vscode-workspace` for `.vscode/mcp.json`. Cursor, Windsurf, Cline, Roo Code, Continue, Claude-compatible, and generic JSON targets use `mcpServers` where their docs expect it. Every JSON install merges only the `syarif-memory-management` server entry and writes a timestamped backup before changing an existing file. For Codex CLI, it uses the local `codex mcp add` command instead of editing Codex config directly.
 
 ## Memory Architecture
 
