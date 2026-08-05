@@ -24,6 +24,12 @@ Important capability boundary: a skill is not a daemon by itself. Automatic memo
 - Preserve provenance for every durable entry.
 - Prefer continuity without context overload.
 
+## Hermes-Style Orchestrator Profile
+
+When a task asks for Hermes-like cross-session memory, external memory providers, skills-on-demand, provider failover, task delegation, context compression, provider-agnostic routing, ACP, API, messaging gateways, or many editor/agent interfaces, read `references/hermes-orchestrator-profile.md`.
+
+Use that reference as portable host policy. This skill can define memory hygiene, retrieval, checkpointing, MCP hooks, and non-secret routing profiles; provider failover, delegated subagents, context compression, API serving, and messaging bridges run only when the active host or orchestrator supports them.
+
 ## Active Local Backend
 
 This skill ships a file-backed backend at `scripts/memory.mjs`. Resolve it relative to this `SKILL.md` file and prefer it for active memory commands before falling back to manual Markdown edits.
@@ -100,24 +106,54 @@ Use `scripts/install-memory-layer.mjs` to generate or install MCP and hook confi
 node <skill-dir>/scripts/install-memory-layer.mjs detect
 node <skill-dir>/scripts/install-memory-layer.mjs print --target all
 node <skill-dir>/scripts/install-memory-layer.mjs install --target codex --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target ai-agent-tools --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target vscode-family --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target vscode --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target vscode-copilot-instructions --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target vscode-agent-instructions --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target vscode-acp-client --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target vscode-workspace --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target antigravity --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target antigravity-workspace --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target cursor --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target cursor-workspace --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target popular-editors --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target windsurf --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target cline --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target cline-cli --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target roo-workspace --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target continue-workspace --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target kilo --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target kilo-workspace --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target hermes --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target claude-code --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target gemini-cli --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target opencode --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target zed --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target claude --apply
+node <skill-dir>/scripts/install-memory-layer.mjs install --target orchestrator-profile --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target json --config .mcp.json --apply
 node <skill-dir>/scripts/install-memory-layer.mjs install --target hooks --apply
 ```
 
 Native skill installers generally copy skill files only; they should not silently execute this installer or modify agent MCP configs. Run `install-memory-layer.mjs` explicitly after installing the skill when the user wants active memory enabled.
 
-Installer defaults to dry-run unless `--apply` is present. For VS Code, it writes the official `mcp.json` shape with a top-level `servers` object. Use `vscode` for the user profile config and `vscode-workspace` for `.vscode/mcp.json`. Use `vscode-copilot-instructions` to install a user-level VS Code/GitHub Copilot `*.instructions.md` file that applies to all chat requests and tells the agent to call `memory_auto` before broad work and `memory_checkpoint` at handoff. Cursor, Windsurf, Cline, Roo Code, Continue, Claude-compatible, and generic JSON targets use `mcpServers` where their docs expect it. Every JSON install merges only the `syarif-memory-management` server entry and writes a timestamped backup before changing an existing file. For Codex CLI, it uses the local `codex mcp add` command instead of editing Codex config directly.
+Installer defaults to dry-run unless `--apply` is present. Every installer writes a timestamped backup before changing an existing file and merges only the `syarif-memory-management` server entry when the target format is mergeable. Use this host mapping:
+
+- VS Code family: `vscode-family` installs the same official `mcp.json` server into four common user-profile locations: VS Code Stable (`vscode`), VS Code Insiders (`vscode-insiders`), VSCodium (`vscodium`), and Code - OSS (`code-oss`). `vscode-workspace` writes `.vscode/mcp.json`. These targets use the VS Code top-level `servers` object and include `type: "stdio"`.
+- VS Code/GPT/Claude/Copilot instructions: `vscode-copilot-instructions` installs Copilot-focused global instructions; `vscode-agent-instructions` installs broader global instructions for GitHub Copilot, OpenAI Codex/GPT, Claude Code, Gemini CLI, Codex CLI, OpenCode, Kilo Code, Cline, Roo Code, Continue, Hermes Agent, Cursor, Windsurf, Zed, and Antigravity sessions when the host exposes MCP tools or forwards them through ACP.
+- ACP Client for VS Code: `vscode-acp-client` and `vscode-acp-client-workspace` merge `acp.agents` settings for four common ACP agents: GitHub Copilot, Claude Code, Gemini CLI, and Codex CLI. The installer injects non-secret memory bootstrap environment variables so the underlying agent knows which MCP server and script to connect when its native MCP layer supports it.
+- Antigravity: `antigravity` writes the global `~/.gemini/config/mcp_config.json`; `antigravity-workspace` writes `.agents/mcp_config.json`; both use top-level `mcpServers`.
+- AI agent tools: `ai-agent-tools` covers four common CLI-oriented agents: Codex CLI (`codex`), Claude Code (`claude-code`), Gemini CLI (`gemini-cli`), and OpenCode (`opencode`). Claude Code uses `claude mcp add`; Gemini CLI uses `~/.gemini/settings.json`; OpenCode uses `~/.config/opencode/opencode.jsonc` with `mcp.servers`.
+- Popular editors: `popular-editors` covers four common editor surfaces: VS Code Stable, Cursor, Windsurf, and Zed. Use individual targets when you want only one editor.
+- Kilo Code: `kilo` writes `~/.config/kilo/kilo.jsonc`; `kilo-workspace` writes `.kilo/kilo.jsonc`; both use top-level `mcp` with a local stdio server definition.
+- Hermes Agent: `hermes` writes or appends the MCP server under `mcp_servers` in `~/.hermes/config.yaml`. If a `syarif-memory-management` block already exists, edit it manually or remove it before reinstalling.
+- Continue: `continue-workspace` writes `.continue/mcpServers/syarif-memory-management.yaml` with the required metadata fields and a `mcpServers` list.
+- Zed: `zed` writes the global Zed `settings.json` with `context_servers`; `zed-workspace` writes `.zed/settings.json`.
+- Cursor, Windsurf, Cline, Roo Code, Gemini CLI, Claude-compatible, and generic JSON targets use `mcpServers` where their clients expect it. For Codex CLI, use `codex`; it calls the local `codex mcp add` command instead of editing Codex config directly.
+- Orchestrator profile: `orchestrator-profile` writes a non-secret `orchestrator-profile.yaml` under the memory root. Use it as portable policy for Hermes-style memory, skills-on-demand, fallback, delegation, compression, auxiliary providers, and multi-interface sessions.
+
+Prefer installing the editor-level MCP target first, then the agent instruction target where supported. The MCP config makes tools available; instruction files teach the agent to call `memory_auto`, `memory_recall`, and `memory_checkpoint` at the right lifecycle moments.
 
 ## Memory Architecture
 

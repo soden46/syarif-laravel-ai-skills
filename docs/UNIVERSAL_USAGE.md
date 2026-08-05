@@ -43,13 +43,41 @@ For automatic long-term memory, keep `using-laravel-standards` as the session en
 
 For assistants that support MCP, register `skills/memory-management/scripts/mcp-server.mjs` as a stdio MCP server. For assistants that support lifecycle hooks, run `skills/memory-management/scripts/memory-hook.mjs preflight` at session start and `memory-hook.mjs checkpoint` at handoff.
 
-Use `skills/memory-management/scripts/install-memory-layer.mjs` to detect supported local targets, print config snippets, or install with backups. It supports Codex CLI through `codex mcp add`, VS Code user or workspace `mcp.json`, global VS Code/GitHub Copilot user instructions through `vscode-copilot-instructions`, Cursor, Windsurf, Cline, Roo Code project config, Continue workspace config, Claude-compatible JSON MCP config, generic JSON MCP config, and a generic hook manifest.
+For Hermes-style long-running orchestration, read `skills/memory-management/references/hermes-orchestrator-profile.md`. It keeps memory as facts/context, skills as on-demand procedures, and provider fallback, task delegation, context compression, external memory sync, API serving, messaging gateways, and ACP behavior as host-owned capabilities.
 
-For VS Code/GitHub Copilot, install both pieces:
+Use `skills/memory-management/scripts/install-memory-layer.mjs` to detect supported local targets, print config snippets, or install with backups. It supports Codex CLI through `codex mcp add`, Claude Code user/project MCP registration, Gemini CLI settings, OpenCode settings, VS Code user or workspace `mcp.json`, global VS Code/GitHub Copilot and VS Code-family agent instructions, ACP Client for VS Code agent settings, Antigravity global or workspace `mcp_config.json`, Cursor, Windsurf, Zed, Cline, Roo Code project config, Continue workspace YAML config, Kilo Code global or workspace config, Hermes Agent YAML config, Claude-compatible JSON MCP config, generic JSON MCP config, a non-secret orchestrator profile, and a generic hook manifest.
+
+For VS Code-family editors and agents, install the MCP server, broader agent instructions, and ACP Client settings when you use that extension:
 
 ```bash
-node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode --apply
-node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-copilot-instructions --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-family --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-agent-instructions --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-acp-client --apply
+```
+
+For the requested four-agent and four-editor coverage, use the aggregate targets:
+
+```bash
+node skills/memory-management/scripts/install-memory-layer.mjs install --target ai-agent-tools --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target popular-editors --apply
+```
+
+`ai-agent-tools` covers Codex CLI, Claude Code, Gemini CLI, and OpenCode. `popular-editors` covers VS Code, Cursor, Windsurf, and Zed.
+
+For Antigravity, Kilo Code, and Hermes Agent, use their native config targets:
+
+```bash
+node skills/memory-management/scripts/install-memory-layer.mjs install --target antigravity --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target antigravity-workspace --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target kilo --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target kilo-workspace --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target hermes --apply
+```
+
+For portable fallback, delegation, compression, external memory provider, and multi-interface policy shared by those surfaces:
+
+```bash
+node skills/memory-management/scripts/install-memory-layer.mjs install --target orchestrator-profile --apply
 ```
 
 Native skill install only copies the skill files. Run the memory installer explicitly after install to enable the active MCP or hook layer for a local agent.
@@ -87,7 +115,7 @@ claude --plugin-dir ./plugins/laravel-app-skills
 
 ## Generic Assistants
 
-For Cursor, Windsurf, Cline, Aider, GitHub Copilot Chat, Gemini CLI, OpenCode, and other assistants:
+For Cursor, Windsurf, Zed, Cline, Roo Code, Continue, Kilo Code, Hermes Agent, Aider, GitHub Copilot Chat, OpenAI Codex/GPT, Claude Code, Antigravity, Gemini CLI, OpenCode, and other assistants:
 
 - Add this repository to the assistant workspace or attach the relevant files.
 - Point the assistant at `AGENTS.md`, `agent-skills.json`, and `skills/using-laravel-standards/SKILL.md`.
@@ -141,13 +169,33 @@ Untuk long-term memory otomatis, jadikan `using-laravel-standards` sebagai entry
 
 Untuk assistant yang support MCP, daftarkan `skills/memory-management/scripts/mcp-server.mjs` sebagai stdio MCP server. Untuk assistant yang support lifecycle hook, jalankan `skills/memory-management/scripts/memory-hook.mjs preflight` saat session start dan `memory-hook.mjs checkpoint` saat handoff.
 
-Gunakan `skills/memory-management/scripts/install-memory-layer.mjs` untuk detect target lokal, print snippet config, atau install dengan backup. Script ini support Codex CLI lewat `codex mcp add`, `mcp.json` user/workspace VS Code, instruksi global user-level VS Code/GitHub Copilot lewat `vscode-copilot-instructions`, Cursor, Windsurf, Cline, config project Roo Code, config workspace Continue, config MCP JSON kompatibel Claude, config MCP JSON generik, dan manifest hook generik.
+Gunakan `skills/memory-management/scripts/install-memory-layer.mjs` untuk detect target lokal, print snippet config, atau install dengan backup. Script ini support Codex CLI lewat `codex mcp add`, registrasi MCP user/project Claude Code, settings Gemini CLI, settings OpenCode, `mcp.json` user/workspace VS Code, instruksi global VS Code/GitHub Copilot dan agent keluarga VS Code, setting ACP Client for VS Code, config global/workspace Antigravity `mcp_config.json`, Cursor, Windsurf, Zed, Cline, config project Roo Code, config YAML workspace Continue, config global/workspace Kilo Code, config YAML Hermes Agent, config MCP JSON kompatibel Claude, config MCP JSON generik, dan manifest hook generik.
 
-Untuk VS Code/GitHub Copilot, pasang dua bagian:
+Untuk editor dan agent keluarga VS Code, pasang MCP server, instruksi agent yang lebih luas, dan setting ACP Client kalau ekstensi itu dipakai:
 
 ```bash
-node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode --apply
-node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-copilot-instructions --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-family --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-agent-instructions --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-acp-client --apply
+```
+
+Untuk cakupan 4 agent dan 4 editor yang diminta, pakai target agregat:
+
+```bash
+node skills/memory-management/scripts/install-memory-layer.mjs install --target ai-agent-tools --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target popular-editors --apply
+```
+
+`ai-agent-tools` mencakup Codex CLI, Claude Code, Gemini CLI, dan OpenCode. `popular-editors` mencakup VS Code, Cursor, Windsurf, dan Zed.
+
+Untuk Antigravity, Kilo Code, dan Hermes Agent, gunakan target config native masing-masing:
+
+```bash
+node skills/memory-management/scripts/install-memory-layer.mjs install --target antigravity --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target antigravity-workspace --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target kilo --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target kilo-workspace --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target hermes --apply
 ```
 
 Install skill native hanya memasang file skill. Jalankan installer memory secara eksplisit setelah install untuk mengaktifkan layer MCP atau hook di agent lokal.
@@ -185,7 +233,7 @@ claude --plugin-dir ./plugins/laravel-app-skills
 
 ## Assistant Generik
 
-Untuk Cursor, Windsurf, Cline, Aider, GitHub Copilot Chat, Gemini CLI, OpenCode, dan assistant lain:
+Untuk Cursor, Windsurf, Zed, Cline, Roo Code, Continue, Kilo Code, Hermes Agent, Aider, GitHub Copilot Chat, OpenAI Codex/GPT, Claude Code, Antigravity, Gemini CLI, OpenCode, dan assistant lain:
 
 - Masukkan repository ini ke workspace assistant atau attach file yang relevan.
 - Arahkan assistant ke `AGENTS.md`, `agent-skills.json`, dan `skills/using-laravel-standards/SKILL.md`.

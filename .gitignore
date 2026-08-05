@@ -13,3 +13,7 @@ skills-lock.json
 !/.agents/plugins/
 !/.agents/plugins/marketplace.json
 /plugins/*/skills/
+*.bak-*
+*.backup-*
+.vscode/
+.continue/

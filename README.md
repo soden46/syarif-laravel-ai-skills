@@ -32,7 +32,7 @@ Language: [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 - **UI Agent Browser workflow** - a frontend/UI/UX skill that combines agent-browser inspection, Playwright checks, target-stack implementation, and backend contract alignment.
 - **Active Secure Memory** - `memory-management` routes conversation, project, user, workflow, and codebase memory through relevance-aware retrieval, local file-backed commands, provenance, anonymization, and secret-safe guardrails.
 - **Simple discovery** - `npx skills add <repo> --list` reads each `skills/<folder>/SKILL.md`.
-- **Universal assistant support** - usable by Codex, Claude Code, Copilot, Cursor, Windsurf, Cline, Aider, OpenCode, Gemini CLI, and generic agents that can read files.
+- **Universal assistant support** - usable by Codex, Claude Code, Copilot, OpenAI Codex/GPT, Antigravity, Cursor, Windsurf, Zed, Cline, Roo Code, Continue, Kilo Code, Hermes Agent, Aider, OpenCode, Gemini CLI, and generic agents that can read files.
 
 ## Memory Orchestrator
 
@@ -41,6 +41,8 @@ The `memory-management` skill is the continuity layer for long-running Laravel w
 It is designed to reduce token waste by retrieving only relevant memory: user preferences, project conventions, workflow patterns, conversation checkpoints, and targeted codebase intelligence from a local MCP backend when available. It also ships an active local backend at `skills/memory-management/scripts/memory.mjs`, with `auto`, `init`, `remember`, `recall`, `checkpoint`, `audit`, `forget`, and `status` commands that default to `~/.ai-memory` or `AI_MEMORY_ROOT`.
 
 Automatic mode is wired into `using-laravel-standards`: the entrypoint tells agents to run `memory.mjs auto --cwd <project-root> --query "<task intent>"` before broad exploration, then checkpoint durable decisions at handoff. The skill also ships `scripts/mcp-server.mjs` for stdio MCP tool access and `scripts/memory-hook.mjs` for lifecycle preflight/checkpoint hooks. For always-on code graph indexing and background watchers, pair this skill with a local codebase memory MCP such as `codebase-memory-mcp`.
+
+For Hermes-style orchestration, the skill includes `references/hermes-orchestrator-profile.md` and an `orchestrator-profile` installer target. This documents portable policy for cross-session memory, external memory providers, skills-on-demand, provider failover, delegated workers, context compression, auxiliary providers, OpenAI-compatible API fronts, messaging gateways, VS Code ACP, Antigravity, and other editor/agent interfaces. The generated profile is non-secret routing metadata; the active host still owns provider switching, subagent execution, compression, and external sync.
 
 Privacy stays first-class: anonymize cross-project knowledge, preserve provenance, verify against source code, and never persist secrets.
 
@@ -66,21 +68,36 @@ Installer/generator:
 node skills/memory-management/scripts/install-memory-layer.mjs detect
 node skills/memory-management/scripts/install-memory-layer.mjs print --target all
 node skills/memory-management/scripts/install-memory-layer.mjs install --target codex --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target ai-agent-tools --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-family --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-copilot-instructions --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-agent-instructions --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-acp-client --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-workspace --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target antigravity --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target antigravity-workspace --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target cursor --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target popular-editors --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target windsurf --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target cline --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target roo-workspace --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target continue-workspace --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target kilo --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target kilo-workspace --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target hermes --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target claude-code --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target gemini-cli --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target opencode --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target zed --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target claude --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target orchestrator-profile --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target hooks --apply
 ```
 
-Catatan: `npx skills add ...` hanya memasang file skill. Untuk mengaktifkan memory MCP/hook di editor atau agent lokal, jalankan installer memory di atas secara eksplisit setelah skill terpasang.
+Note: `npx skills add ...` installs the skill files only. To enable the memory MCP/hook layer in a local editor or agent, run the memory installer above explicitly after the skill is installed.
 
-Untuk VS Code/GitHub Copilot yang lebih otomatis, jalankan `vscode` untuk mendaftarkan MCP server lalu `vscode-copilot-instructions` untuk memasang instruksi global user-level. Instruksi global itu meminta Copilot memanggil `memory_auto` sebelum eksplorasi/implementasi luas dan `memory_checkpoint` saat handoff kerja bermakna.
+For broad local coverage, `vscode-family` installs VS Code Stable, VS Code Insiders, VSCodium, and Code - OSS user MCP configs; `vscode-acp-client` prepares ACP Client for GitHub Copilot, Claude Code, Gemini CLI, and Codex CLI; `ai-agent-tools` covers Codex CLI, Claude Code, Gemini CLI, and OpenCode; `popular-editors` covers VS Code, Cursor, Windsurf, and Zed. Use `antigravity`, `kilo`, and `hermes` for their native configs, then `orchestrator-profile` when you want portable fallback/delegation/compression policy shared by those surfaces.
 
 ## Installation
 
@@ -307,7 +324,7 @@ MIT License - see [LICENSE](LICENSE).
 - **Workflow UI Agent Browser** - skill frontend/UI/UX yang menggabungkan inspeksi agent-browser, pengecekan Playwright, implementasi sesuai stack target, dan alignment kontrak backend.
 - **Active Secure Memory** - `memory-management` mengatur conversation, project, user, workflow, dan codebase memory dengan retrieval relevan, command lokal file-backed, provenance, anonymization, dan guardrail anti-secret.
 - **Discovery sederhana** - `npx skills add <repo> --list` membaca setiap `skills/<folder>/SKILL.md`.
-- **Support AI universal** - bisa dipakai Codex, Claude Code, Copilot, Cursor, Windsurf, Cline, Aider, OpenCode, Gemini CLI, dan agent generik yang bisa membaca file.
+- **Support AI universal** - bisa dipakai Codex, Claude Code, Copilot, OpenAI Codex/GPT, Antigravity, Cursor, Windsurf, Zed, Cline, Roo Code, Continue, Kilo Code, Hermes Agent, Aider, OpenCode, Gemini CLI, dan agent generik yang bisa membaca file.
 
 ## Memory Orchestrator
 
@@ -341,21 +358,35 @@ Installer/generator:
 node skills/memory-management/scripts/install-memory-layer.mjs detect
 node skills/memory-management/scripts/install-memory-layer.mjs print --target all
 node skills/memory-management/scripts/install-memory-layer.mjs install --target codex --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target ai-agent-tools --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-family --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-copilot-instructions --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-agent-instructions --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-acp-client --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-workspace --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target antigravity --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target antigravity-workspace --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target cursor --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target popular-editors --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target windsurf --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target cline --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target roo-workspace --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target continue-workspace --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target kilo --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target kilo-workspace --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target hermes --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target claude-code --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target gemini-cli --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target opencode --apply
+node skills/memory-management/scripts/install-memory-layer.mjs install --target zed --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target claude --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target hooks --apply
 ```
 
-Note: `npx skills add ...` installs the skill files only. To enable the memory MCP/hook layer in a local editor or agent, run the memory installer above explicitly after the skill is installed.
+Catatan: `npx skills add ...` hanya memasang file skill. Untuk mengaktifkan memory MCP/hook di editor atau agent lokal, jalankan installer memory di atas secara eksplisit setelah skill terpasang.
 
-For more automatic VS Code/GitHub Copilot behavior, run `vscode` to register the MCP server and `vscode-copilot-instructions` to install global user-level instructions. Those instructions ask Copilot to call `memory_auto` before broad exploration or implementation and `memory_checkpoint` at meaningful handoff.
+Untuk cakupan lokal yang luas, `vscode-family` memasang config MCP user untuk VS Code Stable, VS Code Insiders, VSCodium, dan Code - OSS; `vscode-acp-client` menyiapkan ACP Client untuk GitHub Copilot, Claude Code, Gemini CLI, dan Codex CLI; `ai-agent-tools` mencakup Codex CLI, Claude Code, Gemini CLI, dan OpenCode; `popular-editors` mencakup VS Code, Cursor, Windsurf, dan Zed. Pakai `antigravity`, `kilo`, dan `hermes` untuk config native masing-masing.
 
 ## Instalasi
 
