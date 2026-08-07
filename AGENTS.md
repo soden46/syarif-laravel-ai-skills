@@ -14,7 +14,7 @@ This repository packages reusable Laravel AI skills. Skills are packaged instruc
 - Every skill must be assigned to exactly one plugin in `plugin-groups.json`.
 - Universal assistant metadata is generated at `agent-skills.json`.
 - Codex marketplace artifact metadata lives at `.codex-plugin/plugin.json` and points directly to canonical `skills/`.
-- Claude Code root plugin metadata lives at `.claude-plugin/plugin.json` and points to canonical `skills/` through `.claude-plugin/marketplace.json`.
+- Claude Code root plugin metadata lives at `.claude-plugin/plugin.json` and points directly to canonical `skills/` through `.claude-plugin/marketplace.json`.
 - Generated marketplace/plugin output lives in `.agents/plugins/marketplace.json`, `.claude-plugin/`, and `plugins/`.
 - Local generated Claude Code plugin manifests also live at `plugins/<plugin-name>/.claude-plugin/plugin.json` after `npm run sync`.
 - Generated plugin skill copies under `plugins/<plugin-name>/skills/` are local build output and are ignored to keep marketplace artifacts under the 128-file scan limit.
@@ -59,6 +59,50 @@ Keep frontmatter to `name` and `description` only. Put trigger context in `descr
 
 Note: public Laravel discovery also expects `tags` containing `laravel` and `php` when present in existing skills. Preserve those tags when editing current skills.
 
+## Layered Protocol
+
+This repository uses a strict layered protocol to keep token usage low and output quality high. Every task MUST pass through the layers in order.
+
+### Layer 0: Memory Preflight
+
+Run `memory-management` automatic preflight before anything else:
+
+```bash
+node <memory-skill-dir>/scripts/memory.mjs auto --cwd <project-root> --query "<task intent>" --limit 5
+```
+
+If `memory-graph.json` exists, run one graph query instead of loading all memory. Use compact output as orientation only.
+
+### Layer 1: least-code Minimization
+
+Activate `least-code` before any code change. Apply the minimization ladder: YAGNI, reuse existing codebase helpers, stdlib, native platform features, installed dependencies, one-liners, then minimum working code. Keep the shortest diff and the smallest explanation.
+
+### Layer 2: Risk Classification and Skill Selection
+
+Classify task risk before implementation:
+
+- **LOW**: typo, Blade text, CSS kecil, rename lokal.
+- **MEDIUM**: validation, query, Livewire state, controller/service refactor.
+- **HIGH**: migration, auth, permission, payroll, financial calculation, concurrency, destructive action.
+
+Risk level determines trace depth, verification depth, and review strictness. Detect the project stack: Laravel version, PHP version, Sail/container vs host runner, frontend stack, test framework, queue driver, installed quality tools.
+
+Choose the smallest relevant skill set for the current task. Load only the focused `SKILL.md` files needed. Do not load every skill. When multiple skills could apply, choose one primary skill and at most two supporting skills unless HIGH risk requires more.
+
+### Layer 3: Focused Implementation
+
+Apply the selected focused skills. Each skill governs its own domain and includes a `Context Efficiency` footer with its layer and loading guidance.
+
+### Layer 4: Verification and Handoff
+
+Verify with the smallest meaningful tests and quality checks the project supports. Match verification to risk level:
+
+- LOW: syntax/static check.
+- MEDIUM: targeted feature/unit test + affected callers.
+- HIGH: targeted test + regression test + DB/schema/security implications.
+
+At handoff, use `memory-management` to checkpoint durable decisions, touched files, and pending work when the task changed project knowledge.
+
 ## Context Efficiency
 
 - Keep `SKILL.md` under 500 lines.
@@ -66,6 +110,7 @@ Note: public Laravel discovery also expects `tags` containing `laravel` and `php
 - Link reference files directly from `SKILL.md`; avoid nested reference chasing.
 - Prefer scripts for repeatable or fragile operations.
 - Keep skill bodies concise, action-oriented, and free of client names, secrets, private URLs, personal data, and one-off business rules.
+- Every skill must include a `Context Efficiency` footer stating its layer and when to load it.
 
 ## Public Discovery
 

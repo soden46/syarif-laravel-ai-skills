@@ -107,3 +107,9 @@ Test:
 - concurrent updates when locking matters;
 - filesystem cleanup when applicable;
 - after-commit behavior for important workflows.
+
+## Context Efficiency
+
+Layer: 3 (Implementation)
+
+Load this skill only when writes need atomicity or consistency. Do not load with unrelated skills. Keep transactions short, idempotent, and after-commit for side effects. No open transaction during slow HTTP calls or mail delivery.

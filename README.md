@@ -7,12 +7,12 @@
 <p align="center">
   <a href="https://github.com/soden46/syarif-laravel-ai-skills/releases"><img alt="Version" src="https://img.shields.io/badge/version-0.1.0-2563EB?style=for-the-badge&labelColor=0F172A"></a>
   <a href="https://github.com/soden46/syarif-laravel-ai-skills/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0284C7?style=for-the-badge&labelColor=0F172A"></a>
-  <a href="https://github.com/soden46/syarif-laravel-ai-skills/tree/main/skills"><img alt="Skills" src="https://img.shields.io/badge/skills-71-0EA5E9?style=for-the-badge&labelColor=0F172A"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/tree/main/skills"><img alt="Skills" src="https://img.shields.io/badge/skills-72-0EA5E9?style=for-the-badge&labelColor=0F172A"></a>
   <a href="https://www.codex-marketplace.com/plugins/syarif-laravel-ai-skills"><img alt="Codex Marketplace" src="https://img.shields.io/badge/codex_marketplace-approved-06B6D4?style=for-the-badge&labelColor=0F172A"></a>
-  <a href="https://github.com/soden46/syarif-laravel-ai-skills/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/soden46/syarif-laravel-ai-skills?style=for-the-badge&label=stars&labelColor=0F172A&color=38BDF8"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/syarif-laravel-ai-skills?style=for-the-badge&label=stars&labelColor=0F172A&color=38BDF8"></a>
 </p>
 
-Laravel-focused AI skills for Codex, Claude Code, and any AI coding assistant that can read Markdown files. Install them with `npx skills add`, use the generated plugin packages, or point a generic assistant at the universal manifest and canonical `skills/` folder. The catalog now includes secure memory orchestration so agents can recall useful project context without flooding the prompt or storing secrets.
+Laravel-focused AI skills for Codex, Claude Code, and any AI coding assistant that can read Markdown files. Install them with `npx skills add`, use the generated plugin packages, or point a generic assistant at the universal manifest and canonical `skills/` folder. The catalog now includes secure memory orchestration, a least-code minimization gate, and risk-aware verification so agents can recall useful project context, write the smallest possible diff, and match trace and test depth to task risk without flooding the prompt or storing secrets.
 
 Skills follow the [Agent Skills](https://agentskills.io/) format.
 
@@ -26,6 +26,7 @@ Language: [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 ## What You Get
 
 - **71 installable Laravel skills** - a focused Laravel skill catalog with overlapping topics consolidated into stronger canonical skills.
+- **Least-code minimization gate** - `least-code` enforces YAGNI, reuse, stdlib, native features, installed dependencies, one-liners, and minimum working code before any implementation skill runs.
 - **Personal core standards** - local standards extracted from reviewed Laravel projects and ongoing AI workflows, with client details removed.
 - **Public topic coverage** - 54 additional topics mapped from public Laravel skill catalogs without copying third-party skill body text.
 - **Responsive UI testing** - a focused Playwright skill for mobile, tablet, desktop, overflow, clipping, tables, modals, navigation, and Livewire state checks.
@@ -203,6 +204,7 @@ Use using-laravel-standards for this Laravel repo.
 For focused tasks, call a smaller skill directly:
 
 ```text
+Use least-code to make the smallest possible change.
 Use form-requests to move this validation out of the controller.
 Use database-transactions to review this checkout flow.
 Use ui-agent-browser to design and implement this frontend against the Laravel backend contract.
@@ -216,6 +218,7 @@ Use quality-checks before final handoff.
 
 - `using-laravel-standards` - entry point and skill selector.
 - `memory-management` - active secure memory for conversation, project, user, workflow, and codebase context.
+- `least-code` - minimization gate that enforces YAGNI, reuse, stdlib, native features, installed dependencies, one-liners, and minimum working code before implementation.
 - `extract-laravel-standards` - audit finished projects and propose reusable standards.
 - `architecture` - Laravel-native architecture decisions.
 - `controller-cleanup` - thin controllers and route boundaries.
@@ -315,9 +318,12 @@ MIT License - see [LICENSE](LICENSE).
 <details>
 <summary><strong>Bahasa Indonesia</strong></summary>
 
+Skill Laravel-focused AI untuk Codex, Claude Code, dan AI coding assistant yang bisa membaca file Markdown. Install dengan `npx skills add`, pakai package plugin yang di-generate, atau arahkan assistant generic ke universal manifest dan folder `skills/`. Katalog ini sekarang menyertakan memory orchestration yang aman, gate minimisasi least-code, dan verifikasi yang sadar risiko sehingga agent bisa mengingat konteks proyek yang berguna, menulis diff terkecil yang benar, dan menyesuaikan kedalaman trace dan test dengan risiko task tanpa membanjiri prompt atau menyimpan rahasia.
+
 ## Yang Didapat
 
-- **71 skill Laravel installable** - katalog skill Laravel yang fokus dengan topik tumpang tindih digabung menjadi skill canonical yang lebih kuat.
+- **72 skill Laravel installable** - katalog skill Laravel yang fokus dengan topik tumpang tindih digabung menjadi skill canonical yang lebih kuat.
+- **Gate minimisasi least-code** - `least-code` menerapkan YAGNI, reuse, stdlib, fitur native, dependency terinstal, one-liner, dan minimum working code sebelum skill implementasi lain dijalankan.
 - **Standar inti pribadi** - standar lokal dari proyek Laravel yang sudah direview dan workflow AI yang terus berkembang, tanpa detail client.
 - **Cakupan topik publik** - 54 topik tambahan yang dimapping dari katalog skill Laravel publik tanpa menyalin isi body skill pihak ketiga.
 - **Responsive UI testing** - skill Playwright khusus untuk mobile, tablet, desktop, overflow, clipping, tabel, modal, navigasi, dan state Livewire.
@@ -492,6 +498,7 @@ Use using-laravel-standards for this Laravel repo.
 Untuk task yang lebih spesifik, panggil skill kecil langsung:
 
 ```text
+Use least-code to make the smallest possible change.
 Use form-requests to move this validation out of the controller.
 Use database-transactions to review this checkout flow.
 Use ui-agent-browser to design and implement this frontend against the Laravel backend contract.
@@ -505,6 +512,7 @@ Use quality-checks before final handoff.
 
 - `using-laravel-standards` - entry point dan pemilih skill.
 - `memory-management` - memory aktif yang aman untuk conversation, project, user, workflow, dan codebase context.
+- `least-code` - gate minimisasi yang menerapkan YAGNI, reuse, stdlib, fitur native, dependency terinstal, one-liner, dan minimum working code sebelum implementasi.
 - `extract-laravel-standards` - audit proyek selesai dan usulkan standar reusable.
 - `architecture` - keputusan arsitektur Laravel-native.
 - `controller-cleanup` - controller tipis dan batas route.

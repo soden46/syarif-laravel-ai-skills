@@ -42,4 +42,10 @@ This skill is adapted to the personal Laravel standards in this repository. It m
 - `using-laravel-standards`
 - `architecture`
 - `testing`
+
+## Context Efficiency
+
+Layer: 4 (Verification)
+
+Load this skill only when quality gates are needed. Do not load with unrelated skills. Run the smallest meaningful check set: Pint, static analysis, tests. Skip checks that cannot run and report the command.
 - `security`

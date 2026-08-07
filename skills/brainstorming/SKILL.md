@@ -8,9 +8,11 @@ tags:
 
 # Brainstorming
 
-Use this skill when a Laravel task involves brainstorming.
+Layer: 2-3 (Design + Implementation)
 
-This skill is adapted to the personal Laravel standards in this repository. It maps the public `brainstorming` topic from `jpcaparas/superpowers-laravel` into the local `brainstorming` catalog without copying third-party skill body text.
+Use this skill when a Laravel task involves design refinement before implementation.
+
+This skill assumes Layer 0-1 have already run. If you have not run `memory-management` preflight and `least-code` minimization yet, do so before loading this skill.
 
 ## Syarif Defaults
 
@@ -23,11 +25,12 @@ This skill is adapted to the personal Laravel standards in this repository. It m
 
 ## Workflow
 
-1. Detect the Laravel version, PHP version, runner, package manager, and existing project conventions.
-2. Identify the smallest local skill set that overlaps this topic.
-3. Implement or review the change using Laravel-native APIs first.
-4. Add abstractions only when they reduce real complexity or protect a meaningful boundary.
-5. Run targeted tests and available quality checks before handoff.
+1. Confirm memory preflight and least-code minimization are active.
+2. Detect the Laravel version, PHP version, runner, package manager, and existing project conventions.
+3. Identify the smallest local skill set that overlaps this topic.
+4. Design or review the change using Laravel-native APIs first.
+5. Add abstractions only when they reduce real complexity or protect a meaningful boundary.
+6. Run targeted tests and available quality checks before handoff.
 
 ## Checkpoints
 
@@ -39,7 +42,7 @@ This skill is adapted to the personal Laravel standards in this repository. It m
 
 ## Related Skills
 
-- `using-laravel-standards`
-- `architecture`
-- `testing`
-- `security`
+- `using-laravel-standards` - entrypoint and skill selection
+- `architecture` - layer decisions
+- `testing` - test strategy
+- `security` - security review

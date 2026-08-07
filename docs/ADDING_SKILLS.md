@@ -33,6 +33,36 @@ The `description` appears directly in `npx skills add <repo> --list`, so keep it
 - Do not use Markdown links or bullet formatting.
 - Describe the reusable capability, not repository internals.
 
+## Layered Protocol
+
+This repository uses a strict layered protocol. New skills should declare their layer and when-to-load guidance in a `Context Efficiency` footer. The current layers are:
+
+- Layer 0: `memory-management` - preflight, recall, checkpointing, graph memory.
+- Layer 1: `least-code` - minimization gate: YAGNI, reuse, stdlib, native features, installed dependencies, one-liners, minimum working code, behavior preservation, root-cause tracing.
+- Layer 2: `using-laravel-standards` - entrypoint, stack detection, risk classification, skill selection, verification depth, definition of done.
+- Layer 3: Focused implementation skills - architecture, Eloquent, controllers, queues, UI, integrations.
+- Layer 4: Verification - testing, quality gates, E2E, documentation.
+- Layer 5: Prompting - prompt structure, debugging, code review, iteration, standards extraction.
+- Cross-layer: `runner-selection`, `daily-workflow`, `security`.
+
+## Risk Classification
+
+Tasks must be classified before implementation. Risk level determines trace depth, verification depth, and review strictness:
+
+- **LOW**: typo, Blade text, CSS kecil, rename lokal.
+- **MEDIUM**: validation, query, Livewire state, controller/service refactor.
+- **HIGH**: migration, auth, permission, payroll, financial calculation, concurrency, destructive action.
+
+For HIGH risk, require full trace, regression verification, and explicit behavior preservation check.
+
+## Memory Hygiene
+
+Memory entries should include lifecycle state: `CURRENT`, `STALE`, `SUPERSEDED`, or `TEMPORARY`. Checkpoint only reusable durable knowledge: architectural decisions, non-obvious constraints, reusable bug root causes, project conventions, and environment quirks. Do not checkpoint line-number changes, temporary debug notes, short-lived branches, or one-time grep results.
+
+## Source Precedence
+
+When memory conflicts with current evidence, trust: current code > current config > project docs > explicit project memory > conversation memory > inferred memory.
+
 ## Bilingual Markdown
 
 Human-facing Markdown files should use the bilingual switch pattern from [docs/BILINGUAL_MARKDOWN.md](BILINGUAL_MARKDOWN.md). Skill `SKILL.md` files may stay concise in English when the text is meant primarily for assistant activation, but user-facing docs should include both languages.
@@ -137,6 +167,18 @@ description: Deskripsi trigger yang jelas tentang fungsi skill dan kapan assista
 - Target 40-180 karakter.
 - Jangan pakai Markdown link atau bullet formatting.
 - Jelaskan kemampuan reusable, bukan detail internal repo.
+
+## Protokol Berlapis
+
+Repository ini menggunakan protokol berlapis yang ketat. Skill baru harus menyatakan layer dan when-to-load guidance di footer `Context Efficiency`. Layer saat ini:
+
+- Layer 0: `memory-management` - preflight, recall, checkpointing, graph memory.
+- Layer 1: `least-code` - gate minimisasi: YAGNI, reuse, stdlib, fitur native, dependency terinstal, one-liner, minimum working code.
+- Layer 2: `using-laravel-standards` - entrypoint, deteksi stack, pemilihan skill.
+- Layer 3: Skill implementasi fokus - arsitektur, Eloquent, controller, queue, UI, integrasi.
+- Layer 4: Verifikasi - testing, quality gates, E2E, dokumentasi.
+- Layer 5: Prompting - struktur prompt, debugging, code review, iterasi, ekstraksi standar.
+-lintas-layer: `runner-selection`, `daily-workflow`, `security`.
 
 ## Markdown Bilingual
 

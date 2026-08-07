@@ -135,3 +135,9 @@ Before work is complete, run the relevant checks:
 - queue/job smoke tests.
 
 If a check cannot run, report the command and reason.
+
+## Context Efficiency
+
+Layer: 4 (Verification)
+
+Load this skill only when writing or reviewing tests. Do not load with unrelated skills. Keep tests behavior-focused: smallest test type that catches the risk, no per-function suites unless asked, no frameworks/fixtures for trivial logic.

@@ -86,3 +86,9 @@ Prefer named custom rule objects when validation has reusable domain meaning.
 ## Testing
 
 Test validation failures and authorization failures. Cover request normalization when human-formatted values are accepted.
+
+## Context Efficiency
+
+Layer: 3 (Implementation)
+
+Load this skill only when validation or request authorization is nontrivial. Inline tiny validation in controllers only for prototypes or legacy maintenance. Keep Form Requests focused: rules, authorize, prepareForValidation, no database writes or business workflows.

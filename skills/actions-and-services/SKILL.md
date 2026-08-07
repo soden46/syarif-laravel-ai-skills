@@ -93,3 +93,9 @@ Add an interface only when:
 - the boundary protects domain code from infrastructure.
 
 Do not require Repository Pattern for normal Eloquent CRUD. Add a repository only for real data-access complexity or storage-provider variation.
+
+## Context Efficiency
+
+Layer: 3 (Implementation)
+
+Load this skill only when application boundaries need design. Do not load with unrelated skills. Keep the diff minimal: one Action per use case, one Service per integration or workflow, no interface until a second implementation exists.

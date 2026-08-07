@@ -26,6 +26,7 @@ Read AGENTS.md, then use skills/using-laravel-standards/SKILL.md as the entry sk
 For a focused task:
 
 ```text
+Use skills/least-code/SKILL.md to make the smallest possible change.
 Use skills/form-requests/SKILL.md to move controller validation into a Form Request.
 Use skills/laravel-database-optimization/SKILL.md to review this query flow.
 Use skills/ui-agent-browser/SKILL.md to design and implement this frontend against the Laravel backend contract.
@@ -152,6 +153,7 @@ Read AGENTS.md, then use skills/using-laravel-standards/SKILL.md as the entry sk
 Untuk task spesifik:
 
 ```text
+Use skills/least-code/SKILL.md to make the smallest possible change.
 Use skills/form-requests/SKILL.md to move controller validation into a Form Request.
 Use skills/laravel-database-optimization/SKILL.md to review this query flow.
 Use skills/ui-agent-browser/SKILL.md to design and implement this frontend against the Laravel backend contract.

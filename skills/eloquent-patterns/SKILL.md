@@ -119,3 +119,9 @@ DocumentLine::create([
 ```
 
 Store only fields needed for historical correctness and avoid unnecessary sensitive data.
+
+## Context Efficiency
+
+Layer: 3 (Implementation)
+
+Load this skill only when models or queries need review. Do not load with unrelated skills. Keep changes minimal: explicit casts, eager-loaded relations, paginated queries, no unbounded `all()` or broad `get()` in production paths.

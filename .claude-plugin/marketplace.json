@@ -11,7 +11,7 @@
   "plugins": [
     {
       "name": "syarif-laravel-ai-skills",
-      "description": "Laravel AI skill bundle for architecture, validation, Eloquent, performance, security, Livewire, testing, daily workflow, and secure memory orchestration.",
+      "description": "Laravel AI skill bundle for architecture, validation, Eloquent, performance, security, Livewire, testing, daily workflow, secure memory orchestration, and lazy-minimization gate.",
       "version": "0.1.0",
       "source": ".",
       "strict": false,
@@ -55,6 +55,7 @@
         "./skills/laravel-database-optimization",
         "./skills/laravel-prompting-patterns",
         "./skills/laravel-specialist",
+        "./skills/least-code",
         "./skills/livewire-development",
         "./skills/memory-management",
         "./skills/migrations-and-factories",

@@ -3,23 +3,31 @@
   "notGrouped": "bottom",
   "groupings": [
     {
-      "title": "Start Here",
-      "description": "Entry points and daily workflows for choosing the right Laravel skill before changing code.",
+      "title": "Preflight",
+      "description": "Layer 0: memory preflight, recall, checkpointing, and graph memory. Run before any other skill.",
       "skills": [
-        "using-laravel-standards",
-        "runner-selection",
-        "daily-workflow",
-        "memory-management",
-        "brainstorming",
-        "writing-plans",
-        "executing-plans",
-        "laravel-specialist",
-        "laravel-11-12-app-guidelines"
+        "memory-management"
       ]
     },
     {
-      "title": "Architecture",
-      "description": "Laravel-native boundaries for controllers, routes, services, helpers, and design patterns.",
+      "title": "Minimization",
+      "description": "Layer 1: least-code minimization gate. Run before any code change to enforce YAGNI, reuse, stdlib, native features, one-liners.",
+      "skills": [
+        "least-code"
+      ]
+    },
+    {
+      "title": "Orchestration",
+      "description": "Layer 2: entrypoints, stack detection, skill selection, and design refinement.",
+      "skills": [
+        "using-laravel-standards",
+        "brainstorming",
+        "laravel-specialist"
+      ]
+    },
+    {
+      "title": "Implementation",
+      "description": "Layer 3: focused implementation skills for architecture, HTTP, data, queues, UI, and integrations.",
       "skills": [
         "architecture",
         "module-per-menu",
@@ -32,58 +40,20 @@
         "template-method-and-plugins",
         "complexity-guardrails",
         "constants-and-configuration",
-        "custom-helpers"
-      ]
-    },
-    {
-      "title": "HTTP & Security",
-      "description": "Request validation, API evolution, authorization, rate limiting, CSRF, and security checks.",
-      "skills": [
+        "custom-helpers",
         "form-requests",
         "api-resources-and-pagination",
         "api-surface-evolution",
         "policies-and-authorization",
-        "rate-limiting",
-        "request-forgery-protection",
-        "security"
-      ]
-    },
-    {
-      "title": "Data & Eloquent",
-      "description": "Migrations, relationships, query shape, transactions, consistency, and large dataset handling.",
-      "skills": [
-        "migrations-and-factories",
         "eloquent-patterns",
         "eloquent-relationships",
         "database-transactions",
-        "data-chunking-large-datasets"
-      ]
-    },
-    {
-      "title": "Performance",
-      "description": "Database optimization, caching, eager loading, and selective column patterns.",
-      "skills": [
+        "data-chunking-large-datasets",
+        "migrations-and-factories",
         "laravel-database-optimization",
         "performance-caching",
         "performance-eager-loading",
-        "performance-select-columns"
-      ]
-    },
-    {
-      "title": "UI & Admin",
-      "description": "Blade, Livewire, Nova, and translation patterns for Laravel user interfaces.",
-      "skills": [
-        "blade-components-and-layouts",
-        "ui-agent-browser",
-        "livewire-development",
-        "nova-resource-patterns",
-        "internationalization-and-translation"
-      ]
-    },
-    {
-      "title": "Ops & Integrations",
-      "description": "Queues, Horizon, schedules, filesystems, HTTP clients, logging, and storage configuration.",
-      "skills": [
+        "performance-select-columns",
         "queues-and-jobs",
         "horizon-metrics-and-dashboards",
         "task-scheduling",
@@ -91,12 +61,21 @@
         "http-client-resilience",
         "integrate-whatsapp-baileys-laravel",
         "exception-handling-and-logging",
-        "config-env-storage"
+        "config-env-storage",
+        "blade-components-and-layouts",
+        "ui-agent-browser",
+        "livewire-development",
+        "nova-resource-patterns",
+        "internationalization-and-translation",
+        "ai-sdk",
+        "vector-search",
+        "php-attributes",
+        "upgrade-13"
       ]
     },
     {
-      "title": "Quality",
-      "description": "Testing, Pint, E2E checks, controller coverage, documentation, and dependency trimming.",
+      "title": "Verification",
+      "description": "Layer 4: testing, quality gates, E2E, and documentation.",
       "skills": [
         "testing",
         "tdd-with-pest",
@@ -109,18 +88,8 @@
       ]
     },
     {
-      "title": "Modern Laravel",
-      "description": "Laravel 13+ topics including the AI SDK, vector search, PHP attributes, and upgrade planning.",
-      "skills": [
-        "ai-sdk",
-        "vector-search",
-        "php-attributes",
-        "upgrade-13"
-      ]
-    },
-    {
       "title": "Prompting",
-      "description": "Prompt structure, debugging context, code review requests, examples, iteration, and standards extraction.",
+      "description": "Layer 5: prompt structure, debugging context, code review requests, examples, iteration, and standards extraction.",
       "skills": [
         "effective-context",
         "prompt-structure",
@@ -131,6 +100,26 @@
         "using-examples-in-prompts",
         "laravel-prompting-patterns",
         "extract-laravel-standards"
+      ]
+    },
+    {
+      "title": "Daily Workflow",
+      "description": "Cross-layer daily workflow and runner selection.",
+      "skills": [
+        "runner-selection",
+        "daily-workflow",
+        "executing-plans",
+        "writing-plans",
+        "laravel-11-12-app-guidelines"
+      ]
+    },
+    {
+      "title": "Security",
+      "description": "Cross-layer security review and request forgery protection.",
+      "skills": [
+        "security",
+        "rate-limiting",
+        "request-forgery-protection"
       ]
     }
   ]

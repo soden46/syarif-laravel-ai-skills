@@ -52,7 +52,7 @@
   "plugins": [
     {
       "name": "laravel-app-skills",
-      "description": "Laravel AI skill bundle for architecture, validation, Eloquent, performance, security, Livewire, testing, daily workflow, and secure memory orchestration.",
+      "description": "Laravel AI skill bundle for architecture, validation, Eloquent, performance, security, Livewire, testing, daily workflow, secure memory orchestration, and lazy-minimization gate.",
       "codexManifest": "./plugins/laravel-app-skills/.codex-plugin/plugin.json",
       "claudeManifest": "./plugins/laravel-app-skills/.claude-plugin/plugin.json",
       "skillsPath": "./plugins/laravel-app-skills/skills",
@@ -107,6 +107,7 @@
         "performance-select-columns",
         "php-attributes",
         "policies-and-authorization",
+        "least-code",
         "ports-and-adapters",
         "prompt-structure",
         "quality-checks",
@@ -326,6 +327,11 @@
       "name": "laravel-specialist",
       "path": "./skills/laravel-specialist/SKILL.md",
       "description": "Coordinate full Laravel feature work across models, APIs, auth, queues, Livewire, tests, and quality checks by routing to focused skills."
+    },
+    {
+      "name": "least-code",
+      "path": "./skills/least-code/SKILL.md",
+      "description": "Force the laziest working solution before any Laravel skill writes code. Question YAGNI, reuse existing helpers, prefer stdlib/native features, and keep the shortest working diff."
     },
     {
       "name": "livewire-development",

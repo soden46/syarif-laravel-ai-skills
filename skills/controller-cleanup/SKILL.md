@@ -88,3 +88,9 @@ final class RecordController
 - Do not require Repository Pattern by default.
 - Keep framework-specific HTTP concerns in controllers.
 - Keep reusable business operations outside controllers.
+
+## Context Efficiency
+
+Layer: 3 (Implementation)
+
+Load this skill only when controllers need cleanup. Do not load with unrelated skills. Keep the diff minimal: inline validation only when rules are tiny, otherwise Form Request; one Action per use case; no repository by default.

@@ -67,3 +67,9 @@ Before applying version-specific patterns, check:
 - Keep project-specific business names out of shared standards.
 - Write focused tests around the behavior being changed.
 - Run available quality checks before handoff.
+
+## Context Efficiency
+
+Layer: 3 (Implementation)
+
+Load this skill only when architecture decisions are needed. Do not load with unrelated skills. Keep the implementation checklist minimal: public behavior, Laravel-native APIs, focused tests, quality checks.

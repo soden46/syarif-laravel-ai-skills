@@ -8,16 +8,18 @@ tags:
 
 # Laravel Specialist
 
+Layer: 3 (Implementation Orchestrator)
+
 Use this skill for broad Laravel implementation, refactoring, review, or bug-fixing tasks that touch several parts of an application.
 
-This is an orchestration skill. Prefer loading the smallest focused skill once the task shape is clear.
+This skill assumes Layer 0-2 have already run. If you have not run `memory-management` preflight, `least-code`, and `using-laravel-standards` skill selection yet, do so before loading this skill.
 
 ## Workflow
 
-1. Read project instructions first: `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md`, and relevant docs when present.
-2. Detect the stack before editing: Laravel version, PHP version, database, queue driver, auth package, frontend stack, test framework, formatter, static analysis, and runner.
-3. Identify the primary workflow boundary: HTTP, console, queue, scheduled task, Livewire, API, integration, or data migration.
-4. Select focused skills and apply existing project conventions before introducing new patterns.
+1. Confirm the task shape and primary workflow boundary: HTTP, console, queue, scheduled task, Livewire, API, integration, or data migration.
+2. Apply `least-code` minimization: reuse existing helpers, stdlib, native features, installed dependencies before writing new code.
+3. Select the smallest focused skills for the task and load only their `SKILL.md`.
+4. Apply existing project conventions before introducing new patterns.
 5. Verify with the smallest meaningful tests and quality checks.
 
 ## Skill Routing

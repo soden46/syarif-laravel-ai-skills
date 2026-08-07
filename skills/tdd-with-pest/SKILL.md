@@ -42,4 +42,10 @@ This skill is adapted to the personal Laravel standards in this repository. It m
 - `using-laravel-standards`
 - `architecture`
 - `testing`
+
+## Context Efficiency
+
+Layer: 4 (Verification)
+
+Load this skill only when TDD is needed. Do not load with unrelated skills. RED-GREEN-REFACTOR, but keep it tight: one failing test, smallest passing implementation, refactor only when it simplifies. No per-function suites unless asked.
 - `security`
