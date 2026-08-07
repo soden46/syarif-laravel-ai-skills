@@ -99,9 +99,17 @@ Verify with the smallest meaningful tests and quality checks the project support
 
 - LOW: syntax/static check.
 - MEDIUM: targeted feature/unit test + affected callers.
-- HIGH: targeted test + regression test + DB/schema/security implications.
+- HIGH: targeted verification + affected regression surface + failure paths + relevant data/security/concurrency checks.
 
-At handoff, use `memory-management` to checkpoint durable decisions, touched files, and pending work when the task changed project knowledge.
+Run the full test suite only when it is cheap or explicitly justified.
+
+Memory checkpoint is never a requirement for task completion. It occurs only when durable reusable knowledge was produced. At handoff, use `memory-management` to checkpoint durable decisions, touched files, and pending work when the task changed project knowledge.
+
+### Architecture Note
+
+Keep the permanent control plane thin: Memory → Decision/minimization → Framework orchestration.
+
+Treat Laravel, Livewire, Database, Testing, Security, and API skills as on-demand execution skills, not permanent layers. This keeps the framework scalable and avoids context overhead.
 
 ## Context Efficiency
 

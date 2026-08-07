@@ -12,7 +12,7 @@
   <a href="https://github.com/soden46/syarif-laravel-ai-skills/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/syarif-laravel-ai-skills?style=for-the-badge&label=stars&labelColor=0F172A&color=38BDF8"></a>
 </p>
 
-Laravel-focused AI skills for Codex, Claude Code, and any AI coding assistant that can read Markdown files. Install them with `npx skills add`, use the generated plugin packages, or point a generic assistant at the universal manifest and canonical `skills/` folder. The catalog now includes secure memory orchestration, a least-code minimization gate, and risk-aware verification so agents can recall useful project context, write the smallest possible diff, and match trace and test depth to task risk without flooding the prompt or storing secrets.
+Laravel-focused AI skills for Codex, Claude Code, and any AI coding assistant that can read Markdown files. Install them with `npx skills add`, use the generated plugin packages, or point a generic assistant at the universal manifest and canonical `skills/` folder. The catalog now includes secure memory orchestration, a least-code minimization gate, risk-aware verification, adaptive depth, bounded exploration, and memory discipline so agents can recall useful project context, write the smallest possible diff, match trace and test depth to task risk, and avoid over-exploration or stale memory poisoning.
 
 Skills follow the [Agent Skills](https://agentskills.io/) format.
 
@@ -25,8 +25,12 @@ Language: [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 
 ## What You Get
 
-- **71 installable Laravel skills** - a focused Laravel skill catalog with overlapping topics consolidated into stronger canonical skills.
+- **72 installable Laravel skills** - a focused Laravel skill catalog with overlapping topics consolidated into stronger canonical skills.
 - **Least-code minimization gate** - `least-code` enforces YAGNI, reuse, stdlib, native features, installed dependencies, one-liners, and minimum working code before any implementation skill runs.
+- **Risk-aware verification** - tasks are classified LOW/MEDIUM/HIGH so trace depth, test scope, and regression surface match the actual risk instead of always running the full suite.
+- **Adaptive depth** - small tasks stay small; high-risk tasks get full trace, behavior preservation checks, and failure-path verification without over-exploring.
+- **Bounded exploration** - agents stop once the execution path, affected callers, contract, and verification surface are understood, instead of grepping the entire repository.
+- **Memory discipline** - memory entries carry lifecycle states, source precedence prevents stale or inferred memory from overriding current code, and checkpoints store only reusable decisions instead of every task result.
 - **Personal core standards** - local standards extracted from reviewed Laravel projects and ongoing AI workflows, with client details removed.
 - **Public topic coverage** - 54 additional topics mapped from public Laravel skill catalogs without copying third-party skill body text.
 - **Responsive UI testing** - a focused Playwright skill for mobile, tablet, desktop, overflow, clipping, tables, modals, navigation, and Livewire state checks.
@@ -41,7 +45,9 @@ The `memory-management` skill is the continuity layer for long-running Laravel w
 
 It is designed to reduce token waste by retrieving only relevant memory: user preferences, project conventions, workflow patterns, conversation checkpoints, and targeted codebase intelligence from a local MCP backend when available. It also ships an active local backend at `skills/memory-management/scripts/memory.mjs`, with `auto`, `init`, `remember`, `recall`, `checkpoint`, `audit`, `forget`, and `status` commands that default to `~/.ai-memory` or `AI_MEMORY_ROOT`.
 
-Automatic mode is wired into `using-laravel-standards`: the entrypoint tells agents to run `memory.mjs auto --cwd <project-root> --query "<task intent>"` before broad exploration, then checkpoint durable decisions at handoff. The skill also ships `scripts/mcp-server.mjs` for stdio MCP tool access and `scripts/memory-hook.mjs` for lifecycle preflight/checkpoint hooks. For always-on code graph indexing and background watchers, pair this skill with a local codebase memory MCP such as `codebase-memory-mcp`.
+Memory entries carry lifecycle states (`CURRENT`, `STALE`, `SUPERSEDED`, `TEMPORARY`) so stale architecture decisions do not poison later implementation. Source precedence keeps current code authoritative over memory: current code > current config > project docs > explicit project memory > conversation memory > inferred memory. Checkpoints store only reusable durable knowledge—architectural decisions, non-obvious constraints, reusable bug root causes, project conventions, and environment quirks—not every task result. Decision memory records why a choice was made, not just what happened.
+
+Automatic mode is wired into `using-laravel-standards`: the entrypoint tells agents to run `memory.mjs auto --cwd <project-root> --query "<task intent>"` before broad exploration, then checkpoint durable decisions at handoff when reusable knowledge was produced. The skill also ships `scripts/mcp-server.mjs` for stdio MCP tool access and `scripts/memory-hook.mjs` for lifecycle preflight/checkpoint hooks. For always-on code graph indexing and background watchers, pair this skill with a local codebase memory MCP such as `codebase-memory-mcp`.
 
 For Hermes-style orchestration, the skill includes `references/hermes-orchestrator-profile.md` and an `orchestrator-profile` installer target. This documents portable policy for cross-session memory, external memory providers, skills-on-demand, provider failover, delegated workers, context compression, auxiliary providers, OpenAI-compatible API fronts, messaging gateways, VS Code ACP, Antigravity, and other editor/agent interfaces. The generated profile is non-secret routing metadata; the active host still owns provider switching, subagent execution, compression, and external sync.
 
@@ -218,7 +224,7 @@ Use quality-checks before final handoff.
 
 - `using-laravel-standards` - entry point and skill selector.
 - `memory-management` - active secure memory for conversation, project, user, workflow, and codebase context.
-- `least-code` - minimization gate that enforces YAGNI, reuse, stdlib, native features, installed dependencies, one-liners, and minimum working code before implementation.
+- `least-code` - minimization gate that enforces YAGNI, reuse, stdlib, native features, installed dependencies, one-liners, change surface budget, behavior preservation, risk classification, and root-cause confidence before implementation.
 - `extract-laravel-standards` - audit finished projects and propose reusable standards.
 - `architecture` - Laravel-native architecture decisions.
 - `controller-cleanup` - thin controllers and route boundaries.
@@ -318,12 +324,16 @@ MIT License - see [LICENSE](LICENSE).
 <details>
 <summary><strong>Bahasa Indonesia</strong></summary>
 
-Skill Laravel-focused AI untuk Codex, Claude Code, dan AI coding assistant yang bisa membaca file Markdown. Install dengan `npx skills add`, pakai package plugin yang di-generate, atau arahkan assistant generic ke universal manifest dan folder `skills/`. Katalog ini sekarang menyertakan memory orchestration yang aman, gate minimisasi least-code, dan verifikasi yang sadar risiko sehingga agent bisa mengingat konteks proyek yang berguna, menulis diff terkecil yang benar, dan menyesuaikan kedalaman trace dan test dengan risiko task tanpa membanjiri prompt atau menyimpan rahasia.
+Skill Laravel-focused AI untuk Codex, Claude Code, dan AI coding assistant yang bisa membaca file Markdown. Install dengan `npx skills add`, pakai package plugin yang di-generate, atau arahkan assistant generic ke universal manifest dan folder `skills/`. Katalog ini sekarang menyertakan memory orchestration yang aman, gate minimisasi least-code, verifikasi yang sadar risiko, kedalaman adaptif, eksplorasi yang dibatasi, dan disiplin memory sehingga agent bisa mengingat konteks proyek yang berguna, menulis diff terkecil yang benar, menyesuaikan kedalaman trace dan test dengan risiko task, dan menghindari over-exploration atau memory poisoning.
 
 ## Yang Didapat
 
 - **72 skill Laravel installable** - katalog skill Laravel yang fokus dengan topik tumpang tindih digabung menjadi skill canonical yang lebih kuat.
-- **Gate minimisasi least-code** - `least-code` menerapkan YAGNI, reuse, stdlib, fitur native, dependency terinstal, one-liner, dan minimum working code sebelum skill implementasi lain dijalankan.
+- **Gate minimisasi least-code** - `least-code` menerapkan YAGNI, reuse, stdlib, fitur native, dependency terinstal, one-liner, change surface budget, behavior preservation, risk classification, dan root-cause confidence sebelum skill implementasi lain dijalankan.
+- **Verifikasi yang sadar risiko** - task diklasifikasikan LOW/MEDIUM/HIGH sehingga kedalaman trace, scope test, dan regression surface sesuai dengan risiko aktual, bukan selalu menjalankan full suite.
+- **Kedalaman adaptif** - task kecil tetap kecil; task berbahaya dapat full trace, behavior preservation checks, dan failure-path verification tanpa over-exploration.
+- **Eksplorasi yang dibatasi** - agent berhenti ketika execution path, affected callers, contract, dan verification surface sudah dipahami, bukan menggrep seluruh repository.
+- **Disiplin memory** - memory entries memiliki lifecycle states, source precedence mencegah stale/inferred memory meng override current code, dan checkpoint menyimpan hanya reusable decisions.
 - **Standar inti pribadi** - standar lokal dari proyek Laravel yang sudah direview dan workflow AI yang terus berkembang, tanpa detail client.
 - **Cakupan topik publik** - 54 topik tambahan yang dimapping dari katalog skill Laravel publik tanpa menyalin isi body skill pihak ketiga.
 - **Responsive UI testing** - skill Playwright khusus untuk mobile, tablet, desktop, overflow, clipping, tabel, modal, navigasi, dan state Livewire.
@@ -338,7 +348,9 @@ Skill `memory-management` adalah lapisan kontinuitas untuk kerja Laravel yang pa
 
 Skill ini dirancang untuk menghemat token dengan hanya mengambil memory yang relevan: preferensi user, konvensi proyek, pola workflow, checkpoint percakapan, dan codebase intelligence terarah dari backend MCP lokal ketika tersedia. Skill ini juga membawa backend lokal aktif di `skills/memory-management/scripts/memory.mjs`, dengan command `auto`, `init`, `remember`, `recall`, `checkpoint`, `audit`, `forget`, dan `status` yang default ke `~/.ai-memory` atau `AI_MEMORY_ROOT`.
 
-Mode otomatis sudah disambungkan ke `using-laravel-standards`: entrypoint meminta agent menjalankan `memory.mjs auto --cwd <project-root> --query "<task intent>"` sebelum eksplorasi luas, lalu checkpoint keputusan tahan lama saat handoff. Skill ini juga membawa `scripts/mcp-server.mjs` untuk tool MCP stdio dan `scripts/memory-hook.mjs` untuk lifecycle hook preflight/checkpoint. Untuk indexing graph kode yang selalu hidup dan background watcher, pasangkan skill ini dengan MCP lokal seperti `codebase-memory-mcp`.
+Memory entries memiliki lifecycle states (`CURRENT`, `STALE`, `SUPERSEDED`, `TEMPORARY`) sehingga architecture decisions lama tidak menyesatkan implementasi berikutnya. Source precedence menjamin current code selalu di atas memory: current code > current config > project docs > explicit project memory > conversation memory > inferred memory. Checkpoint menyimpan hanya reusable durable knowledge—architectural decisions, non-obvious constraints, reusable bug root causes, project conventions, environment quirks—bukan semua hasil task. Decision memory records why a choice was made, bukan cuma what happened.
+
+Mode otomatis sudah disambungkan ke `using-laravel-standards`: entrypoint meminta agent menjalankan `memory.mjs auto --cwd <project-root> --query "<task intent>"` sebelum eksplorasi luas, lalu checkpoint keputusan tahan lama saat handoff jika reusable knowledge dihasilkan. Skill ini juga membawa `scripts/mcp-server.mjs` untuk tool MCP stdio dan `scripts/memory-hook.mjs` untuk lifecycle hook preflight/checkpoint. Untuk indexing graph kode yang selalu hidup dan background watcher, pasangkan skill ini dengan MCP lokal seperti `codebase-memory-mcp`.
 
 Privasi tetap jadi aturan utama: anonymize knowledge lintas proyek, simpan provenance, verifikasi terhadap source code, dan jangan pernah persist secret.
 
@@ -512,7 +524,7 @@ Use quality-checks before final handoff.
 
 - `using-laravel-standards` - entry point dan pemilih skill.
 - `memory-management` - memory aktif yang aman untuk conversation, project, user, workflow, dan codebase context.
-- `least-code` - gate minimisasi yang menerapkan YAGNI, reuse, stdlib, fitur native, dependency terinstal, one-liner, dan minimum working code sebelum implementasi.
+- `least-code` - gate minimisasi yang menerapkan YAGNI, reuse, stdlib, fitur native, dependency terinstal, one-liner, change surface budget, behavior preservation, risk classification, dan root-cause confidence sebelum implementasi.
 - `extract-laravel-standards` - audit proyek selesai dan usulkan standar reusable.
 - `architecture` - keputusan arsitektur Laravel-native.
 - `controller-cleanup` - controller tipis dan batas route.

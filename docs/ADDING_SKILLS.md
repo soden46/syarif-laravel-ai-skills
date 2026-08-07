@@ -55,13 +55,56 @@ Tasks must be classified before implementation. Risk level determines trace dept
 
 For HIGH risk, require full trace, regression verification, and explicit behavior preservation check.
 
-## Memory Hygiene
+## Behavior Preservation
 
-Memory entries should include lifecycle state: `CURRENT`, `STALE`, `SUPERSEDED`, or `TEMPORARY`. Checkpoint only reusable durable knowledge: architectural decisions, non-obvious constraints, reusable bug root causes, project conventions, and environment quirks. Do not checkpoint line-number changes, temporary debug notes, short-lived branches, or one-time grep results.
+Identify preservation constraints before editing. Expose them in user-visible output only when useful for handoff or HIGH-risk work. For LOW tasks, honor constraints silently without outputting a preservation list.
+
+## Root-Cause Confidence
+
+After tracing, classify confidence before patching:
+
+- **CONFIRMED** — Evidence directly proves root cause.
+- **LIKELY** — Evidence strongly suggests root cause but reproduction/test is incomplete.
+- **UNKNOWN** — Insufficient evidence; do not perform speculative invasive fixes.
+
+Never state "root cause is X" when confidence is LIKELY or UNKNOWN.
+
+## Test Creation
+
+Add or update a regression test only when:
+- fixing a reproducible bug;
+- changing business-critical behavior;
+- changing authorization or validation boundaries;
+- the affected behavior is not already adequately covered.
+
+Prefer extending the nearest existing test over creating a new test structure.
+
+## Change Surface Budget
+
+Prefer, in order:
+1. existing line/local expression
+2. existing method
+3. existing class/component
+4. existing module boundary
+5. new abstraction/file only when justified
+
+Escalate the change surface only when the lower level cannot solve the root cause safely.
+
+## Regression Surface
+
+For HIGH risk, verify the affected regression surface, not necessarily the entire test suite. Run the full suite only when it is cheap or explicitly justified.
+
+## Memory Checkpoint
+
+Memory checkpoint is never a requirement for task completion. It occurs only when durable reusable knowledge was produced. If no reusable knowledge was generated, finish without checkpointing.
 
 ## Source Precedence
 
 When memory conflicts with current evidence, trust: current code > current config > project docs > explicit project memory > conversation memory > inferred memory.
+
+## Architecture Note
+
+Keep the permanent control plane thin: Memory → Decision/minimization → Framework orchestration. Treat Laravel, Livewire, Database, Testing, Security, and API skills as on-demand execution skills, not permanent layers.
 
 ## Bilingual Markdown
 

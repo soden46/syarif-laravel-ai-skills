@@ -43,15 +43,11 @@ Classify the task before implementation. Risk level determines trace depth, veri
 
 ## Behavior preservation check
 
-Before editing, identify what must NOT change. Write it down in one pass.
+Identify preservation constraints before editing. This is internal mandatory reasoning.
 
-Example for a payment-search bug:
-- filter/search must remain functional
-- pagination must keep current behavior
-- authorization must not be weakened
-- redirect behavior stays the same, except the requested fix
+Expose it in user-visible output only when useful for handoff or HIGH-risk work. For LOW tasks, do not output a preservation list; just honor the constraints silently.
 
-For non-trivial edits, preserve:
+Preserve:
 - input/output contract
 - authorization boundary
 - side effects and events
@@ -66,6 +62,19 @@ Rule:
 - Reuse only when semantics match, not merely because code looks similar.
 - A slightly longer existing abstraction is better than a clever one-liner that breaks an implicit contract.
 - Mark deliberate simplifications that cut a real corner with a `least-code:` comment naming the ceiling and upgrade path.
+
+## Change surface budget
+
+Prefer, in order:
+1. existing line/local expression
+2. existing method
+3. existing class/component
+4. existing module boundary
+5. new abstraction/file only when justified
+
+Escalate the change surface only when the lower level cannot solve the root cause safely.
+
+Example: 4 lines touching 5 files is usually worse than 8 lines inside 1 existing component.
 
 ## The ladder
 
@@ -108,11 +117,35 @@ route
 
 **Bug fix = root cause, not symptom.** A report names a symptom. Before you edit, grep every caller of the function you're about to touch. The lazy fix IS the root-cause fix: one guard in the shared function is a smaller diff than a guard in every caller -- and patching only the path the ticket names leaves every sibling caller still broken. Fix it once, where all callers route through.
 
+### Root-cause confidence
+
+After tracing, classify confidence before patching:
+
+- **CONFIRMED** — Evidence directly proves root cause.
+- **LIKELY** — Evidence strongly suggests root cause but reproduction/test is incomplete.
+- **UNKNOWN** — Insufficient evidence; do not perform speculative invasive fixes.
+
+Never state "root cause is X" when confidence is LIKELY or UNKNOWN. Say so explicitly.
+
 ## Stop condition
 
 Stop exploration once the execution path, affected callers, contract, and verification surface are sufficiently understood.
 
 Do not grep the entire repository to feel safe. Trace the real call graph and the real data flow. If the change touches 3 files and you understand why, stop.
+
+## Test creation rules
+
+Do not add tests mechanically.
+
+Add or update a regression test when:
+- fixing a reproducible bug;
+- changing business-critical behavior;
+- changing authorization or validation boundaries;
+- the affected behavior is not already adequately covered.
+
+Prefer extending the nearest existing test over creating a new test structure.
+
+Trivial one-liners need no test. YAGNI applies to tests too.
 
 ## Rules
 

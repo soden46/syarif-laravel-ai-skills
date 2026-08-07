@@ -62,7 +62,7 @@ Before implementation, classify the task risk:
 - **HIGH**: migration, auth, permission, payroll, financial calculation, concurrency, destructive action, data-shape change.
   - Full trace required.
   - Architecture/data/security review before patch.
-  - Regression + failure-path verification required.
+  - Affected regression surface + failure-path verification required.
   - Explicit behavior preservation check mandatory.
 
 Risk level determines verification depth and exploration breadth.
@@ -83,7 +83,14 @@ Apply the selected focused skills. Each skill governs its own domain:
 
 Verify with the smallest meaningful tests and quality checks the project supports.
 
-At handoff, use `memory-management` to checkpoint durable decisions, touched files, and pending work when the task changed project knowledge.
+Match verification to risk level:
+- **LOW**: syntax/static check.
+- **MEDIUM**: targeted feature/unit test + affected callers.
+- **HIGH**: targeted verification + affected regression surface + failure paths + relevant data/security/concurrency checks.
+
+Run the full test suite only when it is cheap or explicitly justified.
+
+Memory checkpoint is never a requirement for task completion. It occurs only when durable reusable knowledge was produced. If no reusable knowledge was generated, finish without checkpointing.
 
 ## Context Efficiency Rules
 
@@ -150,20 +157,6 @@ A task is complete only when:
 - targeted verification passes,
 - no unnecessary abstraction/dependency was added,
 - durable knowledge is checkpointed only if reusable.
-
-## Verification Depth
-
-Match verification to risk level:
-
-- **LOW**: syntax/static check.
-- **MEDIUM**: targeted feature/unit test + affected callers.
-- **HIGH**: targeted test + regression test + DB/schema/security implications.
-
-For Laravel, prefer:
-```bash
-php artisan test --filter=SpecificTest
-```
-over full suite for small tasks.
 
 ## Completion
 
