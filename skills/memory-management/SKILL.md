@@ -1,6 +1,6 @@
 ---
 name: memory-management
-description: Provide automatic long-term Laravel AI memory preflight, recall, checkpointing, and secure cross-project context across conversation, project, user, workflow, and codebase scopes.
+description: Recall, checkpoint, and audit durable Laravel project knowledge across sessions when prior context materially affects the current task.
 tags:
   - laravel
   - php
@@ -8,9 +8,7 @@ tags:
 
 # Memory Management
 
-Layer: 0 (Preflight)
-
-Use this skill as the continuity layer for long-running Laravel work. It loads only the memory needed for the current task, then hands off to the next layer.
+Use this skill when the task depends on prior context, project history, or known conventions. For self-contained local tasks, skip memory entirely.
 
 ## Core Principles
 

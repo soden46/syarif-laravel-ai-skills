@@ -39,15 +39,35 @@ Apply orchestration internally. Do not recite layer names, protocol steps, check
 
 ## Layered Protocol
 
-This repository uses a strict layered protocol. New skills should declare their layer and when-to-load guidance in a `Context Efficiency` footer. The current layers are:
+This repository uses a thin orchestrator with selective specialist activation. The always-loaded core is intentionally small; detailed knowledge stays in specialist skills loaded on demand.
 
-- Layer 0: `memory-management` - conditional preflight, recall, checkpointing, graph memory.
-- Layer 1: `least-code` - minimization gate: YAGNI, reuse, stdlib, native features, installed dependencies, one-liners, minimum working code, behavior preservation, root-cause tracing.
-- Layer 2: `using-laravel-standards` - entrypoint, stack detection, risk classification, skill selection, verification depth, definition of done.
-- Layer 3: Focused implementation skills - architecture, Eloquent, controllers, queues, UI, integrations.
-- Layer 4: Verification - testing, quality gates, E2E, documentation.
-- Layer 5: Prompting - prompt structure, debugging, code review, iteration, standards extraction.
-- Cross-layer: `runner-selection`, `daily-workflow`, `security`.
+### Core: Tiny Orchestrator
+
+`using-laravel-standards` is the always-loaded entrypoint. It should remain approximately 150–300 tokens. Its job is routing, not knowledge delivery:
+
+- Apply silently. Output only the minimal solution.
+- Make the smallest safe change.
+- Infer risk: LOW / MEDIUM / HIGH.
+- Preserve unrelated behavior.
+- Select only relevant specialist guidance.
+- Verify proportionally to risk.
+- Stop when complete.
+
+### Specialist Activation
+
+Load specialist skills only when the task domain requires them. Default to one primary skill and at most two supporting skills unless HIGH risk requires more.
+
+- `least-code`: load for focused implementation, review, or refactor work when minimization discipline is needed.
+- `memory-management`: load only when the task depends on prior context, project history, or known conventions. Skip for self-contained local tasks.
+- All other skills are on-demand execution skills.
+
+### Risk Depth
+
+- **LOW**: minimal local change. No new abstraction/dependency. No memory lookup unless prior context is necessary. One minimal targeted verification. No protocol narration.
+- **MEDIUM**: trace affected execution path. Identify likely/confirmed root cause. Preserve affected contracts. Targeted regression verification. Load relevant specialist guidance.
+- **HIGH**: inspect applicable security/data/concurrency/auth/migration/financial concerns. Failure paths. Affected regression surface. Explicit remaining uncertainty when meaningful. Load only relevant high-risk specialist guidance.
+
+Do not load HIGH-risk guidance for LOW tasks.
 
 ## Conditional Memory
 
@@ -221,15 +241,36 @@ description: Deskripsi trigger yang jelas tentang fungsi skill dan kapan assista
 
 ## Protokol Berlapis
 
-Repository ini menggunakan protokol berlapis yang ketat. Skill baru harus menyatakan layer dan when-to-load guidance di footer `Context Efficiency`. Layer saat ini:
+Repository ini menggunakan orchestrator tipis dengan aktivasi specialist selektif. Always-loaded core sengaja kecil; knowledge detail tetap di specialist skills yang dimuat on-demand.
 
-- Layer 0: `memory-management` - preflight, recall, checkpointing, graph memory.
-- Layer 1: `least-code` - gate minimisasi: YAGNI, reuse, stdlib, fitur native, dependency terinstal, one-liner, minimum working code.
-- Layer 2: `using-laravel-standards` - entrypoint, deteksi stack, pemilihan skill.
-- Layer 3: Skill implementasi fokus - arsitektur, Eloquent, controller, queue, UI, integrasi.
-- Layer 4: Verifikasi - testing, quality gates, E2E, dokumentasi.
-- Layer 5: Prompting - struktur prompt, debugging, code review, iterasi, ekstraksi standar.
--lintas-layer: `runner-selection`, `daily-workflow`, `security`.
+### Core: Tiny Orchestrator
+
+`using-laravel-standards` adalah always-loaded entrypoint. Target ~150–300 token. Fungsinya routing, bukan knowledge delivery:
+
+- Apply silently. Output only the minimal solution.
+- Make the smallest safe change.
+- Infer risk: LOW / MEDIUM / HIGH.
+- Preserve unrelated behavior.
+- Select only relevant specialist guidance.
+- Verify proportionally to risk.
+- Stop when complete.
+
+### Specialist Activation
+
+Load specialist skills hanya ketika task memerlukannya. Default: 1 primary skill, maksimum 1–2 supporting skills kecuali HIGH risk membutuhkan lebih.
+
+- `least-code`: load untuk implementation, review, atau refactor yang butuh minimisasi.
+- `memory-management`: load hanya ketika task bergantung pada prior context. Skip untuk self-contained local tasks.
+- Skill lain: on-demand execution skills.
+
+### Context Efficiency
+
+- Keep the always-loaded orchestrator (`using-laravel-standards`) under 300 tokens.
+- Keep specialist skill `SKILL.md` bodies under 500 lines.
+- Move detailed tables, examples, and long guidance into `references/`.
+- Link reference files directly from `SKILL.md`; avoid nested reference chasing.
+- Prefer scripts for repeatable or fragile operations.
+- Keep skill bodies concise, action-oriented, and free of client names, secrets, private URLs, personal data, and one-off business rules.
 
 ## Markdown Bilingual
 

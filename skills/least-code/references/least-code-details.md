@@ -128,3 +128,31 @@ Verified search -> payment -> reload flow and unauthorized path.
 ```
 
 If the explanation is longer than the code, delete the explanation. Every paragraph defending a simplification is complexity smuggled back in as prose. Explanation the user explicitly asked for is not debt.
+
+## Laravel Root-Cause Trace
+
+Laravel-specific execution path for root-cause debugging:
+
+```
+route
+  → component/controller
+    → validation
+      → service/model
+        → DB
+          → event/job
+            → response/view
+```
+
+Use this reference when the task involves debugging or tracing execution flow in Laravel or Livewire.
+
+## Livewire State Checklist
+
+Use this reference when debugging Livewire state issues:
+
+- public state → hydration
+- validation → errors/warnings
+- action → DB mutation
+- reset/redirect
+- query string/session persistence
+
+Most Livewire bugs are state lifecycle bugs, not backend bugs.

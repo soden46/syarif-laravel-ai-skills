@@ -61,37 +61,35 @@ Note: public Laravel discovery also expects `tags` containing `laravel` and `php
 
 ## Layered Protocol
 
-This repository uses a strict layered protocol to keep token usage low and output quality high. Every task MUST pass through the layers in order.
+This repository uses a thin orchestrator with selective specialist activation. The always-loaded core is intentionally small; detailed knowledge stays in specialist skills loaded on demand.
 
-### Layer 0: Conditional Memory Preflight
+### Core: Tiny Orchestrator
 
-Run `memory-management` automatic preflight only when the task depends on prior context, project history, or known conventions. For self-contained local tasks, skip memory entirely. If `memory-graph.json` exists, run one graph query instead of loading all memory. Use compact output as orientation only.
+`using-laravel-standards` is the always-loaded entrypoint. It should remain approximately 150–300 tokens. Its job is routing, not knowledge delivery:
 
-### Layer 1: least-code Minimization
+- Apply silently. Output only the minimal solution.
+- Make the smallest safe change.
+- Infer risk: LOW / MEDIUM / HIGH.
+- Preserve unrelated behavior.
+- Select only relevant specialist guidance.
+- Verify proportionally to risk.
+- Stop when complete.
 
-Activate `least-code` before any code change. Apply the minimization ladder: YAGNI, reuse existing codebase helpers, stdlib, native platform features, installed dependencies, one-liners, then minimum working code. Keep the shortest diff and the smallest explanation.
+### Specialist Activation
 
-### Layer 2: Risk Classification and Skill Selection
+Load specialist skills only when the task domain requires them. Default to one primary skill and at most two supporting skills unless HIGH risk requires more.
 
-Classify task risk before implementation. Risk level determines trace depth, verification depth, and review strictness. Detect the project stack: Laravel version, PHP version, Sail/container vs host runner, frontend stack, test framework, queue driver, installed quality tools.
+- `least-code`: load for focused implementation, review, or refactor work when minimization discipline is needed.
+- `memory-management`: load only when the task depends on prior context, project history, or known conventions. Skip for self-contained local tasks.
+- All other skills are on-demand execution skills.
 
-Choose the smallest relevant skill set for the current task. Load only the focused `SKILL.md` files needed. Do not load every skill. When multiple skills could apply, choose one primary skill and at most two supporting skills unless HIGH risk requires more.
+### Risk Depth
 
-### Layer 3: Focused Implementation
+- **LOW**: minimal local change. No new abstraction/dependency. No memory lookup unless prior context is necessary. One minimal targeted verification. No protocol narration.
+- **MEDIUM**: trace affected execution path. Identify likely/confirmed root cause. Preserve affected contracts. Targeted regression verification. Load relevant specialist guidance.
+- **HIGH**: inspect applicable security/data/concurrency/auth/migration/financial concerns. Failure paths. Affected regression surface. Explicit remaining uncertainty when meaningful. Load only relevant high-risk specialist guidance.
 
-Apply the selected focused skills. Each skill governs its own domain and includes a `Context Efficiency` footer with its layer and loading guidance.
-
-### Layer 4: Verification and Handoff
-
-Verify with the smallest meaningful tests and quality checks the project supports. Match verification to risk level:
-
-- LOW: syntax/static check.
-- MEDIUM: targeted feature/unit test + affected callers.
-- HIGH: targeted verification + affected regression surface + failure paths + relevant data/security/concurrency checks.
-
-Run the full test suite only when it is cheap or explicitly justified.
-
-Memory checkpoint is never a requirement for task completion. It occurs only when durable reusable knowledge was produced. At handoff, use `memory-management` to checkpoint durable decisions, touched files, and pending work when the task changed project knowledge.
+Do not load HIGH-risk guidance for LOW tasks.
 
 ### Architecture Note
 
@@ -101,12 +99,12 @@ Treat Laravel, Livewire, Database, Testing, Security, and API skills as on-deman
 
 ## Context Efficiency
 
-- Keep `SKILL.md` under 500 lines.
+- Keep the always-loaded orchestrator (`using-laravel-standards`) under 300 tokens.
+- Keep specialist skill `SKILL.md` bodies under 500 lines.
 - Move detailed tables, examples, and long guidance into `references/`.
 - Link reference files directly from `SKILL.md`; avoid nested reference chasing.
 - Prefer scripts for repeatable or fragile operations.
 - Keep skill bodies concise, action-oriented, and free of client names, secrets, private URLs, personal data, and one-off business rules.
-- Every skill must include a `Context Efficiency` footer stating its layer and when to load it.
 
 ## Public Discovery
 
@@ -122,7 +120,7 @@ The skills.sh repository page is grouped by `skills.sh.json`. Update it whenever
 
 This repo is designed for any AI assistant that can read files, not only assistants with native skill/plugin support.
 
-- Start with `skills/using-laravel-standards/SKILL.md`.
+- Start with `skills/using-laravel-standards/SKILL.md`. It is intentionally small; load specialist skills only when the task requires them.
 - Use `agent-skills.json` for machine-readable entry points, install commands, and canonical paths.
 - Read [docs/UNIVERSAL_USAGE.md](docs/UNIVERSAL_USAGE.md) for assistant-specific usage patterns.
 - For generic assistants, prompt them to read `AGENTS.md`, then load only the focused `skills/<skill-name>/SKILL.md` files needed for the task.
@@ -144,3 +142,14 @@ After pushing, verify GitHub discovery:
 ```bash
 npx skills add soden46/syarif-laravel-ai-skills --list
 ```
+
+## Capability Preservation
+
+Do not delete specialist skills to reduce orchestration token usage. The framework's value is its knowledge library. Optimize routing and activation, not content.
+
+Before considering any orchestrator change complete:
+- confirm no specialist skill was accidentally removed
+- confirm project-derived knowledge remains
+- confirm routing still exposes specialist knowledge when relevant
+- confirm trivial tasks can avoid loading specialist guidance
+- confirm MEDIUM/HIGH tasks can still reach their relevant specialist skills
