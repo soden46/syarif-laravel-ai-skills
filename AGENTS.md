@@ -63,15 +63,9 @@ Note: public Laravel discovery also expects `tags` containing `laravel` and `php
 
 This repository uses a strict layered protocol to keep token usage low and output quality high. Every task MUST pass through the layers in order.
 
-### Layer 0: Memory Preflight
+### Layer 0: Conditional Memory Preflight
 
-Run `memory-management` automatic preflight before anything else:
-
-```bash
-node <memory-skill-dir>/scripts/memory.mjs auto --cwd <project-root> --query "<task intent>" --limit 5
-```
-
-If `memory-graph.json` exists, run one graph query instead of loading all memory. Use compact output as orientation only.
+Run `memory-management` automatic preflight only when the task depends on prior context, project history, or known conventions. For self-contained local tasks, skip memory entirely. If `memory-graph.json` exists, run one graph query instead of loading all memory. Use compact output as orientation only.
 
 ### Layer 1: least-code Minimization
 
@@ -79,13 +73,7 @@ Activate `least-code` before any code change. Apply the minimization ladder: YAG
 
 ### Layer 2: Risk Classification and Skill Selection
 
-Classify task risk before implementation:
-
-- **LOW**: typo, Blade text, CSS kecil, rename lokal.
-- **MEDIUM**: validation, query, Livewire state, controller/service refactor.
-- **HIGH**: migration, auth, permission, payroll, financial calculation, concurrency, destructive action.
-
-Risk level determines trace depth, verification depth, and review strictness. Detect the project stack: Laravel version, PHP version, Sail/container vs host runner, frontend stack, test framework, queue driver, installed quality tools.
+Classify task risk before implementation. Risk level determines trace depth, verification depth, and review strictness. Detect the project stack: Laravel version, PHP version, Sail/container vs host runner, frontend stack, test framework, queue driver, installed quality tools.
 
 Choose the smallest relevant skill set for the current task. Load only the focused `SKILL.md` files needed. Do not load every skill. When multiple skills could apply, choose one primary skill and at most two supporting skills unless HIGH risk requires more.
 

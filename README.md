@@ -1,7 +1,7 @@
 # Syarif Laravel AI Skills
 
 <p align="center">
-  <img src="docs/assets/readme-hero.svg" alt="Syarif Laravel AI Skills - 71 Skills, Codex Plugin, Claude Code, Universal AI" width="100%">
+  <img src="docs/assets/readme-hero.svg" alt="Syarif Laravel AI Skills - 72 Skills, Codex Plugin, Claude Code, Universal AI" width="100%">
 </p>
 
 <p align="center">

@@ -11,7 +11,7 @@ Use the skills from this repository when working on Laravel applications.
 
 ## Skills
 
-This repository contains 71 installable Laravel skills. Use `using-laravel-standards` first for broad work, then load the smallest relevant topic skill.
+This repository contains 72 installable Laravel skills. Use `using-laravel-standards` first for broad work, then load the smallest relevant topic skill.
 
 - `using-laravel-standards`: Use first for broad Laravel implementation, refactoring, review, testing, and audit work.
 - `architecture`: Use for Laravel layer and abstraction decisions.
@@ -42,7 +42,7 @@ Gunakan skill dari repository ini ketika mengerjakan aplikasi Laravel.
 
 ## Skill
 
-Repository ini berisi 71 skill Laravel yang bisa di-install. Pakai `using-laravel-standards` lebih dulu untuk pekerjaan yang luas, lalu load skill topik paling kecil yang relevan.
+Repository ini berisi 72 skill Laravel yang bisa di-install. Pakai `using-laravel-standards` lebih dulu untuk pekerjaan yang luas, lalu load skill topik paling kecil yang relevan.
 
 - `using-laravel-standards`: Pakai pertama untuk implementasi, refactor, review, testing, dan audit Laravel yang luas.
 - `architecture`: Pakai untuk keputusan layer dan abstraksi Laravel.

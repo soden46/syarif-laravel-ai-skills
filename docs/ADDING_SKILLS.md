@@ -33,17 +33,25 @@ The `description` appears directly in `npx skills add <repo> --list`, so keep it
 - Do not use Markdown links or bullet formatting.
 - Describe the reusable capability, not repository internals.
 
+## Silent Execution
+
+Apply orchestration internally. Do not recite layer names, protocol steps, checklists, or internal decision process unless the user explicitly asks for a plan or explanation. The normal output must focus on the requested code/task, not the framework.
+
 ## Layered Protocol
 
 This repository uses a strict layered protocol. New skills should declare their layer and when-to-load guidance in a `Context Efficiency` footer. The current layers are:
 
-- Layer 0: `memory-management` - preflight, recall, checkpointing, graph memory.
+- Layer 0: `memory-management` - conditional preflight, recall, checkpointing, graph memory.
 - Layer 1: `least-code` - minimization gate: YAGNI, reuse, stdlib, native features, installed dependencies, one-liners, minimum working code, behavior preservation, root-cause tracing.
 - Layer 2: `using-laravel-standards` - entrypoint, stack detection, risk classification, skill selection, verification depth, definition of done.
 - Layer 3: Focused implementation skills - architecture, Eloquent, controllers, queues, UI, integrations.
 - Layer 4: Verification - testing, quality gates, E2E, documentation.
 - Layer 5: Prompting - prompt structure, debugging, code review, iteration, standards extraction.
 - Cross-layer: `runner-selection`, `daily-workflow`, `security`.
+
+## Conditional Memory
+
+Run memory preflight only when the task depends on prior context, project history, or known conventions. For self-contained local tasks, skip memory entirely. Memory must remain subordinate to current code/config.
 
 ## Risk Classification
 

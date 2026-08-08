@@ -15,7 +15,7 @@ GitHub release body: [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md).
 
 ### Added
 
-- 71 installable Laravel skills discoverable by `npx skills add`.
+- 72 installable Laravel skills discoverable by `npx skills add`.
 - Local core standards covering architecture, controllers, Form Requests, Actions/Services, Eloquent, transactions, queues, Livewire, security, testing, standards usage, standards extraction, and memory orchestration.
 - 54 additional Laravel topic skills mapped from the public [jpcaparas/superpowers-laravel](https://github.com/jpcaparas/superpowers-laravel) catalog without copying third-party skill body text.
 - 4 supplemental skills inspired by public Laravel Skills Cloud topics: Laravel specialist workflow, Laravel 11/12 app guidelines, Livewire development, and database optimization.
@@ -66,7 +66,7 @@ Body release GitHub: [docs/releases/v0.1.0.md](docs/releases/v0.1.0.md).
 
 ### Ditambahkan
 
-- 71 skill Laravel installable yang bisa ditemukan oleh `npx skills add`.
+- 72 skill Laravel installable yang bisa ditemukan oleh `npx skills add`.
 - Standar inti lokal untuk arsitektur, controller, Form Request, Action/Service, Eloquent, transaction, queue, Livewire, security, testing, penggunaan standar, ekstraksi standar, dan memory orchestration.
 - 54 skill topik Laravel tambahan yang dimapping dari katalog publik [jpcaparas/superpowers-laravel](https://github.com/jpcaparas/superpowers-laravel) tanpa menyalin isi body skill pihak ketiga.
 - 4 skill tambahan yang terinspirasi dari topik publik Laravel Skills Cloud: workflow Laravel specialist, guideline app Laravel 11/12, Livewire development, dan database optimization.

@@ -10,7 +10,7 @@ tags:
 
 Layer: 0 (Preflight)
 
-Use this skill as the mandatory first layer before any Laravel skill writes code. It loads only the memory needed for the current task, then hands off to the next layer.
+Use this skill as the continuity layer for long-running Laravel work. It loads only the memory needed for the current task, then hands off to the next layer.
 
 ## Core Principles
 
@@ -22,9 +22,16 @@ Use this skill as the mandatory first layer before any Laravel skill writes code
 - Preserve provenance for every durable entry.
 - Prefer continuity without context overload.
 
-## Mandatory Preflight
+## Conditional Preflight
 
-Run this before any broad exploration or skill selection:
+Run this only when at least one is true:
+- the user references previous work or prior decisions
+- the task depends on project history
+- a known project convention is needed
+- a relevant memory tool is actually available
+- durable prior context materially affects the implementation
+
+For self-contained local tasks, skip memory entirely.
 
 ```bash
 node <skill-dir>/scripts/memory.mjs auto --cwd <project-root> --query "<task intent>" --limit 5
@@ -119,6 +126,8 @@ Run checkpoint after meaningful work:
 ```bash
 node <skill-dir>/scripts/memory.mjs checkpoint --project <alias> --summary "<handoff summary>" --pending "<open questions>" --files "app/Actions/Foo.php,tests/Feature/FooTest.php"
 ```
+
+Memory checkpoint is never a requirement for task completion. It occurs only when durable reusable knowledge was produced.
 
 ## Security Pipeline
 
