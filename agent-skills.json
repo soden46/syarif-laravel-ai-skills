@@ -331,7 +331,7 @@
     {
       "name": "least-code",
       "path": "./skills/least-code/SKILL.md",
-      "description": "Force the laziest working solution before any Laravel skill writes code. Question YAGNI, reuse existing helpers, prefer stdlib/native features, and keep the shortest working diff."
+      "description": "Laravel implementation, review, or refactor with minimization discipline - YAGNI, reuse, smallest safe diff, behavior preservation, and overengineering guardrails."
     },
     {
       "name": "livewire-development",
@@ -341,7 +341,7 @@
     {
       "name": "memory-management",
       "path": "./skills/memory-management/SKILL.md",
-      "description": "Provide automatic long-term Laravel AI memory preflight, recall, checkpointing, and secure cross-project context across conversation, project, user, workflow, and codebase scopes."
+      "description": "Recall, checkpoint, and audit durable Laravel project knowledge across sessions when prior context materially affects the current task."
     },
     {
       "name": "migrations-and-factories",
