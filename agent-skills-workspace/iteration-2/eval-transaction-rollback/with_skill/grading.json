@@ -1,0 +1,30 @@
+{
+  "assertion_results": [
+    {
+      "text": "Order completion and notification dispatch are atomic.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    },
+    {
+      "text": "If notification dispatch fails, the order status does not remain completed.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    },
+    {
+      "text": "The fix uses Laravel-native transaction behavior.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    },
+    {
+      "text": "No new queue-only behavior is forced unless necessary.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 4,
+    "total": 4,
+    "pass_rate": 0
+  }
+}

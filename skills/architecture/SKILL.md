@@ -39,6 +39,8 @@ Use a Policy or Gate for authorization rules. Keep authorization close to the bo
 
 Do not add repositories, interfaces, DTOs, feature folders, or value objects by default.
 
+Duplication alone is not sufficient reason to create a service, action, or class. Prefer local reuse or a small extraction when behavior, lifecycle, dependencies, and change surface remain simple. Create a dedicated service, action, or boundary only when there is a justified business boundary, reusable operation, dependency boundary, or meaningful complexity.
+
 Add an interface when:
 
 - there are multiple implementations;

@@ -1,0 +1,30 @@
+{
+  "assertion_results": [
+    {
+      "text": "Renewal business rules live outside the controller.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    },
+    {
+      "text": "The HTTP response, redirect, and session status remain unchanged.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    },
+    {
+      "text": "Email dispatch remains tied to the renewal flow.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    },
+    {
+      "text": "No unnecessary interface, repository, or DTO layer is added.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 4,
+    "total": 4,
+    "pass_rate": 0
+  }
+}

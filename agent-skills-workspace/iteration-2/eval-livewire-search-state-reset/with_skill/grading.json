@@ -1,0 +1,30 @@
+{
+  "assertion_results": [
+    {
+      "text": "The search state persists across pagination clicks without resetting.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    },
+    {
+      "text": "The fix does not introduce a new public property or mount parameter.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    },
+    {
+      "text": "The existing query logic and pagination behavior remain intact.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    },
+    {
+      "text": "The updatedSearch hook continues to reset the page to 1 when the search term changes.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 4,
+    "total": 4,
+    "pass_rate": 0
+  }
+}

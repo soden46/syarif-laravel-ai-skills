@@ -1,0 +1,30 @@
+{
+  "assertion_results": [
+    {
+      "text": "Duplicate SKUs in the same order produce a validation error.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    },
+    {
+      "text": "Other item validation rules remain intact.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    },
+    {
+      "text": "The fix uses Laravel-native array validation behavior.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    },
+    {
+      "text": "No controller changes are required.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 4,
+    "total": 4,
+    "pass_rate": 0
+  }
+}

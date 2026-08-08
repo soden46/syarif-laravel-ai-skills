@@ -1,0 +1,18 @@
+{
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 0,
+        "stddev": 0
+      },
+      "time_seconds": {
+        "mean": 1.709458,
+        "stddev": 0.052447
+      },
+      "tokens": {
+        "mean": 0,
+        "stddev": 0
+      }
+    }
+  }
+}

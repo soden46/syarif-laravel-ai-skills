@@ -1,0 +1,30 @@
+{
+  "assertion_results": [
+    {
+      "text": "Both roles are attached to the user.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    },
+    {
+      "text": "The pivot expires_at value is persisted.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    },
+    {
+      "text": "The fix uses the standard Laravel sync format for pivot data.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    },
+    {
+      "text": "No schema changes are introduced.",
+      "passed": false,
+      "evidence": "judge returned unparseable response: openai-compatible 401: {\"status\":401,\"title\":\"Unauthorized\",\"detail\":\"Authentication failed\"}"
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 4,
+    "total": 4,
+    "pass_rate": 0
+  }
+}

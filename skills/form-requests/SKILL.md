@@ -68,6 +68,8 @@ public function authorize(): bool
 
 ## Array And Conditional Rules
 
+Use the simplest Laravel-native validation rule set that fully matches the actual input shape and behavior. Reuse the existing Form Request structure when safe. Do not introduce complex nested rules, helper abstractions, or additional validation structures unless the behavior actually requires them.
+
 Validate nested arrays explicitly.
 
 ```php

@@ -1,0 +1,11 @@
+{
+  "name": "laravel-ai-skills",
+  "slug": "laravel-ai-skills",
+  "relPath": "",
+  "target": "meta/llama-3.1-8b-instruct",
+  "judge": "openai/gpt-oss-20b",
+  "modes": [
+    "with_skill"
+  ],
+  "generated_at": "2026-08-08T01:58:28.065Z"
+}
