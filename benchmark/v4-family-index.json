@@ -1,0 +1,128 @@
+[
+  {
+    "family": "validation",
+    "specialists": ["form-requests"],
+    "natural_small_family": true,
+    "description": "Form request validation, conditional rules, array validation, custom validation rules."
+  },
+  {
+    "family": "authorization_security",
+    "specialists": ["policies-and-authorization", "request-forgery-protection", "security"],
+    "natural_small_family": false,
+    "description": "Policies, gates, authorization checks, CSRF protection, security hardening."
+  },
+  {
+    "family": "database_schema_migrations",
+    "specialists": ["migrations-and-factories"],
+    "natural_small_family": true,
+    "description": "Schema changes, migrations, factories, seeding, production-safe schema evolution."
+  },
+  {
+    "family": "database_transactions",
+    "specialists": ["database-transactions"],
+    "natural_small_family": true,
+    "description": "Atomic writes, transactions, locking, race conditions, idempotency."
+  },
+  {
+    "family": "eloquent_orm",
+    "specialists": ["eloquent-relationships", "eloquent-patterns", "vector-search"],
+    "natural_small_family": false,
+    "description": "Eloquent relationships, accessors/mutators, casts, query patterns, model design, vector search."
+  },
+  {
+    "family": "query_performance",
+    "specialists": ["performance-eager-loading", "performance-select-columns", "laravel-database-optimization", "data-chunking-large-datasets"],
+    "natural_small_family": false,
+    "description": "N+1 prevention, eager loading, selective columns, chunking, large dataset processing."
+  },
+  {
+    "family": "livewire",
+    "specialists": ["livewire-development"],
+    "natural_small_family": true,
+    "description": "Livewire components, state management, forms, events, pagination, Alpine integration."
+  },
+  {
+    "family": "queues_jobs",
+    "specialists": ["queues-and-jobs", "horizon-metrics-and-dashboards"],
+    "natural_small_family": true,
+    "description": "Queues, jobs, workers, retries, Horizon monitoring, job lifecycle."
+  },
+  {
+    "family": "architecture_refactoring",
+    "specialists": ["architecture", "actions-and-services", "controller-cleanup", "complexity-guardrails", "extract-laravel-standards", "module-per-menu"],
+    "natural_small_family": false,
+    "description": "Architecture decisions, service/action boundaries, controller cleanup, complexity reduction, architectural audits, module-based structure."
+  },
+  {
+    "family": "framework_compatibility",
+    "specialists": ["laravel-11-12-app-guidelines", "upgrade-13", "php-attributes", "runner-selection"],
+    "natural_small_family": false,
+    "description": "Laravel version compatibility, upgrade paths, framework regression fixes, PHP attributes, environment/tooling detection."
+  },
+  {
+    "family": "caching",
+    "specialists": ["performance-caching"],
+    "natural_small_family": true,
+    "description": "Cache strategies, invalidation, tags, cache keys, Redis/file cache usage."
+  },
+  {
+    "family": "frontend",
+    "specialists": ["blade-components-and-layouts", "responsive-ui-testing", "internationalization-and-translation", "nova-resource-patterns", "ui-agent-browser"],
+    "natural_small_family": false,
+    "description": "Blade templates, components, slots, responsive UI, frontend testing, i18n, admin UI, agent-browser inspection."
+  },
+  {
+    "family": "testing",
+    "specialists": ["testing", "controller-tests", "tdd-with-pest", "e2e-playwright", "quality-checks"],
+    "natural_small_family": false,
+    "description": "Unit tests, feature tests, Pest, Playwright, quality gates, CI testing."
+  },
+  {
+    "family": "api",
+    "specialists": ["api-resources-and-pagination", "api-surface-evolution", "http-client-resilience", "rate-limiting", "routes-best-practices"],
+    "natural_small_family": false,
+    "description": "API resources, pagination, versioning, DTOs, transformers, HTTP client resilience, rate limiting, routing."
+  },
+  {
+    "family": "storage_filesystem",
+    "specialists": ["filesystem-uploads", "config-env-storage"],
+    "natural_small_family": true,
+    "description": "File uploads, storage disks, S3/R2/MinIO, CDN, URL generation."
+  },
+  {
+    "family": "code_quality",
+    "specialists": ["constants-and-configuration", "custom-helpers", "documentation-best-practices", "exception-handling-and-logging", "code-review-requests", "debugging-prompts", "dependencies-trim-packages", "iterating-on-code"],
+    "natural_small_family": false,
+    "description": "Constants, config extraction, helper functions, documentation, exception handling, code review, debugging prompts, dependency trimming, code refinement."
+  },
+  {
+    "family": "planning_execution",
+    "specialists": ["writing-plans", "executing-plans", "prompt-structure", "specifying-constraints", "daily-workflow", "least-code", "task-scheduling"],
+    "natural_small_family": false,
+    "description": "Planning, execution, prompting, constraints, daily workflow, minimization discipline, task scheduling."
+  },
+  {
+    "family": "memory_workflow",
+    "specialists": ["memory-management", "brainstorming", "effective-context", "using-examples-in-prompts", "laravel-prompting-patterns"],
+    "natural_small_family": false,
+    "description": "Memory, brainstorming, context, examples in prompts, Laravel prompting patterns."
+  },
+  {
+    "family": "integrations",
+    "specialists": ["integrate-whatsapp-baileys-laravel", "ai-sdk"],
+    "natural_small_family": true,
+    "description": "WhatsApp integration, AI SDK, external service integration."
+  },
+  {
+    "family": "design_patterns",
+    "specialists": ["ports-and-adapters", "strategy-pattern", "template-method-and-plugins", "interfaces-and-di"],
+    "natural_small_family": false,
+    "description": "Hexagonal architecture, strategy pattern, template method, plugin systems, interfaces and dependency injection."
+  },
+  {
+    "family": "other",
+    "specialists": ["laravel-specialist", "using-laravel-standards"],
+    "natural_small_family": true,
+    "description": "General-purpose meta-skills that coordinate across all domains or manage the skill routing protocol itself."
+  }
+]

@@ -7,6 +7,35 @@ Language: [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 <details open>
 <summary><strong>English</strong></summary>
 
+## v0.2.0 (2026-08-11)
+
+Sparse activation and routing reliability release for the Laravel skill catalog.
+
+GitHub release body: [docs/releases/v0.2.0.md](docs/releases/v0.2.0.md).
+
+### Added
+
+- Sparse specialist activation for loading 0, 1, or 2 specialist skills depending on task need.
+- Improved router/orchestrator guidance for choosing primary and supporting specialist context.
+- Strict numeric JSON-schema router output contract for activation signals.
+- Router schema validation with one schema-only format retry.
+- Safer checkpoint/resume behavior for benchmark and regression workflows.
+- Explicit truncation and runaway-generation failure handling.
+- Final benchmark and freeze documentation for the internal V4 / V4.3.2 architecture revision.
+
+### Changed
+
+- Preserved the existing 72 specialist skills while making specialist loading more selective.
+- Kept lightweight Laravel tasks on a smaller default path.
+- Improved benchmark/regression validation artifacts without changing public installation flow.
+
+### Validation
+
+- `npm run validate`
+- `npm run list`
+- `python validate-v4-implementation.py`
+- Static benchmark runner, validator, and grader self-tests
+
 ## v0.1.0 (2026-07-16)
 
 Initial installable Laravel AI skill catalog for personal Laravel engineering standards.
@@ -57,6 +86,35 @@ Documentation structure, granular skill layout, and release-note style are inspi
 
 <details>
 <summary><strong>Bahasa Indonesia</strong></summary>
+
+## v0.2.0 (2026-08-11)
+
+Release sparse activation dan peningkatan reliability routing untuk katalog skill Laravel.
+
+Body release GitHub: [docs/releases/v0.2.0.md](docs/releases/v0.2.0.md).
+
+### Ditambahkan
+
+- Sparse specialist activation untuk memuat 0, 1, atau 2 skill specialist sesuai kebutuhan task.
+- Guidance router/orchestrator yang lebih baik untuk memilih primary dan supporting specialist context.
+- Kontrak output router JSON-schema numerik yang strict untuk activation signal.
+- Validasi schema router dengan satu retry khusus format schema.
+- Perilaku checkpoint/resume yang lebih aman untuk workflow benchmark dan regression.
+- Penanganan truncation dan runaway generation yang eksplisit.
+- Dokumentasi final benchmark dan freeze untuk revisi arsitektur internal V4 / V4.3.2.
+
+### Diubah
+
+- Mempertahankan 72 skill specialist yang sudah ada sambil membuat loading specialist lebih selektif.
+- Task Laravel ringan tetap memakai jalur default yang lebih kecil.
+- Meningkatkan artifact validasi benchmark/regression tanpa mengubah alur instalasi publik.
+
+### Validasi
+
+- `npm run validate`
+- `npm run list`
+- `python validate-v4-implementation.py`
+- Self-test statis untuk benchmark runner, validator, dan grader
 
 ## v0.1.0 (2026-07-16)
 

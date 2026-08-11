@@ -6,13 +6,13 @@
   },
   "metadata": {
     "description": "Reusable Laravel AI skills for Codex, Claude Code, and other AI coding assistants.",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "syarif-laravel-ai-skills",
       "description": "Laravel AI skill bundle for architecture, validation, Eloquent, performance, security, Livewire, testing, daily workflow, secure memory orchestration, and lazy-minimization gate.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "source": ".",
       "strict": false,
       "skills": [

@@ -1,6 +1,6 @@
 {
   "name": "syarif-laravel-ai-skills",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Laravel AI skill bundle for architecture, validation, Eloquent, performance, security, Livewire, testing, daily workflow, secure memory orchestration, and lazy-minimization gate.",
   "author": {
     "name": "Syarif",

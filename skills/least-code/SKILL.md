@@ -30,3 +30,9 @@ For implementation tasks, provide the single best minimal solution by default. D
 ## Detailed references
 
 - Risk classification, behavior preservation, root-cause workflow, confidence levels, test creation rules, change surface budget, anti-patterns, and output rules: `references/least-code-details.md`
+
+## V4 Sparse Activation Alignment
+
+In the V4 experimental worktree, the least-code gate runs before specialist activation. If the task is trivial, can be solved by reuse, or is covered by stdlib/native features, skip specialist activation entirely. This applies even if the router would otherwise recommend a specialist.
+
+This preserves the minimization discipline: the cheapest solution is no specialist at all.
