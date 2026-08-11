@@ -9,7 +9,8 @@
   <a href="https://github.com/soden46/syarif-laravel-ai-skills/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-0284C7?style=for-the-badge&labelColor=0F172A"></a>
   <a href="https://github.com/soden46/syarif-laravel-ai-skills/tree/main/skills"><img alt="Skills" src="https://img.shields.io/badge/skills-72-0EA5E9?style=for-the-badge&labelColor=0F172A"></a>
   <a href="https://www.codex-marketplace.com/plugins/syarif-laravel-ai-skills"><img alt="Codex Marketplace" src="https://img.shields.io/badge/codex_marketplace-approved-06B6D4?style=for-the-badge&labelColor=0F172A"></a>
-  <a href="https://github.com/soden46/syarif-laravel-ai-skills/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/syarif-laravel-ai-skills?style=for-the-badge&label=stars&labelColor=0F172A&color=38BDF8"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/soden46/syarif-laravel-ai-skills?style=for-the-badge&label=stars&labelColor=0F172A&color=38BDF8"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/pulls"><img alt="Pull Requests" src="https://img.shields.io/github/issues-pr/soden46/syarif-laravel-ai-skills?style=for-the-badge&label=pull_requests&labelColor=0F172A&color=0EA5E9"></a>
 </p>
 
 Laravel-focused AI skills for Codex, Claude Code, and any AI coding assistant that can read Markdown files. Install them with `npx skills add`, use the generated plugin packages, or point a generic assistant at the universal manifest and canonical `skills/` folder. The catalog now includes secure memory orchestration, a least-code minimization gate, risk-aware verification, adaptive depth, bounded exploration, and memory discipline so agents can recall useful project context, write the smallest possible diff, match trace and test depth to task risk, and avoid over-exploration or stale memory poisoning.
@@ -71,10 +72,24 @@ Example MCP config:
 
 Installer/generator:
 
+If you installed the skills globally with `npx skills add ... -g`, register Codex memory from the installed skills directory. On Windows PowerShell:
+
+```powershell
+$SkillsRoot = "$env:USERPROFILE\.agents\skills"
+$MemoryRoot = "$env:USERPROFILE\.ai-memory"
+
+codex mcp remove syarif-memory-management
+codex mcp add syarif-memory-management --env AI_MEMORY_ROOT=$MemoryRoot -- node "$SkillsRoot\memory-management\scripts\mcp-server.mjs"
+codex mcp list
+```
+
+The final list should show `syarif-memory-management` as `enabled`. If the remove command says the server does not exist, continue with the add command.
+
+If you are working from a local clone of this repository, first `cd` into the repo root, then use the relative installer/generator commands for detection, previews, or non-Codex targets:
+
 ```bash
 node skills/memory-management/scripts/install-memory-layer.mjs detect
 node skills/memory-management/scripts/install-memory-layer.mjs print --target all
-node skills/memory-management/scripts/install-memory-layer.mjs install --target codex --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target ai-agent-tools --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-family --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode --apply
@@ -102,7 +117,7 @@ node skills/memory-management/scripts/install-memory-layer.mjs install --target 
 node skills/memory-management/scripts/install-memory-layer.mjs install --target hooks --apply
 ```
 
-Note: `npx skills add ...` installs the skill files only. To enable the memory MCP/hook layer in a local editor or agent, run the memory installer above explicitly after the skill is installed.
+Note: `npx skills add ...` installs the skill files only. To enable the memory MCP/hook layer in a local editor or agent, run the memory installer above explicitly after the skill is installed. Relative `node skills/...` commands only work when your current directory is the repository root or another directory that contains `skills/`.
 
 For broad local coverage, `vscode-family` installs VS Code Stable, VS Code Insiders, VSCodium, and Code - OSS user MCP configs; `vscode-acp-client` prepares ACP Client for GitHub Copilot, Claude Code, Gemini CLI, and Codex CLI; `ai-agent-tools` covers Codex CLI, Claude Code, Gemini CLI, and OpenCode; `popular-editors` covers VS Code, Cursor, Windsurf, and Zed. Use `antigravity`, `kilo`, and `hermes` for their native configs, then `orchestrator-profile` when you want portable fallback/delegation/compression policy shared by those surfaces.
 
@@ -149,6 +164,29 @@ Verify installation:
 ```bash
 npx skills list --global --agent codex
 ```
+
+## Updating Skills And Codex Memory
+
+To update installed skills after a new release, rerun the same install command:
+
+```powershell
+npx skills add soden46/syarif-laravel-ai-skills -g -a codex -s "*" -y
+```
+
+`memory-management` is included when you install with `-s "*"`, but native skill install only updates the skill files. To update the active Codex MCP registration so it points at the latest globally installed memory server, replace the MCP entry:
+
+```powershell
+$SkillsRoot = "$env:USERPROFILE\.agents\skills"
+$MemoryRoot = "$env:USERPROFILE\.ai-memory"
+
+codex mcp remove syarif-memory-management
+codex mcp add syarif-memory-management --env AI_MEMORY_ROOT=$MemoryRoot -- node "$SkillsRoot\memory-management\scripts\mcp-server.mjs"
+codex mcp list
+```
+
+The final `codex mcp list` output should show `syarif-memory-management` with `Status` set to `enabled` and `Args` pointing to `.agents\skills\memory-management\scripts\mcp-server.mjs`.
+
+If `codex mcp remove syarif-memory-management` says the server does not exist, continue with the `codex mcp add ...` command.
 
 ## Codex Plugin
 
@@ -372,10 +410,24 @@ Contoh config MCP:
 
 Installer/generator:
 
+Kalau skill di-install global dengan `npx skills add ... -g`, register memory Codex dari folder skill yang sudah terpasang. Di Windows PowerShell:
+
+```powershell
+$SkillsRoot = "$env:USERPROFILE\.agents\skills"
+$MemoryRoot = "$env:USERPROFILE\.ai-memory"
+
+codex mcp remove syarif-memory-management
+codex mcp add syarif-memory-management --env AI_MEMORY_ROOT=$MemoryRoot -- node "$SkillsRoot\memory-management\scripts\mcp-server.mjs"
+codex mcp list
+```
+
+Output akhir harus menampilkan `syarif-memory-management` sebagai `enabled`. Kalau command remove bilang server belum ada, lanjutkan saja ke command add.
+
+Kalau memakai clone lokal repository ini, masuk dulu ke root repo dengan `cd`, baru pakai command installer/generator relatif untuk deteksi, preview, atau target selain Codex:
+
 ```bash
 node skills/memory-management/scripts/install-memory-layer.mjs detect
 node skills/memory-management/scripts/install-memory-layer.mjs print --target all
-node skills/memory-management/scripts/install-memory-layer.mjs install --target codex --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target ai-agent-tools --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode-family --apply
 node skills/memory-management/scripts/install-memory-layer.mjs install --target vscode --apply
@@ -402,7 +454,7 @@ node skills/memory-management/scripts/install-memory-layer.mjs install --target 
 node skills/memory-management/scripts/install-memory-layer.mjs install --target hooks --apply
 ```
 
-Catatan: `npx skills add ...` hanya memasang file skill. Untuk mengaktifkan memory MCP/hook di editor atau agent lokal, jalankan installer memory di atas secara eksplisit setelah skill terpasang.
+Catatan: `npx skills add ...` hanya memasang file skill. Untuk mengaktifkan memory MCP/hook di editor atau agent lokal, jalankan installer memory di atas secara eksplisit setelah skill terpasang. Command relatif `node skills/...` hanya jalan kalau current directory adalah root repository atau folder lain yang punya subfolder `skills/`.
 
 Untuk cakupan lokal yang luas, `vscode-family` memasang config MCP user untuk VS Code Stable, VS Code Insiders, VSCodium, dan Code - OSS; `vscode-acp-client` menyiapkan ACP Client untuk GitHub Copilot, Claude Code, Gemini CLI, dan Codex CLI; `ai-agent-tools` mencakup Codex CLI, Claude Code, Gemini CLI, dan OpenCode; `popular-editors` mencakup VS Code, Cursor, Windsurf, dan Zed. Pakai `antigravity`, `kilo`, dan `hermes` untuk config native masing-masing.
 
@@ -449,6 +501,29 @@ Cek hasil install:
 ```bash
 npx skills list --global --agent codex
 ```
+
+## Update Skill Dan Memory Codex
+
+Untuk update skill yang sudah terpasang setelah release baru, jalankan ulang command install yang sama:
+
+```powershell
+npx skills add soden46/syarif-laravel-ai-skills -g -a codex -s "*" -y
+```
+
+`memory-management` ikut terpasang kalau memakai `-s "*"`, tapi native skill install hanya mengupdate file skill. Supaya registrasi MCP Codex aktif ikut menunjuk ke memory server global terbaru, replace entry MCP-nya:
+
+```powershell
+$SkillsRoot = "$env:USERPROFILE\.agents\skills"
+$MemoryRoot = "$env:USERPROFILE\.ai-memory"
+
+codex mcp remove syarif-memory-management
+codex mcp add syarif-memory-management --env AI_MEMORY_ROOT=$MemoryRoot -- node "$SkillsRoot\memory-management\scripts\mcp-server.mjs"
+codex mcp list
+```
+
+Output akhir `codex mcp list` harus menampilkan `syarif-memory-management` dengan `Status` `enabled` dan `Args` mengarah ke `.agents\skills\memory-management\scripts\mcp-server.mjs`.
+
+Kalau `codex mcp remove syarif-memory-management` bilang server belum ada, lanjutkan saja ke command `codex mcp add ...`.
 
 ## Plugin Codex
 
