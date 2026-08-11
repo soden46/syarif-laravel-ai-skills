@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <strong>Available on <a href="https://cursor.directory/">Cursor Directory</a> &middot; <a href="https://www.codex-marketplace.com/plugins/syarif-laravel-ai-skills">Codex Marketplace</a> &middot; <a href="https://skills.sh/soden46/syarif-laravel-ai-skills">skills.sh</a></strong>
+  <strong>Available on <a href="https://cursor.directory/plugins/syarif-laravel-ai-skills">Cursor Directory</a> &middot; <a href="https://www.codex-marketplace.com/plugins/syarif-laravel-ai-skills">Codex Marketplace</a> &middot; <a href="https://skills.sh/soden46/syarif-laravel-ai-skills">skills.sh</a></strong>
 </p>
 
 Laravel-focused AI skills for Codex, Claude Code, and any AI coding assistant that can read Markdown files. Install them with `npx skills add`, use the generated plugin packages, or point a generic assistant at the universal manifest and canonical `skills/` folder. The catalog now includes secure memory orchestration, a least-code minimization gate, risk-aware verification, adaptive depth, bounded exploration, and memory discipline so agents can recall useful project context, write the smallest possible diff, match trace and test depth to task risk, and avoid over-exploration or stale memory poisoning.
