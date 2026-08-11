@@ -10,7 +10,7 @@
   <a href="https://github.com/soden46/syarif-laravel-ai-skills/tree/main/skills"><img alt="Skills" src="https://img.shields.io/badge/skills-72-0EA5E9?style=for-the-badge&labelColor=0F172A"></a>
   <a href="https://www.codex-marketplace.com/plugins/syarif-laravel-ai-skills"><img alt="Codex Marketplace" src="https://img.shields.io/badge/codex_marketplace-approved-06B6D4?style=for-the-badge&labelColor=0F172A"></a>
   <a href="https://github.com/soden46/syarif-laravel-ai-skills/stargazers"><img alt="Stars" src="https://img.shields.io/github/stars/soden46/syarif-laravel-ai-skills?style=for-the-badge&label=stars&labelColor=0F172A&color=38BDF8"></a>
-  <a href="https://github.com/soden46/syarif-laravel-ai-skills/pulls"><img alt="Pull Requests" src="https://img.shields.io/github/issues-pr/soden46/syarif-laravel-ai-skills?style=for-the-badge&label=pull_requests&labelColor=0F172A&color=0EA5E9"></a>
+  <a href="https://github.com/soden46/syarif-laravel-ai-skills/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/soden46/syarif-laravel-ai-skills/total?style=for-the-badge&label=downloads&labelColor=0F172A&color=0EA5E9"></a>
 </p>
 
 Laravel-focused AI skills for Codex, Claude Code, and any AI coding assistant that can read Markdown files. Install them with `npx skills add`, use the generated plugin packages, or point a generic assistant at the universal manifest and canonical `skills/` folder. The catalog now includes secure memory orchestration, a least-code minimization gate, risk-aware verification, adaptive depth, bounded exploration, and memory discipline so agents can recall useful project context, write the smallest possible diff, match trace and test depth to task risk, and avoid over-exploration or stale memory poisoning.
