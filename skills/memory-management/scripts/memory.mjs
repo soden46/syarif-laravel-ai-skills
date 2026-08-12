@@ -7,6 +7,7 @@ import path from "node:path";
 const VERSION = "1.0.0";
 const SCOPES = new Set(["conversation", "project", "user", "workflow", "global"]);
 const DEFAULT_LIMIT = 5;
+const DEFAULT_AUTO_LIMIT = 5;
 
 const SENSITIVE_PATTERNS = [
   [/-----BEGIN [A-Z ]*PRIVATE KEY-----/i, "private key block"],
@@ -64,17 +65,18 @@ function printHelp() {
   console.log(`memory-management active backend v${VERSION}
 
 Usage:
-  node memory.mjs auto [--cwd <path>] [--query <text>] [--limit 5]
+  node memory.mjs auto [--cwd <path>] [--query <text>] [--limit 5] [--force]
   node memory.mjs init [--project <alias>] [--root <path>]
   node memory.mjs remember --scope <scope> --type <type> --title <title> --content <text> [--project <alias>] [--tags a,b]
-  node memory.mjs checkpoint --project <alias> --summary <text> [--pending <text>] [--files a,b]
+  node memory.mjs checkpoint --project <alias> --summary <text> [--pending <text>] [--files a,b] [--force]
   node memory.mjs recall [--project <alias>] [--query <text>] [--scope <scope>] [--limit 5]
   node memory.mjs audit [--root <path>]
   node memory.mjs forget --id <memory-id>
   node memory.mjs status
 
 Root defaults to AI_MEMORY_ROOT or ~/.ai-memory.
-Use --content-file, --summary-file, or --pending-file for long text.`);
+Use --content-file, --summary-file, or --pending-file for long text.
+Automatic preflight prints RUN/SKIP and skips recall when prior context is not material.`);
 }
 
 function parseArgs(argv) {
@@ -112,18 +114,7 @@ async function auto(args) {
   const cwd = path.resolve(String(args.cwd || process.cwd()));
   const project = await detectProject(cwd, root);
   const query = String(args.query || project.query).trim();
-
-  await ensureRoot(root);
-  await ensureProject(root, project.alias);
-  await updateIndex(root, (index) => {
-    index.projects[project.alias] = index.projects[project.alias] || projectIndex(project.alias);
-    index.projects[project.alias].repositories = mergeUnique(index.projects[project.alias].repositories || [], project.repositories);
-    index.projects[project.alias].frameworks = mergeUnique(index.projects[project.alias].frameworks || [], project.frameworks);
-    index.projects[project.alias].tags = mergeUnique(index.projects[project.alias].tags || [], project.tags);
-    index.projects[project.alias].source_root_hint = project.rootHint;
-    index.projects[project.alias].updated_at = new Date().toISOString();
-    index.updated_at = new Date().toISOString();
-  });
+  const decision = classifyPreflight(query);
 
   console.log(`# Memory Preflight`);
   console.log(`root: ${root}`);
@@ -132,14 +123,28 @@ async function auto(args) {
   console.log(`frameworks: ${project.frameworks.join(", ") || "unknown"}`);
   console.log(`tags: ${project.tags.join(", ") || "none"}`);
   console.log(`query: ${query || "latest project context"}`);
+  console.log(`decision: ${decision.run ? "RUN" : "SKIP"}`);
+  console.log(`reason: ${decision.reason}`);
+  console.log("specialist_routing: independent; memory-management does not count toward MAX_SPECIALISTS");
+  console.log("conflict_policy: current code/config wins; treat older memory as stale until verified");
   console.log("");
+
+  if (!decision.run && !args.force) {
+    console.log("No memory retrieved: prior context is unlikely to materially improve this task.");
+    return;
+  }
+
+  if (!await exists(root)) {
+    console.log("No relevant memory found: memory root does not exist.");
+    return;
+  }
 
   await recall({
     ...args,
     root,
     project: project.alias,
     query,
-    limit: args.limit || DEFAULT_LIMIT,
+    limit: args.limit || DEFAULT_AUTO_LIMIT,
   });
 }
 
@@ -234,6 +239,12 @@ async function checkpoint(args) {
   const summary = await textArg(args, "summary", true);
   const pending = await textArg(args, "pending", false);
   const files = parseCsv(args.files);
+  const checkpointDecision = classifyCheckpoint(summary, pending, files);
+
+  if (!checkpointDecision.write && !args.force) {
+    console.log(`No checkpoint written: ${checkpointDecision.reason}`);
+    return;
+  }
 
   assertSafe(`${summary}\n${pending}\n${files.join(",")}`);
 
@@ -681,6 +692,117 @@ function detectSensitive(text) {
     .map(([, reason]) => reason);
 }
 
+function classifyPreflight(query) {
+  const text = String(query || "").toLowerCase();
+
+  if (!text.trim()) {
+    return {
+      run: false,
+      reason: "empty task intent gives no durable-context signal",
+    };
+  }
+
+  const runSignals = [
+    /\bcontinue\b/,
+    /\bresume\b/,
+    /\blast session\b/,
+    /\bprevious(?:\s+work|\s+session|\s+decision|\s+feature)?\b/,
+    /\blike before\b/,
+    /\bas before\b/,
+    /\bsame as\b/,
+    /\bfollow (?:the )?(?:existing|previous|project) convention\b/,
+    /\bproject convention\b/,
+    /\barchitecture decision\b/,
+    /\bdecision\b/,
+    /\bknown issue\b/,
+    /\broot cause\b/,
+    /\bunresolved\b/,
+    /\bpending\b/,
+    /\bworkflow\b/,
+    /\bcheckpoint\b/,
+    /\bmemory-management\b/,
+    /\bautomatic memory flow\b/,
+    /\bmemory lifecycle\b/,
+    /\bstale\b/,
+    /\bsuperseded\b/,
+    /\bfrom earlier\b/,
+    /\bfrom yesterday\b/,
+    /\bkemarin\b/,
+    /\blanjut(?:kan)?\b/,
+    /\bseperti sebelumnya\b/,
+    /\bkonvensi proyek\b/,
+  ];
+
+  if (runSignals.some((pattern) => pattern.test(text))) {
+    return {
+      run: true,
+      reason: "task references prior work, conventions, decisions, or unresolved project state",
+    };
+  }
+
+  const skipSignals = [
+    /\bstandalone\b/,
+    /\bsyntax question\b/,
+    /\bgeneric\b.*\b(?:documentation|docs|question)\b/,
+    /\bexplain\b.*\b(?:syntax|standalone|generic)\b/,
+    /\bsimple isolated helper\b/,
+    /\bisolated helper\b/,
+    /\bcomplete requirements\b/,
+    /\bwithout project context\b/,
+  ];
+
+  if (skipSignals.some((pattern) => pattern.test(text))) {
+    return {
+      run: false,
+      reason: "task appears self-contained and historical context is unlikely to change correctness",
+    };
+  }
+
+  return {
+    run: false,
+    reason: "no material prior-context signal detected; continue with current code/config first",
+  };
+}
+
+function classifyCheckpoint(summary, pending, files) {
+  const text = `${summary}\n${pending}\n${files.join(",")}`.toLowerCase();
+  const durableSignals = [
+    /\barchitecture decision\b/,
+    /\bdecision\b/,
+    /\bconvention\b/,
+    /\bconstraint\b/,
+    /\broot cause\b/,
+    /\bknown issue\b/,
+    /\benvironment quirk\b/,
+    /\bpending continuation\b/,
+    /\breusable\b/,
+    /\bpolicy\b/,
+    /\bworkflow\b/,
+    /\bsource precedence\b/,
+    /\bmcp\b/,
+    /\bmemory lifecycle\b/,
+  ];
+  const temporarySignals = [
+    /\btemporary debug\b/,
+    /\bdebug output\b/,
+    /\bone-time grep\b/,
+    /\btransient terminal\b/,
+    /\btrivial line edit\b/,
+    /\bno durable\b/,
+    /\btemporary only\b/,
+  ];
+
+  if (durableSignals.some((pattern) => pattern.test(text))) {
+    return { write: true, reason: "durable reusable project knowledge detected" };
+  }
+
+  if (temporarySignals.some((pattern) => pattern.test(text))) {
+    return { write: false, reason: "temporary debugging or trivial output is not durable reusable knowledge" };
+  }
+
+  return { write: false, reason: "no durable reusable project knowledge detected" };
+}
+
 function assertSafe(text) {
   const findings = detectSensitive(text);
   if (findings.length) {
@@ -719,7 +841,7 @@ function snippet(content, terms) {
   });
 
   const start = Math.max(0, firstMatch - 2);
-  return lines.slice(start, start + 8).join("\n");
+  return lines.slice(start, start + 12).join("\n");
 }
 
 function removeSectionByMemoryId(content, id) {

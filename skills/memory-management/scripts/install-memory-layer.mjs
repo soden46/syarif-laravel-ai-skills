@@ -475,11 +475,13 @@ async function installHookManifest(file, apply) {
       command: "node",
       args: [hookScript, "preflight", "--cwd", "${projectRoot}", "--query", "${taskIntent}"],
       env: { AI_MEMORY_ROOT: memoryRoot() },
+      policy: "conditional; SKIP is success when prior context is not material",
     },
     checkpoint: {
       command: "node",
       args: [hookScript, "checkpoint", "--cwd", "${projectRoot}", "--summary", "${handoffSummary}"],
       env: { AI_MEMORY_ROOT: memoryRoot() },
+      policy: "write only durable reusable knowledge; no checkpoint for temporary debugging",
     },
   };
 
@@ -697,7 +699,7 @@ function acpMemoryEnv() {
     SYARIF_MEMORY_ORCHESTRATOR_PROFILE: orchestratorProfilePath(),
     SYARIF_MEMORY_MCP_SERVER: serverName,
     SYARIF_MEMORY_MCP_SERVER_SCRIPT: mcpServerScript,
-    SYARIF_MEMORY_BOOTSTRAP: "Connect the syarif-memory-management MCP server in the underlying agent when supported, call memory_auto before broad work, read the orchestrator profile for long-running or multi-provider sessions, and memory_checkpoint at handoff.",
+    SYARIF_MEMORY_BOOTSTRAP: "Connect the syarif-memory-management MCP server when supported, run conditional memory_auto before broad work only when prior context may matter, keep memory outside specialist slots, and memory_checkpoint only durable handoff knowledge.",
   };
 }
 
@@ -707,9 +709,12 @@ applyTo: "**"
 ---
 # Syarif Memory Management
 
-- Before broad exploration or implementation, call the \`syarif-memory-management\` MCP tool \`memory_auto\` for the current workspace/project and use the compact result as orientation.
-- When finishing meaningful work, call \`memory_checkpoint\` with durable decisions, touched files, and pending work.
-- Treat retrieved memory as orientation and verify technical facts against the current workspace before editing.
+- Before broad exploration or implementation, call the \`syarif-memory-management\` MCP tool \`memory_auto\` only when prior project/session/workflow/decision context may materially affect correctness.
+- Skip memory when the task is self-contained, such as a standalone syntax question, isolated helper with complete requirements, or generic Laravel docs question.
+- If MCP is unavailable, fall back to the local \`memory.mjs auto\` CLI when Node/file access exists; otherwise continue without memory.
+- \`memory-management\` is context infrastructure and never consumes primary/support specialist slots.
+- When finishing meaningful work, call \`memory_checkpoint\` only for durable reusable knowledge, decisions, constraints, reusable root causes, project conventions, environment quirks, or pending continuation state.
+- Treat retrieved memory as orientation and verify technical facts against the current workspace before editing. Current code/config wins over old memory.
 - Never write secrets, credentials, raw personal data, or .env values to memory.
 `;
 }
@@ -722,11 +727,13 @@ applyTo: "**"
 
 - For GitHub Copilot, OpenAI Codex/GPT, Claude Code, Gemini CLI, Codex CLI, OpenCode, Kilo Code, Cline, Roo Code, Continue, Hermes Agent, Cursor, Windsurf, Zed, and Antigravity sessions, prefer the configured \`syarif-memory-management\` MCP server when the host exposes MCP tools or forwards MCP through ACP.
 - In ACP Client for VS Code, keep the agent process environment pointed at \`SYARIF_MEMORY_MCP_SERVER\` and \`SYARIF_MEMORY_MCP_SERVER_SCRIPT\`, then connect the underlying agent's native MCP support when it is available.
-- Before broad exploration or implementation, call \`memory_auto\` for the current workspace/project and use the compact result as orientation.
+- Before broad exploration or implementation, conditionally call \`memory_auto\` for the current workspace/project when prior project/session/workflow/decision context may materially affect correctness.
+- Skip memory for self-contained syntax, isolated-helper, or generic docs tasks. If MCP is unavailable, fall back to the local CLI when Node/file access exists; otherwise continue without memory.
 - During long work, use \`memory_recall\` for focused follow-up context instead of loading broad memory files.
 - For long-running, multi-session, multi-provider, delegated, compressed, or ACP-backed work, read \`${orchestratorProfilePath()}\` when it exists and apply it as non-secret host policy. Provider failover, task delegation, and context compression are host/orchestrator capabilities; when the current host cannot execute them, record the intended routing policy in memory instead of pretending it happened.
-- When finishing meaningful work, call \`memory_checkpoint\` with durable decisions, touched files, pending work, and validation.
-- Treat retrieved memory as orientation and verify technical facts against the current workspace before editing.
+- \`memory-management\` is context infrastructure and never consumes primary/support specialist slots.
+- When finishing meaningful work, call \`memory_checkpoint\` only for durable reusable knowledge, decisions, constraints, reusable root causes, project conventions, environment quirks, pending work, and validation.
+- Treat retrieved memory as orientation and verify technical facts against the current workspace before editing. Current code/config wins over old memory.
 - Never write secrets, credentials, raw personal data, or .env values to memory.
 `;
 }
@@ -760,7 +767,13 @@ function orchestratorProfileYaml() {
     "    loading: progressive_disclosure",
     "    memory_is_facts_and_context: true",
     "    skills_are_procedures: true",
+    "    memory_counts_as_specialist_slot: false",
     "    index_only_at_start: true",
+    "  lifecycle:",
+    "    memory_preflight: conditional_before_broad_exploration",
+    "    preflight_skip_is_success: true",
+    "    checkpoint: durable_reusable_knowledge_only",
+    "    unavailable_memory: continue_without_failure",
     "  provider_policy:",
     "    primary:",
     "      provider: openai-codex",

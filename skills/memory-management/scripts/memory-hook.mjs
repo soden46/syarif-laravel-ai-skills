@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const memoryScript = path.join(__dirname, "memory.mjs");
+const memoryScript = process.env.AI_MEMORY_SCRIPT || path.join(__dirname, "memory.mjs");
 
 const [event = "preflight", ...argv] = process.argv.slice(2);
 const args = parseArgs(argv);
@@ -16,7 +16,7 @@ main().catch((error) => {
 
 async function main() {
   if (event === "preflight" || event === "session-start") {
-    const output = await runMemory("auto", {
+    const output = await runMemoryGracefully("auto", {
       root: args.root || process.env.AI_MEMORY_ROOT,
       cwd: args.cwd || process.env.AI_MEMORY_CWD || process.cwd(),
       query: args.query || process.env.AI_MEMORY_TASK || process.env.USER_PROMPT || "session start",
@@ -30,11 +30,12 @@ async function main() {
     const cwd = args.cwd || process.env.AI_MEMORY_CWD || process.cwd();
     const root = args.root || process.env.AI_MEMORY_ROOT;
     const query = args.query || process.env.AI_MEMORY_TASK || "handoff checkpoint";
-    const preflight = await runMemory("auto", { root, cwd, query, limit: 1 });
+    const preflight = await runMemoryGracefully("auto", { root, cwd, query, limit: 1 });
     const project = projectFromPreflight(preflight);
 
     if (!project) {
-      throw new Error("could not detect project alias from memory preflight");
+      process.stdout.write(`${preflight}\nNo checkpoint written: memory project detection unavailable.\n`);
+      return;
     }
 
     const summary = args.summary || process.env.AI_MEMORY_SUMMARY;
@@ -43,7 +44,7 @@ async function main() {
       return;
     }
 
-    const checkpoint = await runMemory("checkpoint", {
+    const checkpoint = await runMemoryGracefully("checkpoint", {
       root,
       project,
       summary,
@@ -55,6 +56,21 @@ async function main() {
   }
 
   throw new Error(`unknown hook event "${event}"`);
+}
+
+async function runMemoryGracefully(command, values) {
+  try {
+    return await runMemory(command, values);
+  } catch (error) {
+    return [
+      "# Memory Preflight",
+      "decision: SKIP",
+      `reason: memory backend unavailable (${error.message}); continue without memory`,
+      "specialist_routing: independent; memory-management does not count toward MAX_SPECIALISTS",
+      "conflict_policy: current code/config wins; treat older memory as stale until verified",
+      "",
+    ].join("\n");
+  }
 }
 
 function runMemory(command, values) {

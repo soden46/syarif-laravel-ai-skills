@@ -147,6 +147,12 @@ memory_orchestrator:
     loading: progressive_disclosure
     memory_is_facts_and_context: true
     skills_are_procedures: true
+    memory_counts_as_specialist_slot: false
+  lifecycle:
+    memory_preflight: conditional_before_broad_exploration
+    preflight_skip_is_success: true
+    checkpoint: durable_reusable_knowledge_only
+    unavailable_memory: continue_without_failure
   provider_policy:
     primary: { provider: openai-codex, model: "<primary-model>" }
     fallback_providers:
@@ -190,7 +196,7 @@ Source notes checked on 2026-08-05: Hermes Memory Providers, Skills System, Fall
 
 ## Agent Workflow
 
-1. Run `memory_auto` before broad work.
+1. Run conditional `memory_auto` before broad work only when prior context may materially affect correctness.
 2. If the task mentions long-lived projects, Hermes-like orchestration, failover, delegation, compression, external memory, ACP, or many interfaces, read this reference.
 3. Load only the skills needed for the current task.
 4. Build a compact retrieval, provider, delegation, and compression plan.

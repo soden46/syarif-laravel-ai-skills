@@ -80,8 +80,11 @@ This repository uses a thin orchestrator with selective specialist activation. T
 Load specialist skills only when the task domain requires them. Default to one primary skill and at most two supporting skills unless HIGH risk requires more.
 
 - `least-code`: load for focused implementation, review, or refactor work when minimization discipline is needed.
-- `memory-management`: load only when the task depends on prior context, project history, or known conventions. Skip for self-contained local tasks.
 - All other skills are on-demand execution skills.
+
+### Conditional Memory Infrastructure
+
+`memory-management` is not a specialist slot. The entrypoint may run a sparse memory preflight before broad exploration when prior project, session, workflow, or decision context could materially affect correctness. Skip it for clearly self-contained tasks. Prefer the active `syarif-memory-management` MCP server, fall back to `skills/memory-management/scripts/memory.mjs auto --cwd <project-root> --query "<task intent>" --limit 5` when file and Node access exist, and continue normally when memory is unavailable. Current code/config overrides memory.
 
 ### Risk Depth
 

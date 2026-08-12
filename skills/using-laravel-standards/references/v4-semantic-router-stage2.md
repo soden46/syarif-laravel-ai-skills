@@ -34,6 +34,7 @@ full 72-specialist catalog.
 - A support specialist must address a distinct concern from the primary.
 - If `cross_cutting_strength` is low and `family_confidence` is high, prefer a single specialist.
 - Do not invent specialist names outside the provided shortlist.
+- Do not select `memory-management` as primary or support. If it appears in a legacy shortlist, treat it as the separate memory preflight layer and choose the next procedural specialist when one is available.
 
 ## Shortlist Construction
 

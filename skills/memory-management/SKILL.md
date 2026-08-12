@@ -8,7 +8,7 @@ tags:
 
 # Memory Management
 
-Use this skill when the task depends on prior context, project history, or known conventions. For self-contained local tasks, skip memory entirely.
+Use this skill as conditional context infrastructure when a Laravel task depends on prior context, project history, or known conventions. For self-contained local tasks, skip memory entirely.
 
 ## Core Principles
 
@@ -22,20 +22,36 @@ Use this skill when the task depends on prior context, project history, or known
 
 ## Conditional Preflight
 
-Run this only when at least one is true:
+The `using-laravel-standards` entrypoint decides this automatically before broad code exploration. Do not wait for explicit phrases like "remember" or "use memory-management".
+
+Run memory preflight only when at least one is true:
 - the user references previous work or prior decisions
 - the task depends on project history
 - a known project convention is needed
-- a relevant memory tool is actually available
 - durable prior context materially affects the implementation
 
 For self-contained local tasks, skip memory entirely.
+
+Prefer the active MCP server when the host exposes it:
+
+```text
+MCP server: syarif-memory-management
+Tool: memory_auto
+Root: %USERPROFILE%\.ai-memory on Windows unless AI_MEMORY_ROOT overrides it
+Installed skill path: %USERPROFILE%\.agents\skills\memory-management
+```
+
+If MCP is unavailable and Node/file access exists, fall back to the local CLI:
 
 ```bash
 node <skill-dir>/scripts/memory.mjs auto --cwd <project-root> --query "<task intent>" --limit 5
 ```
 
-This returns compact relevant memory. Do not load every memory file by default.
+This returns an explicit `decision: RUN` or `decision: SKIP`. On `SKIP`, continue normal work without memory. On `RUN`, use only compact relevant memory. Do not load every memory file by default. Do not fail the task merely because memory infrastructure is unavailable.
+
+Memory is outside specialist routing. It does not consume the primary specialist slot, the supporting specialist slot, or the 0-2 specialist cap.
+
+Preflight is retrieval-only. It must not create durable memory entries; writes happen through `remember` or `checkpoint` after safety checks.
 
 ## Recall Budget
 
@@ -89,6 +105,8 @@ When memory and current evidence conflict, trust this order:
 
 This prevents memory poisoning during implementation.
 
+When memory conflicts with current evidence, mark the memory mentally as stale or superseded until verified. Do not silently implement old memory over current code/config.
+
 ## Selective Checkpointing
 
 Do not checkpoint everything. Store only reusable durable knowledge:
@@ -119,13 +137,13 @@ Decision memory helps the next agent understand why, not just what.
 
 ## Checkpoint At Handoff
 
-Run checkpoint after meaningful work:
+Run checkpoint after meaningful work only when durable reusable project knowledge changed:
 
 ```bash
 node <skill-dir>/scripts/memory.mjs checkpoint --project <alias> --summary "<handoff summary>" --pending "<open questions>" --files "app/Actions/Foo.php,tests/Feature/FooTest.php"
 ```
 
-Memory checkpoint is never a requirement for task completion. It occurs only when durable reusable knowledge was produced.
+Memory checkpoint is never a requirement for task completion. It occurs only when durable reusable knowledge was produced. Temporary debugging, transient terminal failures, trivial line edits, one-time grep results, and raw logs should not be checkpointed.
 
 ## Security Pipeline
 
@@ -141,4 +159,3 @@ Never store secrets, raw emails, phone numbers, .env contents, or customer perso
 
 - Graph memory commands and formats: `references/graph-memory.md`
 - Hermes-style orchestrator profile: `references/hermes-orchestrator-profile.md`
-- MCP/hook installation targets: `references/install-targets.md`

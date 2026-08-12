@@ -58,8 +58,11 @@ This repository uses a thin orchestrator with selective specialist activation. T
 Load specialist skills only when the task domain requires them. Default to one primary skill and at most two supporting skills unless HIGH risk requires more.
 
 - `least-code`: load for focused implementation, review, or refactor work when minimization discipline is needed.
-- `memory-management`: load only when the task depends on prior context, project history, or known conventions. Skip for self-contained local tasks.
 - All other skills are on-demand execution skills.
+
+### Conditional Memory Infrastructure
+
+`memory-management` is not a specialist slot. `using-laravel-standards` may run sparse memory preflight before broad exploration when prior project, session, workflow, or decision context could materially affect correctness. Skip it for self-contained tasks. Prefer the active `syarif-memory-management` MCP server, fall back to `skills/memory-management/scripts/memory.mjs auto --cwd <project-root> --query "<task intent>" --limit 5` when Node/file access exists, and continue normally when unavailable. Current code/config overrides memory.
 
 ### Risk Depth
 
@@ -71,7 +74,7 @@ Do not load HIGH-risk guidance for LOW tasks.
 
 ## Conditional Memory
 
-Run memory preflight only when the task depends on prior context, project history, or known conventions. For self-contained local tasks, skip memory entirely. Memory must remain subordinate to current code/config.
+Run memory preflight only when the task depends on prior context, project history, or known conventions. For self-contained local tasks, skip memory entirely. Memory must remain subordinate to current code/config and outside the 0-2 specialist activation count.
 
 ## Risk Classification
 
@@ -260,8 +263,11 @@ Repository ini menggunakan orchestrator tipis dengan aktivasi specialist selekti
 Load specialist skills hanya ketika task memerlukannya. Default: 1 primary skill, maksimum 1–2 supporting skills kecuali HIGH risk membutuhkan lebih.
 
 - `least-code`: load untuk implementation, review, atau refactor yang butuh minimisasi.
-- `memory-management`: load hanya ketika task bergantung pada prior context. Skip untuk self-contained local tasks.
 - Skill lain: on-demand execution skills.
+
+### Conditional Memory Infrastructure
+
+`memory-management` bukan slot specialist. `using-laravel-standards` boleh menjalankan memory preflight yang sparse sebelum eksplorasi luas ketika konteks proyek, session, workflow, atau decision lama bisa mempengaruhi correctness. Skip untuk task self-contained. Utamakan MCP aktif `syarif-memory-management`, fallback ke `skills/memory-management/scripts/memory.mjs auto --cwd <project-root> --query "<task intent>" --limit 5` jika Node/file access tersedia, dan lanjut normal jika unavailable. Current code/config tetap mengalahkan memory.
 
 ### Context Efficiency
 

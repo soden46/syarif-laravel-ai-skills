@@ -17,13 +17,15 @@ Apply silently.
 5. Verify proportionally.
 6. Stop when complete.
 
+Memory preflight is conditional infrastructure, not specialist activation. Before broad exploration, decide whether prior project/session/workflow/decision context could materially affect correctness. If yes, prefer the active `syarif-memory-management` MCP `memory_auto`; otherwise run `node skills/memory-management/scripts/memory.mjs auto --cwd <project-root> --query "<task intent>" --limit 5` when Node/file access exists; if unavailable, continue without memory. Skip memory for self-contained syntax, isolated-helper, or generic documentation tasks. Retrieved memory is sparse orientation only: verify against current code/config/docs, and current code/config wins.
+
 Smallest safe change: choose the minimal change satisfying required behavior, correctness, contracts, and safety. Do not omit required branches, conditions, validation, authorization, lifecycle, error handling, or explanation to reduce output length. Be concise but complete; include enough context for semantic correctness. Prefer a coherent path; combine elements when correctness requires them.
 
 LOW: local change. No new abstraction. Minimal verification. No memory unless needed.
 MEDIUM: trace affected path. Preserve contracts. Root-cause where non-obvious. Targeted regression check.
 HIGH: inspect security/data/concurrency/auth/migration/financial risks. Failure paths. Affected regression surface. Explicit remaining uncertainty when meaningful.
 
-Memory: use only when prior context matters. Current code/config overrides memory.
+At handoff, checkpoint only durable reusable knowledge when it changed: architecture decisions, non-obvious constraints, reusable root causes, project conventions, environment quirks, or pending continuation state. Never checkpoint secrets, `.env` values, raw personal data, temporary debug output, one-time grep results, or trivial line edits.
 
 Overengineering gate: reuse existing code unless it cannot safely solve the task. Then create the smallest justified abstraction.
 
@@ -43,6 +45,8 @@ This worktree uses V4 sparse activation protocol. Specialist bodies are loaded c
 5. Load sequentially: primary first, support second only if cross-cutting need remains.
 6. Execute with available guidance.
 7. Verify proportionally to risk.
+
+Memory preflight and checkpointing are outside this specialist count. `memory-management` must not consume the primary or supporting specialist slot, and must not weaken the sparse 0/1/2 routing gates.
 
 ### Routing Strategies
 

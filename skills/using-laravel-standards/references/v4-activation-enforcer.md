@@ -61,6 +61,7 @@ Before loading any specialist:
 2. Verify the specialist body file is present.
 3. Deduplicate: if primary == support, load only one.
 4. If support specialist is invalid, fall back to primary only.
+5. If `memory-management` is proposed by a legacy router or family index, do not count it as a specialist. Run or reuse conditional memory preflight, then select the next valid procedural specialist or fall back to baseline.
 
 ## Sequential Loading Protocol
 

@@ -40,6 +40,7 @@ The router MUST:
 2. Apply the need gate and confidence gate consistently.
 3. Enforce the hard cap of 2 specialists.
 4. Return a reason for transparency.
+5. Treat memory preflight as an already-run infrastructure input, not as a selectable specialist.
 
 The router MUST NOT:
 1. Inject implementation code or detailed patterns.
@@ -47,6 +48,7 @@ The router MUST NOT:
 3. Make decisions based on benchmark case IDs.
 4. Bypass the need gate for "important" tasks.
 5. Exceed 2 specialists under any circumstance.
+6. Count `memory-management` as a primary or supporting specialist.
 
 ## Reasoning Transparency
 

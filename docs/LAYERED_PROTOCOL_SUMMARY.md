@@ -6,7 +6,7 @@ Repository ini telah diubah dari kumpulan skill independen menjadi sistem berlap
 
 Perubahan ini mencakup:
 - penambahan skill `least-code` sebagai layer minimization kedua,
-- penguatan `memory-management` menjadi layer preflight pertama,
+- penguatan `memory-management` menjadi conditional preflight infrastructure,
 - redesign `using-laravel-standards` menjadi strict orchestrator 5 lapis,
 - restructuring `skills.sh.json` menjadi layer-based grouping,
 - penambahan `Context Efficiency` footer ke skill inti,
@@ -17,7 +17,6 @@ Perubahan ini mencakup:
 ### File Baru
 - `skills/least-code/SKILL.md` — skill minimization baru berbasis konsep Graphify-Labs/ponytail, diadaptasi untuk Laravel
 - `skills/memory-management/references/graph-memory.md` — referensi graph memory commands dan format
-- `skills/memory-management/references/install-targets.md` — referensi installer targets untuk MCP/hook
 
 ### File Diubah
 - `AGENTS.md` — ditambahkan `Layered Protocol` sebagai master workflow
@@ -42,9 +41,9 @@ Perubahan ini mencakup:
 
 ## Kemampuan Skill
 
-### memory-management (Layer 0)
+### memory-management (Conditional Infrastructure)
 - Automatic project detection dan anonymous project ID
-- Memory preflight dengan recall budget terbatas
+- Memory preflight conditional dengan recall budget terbatas
 - Graph memory: query, path, explain, god-nodes, communities, consolidate
 - MCP stdio server untuk tool calls
 - Lifecycle hooks untuk preflight dan checkpoint
@@ -93,12 +92,14 @@ Semua skill mengikuti standar ini:
 
 ## Flow Skill
 
-```
+```text
 User Request
     |
     v
-Layer 0: memory-management auto --cwd <project-root> --query "<task intent>" --limit 5
-    |  (jika graph tersedia: graph query)
+Conditional memory preflight
+    |  run only when prior project/session/workflow/decision context materially matters
+    |  skip for self-contained tasks; SKIP is success
+    |  memory-management does not consume specialist slots
     v
 Layer 1: least-code activation
     |  YAGNI -> reuse -> stdlib -> native -> dependency -> one-liner -> minimum code
@@ -112,7 +113,7 @@ Layer 3: Focused Implementation Skills
 Layer 4: Verification
     |  testing / quality-checks / tdd-with-pest
     v
-Handoff: memory-management checkpoint
+Handoff: memory-management checkpoint only for durable reusable knowledge
 ```
 
 ## Dampak Penggunaan

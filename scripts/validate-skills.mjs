@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-import { readdir, readFile, stat } from "node:fs/promises";
+import { mkdir, mkdtemp, readdir, readFile, rm, stat, writeFile } from "node:fs/promises";
 import { execFile } from "node:child_process";
+import os from "node:os";
 import path from "node:path";
 import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
@@ -12,6 +13,15 @@ const folderNamePattern = /^[a-z0-9-]+$/;
 const skillNamePattern = /^[a-z0-9-]+$/;
 const execFileAsync = promisify(execFile);
 let failed = false;
+
+if (process.argv.includes("--memory-flow-only")) {
+  await assertMemoryFlowScenarios();
+  if (failed) {
+    process.exit(1);
+  }
+  console.log("Memory flow scenarios passed.");
+  process.exit(0);
+}
 
 await assertRequiredRootFiles();
 await assertSkillFilesAreInstallable();
@@ -638,4 +648,127 @@ function fail(message) {
 
 function parseJson(text) {
   return JSON.parse(text.replace(/^\uFEFF/, ""));
+}
+
+async function assertMemoryFlowScenarios() {
+  const tempRoot = await mkdtemp(path.join(os.tmpdir(), "syarif-memory-flow-"));
+  const memoryRoot = path.join(tempRoot, "memory");
+  const projectRoot = path.join(tempRoot, "payroll-app");
+  const memoryScript = path.join(root, "skills", "memory-management", "scripts", "memory.mjs");
+  const hookScript = path.join(root, "skills", "memory-management", "scripts", "memory-hook.mjs");
+
+  try {
+    await mkdir(projectRoot, { recursive: true });
+    await writeFile(path.join(projectRoot, "artisan"), "", "utf8");
+    await writeFile(path.join(projectRoot, "composer.json"), JSON.stringify({
+      name: "tests/payroll-app",
+      require: {
+        php: "^8.3",
+        "laravel/framework": "^12.0"
+      }
+    }, null, 2), "utf8");
+
+    const a = await runNode(memoryScript, ["auto", "--cwd", projectRoot, "--root", memoryRoot, "--query", "explain a standalone PHP syntax question"]);
+    assertOutputIncludes(a, "decision: SKIP", "A should skip memory");
+    assertOutputIncludes(a, "specialist_routing: independent", "A should preserve independent specialist routing");
+    assertOutputIncludes(a, "No memory retrieved", "A should not retrieve snippets");
+
+    const lifecycleTask = await runNode(memoryScript, [
+      "auto",
+      "--cwd", projectRoot,
+      "--root", memoryRoot,
+      "--query", "Review and improve the automatic memory flow in this repository"
+    ]);
+    assertOutputIncludes(lifecycleTask, "decision: RUN", "memory lifecycle work should run preflight");
+
+    await runNode(memoryScript, [
+      "remember",
+      "--root", memoryRoot,
+      "--scope", "workflow",
+      "--type", "checkpoint",
+      "--title", "Payroll approval continuation",
+      "--content", "Payroll approval previous session used a manager approval state and a focused controller test.",
+      "--tags", "payroll,approval"
+    ]);
+
+    const b = await runNode(memoryScript, [
+      "auto",
+      "--cwd", projectRoot,
+      "--root", memoryRoot,
+      "--query", "Continue the payroll approval change from last session",
+      "--limit", "5"
+    ]);
+    assertOutputIncludes(b, "decision: RUN", "B should run memory preflight");
+    assertOutputIncludes(b, "Payroll approval previous session", "B should retrieve relevant project memory");
+    assertOutputIncludes(b, "memory-management does not count toward MAX_SPECIALISTS", "B should keep routing slots independent");
+
+    const c = await runNode(memoryScript, [
+      "auto",
+      "--cwd", projectRoot,
+      "--root", memoryRoot,
+      "--query", "Continue previous payroll approval change but verify stale memory against current code"
+    ]);
+    assertOutputIncludes(c, "conflict_policy: current code/config wins", "C should state current code/config precedence");
+
+    const d = await runNode(hookScript, [
+      "preflight",
+      "--cwd", projectRoot,
+      "--query", "Continue the payroll approval change from last session"
+    ], {
+      AI_MEMORY_ROOT: memoryRoot,
+      AI_MEMORY_SCRIPT: path.join(tempRoot, "missing-memory.mjs")
+    });
+    assertOutputIncludes(d, "decision: SKIP", "D should gracefully skip when backend is unavailable");
+    assertOutputIncludes(d, "memory backend unavailable", "D should explain fallback");
+
+    const e = await runNode(memoryScript, [
+      "checkpoint",
+      "--root", memoryRoot,
+      "--project", "payroll-app",
+      "--summary", "Architecture decision: keep memory preflight outside specialist slots and verify current code first.",
+      "--files", "skills/using-laravel-standards/SKILL.md"
+    ]);
+    assertOutputIncludes(e, "current-state.md", "E should write a checkpoint");
+
+    const statePath = path.join(memoryRoot, "projects", "payroll-app", "current-state.md");
+    const state = await readFile(statePath, "utf8");
+    assertOutputIncludes(state, "Architecture decision", "E checkpoint should persist durable knowledge");
+
+    const before = await readFile(statePath, "utf8");
+    const f = await runNode(memoryScript, [
+      "checkpoint",
+      "--root", memoryRoot,
+      "--project", "payroll-app",
+      "--summary", "temporary debug output from a one-time grep result only",
+      "--files", "none"
+    ]);
+    const after = await readFile(statePath, "utf8");
+    assertOutputIncludes(f, "No checkpoint written", "F should skip temporary checkpoint");
+    if (before !== after) {
+      fail("F should not append temporary checkpoint content.");
+    }
+  } finally {
+    await rm(tempRoot, { recursive: true, force: true });
+  }
+}
+
+async function runNode(script, args, extraEnv = {}) {
+  try {
+    const { stdout } = await execFileAsync(process.execPath, [script, ...args], {
+      cwd: root,
+      env: { ...process.env, ...extraEnv },
+      maxBuffer: 1024 * 1024
+    });
+
+    return stdout;
+  } catch (error) {
+    fail(`Command failed: node ${path.relative(root, script)} ${args.join(" ")}\n${error.stderr || error.stdout || error.message}`);
+    return `${error.stdout || ""}\n${error.stderr || ""}`;
+  }
+}
+
+function assertOutputIncludes(text, expected, message) {
+  if (!String(text).includes(expected)) {
+    fail(`${message}. Missing: ${expected}\nOutput:\n${text}`);
+  }
 }
