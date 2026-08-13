@@ -7,6 +7,46 @@ Language: [English](#english) | [Bahasa Indonesia](#bahasa-indonesia)
 <details open>
 <summary><strong>English</strong></summary>
 
+## v0.3.0 (2026-08-13)
+
+Smarter sparse routing, automatic project memory flow, and Codex marketplace packaging validation for the Laravel skill catalog.
+
+GitHub release body: [docs/releases/v0.3.0.md](docs/releases/v0.3.0.md).
+
+### Added
+
+- Production routing policy `family_gated_sparse_routing` with family-gated primary specialist selection.
+- Support specialist compatibility so cross-cutting context is loaded only when useful.
+- Public release evidence for routing heldout, capability, and token-efficiency validation.
+- Codex marketplace package-surface file-count validation.
+
+### Changed
+
+- Reduced unnecessary specialist activation while preserving the 0-2 specialist cap per task.
+- Kept memory preflight as conditional infrastructure; `memory-management` does not consume specialist slots.
+- Kept all 72 canonical skills available.
+
+### Benchmark Summary
+
+- Routing heldout improved mode accuracy from 56.3% to 83.3%, primary family from 36.1% to 72.2%, primary skill from 30.6% to 69.4%, support precision from 45.5% to 100%, support recall from 83.3% to 91.7%, overactivation from 37.5% to 14.6%, average specialists from 1.313 to 1.125, and utility from 0.574 to 0.800.
+- Fresh capability benchmark: baseline 58.9%, old policy49 57.3%, new routing 58.3%. New routing was non-inferior to baseline and +1.0 pp versus policy49; promotion gate PASS.
+- Token-efficiency benchmark: baseline 60.8%, corrected load_all 59.2%, old policy49 52.5%, new routing 62.5%. Candidate B token-efficiency gate PASS.
+
+### Packaging
+
+- Codex marketplace file-count validation now counts the actual plugin package surface instead of the entire tracked repository.
+- The 128-file guard remains in place.
+- Current package surface is 94 files.
+
+### Validation
+
+- `npm run validate`
+- `npm run sync`
+- `node scripts/validate-production-routing-policy.mjs`
+- `node scripts/validate-skills.mjs --memory-flow-only`
+- `npx skills add . --list`
+- `git diff --check`
+
 ## v0.2.0 (2026-08-11)
 
 Sparse activation and routing reliability release for the Laravel skill catalog.
@@ -86,6 +126,46 @@ Documentation structure, granular skill layout, and release-note style are inspi
 
 <details>
 <summary><strong>Bahasa Indonesia</strong></summary>
+
+## v0.3.0 (2026-08-13)
+
+Release ini menambahkan sparse routing yang lebih pintar, automatic project memory flow, dan validasi packaging Codex marketplace untuk katalog skill Laravel.
+
+Body release GitHub: [docs/releases/v0.3.0.md](docs/releases/v0.3.0.md).
+
+### Ditambahkan
+
+- Policy routing production `family_gated_sparse_routing` dengan pemilihan primary specialist berbasis family.
+- Kompatibilitas support specialist supaya context lintas domain hanya dimuat saat berguna.
+- Evidence publik untuk validasi routing heldout, capability, dan token-efficiency.
+- Validasi file-count berdasarkan surface package Codex marketplace.
+
+### Diubah
+
+- Mengurangi aktivasi specialist yang tidak perlu sambil tetap menjaga batas 0-2 specialist per task.
+- Memory preflight tetap menjadi infrastructure kondisional; `memory-management` tidak memakai slot specialist.
+- Semua 72 skill canonical tetap tersedia.
+
+### Ringkasan Benchmark
+
+- Routing heldout meningkat: mode accuracy 56.3% ke 83.3%, primary family 36.1% ke 72.2%, primary skill 30.6% ke 69.4%, support precision 45.5% ke 100%, support recall 83.3% ke 91.7%, overactivation 37.5% ke 14.6%, average specialists 1.313 ke 1.125, dan utility 0.574 ke 0.800.
+- Fresh capability benchmark: baseline 58.9%, policy49 lama 57.3%, routing baru 58.3%. Routing baru non-inferior terhadap baseline dan +1.0 pp dibanding policy49; promotion gate PASS.
+- Token-efficiency benchmark: baseline 60.8%, corrected load_all 59.2%, policy49 lama 52.5%, routing baru 62.5%. Candidate B token-efficiency gate PASS.
+
+### Packaging
+
+- Validasi file-count Codex marketplace sekarang menghitung surface package plugin yang sebenarnya, bukan seluruh repository tracked.
+- Guard 128 file tetap dipertahankan.
+- Surface package saat ini 94 file.
+
+### Validasi
+
+- `npm run validate`
+- `npm run sync`
+- `node scripts/validate-production-routing-policy.mjs`
+- `node scripts/validate-skills.mjs --memory-flow-only`
+- `npx skills add . --list`
+- `git diff --check`
 
 ## v0.2.0 (2026-08-11)
 
