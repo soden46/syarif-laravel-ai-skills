@@ -598,15 +598,51 @@ async function assertPackageJsonPolicy() {
 }
 
 async function assertCodexMarketplaceFileCount() {
+  const manifestPath = path.join(root, ".codex-plugin", "plugin.json");
+
   try {
-    const { stdout } = await execFileAsync("git", ["ls-files"], { cwd: root });
+    const manifest = parseJson(await readFile(manifestPath, "utf8"));
+    const packagePaths = [
+      ".codex-plugin/plugin.json",
+      ...codexPackageManifestPaths(manifest)
+    ];
+    const { stdout } = await execFileAsync("git", ["ls-files", "--", ...packagePaths], { cwd: root });
     const count = stdout.split(/\r?\n/).filter(Boolean).length;
 
     if (count > 128) {
-      fail(`Tracked file count is ${count}, exceeding the codex-marketplace.com scan limit of 128.`);
+      fail(`Codex marketplace package file count is ${count}, exceeding the codex-marketplace.com scan limit of 128.`);
     }
   } catch (error) {
-    fail(`Unable to count tracked files with git ls-files: ${error.message}`);
+    fail(`Unable to count Codex marketplace package files: ${error.message}`);
+  }
+}
+
+function codexPackageManifestPaths(manifest) {
+  const paths = [];
+
+  addRelativePackagePath(paths, manifest.skills);
+  addRelativePackagePath(paths, manifest.mcpServers);
+  addRelativePackagePath(paths, manifest.apps);
+  addRelativePackagePath(paths, manifest.hooks);
+
+  for (const key of ["composerIcon", "logo", "icon", "screenshots"]) {
+    addRelativePackagePath(paths, manifest.interface?.[key]);
+  }
+
+  return [...new Set(paths)];
+}
+
+function addRelativePackagePath(paths, value) {
+  if (typeof value === "string") {
+    const normalized = value.replace(/\\/g, "/").replace(/^\.\//, "").replace(/\/+$/, "");
+    if (normalized && !normalized.startsWith("../") && !path.isAbsolute(normalized)) {
+      paths.push(normalized);
+    }
+    return;
+  }
+
+  if (Array.isArray(value)) {
+    for (const item of value) addRelativePackagePath(paths, item);
   }
 }
 
