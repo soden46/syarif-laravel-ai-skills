@@ -29,19 +29,20 @@ At handoff, checkpoint only durable reusable knowledge when it changed: architec
 
 Overengineering gate: reuse existing code unless it cannot safely solve the task. Then create the smallest justified abstraction.
 
-## V4 Sparse Activation (Experimental)
+## Family-Gated Sparse Activation
 
-This worktree uses V4 sparse activation protocol. Specialist bodies are loaded conditionally, not by default.
+This worktree uses frozen family-gated sparse activation as the production routing policy. Specialist bodies are loaded conditionally, not by default.
 
 ### Activation Protocol
 
 1. Run least-code gate. If trivial/reuse/stdlib covers the task, skip specialist activation.
-2. Run V4 sparse router: classify domain, compute knowledge need, compute confidence, detect cross-cutting signals.
+2. Run the strict numeric JSON-schema router: classify domain, compute knowledge need, compute confidence, detect cross-cutting signals.
 3. Apply activation gates:
-   - If knowledge need < threshold → 0 specialists
-   - If knowledge need ≥ threshold AND confidence ≥ threshold → 1 primary specialist
-   - If cross-cutting signal ≥ threshold → +1 supporting specialist
-4. Enforce hard cap: MAX_SPECIALISTS = 2
+   - If knowledge need is below threshold, select 0 specialists.
+   - If the task is generic/self-contained or resolves to an excluded meta/infrastructure family, select 0 specialists.
+   - If family inference, ranked primary skill, knowledge need, and confidence pass gates, select 1 primary specialist.
+   - If support signal reaches the compatibility threshold and a compatible support family/skill ranks positively, select 1 supporting specialist.
+4. Enforce hard cap: `MAX_SPECIALISTS = 2`.
 5. Load sequentially: primary first, support second only if cross-cutting need remains.
 6. Execute with available guidance.
 7. Verify proportionally to risk.
@@ -50,8 +51,15 @@ Memory preflight and checkpointing are outside this specialist count. `memory-ma
 
 ### Routing Strategies
 
-**flat_v4** (default)
-- Single-stage: classify directly into one of 72 specialists.
+**family_gated_sparse_routing** (production)
+- Frozen policy source: Candidate B `candidate_b_family_gated_support_compat`.
+- Semantic name: family-gated sparse routing.
+- Selects task family from production family profiles, ranks skills within that family, suppresses generic/meta tasks, and loads support only through the compatibility matrix.
+- Reference: `references/family-gated-sparse-routing.md`
+- Frozen config: `references/family-gated-sparse-routing.json`
+
+**flat_v4** (historical policy49)
+- Historical single-stage sparse policy. Keep references only for benchmark/history compatibility.
 - Reference: `references/v4-sparse-router.md`
 
 **semantic_v4_3** (experimental)
@@ -60,7 +68,7 @@ Memory preflight and checkpointing are outside this specialist count. `memory-ma
 - Stage 2 reference: `references/v4-semantic-router-stage2.md`
 - Family index: `benchmark/v4-family-index.json`
 
-Set `routing_strategy` in the runner config to choose.
+Set `routing_strategy` in the runner config to choose. Production default is `family_gated_sparse_routing`.
 
 ### Key Distinctions
 
@@ -68,10 +76,13 @@ Set `routing_strategy` in the runner config to choose.
 - Risk controls verification depth.
 - Confidence decreases with ambiguity/conflict.
 - No benchmark-derived baseline gap.
-- No historical accuracy dependency in V4.0.
+- No historical accuracy dependency in production routing.
+- Memory is infrastructure, not a specialist candidate.
 
 ### References
 
+- Family-gated sparse routing: `references/family-gated-sparse-routing.md`
+- Family-gated frozen config: `references/family-gated-sparse-routing.json`
 - V4 sparse router: `references/v4-sparse-router.md`
 - V4 semantic router stage 1: `references/v4-semantic-router-stage1.md`
 - V4 semantic router stage 2: `references/v4-semantic-router-stage2.md`
